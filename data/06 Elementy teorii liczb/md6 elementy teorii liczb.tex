@@ -1,0 +1,551 @@
+
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[T1,plmath]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usefonttheme[onlymath]{serif}
+
+
+\usepackage{ulem} % kolorowe podkreœlenia
+\usepackage{xcolor} % kolorowe podkreœlenia
+
+\usepackage{diagbox}
+\usepackage{tasks}
+
+\newcommand{\arcctg}{{\rm{arcctg}\,}}
+\newcommand{\arctg}{{\rm{arctg}\,}}
+\newcommand{\ddd}{{\,\rm{d}}}
+\newcommand{\Int}{{\,\rm{Int}}}
+
+%\definecolor{green1}{html}{22B14C}
+
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarañczowe podkreœlenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % ¿ó³te podkreœlenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreœlenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreœlenie
+
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+%\usecolortheme[rgb={1,0.5,0}]{structure}
+
+\title{\bf Elementy teorii liczb}
+%\subtitle{Matematyka, Kierunek: Architektura}
+\author[B. Pawlik]{\bf dr in¿. Bart³omiej Pawlik}
+%\institute{}
+
+
+
+%\setbeamercovered{transparent} % przezroczyste warstwy
+
+
+
+
+
+\begin{document}
+
+
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{S³owniczek}
+	
+	\begin{tabular}{cl}
+		$|x|$&wartoœæ bezwzglêdna liczby $x$\\
+		$\mbox{NWD}(a,b)$&najwiêkszy wspólny dzielnik liczb $a$ i $b$\\
+		$\mbox{NWW}(a,b)$&najmniejsza wspólna wielokrotnoœæ liczb $a$ i $b$\\
+		$\min\{a,b\}$&niewiêksza z liczb $a$ i $b$\\
+		$\max\{a,b\}$&niemniejsza z liczb $a$ i $b$\\
+		$a|b$&liczba $a$ jest dzielnikiem liczby $b$\\
+		$a\perp b$&liczby $a$ i $b$ s¹ wzglêdnie pierwsze\\
+		$\mathbb{N}$&zbiór liczb naturalnych, $\mathbb{N}=\{1,2,3,\ldots\}$\\	
+		$\mathbb{Z}$&zbiór liczb ca³kowitych, $\mathbb{Z}=\{\ldots,-2,-1,0,1,2,\ldots\}$\\
+		$\mathbb{Z}_n$&zbiór reszt z dzielenia przez $n$, $\mathbb{Z}_n=\{0,1,\ldots,n-1\}$\\
+		$\mathbb{P}$&zbiór liczb pierwszych	\\
+		$p_i$&$i$-ta liczba pierwsza
+	\end{tabular}
+	
+\end{frame}
+
+
+
+
+
+\begin{frame}
+	
+	\begin{block}{Definicja NWD}
+		Niech $a,b\in\mathbb{Z}$ i niech co najmniej jedna z nich jest ró¿na od $0$. Liczbê naturaln¹ $d$ nazywamy {\bf najwiêkszym wspólnym dzielnikiem} liczb $a$ i $b$, gdy
+		\begin{itemize}
+			\item $d|a$ i $d|b$,
+			\item je¿eli dla $c\in\mathbb{N}$ mamy $c|a$ i $c|b$, to $c|d$.
+		\end{itemize}
+	\end{block}
+
+Najwiêkszy wspólny dzielnik liczb $a$ i $b$ oznaczamy jako $\mbox{NWD}(a,b)$.
+
+	\begin{exampleblock}{Przyk³ad}
+		$\mbox{NWD}(6,8)=2,\ \ \mbox{NWD}(14,-17)=1,\ \ \mbox{NWD}(-3,-9)=3,\ \ \mbox{NWD}(0,24)=24.$
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+
+\begin{frame}
+	
+	\begin{block}{Definicja NWW}
+		Niech $a,b\in\mathbb{Z}/\{0\}$. Liczbê $D\in\mathbb{N}$ nazywamy {\bf najmniejsz¹ wspóln¹ wielokrotnoœci¹} liczb $a$ i $b$, gdy
+		\begin{itemize}
+			\item $a|D$ i $b|D$,
+			\item je¿eli dla $c\in\mathbb{N}$ mamy $a|c$ i $b|c$, to $D|c$.
+		\end{itemize}
+	\end{block}
+	
+	Najmniejsz¹ wspóln¹ wielokrotnoœæ liczb $a$ i $b$ oznaczamy jako $\mbox{NWW}(a,b)$.
+	
+	\begin{exampleblock}{Przyk³ad}
+		$\mbox{NWW}(6,8)=24,\ \ \mbox{NWW}(14,-17)=238,\ \ \mbox{NWW}(-3,-9)=9.$
+	\end{exampleblock}
+
+	\begin{block}
+				
+		W literaturze czêsto mo¿na spotkaæ siê z oznaczeniami $\mbox{NWD}(a,b)=(a,b)$ i~$\mbox{NWW}(a,b)=[a,b]$.		
+	\end{block}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{block}{W³asnoœci NWD i NWW}
+		Niech $a,b\in\mathbb{Z}/\{0\}$ i $q\in\mathbb{Z}$.
+		\begin{enumerate}
+			\item Je¿eli $a|b$, to $\mbox{NWD}(a,b)=|a|$ i $\mbox{NWW}(a,b)=|b|$.
+			\item $\mbox{NWD}(a,b)=\mbox{NWD}(|a|,|b|)$ i $\mbox{NWW}(a,b)=\mbox{NWW}(|a|,|b|)$.
+			\item $\mbox{NWD}(a,b)=\mbox{NWD}(a-qb,b)$.
+			\item\label{mno} $\mbox{NWD}(a,b)\cdot\mbox{NWW}(a,b)=|a\cdot b|.$
+		\end{enumerate}
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}{Wyznaczenie NWW i NWD}
+	
+	\begin{block}{Twierdzenie}
+		Niech $$a=p_{1}^{\alpha_{1}}\cdot p_{2}^{\alpha_{2}}\cdot\ldots\cdot p_{k}^{\alpha_{k}}\ \ \mbox{ oraz}\ \ b=p_{1}^{\beta_{1}}\cdot p_{2}^{\beta_{2}}\cdot\ldots\cdot p_{k}^{\beta_{k}}.$$
+		Wtedy
+		$$NWD(a,b)=p_{1}^{\min\{\alpha_1,\beta_1\}}\cdot p_{2}^{\min\{\alpha_2,\beta_2\}}\cdot\ldots\cdot p_{k}^{\min\{\alpha_k,\beta_k\}}$$
+		oraz
+		$$NWW(a,b)=p_{1}^{\max\{\alpha_1,\beta_1\}}\cdot p_{2}^{\max\{\alpha_2,\beta_2\}}\cdot\ldots\cdot p_{k}^{\max\{\alpha_k,\beta_k\}}.$$	
+	\end{block}
+
+\end{frame}
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przyk³ad}
+		Wyznaczyæ najwiêkszy wspólny dzielnik oraz najmniejsz¹ wspóln¹ wielokrotnoœæ liczb $48$ i $180$.
+		
+		Zauwa¿my, ¿e $48=2^4\cdot3$ oraz $180=2^2\cdot3^2\cdot5$.
+		
+		Zatem $$\displaystyle\mbox{NWD}(48,180)=2^{\min\{4,2\}}\cdot3^{\min\{1,2\}}\cdot5^{\min\{0,1\}}=2^2\cdot3^1\cdot5^0=12$$
+		oraz $$\displaystyle\mbox{NWW}(48,180)=2^{\max\{4,2\}}\cdot3^{\max\{1,2\}}\cdot5^{\max\{0,1\}}=2^4\cdot3^2\cdot5^1=720.$$
+		
+	\end{exampleblock}
+
+Przedstawiona metoda nie jest efektywna (poniewa¿ wymaga rozk³adu na czynniki). NWD mo¿na obliczyæ szybciej korzystaj¹c z algorytmu Euklidesa.
+	
+\end{frame}
+
+\begin{frame}{Algorytm Euklidesa dla NWD}
+	
+	\begin{block}{}
+	
+	Niech $a,b\in\mathbb{N}$ i $a>b$.
+	
+	Po podzieleniu z reszt¹ $a$ przez $b$ otrzymujemy $a=q_1b+r_1$.
+	
+	Je¿eli $r_1=0$, to $\mbox{NWD}(a,b)=b$.
+	
+	Je¿eli $r_1\neq0$, to dzielimy z reszt¹ $b$ przez $r_1$ i otrzymujemy $b=q_2r_1+r_2$.
+	
+	Procedura koñczy siê, gdy dla pewnego indeksu $n$ mamy $r_n\neq0$ oraz $r_{n+1}=0$. Wtedy $NWD(a,b)=r_n$.
+	
+	\end{block}
+
+	\begin{align*}
+		a&=q_1\cdot b+r_1&0<&\,r_1<b\\
+		b&=q_2\cdot r_1+r_2&0<&\,r_2<r_1\\
+		r_1&=q_3\cdot r_2+r_3&0<&\,r_3<r_2\\
+		&\ \, \vdots&&\ \,\vdots\\
+		r_{n-2}&=q_n\cdot r_{n-1}+r_n&0<&\,r_n<r_{n-1}\\
+		r_{n-1}&=q_{n+1}\cdot \textcolor{red}{r_n}\,\textcolor{gray}{+\,0}&&
+	\end{align*}
+$$\mbox{NWD}(a,b)=\textcolor{red}{r_n}$$
+
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przyk³ad}
+		Wyznaczyæ najwiêkszy wspólny dzielnik oraz najmniejsz¹ wspóln¹ wielokrotnoœæ liczb $48$ i $180$.
+		
+		Stosuj¹c algorytm Euklidesa otrzymujemy
+				\begin{align*}
+			180&=3\cdot48+36\\
+			48&=1\cdot36+12\\
+			36&=3\cdot\textcolor{red}{12}
+		\end{align*}
+		Zatem $\mbox{NWD}(48,180)=12$.
+		
+		Z faktu $\mbox{NWD}(a,b)\cdot\mbox{NWW}(a,b)=|a\cdot b|$ otrzymujemy $\displaystyle\mbox{NWW}(a,b)=\frac{|a\cdot b|}{\mbox{NWD}(a,b)}$.
+		
+		Zatem $$NWW(48,180)=\frac{48\cdot180}{12}=\frac{4\cdot180}{1}=720.$$
+		
+	\end{exampleblock}
+
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{block}{Poprawnoœæ algorytmu Euklidesa}
+		\begin{itemize}
+			\item Algorytm produkuje \underline{malej¹cy} ci¹g liczb ca³kowitych nieujemnych $r_1>r_2>\ldots>r_n$ (jedna liczba w jednym kroku). Zatem algorytm zatrzymuje siê po skoñczonej liczbie kroków (nie wiêkszej ni¿ wartoœæ $r_1$). 
+			\item Z w³asnoœci $\mbox{NWD}(a,b)=\mbox{NWD}(a-qb,b)$ otrzymujemy
+			\begin{align*}
+			\mbox{NWD}(a,b)&=\mbox{NWD}(b,r_1)=\mbox{NWD}(r_1,r_2)=\ldots=\mbox{NWD}(r_{n-1},r_n)=\\
+			&=\mbox{NWD}(r_n,0)=r_n
+			\end{align*}
+		\end{itemize}
+	\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+
+	\begin{block}{Twierdzenie (NWD jako kombinacja liniowa)}
+		Dla $a,b\in\mathbb{Z}$ takich, ¿e co najmniej jedna z nich jest ró¿na od 0, istniej¹ $u,v\in\mathbb{Z}$ takie, ¿e
+		$$\mbox{NWD}(a,b)=u\cdot a+v\cdot b.$$
+		Ponadto $\mbox{NWD}(a,b)$ jest najmniejsz¹ mo¿liw¹ \underline{dodatni¹} kombinacj¹ liniow¹ $a$ i $b$.
+	\end{block}
+
+	\begin{exampleblock}{Przyk³ad}
+		Wyznaczyæ najmniejsz¹ dodatni¹ kombinacjê liniow¹ liczb $3$ i $7$ oraz podaæ jej przyk³adowe wspó³czynniki.
+		\begin{align*}
+		\textcolor{gray}{\mbox{NWD}(3,7)=\,}1&=5\cdot3-2\cdot7\\
+		1&=(-2)\cdot3+1\cdot7\\
+		1&=(-23)\cdot3+10\cdot7
+		\end{align*}
+	\end{exampleblock}
+
+\end{frame}
+
+
+
+\begin{frame}{Odwrotny algorytm Euklidesa}
+	
+	Algorytm s³u¿y wyznaczenia $u$ i $v$ takich, ¿e $a\cdot u+b\cdot v=\mbox{NWD}(a,b)$.
+	
+	\begin{block}{}
+		\begin{itemize}
+			\item Obliczamy $\mbox{NWD}(a,b)$ korzystaj¹c z algorytmu Euklidesa otrzymuj¹c ci¹g równañ
+			
+			$a=q_1\cdot b+r_1,\ \ \ b=q_2\cdot r_1+r_2,\ \ \ r_1=q_3\cdot r_2+r_3,\ \ \ \ldots,$
+			
+			$r_{n-3}=q_{n-1}\cdot r_{n-2}+r_{n-1},\ \ \ r_{n-2}=q_n\cdot r_{n-1}+r_n,\ \ \ r_{n-1}=q_{n+1}\cdot r_n.$
+			
+			\item Z $i$-tego równania wyznaczamy wartoœæ $r_i$ dla ka¿dego $i=1,2,\ldots,n$ (wiêc pomijamy ostatnie równanie).
+			
+			\item Wyliczone $r_n$ daje nam równanie
+			
+			$\mbox{NWD}(a,b)=r_{n-2}-q_n\cdot r_{n-1}$. 
+			
+			Do tego równania wstawiamy wyliczon¹ wartoœæ $r_{n-1}$ (w ten sposób otrzymujemy $\mbox{NWD}(a,b)$ w kombinacji liniowej $r_{n-2}$ i $r_{n-3}$).
+			
+			\item Kontynuujemy podstawianie $r_{n-2}$, $r_{n-3}$ itd. a¿ do $r_1$, po drodze upraszczaj¹c wspó³czynniki. W efekcie dostajemy zapis implikuj¹cy wartoœci $u$ i $v$.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+	
+	\begin{block}{Definicja}
+		Liczba $n\in\mathbb{N}$ jest {\bf liczb¹ pierwsz¹}, je¿eli $n$ ma dok³adnie dwa dodatnie dzielniki. 
+	\end{block}
+
+
+		\begin{itemize}
+		\item $0$ nie jest liczb¹ pierwsz¹ (po pierwsze nie jest liczb¹ dodatni¹, a po drugie ma nieskoñczenie wiele dzielników).
+		
+		\item $1$ nie jest liczb¹ pierwsz¹ (ma dok³adnie jeden dodatni dzielnik).
+		
+		\item Pocz¹tkowe liczby pierwsze: $2,\,3,\,5,\,7,\,11,\,13,\,17,\,19,\,23$.
+		
+		\item Liczby naturalne \underline{wiêksze od $1$} dzielimy na liczby pierwsze i liczby z³o¿one (z³o¿one to te, które nie s¹ pierwsze). 
+		
+		\item $1$ nie jest ani liczb¹ pierwsz¹, ani liczb¹ z³o¿on¹.
+		
+		\item Zbiór liczb pierwszych oznaczamy przez $\mathbb{P}$.
+		\end{itemize}
+	
+
+\end{frame}
+
+\begin{frame}
+	
+	\begin{block}{Twierdzenie}
+		Liczb pierwszych jest nieskoñczenie wiele.
+	\end{block}
+	
+	\begin{proof}
+		Za³ó¿my nie wprost, ¿e teza twierdzenia jest fa³szywa, tj. zbiór liczb pierwszych jest skoñczony. Zatem dla pewnej liczby naturalnej $n$ mamy $$\mathbb{P}=\{p_1,\,p_2,\,\ldots,\,p_n\}.$$ Niech $P$ bêdzie nastêpnikiem iloczynu wszystkich elementów powy¿szego zbioru $\mathbb{P}$:
+		$$P=1+\prod\limits_{i=1}^n{p_i}.$$
+		Zauwa¿my, ¿e liczba $P$ przy dzieleniu przez $p_i$ (dla $i=1,2,\ldots,n$) daje resztê $1$, zatem liczba $P$ nie jest podzielna przez ¿adn¹ liczbê pierwsz¹ --- uzyskaliœmy sprzecznoœæ.
+	\end{proof}
+	Powy¿szy dowód ma $\sim$2500 lat ({\it Elementy} Euklidesa).
+	
+\end{frame}
+
+\begin{frame}
+	Czy z powy¿szego dowodu wynika, ¿e liczba $P$ jest liczb¹ pierwsz¹? Nie!
+	\begin{align*}
+2+1&=3\in\mathbb{P}\\
+2\cdot3+1&=7\in\mathbb{P}\\
+2\cdot3\cdot5+1&=31\in\mathbb{P}\\
+2\cdot3\cdot5\cdot7+1&=211\in\mathbb{P}\\
+2\cdot3\cdot5\cdot7\cdot11+1&=2311\in\mathbb{P}\\
+2\cdot3\cdot5\cdot7\cdot11\cdot13+1&=59\cdot509\\
+2\cdot3\cdot5\cdot7\cdot11\cdot13\cdot17+1&=19\cdot97\cdot277\\
+2\cdot3\cdot5\cdot7\cdot11\cdot13\cdot17\cdot19+1&=347\cdot27\,953\\
+2\cdot3\cdot5\cdot7\cdot11\cdot13\cdot17\cdot19\cdot23+1&=317\cdot703\,763\\
+2\cdot3\cdot5\cdot7\cdot11\cdot13\cdot17\cdot19\cdot23\cdot29+1&=331\cdot571\cdot34\,231\\
+2\cdot3\cdot5\cdot7\cdot11\cdot13\cdot17\cdot19\cdot23\cdot29\cdot31+1&=200\,560\,490\,131\in\mathbb{P}\\
+2\cdot3\cdot5\cdot7\cdot11\cdot13\cdot17\cdot19\cdot23\cdot29\cdot31\cdot37+1&=181\cdot60\,611\cdot676\,421\\
+	\end{align*}
+	Zatem konstrukcja w powy¿szym dowodzie nie daje przepisu na tworzenie coraz wiêkszych liczb pierwszych, a jedynie wskazuje, ¿e istniej¹ liczby pierwsze nienale¿¹ce do dowolnego skoñczonego zbioru liczb pierwszych.
+\end{frame}
+	
+\begin{frame}
+Liczby o jeden wiêksze od iloczynu pocz¹tkowych liczb pierwszych to tzw. {\it liczby Euklidesa}:
+$$3,\,7,\,31,\,211,\,2311,\,30\,031,\,510\,511,\ldots$$
+
+\begin{block}{Definicja}
+Liczbê $$E_n=1+\prod\limits_{i=1}^np_i$$ nazywamy {\it $n$-t¹ liczb¹ Euklidesa}.
+\end{block}
+
+\bigskip
+
+\begin{block}{}
+Do dzisiaj nie wiadomo czy
+\begin{itemize}
+\item jest nieskoñczenie wiele liczb pierwszych Euklidesa?
+\item ka¿da liczba Euklidesa jest bezkwadratowa?
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Podstawowe twierdzenie arytmetyki}
+		Ka¿d¹ liczbê ca³kowit¹ dodatni¹ mo¿na przedstawiæ jako iloczyn liczb pierwszych. Przedstawienie takie jest jednoznaczne z dok³adnoœci¹ do kolejnoœci czynników.
+	\end{block}
+
+	\begin{exampleblock}{Przyk³ad}
+		$12=2\cdot2\cdot3=2\cdot3\cdot2=3\cdot2\cdot2$
+	\end{exampleblock}
+	
+	\begin{block}{Wniosek}
+		Ka¿da wiêksza od $1$ liczba naturalna $n$ mo¿e byæ jednoznacznie zapisana w tzw. {\bf postaci kanonicznej}
+		$$n=q_{1}^{\alpha_{1}}\cdot q_{2}^{\alpha_{2}}\cdot\ldots\cdot q_{k}^{\alpha_{k}},$$
+		gdzie $q_{i}$ s¹ liczbami pierwszymi, $\alpha_i$ s¹ liczbami naturalnymi oraz $q_1<q_2<\ldots<q_k$.
+	\end{block}
+
+	\begin{exampleblock}{Przyk³ad}
+	Postaci¹ kanoniczn¹ liczby $12$ jest $2^2\cdot3$.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+
+\begin{frame}{Funkcja $\varphi$-Eulera}
+	
+	\begin{block}{Definicja}
+		Liczby ca³kowite $a$ i $b$ nazywamy {\bf wzglêdnie pierwszymi}, gdy $\mbox{NWD}(a,b)=1$. 
+	\end{block}
+	
+	\begin{block}{}
+		Zapis $a\perp b$ oznacza, ¿e $a$ i $b$ s¹ liczbami wzglêdnie pierwszymi.
+	\end{block}
+
+	\begin{block}{Stwierdzenie}
+		Liczby $\displaystyle\frac{a}{\mbox{NWD}(a,b)}$ i $\displaystyle\frac{b}{\mbox{NWD}(a,b)}$ s¹ wzglêdnie pierwsze.
+	\end{block}
+
+	\begin{exampleblock}{Przyk³ad}
+		$\mbox{NWD}(48,180)=12$, wiêc $48$ i $180$ nie s¹ liczbami wzglêdnie pierwszymi.
+		$$\frac{48}{12}=4,\ \ \ \frac{180}{12}=15.$$
+		Zauwa¿my, ¿e $\mbox{NWD}(4,15)=1$. Zatem $4\perp15$.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Definicja}
+		Dla ka¿dej liczby $n\in\mathbb{N}/\{1\}$ okreœlamy liczbê $\varphi(n)$ jako liczbê dodatnich liczb ca³kowitych mniejszych od $n$ i wzglêdnie pierwszych z $n$:
+		
+		$$\varphi(n)=\Big|\{1\leqslant k<n:\,k\perp n \}\Big|.$$
+		
+		 Funkcjê $\varphi=\varphi(n)$ nazywamy {\bf funkcj¹ $\varphi$-Eulera}.
+	\end{block}
+	
+	
+	\begin{exampleblock}{Przyk³ad}
+		Obliczmy $\mbox{NWD}(k,12)$ dla $k$ mniejszych od 12:
+			$$\begin{array}{llll}
+			\mbox{NWD}(1,12)=\textcolor{red}{1}, &\mbox{NWD}(4,12)=4, &\mbox{NWD}(7,12)=\textcolor{red}{1},&\mbox{NWD}(10,12)=2, \\
+			\mbox{NWD}(2,12)=2, &\mbox{NWD}(5,12)=\textcolor{red}{1}, &\mbox{NWD}(8,12)=4,&\mbox{NWD}(11,12)=\textcolor{red}{1}. \\
+			\mbox{NWD}(3,12)=3, &\mbox{NWD}(6,12)=6, &\mbox{NWD}(9,12)=3,
+			\end{array}$$
+		Zatem
+		$$\varphi(12)=\Big|\{1,5,7,11\}\Big|=4.$$
+
+	\end{exampleblock}	
+	
+	
+	
+\end{frame}	
+	
+	
+\begin{frame}
+
+
+\begin{block}{Stwierdzenie}
+ Dla dowolnej liczby pierwszej $p$ i liczby ca³kowitej dodatniej $\alpha$ zachodzi:
+ \begin{itemize}
+ \item $\varphi(p)=p-1$,\\
+ \item $\varphi(p^{\alpha})=p^{\alpha}\cdot\left(1-\frac1p\right).$
+ \end{itemize}
+\end{block}
+
+\begin{proof}
+	\begin{itemize}
+		\item Liczba pierwsza $p$ jest  wzglêdnie pierwsza z ka¿d¹ z liczb $1,2,\ldots,p-1$.
+		\item Zauwa¿my, ¿e jedynie wielokrotnoœci liczby pierwszej $p$ maj¹ wspólny nietrywialny dzielnik z $p^\alpha$. Zatem w zbiorze $\{1,2,\ldots,p^\alpha-1\}$ liczbami niebêd¹cymi liczbami wzglêdnie pierwszymi z $p^\alpha$ s¹
+		$$1\cdot p,\,2\cdot p,\,\ldots,\,(p^{\alpha-1}-1)\cdot p,$$
+		wiêc ich liczba wynosi $p^{\alpha-1}-1$.
+		Zatem
+		$$\varphi\left(p^{\alpha}\right)=\left(p^{\alpha}-1\right)-\left(p^{\alpha-1}-1\right)=p^{\alpha}-p^{\alpha-1}=p^{\alpha}\left(1-\frac1p\right).$$
+	\end{itemize}
+\end{proof}
+
+
+\end{frame}
+
+
+\begin{frame}
+
+	\begin{block}{Stwierdzenie}
+	
+	Je¿eli $a\perp b$, to $\varphi(ab)=\varphi(a)\varphi(b)$. %dowodzi siê z Chiñskiego twierdzenia o resztach
+	
+	\end{block}
+	
+	Z dwóch ostatnich stwierdzeñ wynika nastêpuj¹ce
+
+	\begin{block}{Twierdzenie}
+		Niech $\displaystyle p_{1}^{\alpha_{1}}\cdot p_{2}^{\alpha_{2}}\cdot\ldots\cdot p_{k}^{\alpha_{k}}$ bêdzie postaci¹ kanoniczn¹ liczby $n\in\mathbb{N}/\{1\}$. Wtedy
+		$$\varphi(n)=n\cdot\prod\limits_{i=1}^k\left(1-\frac1{p_i}\right).$$
+	\end{block}
+	
+\end{frame}
+
+
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przyk³ad}
+		Wyznaczyæ liczby $\varphi(180)$ i $\varphi(12\,936)$.
+		\begin{itemize}
+			\item Postaæ kanoniczna liczby $180$ to $2^2\cdot3^2\cdot5$, wiêc jedynymi dzielnikami pierwszymi danej liczby s¹ $2,\,3$ i $5$. Zatem
+			$$\varphi(180)=180\cdot\frac12\cdot\frac23\cdot\frac45=48.$$
+			\item $12\,936=2^3\cdot3\cdot7^2\cdot11$, wiêc dzielnikami pierwszymi danej liczby s¹ $2$, $3$, $7$ i~$11$. Zatem $$\varphi(12\,936)=12\,936\cdot\frac12\cdot\frac23\cdot\frac67\cdot\frac{10}{11}=3360.$$
+		\end{itemize}		
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}{Wspó³czynniki rozk³adu silni}
+
+\begin{block}{Twierdzenie}
+Niech $n$ bêdzie liczb¹ ca³kowit¹ dodatni¹ i niech $\alpha_p(N)$ oznacza najwiêksz¹ potêgê liczby $p$ dziel¹c¹ liczbê $N$. Wtedy
+$$\alpha_p(n!)=\left\lfloor\frac{n}p\right\rfloor+\left\lfloor\frac{n}{p^2}\right\rfloor+\left\lfloor\frac{n}{p^3}\right\rfloor+\ldots=\sum\limits_{k=1}^\infty\left\lfloor\frac{n}{p^k}\right\rfloor.$$
+\end{block}
+
+\begin{exampleblock}{Przyk³ad}
+Wska¿ najwiêksz¹ potêgê liczby $3$ dziel¹ca liczbê $100!$
+
+\bigskip
+
+Korzystaj¹c z powy¿szego wzoru mamy
+\begin{align*}
+\alpha_3(100!)=&\,\left\lfloor\frac{100}{3}\right\rfloor+\left\lfloor\frac{100}{9}\right\rfloor+\left\lfloor\frac{100}{27}\right\rfloor+\left\lfloor\frac{100}{81}\right\rfloor+\left\lfloor\frac{100}{243}\right\rfloor+\ldots=\\
+=&\,33+11+3+1+0+\ldots=48.
+\end{align*}
+Zatem szukana potêga to $3^{48}$.
+\end{exampleblock}
+
+
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Twierdzenie}
+Dla ka¿dej liczby pierwszej $p$ i dla ka¿dej liczby ca³kowitej dodatniej $n$ zachodzi $$\alpha_p(n!)<\frac{n}{p-1}$$
+\end{block}
+
+\begin{proof}
+$$\alpha_p(n!)<\frac{n}p+\frac{n}{p^2}+\frac{n}{p^3}+\ldots=\frac{n}{p}\left(1+\frac1p+\frac1{p^2}+\ldots\right)=\frac{n}p\cdot\frac{p}{p-1}=\frac{n}{p-1}$$
+\end{proof}
+
+\end{frame}
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,600 @@
+
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[T1,plmath]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usefonttheme[onlymath]{serif}
+
+
+\usepackage{ulem} % kolorowe podkreúlenia
+\usepackage{xcolor} % kolorowe podkreúlenia
+
+\newcommand{\arcctg}{{\rm{arcctg}\,}}
+\newcommand{\arctg}{{\rm{arctg}\,}}
+\newcommand{\ddd}{{\,\rm{d}}}
+\newcommand{\Int}{{\,\rm{Int}}}
+
+%\definecolor{green1}{html}{22B14C}
+
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomaraÒczowe podkreúlenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % øÛ≥te podkreúlenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreúlenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreúlenie
+
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+%\usecolortheme[rgb={1,0.5,0}]{structure}
+
+\title{\bf Systemy liczbowe}
+%\subtitle{Matematyka, Kierunek: Architektura}
+\author[B. Pawlik]{\bf dr inø. Bart≥omiej Pawlik}
+%\institute{}
+
+
+
+%\setbeamercovered{transparent} % przezroczyste warstwy
+
+
+
+
+
+\begin{document}
+
+
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\section{WstÍp}
+
+\subsection{Matematyka dyskretna}
+
+% Czym jest matematyka dyskretna.
+% Zeilberger stwierdzi≥, øe pojÍcie liczby rzeczywistej to oksymoron.
+% PromieÒ obserwowalnego Wszechúwiata to 10^27 metrÛw (najwiÍksza moøliwa do zaobserwowania odleg≥oúÊ). Jeøeli chcemy wyliczyÊ obwÛd obserwowalnego Wszechúwiata z dok≥adnoúciπ do odleg≥oúci Plancka (10^{-35} metra, najmniejsza obserwowalna odleg≥oúÊ), to wystarczy znaÊ PI z dok≥adnoúciπ do 62 miejsc po przecinku
+
+
+
+\section{Oznaczenia}
+
+
+\begin{frame}{Oznaczenia}
+\begin{itemize}
+\item $A,B,C,\ldots$ --- zbiory
+\item $\emptyset$ --- zbiÛr pusty (bywa zapisywany jako \{\} )
+\item $a,b,c,\ldots$ --- elementy zbiorÛw
+\item $a\in S$ --- $a$ naleøy do zbioru $S$
+\item $a\not\in S$ --- $a$ nie naleøy do zbioru $S$
+\item $A\subset S$ --- $A$ jest pozbiorem zbioru $S$
+\item $|S|$ --- liczba elementÛw zbioru $S$
+\item $\displaystyle\sum\limits_{i=1}^na_i$ --- suma liczb $a_i$ dla $i=1,2,\ldots,n$:
+$$\sum\limits_{i=1}^na_i=a_1+a_2+\ldots+a_n$$
+\item $\displaystyle\prod\limits_{i=1}^na_i$ --- iloczyn liczb $a_i$ dla $i=1,2,\ldots,n$:
+$$\prod\limits_{i=1}^na_i=a_1\cdot a_2\cdot\ldots\cdot a_n$$
+\end{itemize}
+\end{frame}
+
+
+
+\subsection{Zbiory liczbowe}
+
+
+\begin{frame}{NiektÛre zbiory liczbowe}
+\begin{itemize}
+\item $\mathbb{N}$ --- zbiÛr liczb naturalnych
+$$\mathbb{N}=\{\textcolor{red}{0},1,2,\ldots\}$$ 
+(UWAGA! W trakcie tego kursu bÍdziemy domyúlnie zak≥adaÊ, øe $0$ nie jest liczbπ naturalnπ.)
+\item $\mathbb{Z}$ --- zbiÛr liczb ca≥kowitych
+$$\mathbb{Z}=\{\ldots,-2,-1,0,1,2,\ldots\}=\{0,\pm1,\pm2,\pm3,\ldots\}$$
+\item $\mathbb{Q}$ --- zbiÛr liczb wymiernych
+$$\mathbb{Q}=\left\{\frac{p}q:\,p\in\mathbb{Z},q\in\mathbb{N},q\neq0\right\}$$
+\item $\mathbb{R}$ --- zbiÛr liczb rzeczywistych
+
+\begin{center}
+$\mathbb{R}$ --- zbiÛr granic wszystkich ciπgÛw zbieønych o~wspÛ≥czynnikach wymiernych
+\end{center}
+\item $\mathbb{C}$ --- zbiÛr liczb zespolonych
+$$\mathbb{C}=\left\{a+bi:\,a,b\in\mathbb{R},\ i^2=-1\right\}$$
+\item $\mathbb{H},\,\mathbb{O},\,\mathbb{S},\ldots$
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{Systemy liczbowe}
+	
+ {\bf Systemem liczbowym} nazywamy sposÛb zapisu liczb.
+
+\bigskip
+
+Przyk≥adowe dawne systemy liczbowe:
+\begin{itemize}
+\item egipski (ok. $3000$ p.n.e. --- $1000$ n.e.) --- system oparty na hieroglifach reprezentujπcych kolejne potÍgi liczby $10$
+\begin{center}
+ \includegraphics[scale=0.7]{Hieroglyph.png}
+
+{\footnotesize èrÛd≥o: {\it https://mathshistory.st-andrews.ac.uk/HistTopics/Egyptian\_numerals}}
+\end{center}
+\item babiloÒski --- uøywany w Mezopotamii, system pozycyjny o podstawie $60$
+\item grecki --- system alfabetyczny (kaødej literze alfabetu przypisywano wartoúÊ liczbowπ) %gematria
+\item rzymski --- (wybrane litery alfabetu, dodawanie i odejmowanie) obecnie uøywany g≥Ûwnie w celach edukacyjnych lub w pewnych specyficznych kontekstach (liczby na zegarach, numery rozdzia≥Ûw)
+\end{itemize}
+
+
+
+\end{frame}
+
+
+
+
+
+\begin{frame}
+	
+\begin{block}{Twierdzenie o dzieleniu z resztπ}
+	Dla dowolnych niezerowych ca≥kowitych liczb $a$ i $b$ istniejπ \underline{jednoznacznie} wyznaczone liczby ca≥kowite $q$ i $r$ ($0\leqslant r<|b|$) takie, øe
+	$$a=q\cdot b+r.$$
+	LiczbÍ $q$ nazywamy {\bf ilorazem}, a liczbÍ $r$ {\bf resztπ z dzielenia $a$ przez $b$}.
+\end{block}
+
+\begin{exampleblock}{Przyk≥ad 1}
+	\begin{itemize}
+		\item Dla $a=33$ i $b=7$ otrzymujemy $q=4$ i $r=5$:
+		$$33=4\cdot7+5.$$
+		\item Dla $a=-27$ i $b=-6$ otrzymujemy $q=5$ i $r=3$:
+		$$-27=5\cdot(-6)+3.$$
+		\item Dla $a=59$ i $b=-20$ otrzymujemy $q=-2$ i $r=19$:
+		$$59=(-2)\cdot(-20)+19.$$
+	\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+
+
+
+\begin{frame}
+	
+\begin{block}{Twierdzenie o postaci potÍgowej}
+	Niech $b$ bÍdzie liczbπ ca≥kowitπ wiÍkszπ od $1$. Kaødπ liczbÍ ca≥kowitπ nieujemnπ $n$ moøna \underline{jednoznacznie} zapisaÊ w postaci
+	\begin{equation}\label{potegowa}
+		n=a_kb^k+a_{k-1}b^{k-1}+\ldots+a_1b^1+a_0b^0,
+	\end{equation}
+	gdzie $k$ jest nieujemnπ liczbπ ca≥kowitπ, $a_k\neq0$ oraz $a_i\in\{0,1,2,\ldots,b-1\}$ dla $i=0,1,\ldots,k-1$.
+\end{block}	
+
+Prawπ stronÍ rÛwnania \eqref{potegowa} nazywamy {\bf postaciπ potÍgowπ liczby $n$ przy podstawie $b$}.
+
+DowÛd powyøszego twierdzenia moøna przeprowadziÊ poprzez iteracyjne stosowanie twierdzenia o dzieleniu z resztπ - zaczynamy od podzielenia $n$ przez $b$, nastÍpnie od podzielenia otrzymanej reszty przez $b$ itd. Otrzymany ciπg reszt pokrywa siÍ z ciπgiem $a_0,a_1,\ldots,a_k$.
+	
+\end{frame}
+
+
+
+
+\begin{frame}
+
+\begin{exampleblock}{Przyk≥ad}
+Zauwaømy, øe
+\begin{align*}1202=&\,1\cdot10^3+2\cdot10^2+0\cdot10^1+2\cdot10^0\\
+=&\,1\cdot5^4+4\cdot5^3+3\cdot5^2+0\cdot5^1+2\cdot5^0\\
+=&\,1\cdot2^{10}+0\cdot2^9+0\cdot2^8+1\cdot2^7+0\cdot2^6+1\cdot2^5+1\cdot2^4+\\
+&\,+0\cdot2^3+0\cdot2^2+1\cdot2^1+0\cdot2^0
+\end{align*}
+Zatem $$1\cdot10^3+2\cdot10^2+0\cdot10^1+2\cdot10^0$$
+jest {\it postaciπ potÍgowπ liczby $1202$ przy podstawie $10$},
+$$1\cdot5^4+4\cdot5^3+3\cdot5^2+0\cdot5^1+2\cdot5^0$$
+jest {\it postaciπ potÍgowπ liczby $1202$ przy podstawie $5$}, natomiast
+$$1\cdot2^{10}+0\cdot2^9+0\cdot2^8+1\cdot2^7+0\cdot2^6+1\cdot2^5+1\cdot2^4+0\cdot2^3+0\cdot2^2+1\cdot2^1+0\cdot2^0$$
+jest {\it postaciπ potÍgowπ liczby $1202$ przy podstawie $2$}.
+\end{exampleblock}
+
+
+\end{frame}
+
+
+\begin{frame}
+	Korzystajπc ze wzoru (\ref{potegowa}), moøna przyjπÊ notacjÍ 
+	\begin{equation}\label{zapispot}
+		n=a_kb^k+a_{k-1}b^{k-1}+\ldots+a_1b^1+a_0b^0=:\left(\bar{a}_k\bar{a}_{k-1}\ldots\bar{a}_1\bar{a}_0\right)_b,
+	\end{equation}
+	gdzie $\bar{a}_i$ jest cyfrπ odpowiadajπcπ liczbie $a_i$ (nawiasy moøna pominπÊ).
+	
+	Prawπ stronÍ rÛwnania \eqref{zapispot} nazywamy {\bf zapisem liczby $n$ przy podstawie $b$}.
+	
+	
+	\begin{exampleblock}{Przyk≥ad}
+Otrzymujemy\begin{align*}1202=&\,(1202)_{10}\\
+=&\,(14302)_5\\
+=&\,(10010110010)_2
+\end{align*}
+\end{exampleblock}
+	
+	
+
+	\begin{alertblock}{Uwaga!}
+		Liczby w zapisie o podstawie 10 bÍdziemy zwyczajowo zapisywaÊ w postaci $\bar{a}_k\bar{a}_{k-1}\ldots\bar{a}_1\bar{a}_0$ zamiast $\left(\bar{a}_k\bar{a}_{k-1}\ldots\bar{a}_1\bar{a}_0\right)_b$.
+	\end{alertblock}
+\end{frame}
+
+
+
+
+\begin{frame}
+
+	\begin{block}{}
+		W systemach liczbowych o podstawach $2,3,\ldots,16$ zwyczajowo\footnote{Wyjπtkiem od tej regu≥y jest system dwunastkowy --- stowarzyszenie {\it Doznal Society of America} ,,spopularyzowa≥o'' cyfry $\rotatebox[origin=c]{180}{2}$ (dek) i $\reflectbox{3}$ (el) na oznaczenie $10$ i $11$.} przyjmuje siÍ nastÍpujπce oznaczenia cyfr:
+		$$\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}\hline
+		\mbox{wartoúÊ}&0&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15\\\hline
+		\mbox{cyfra}&0&1&2&3&4&5&6&7&8&9&A&B&C&D&E&F\\\hline
+		\end{array}$$
+	\end{block}
+	
+
+
+\begin{center}
+ \includegraphics[scale=0.1]{johns0through9.jpg} \begin{minipage}[b]{5cm}
+ 	Jasper Johns, {\it 0 through 9} (1961) \newline Tate Gallery, London\end{minipage}
+\end{center}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}{\bf Nazwy niektÛrych systemÛw pozycyjnych}
+	
+	\begin{center}
+		
+	\begin{tabular}{|c|l|l|}\hline
+		Podstawa systemu& Nazwa &Inne nazwy\\\hline
+		-2&minus-dwÛjkowy&negabinarny\\\hline
+		2& dwÛjkowy& binarny\\\hline
+		8&Ûsemkowy&oktalny\\\hline
+		12&dwunastkowy&duodecymalny\\\hline
+		16& szesnastkowy&heksadecymalny\\\hline
+	\end{tabular}
+
+	\end{center}
+	
+\end{frame}
+
+
+\begin{frame}{Konwersja na system dziesiÍtny}
+	
+	Aby wykonaÊ konwersjÍ na system dziesiÍtny, wystarczy wprost zastosowaÊ twierdzenie o postaci potÍgowej.
+	
+	\begin{exampleblock}{Przyk≥ad}
+		ZapisaÊ liczby $10100_2$, $320_5$ i $2CA_{14}$ w systemie dziesiÍtnym.		
+	\begin{align*}
+	10100_2&=1\cdot2^4+0\cdot2^3+1\cdot2^2+0\cdot2^1+0\cdot2^0=16+4=20\\
+	320_5&=3\cdot5^2+2\cdot5^1+0\cdot5^0=75+10+0=85\\
+	2CA_{14}&=2\cdot14^2+12\cdot14^1+10\cdot14^0=392+168+10=570
+	\end{align*}
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Schemat Hornera}
+		Zauwaømy, øe postaÊ potÍgowπ
+		$$n=a_kb^k+a_{k-1}b^{k-1}+\ldots+a_1b+a_0$$
+		moøna przekszta≥ciÊ na
+		$$n=b\Big(b\ldots\big(b(b\cdot a_k+a_{k-1})+a_{k-2}\big)+\ldots+a_1\Big)+a_0.$$
+	\end{block}
+
+	Ile mnoøeÒ naleøy wykonaÊ, aby obliczyÊ $n$ w kaødej z powyøszych postaci?
+	
+	\begin{exampleblock}{Przyk≥ad}
+		ZapisaÊ liczby $10100_2$, $320_5$ i $2CA_{14}$ w systemie dziesiÍtnym.		
+		\begin{align*}
+			10100_2&=2\cdot(2\cdot(2\cdot(2\cdot1+0)+1)+0)+0=2\cdot(2\cdot(2\cdot2+1))=\\
+				   &=2\cdot2\cdot5=20\\
+			320_5&=5\cdot(5\cdot3+2)+0=5\cdot17=85\\
+			2CA_{14}&=14\cdot(14\cdot2+12)+10=14\cdot40+10=570
+		\end{align*}
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}{Konwersja z systemu dziesiÍtnego}
+	Jak przekszta≥ciÊ liczbÍ naturalnπ $n$ zapisanπ w systemie o podstawie $10$ na liczbÍ~$n$ zapisanπ w systemie o podstawie $b$?
+	\begin{block}{Konwersja z systemu dziesiÍtnego: Pierwszy sposÛb}
+		\begin{enumerate}
+			\item LiczbÍ $n$ zapisujemy w postaci $n=q_0\cdot b+r_0$. Liczba $r_0$ odpowiada cyfrze $\bar{a}_0$ w zapisie liczby $n$ przy podstawie $b$.
+			\item LiczbÍ $q_0$ zapisujemy w postaci $q_0=q_1\cdot b+r_1$. Liczba $r_1$ odpowiada cyfrze $\bar{a}_1$ w zapisie liczby $n$ przy podstawie $b$.
+			\item ProcedurÍ powtarzamy do momentu, gdy $q_i=0$.
+		\end{enumerate}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\begin{exampleblock}{Przyk≥ad}
+		LiczbÍ 352 zapisaÊ w systemie o podstawie 11.
+		\begin{align*}
+			352&=32\cdot11+\textcolor{red}0\\
+			32&=2\cdot11+\textcolor{red}{10}\\
+			2&=0\cdot11+\textcolor{red}2
+		\end{align*}		
+		Resztom $\textcolor{red}0,\textcolor{red}{10}$ i $\textcolor{red}2$ przypisujemy, odpowiednio, cyfry $\textcolor{red}0,\textcolor{red}{A}$ i $\textcolor{red}2$.
+		
+		Ostatecznie $352=\textcolor{red}{2A0}_{11}$.
+	\end{exampleblock}
+\end{frame}
+
+
+
+	
+\begin{frame}
+	\begin{block}{Konwersja z systemu dziesiÍtnego: Drugi sposÛb}
+		\begin{enumerate}
+			\item OkreúliÊ najwiÍkszπ potÍgÍ liczby $b$ nie wiÍkszπ niø $n$, tj. znaleüÊ najwiÍkszπ liczbÍ ca≥kowitπ nieujemnπ $w_0$ takπ, øe $n-b^{w_0}\geq0$.
+			\item OkreúliÊ najwiÍkszπ liczbÍ ca≥kowitπ $k_0$ takπ, øe $n-k_0\cdot b^{w_0}\geq0$. Liczba $k_0$ odpowiada cyfrze $\bar{a}_{w_0}$ zapisu liczby $n$ w systemie o~podstawie $b$.
+			\item Krok 2 powtÛrzyÊ $w_0$ razy, za kaødy razem zmniejszajπc wyk≥adnik o 1, a~zamiast $n$ przyjmowaÊ ostatnie otrzymane $n_i-k_ib^{w_i}$.
+		\end{enumerate}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{exampleblock}{Przyk≥ad}
+		LiczbÍ 352 zapisaÊ w systemie o podstawie 11.
+		
+		Kolejne potÍgi liczby $11$ to $1,\,11,\,121,\,1331,\,\ldots$. Zauwaømy, øe $121<352$ i~$1331>352$, wiÍc otrzymamy liczbÍ 3-cyfrowπ (liczba cyfr jest o 1 wiÍksza od wyk≥adnika $121=11^2$).
+		$$352-\textcolor{red}{2}\cdot11^2=110\geq0\ \ \mbox{ oraz }\ \ 352-3\cdot11^2=-11<0,$$
+		wiÍc pierwszπ (od lewej) cyfrπ w zapisie liczby $352$ w systemie o podstawie 11 jest~$\textcolor{red}{2}$.
+		$$110-\textcolor{red}{10}\cdot11^1=0\geq0\ \ \mbox{ oraz }\ \ 110-11\cdot11^1=-11<0,$$
+		wiÍc kolejnπ cyfrπ jest $\textcolor{red}{A}$ (odpowiadajπca wartoúci liczbowej $\textcolor{red}{10}$).
+		$$0-\textcolor{red}{0}\cdot11^0=0\geq0\ \ \mbox{ oraz }\ \ 0-1\cdot11^0=-1<0,$$
+		wiÍc ostatniπ cyfrπ jest $\textcolor{red}{0}$.
+		
+		Ostatecznie $352=\textcolor{red}{2A0}_{11}$.
+	\end{exampleblock}
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}{Konwersja miÍdzy systemami przy dowolnych podstawach}
+	
+	Jak przekonwertowaÊ zapis liczby $n$ w systemie o podstawie $a$ na system o~podstawie $b$? WyrÛønimy kilka przypadkÛw. Zak≥adamy, øe $a$, $b$, $s$, $t$ sπ wiÍkszymi od 1 liczbami ca≥kowitymi.
+	
+	\begin{block}{Kowersja $a\to b$ (przypadek ogÛlny)}
+		Dla dowolnej liczby $n$ system dziesiÍtny moøe pos≥uøyÊ za system {\it poúredni} miÍdzy systemami o~podstawach $a$ i $b$: $$n_a\to n_{10}\to n_b.$$	
+	\end{block}
+
+
+	\begin{exampleblock}{Przyk≥ad}
+		LiczbÍ $1213_4$ zapisaÊ w systemie o podstawie 7.	
+		\begin{align*}
+			1213_4=&\,1\cdot4^3+2\cdot4^2+1\cdot4^1+3\cdot4^0=64+32+4+3=103=\\
+			=&\,2\cdot7^2+0\cdot7^1+5\cdot7^0=205_7
+		\end{align*}
+	
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Konwersja $a \to a^t$}
+		Dzielimy liczbÍ $n$ na bloki $t$-cyfrowe (od prawej) i konwertujemy kaødy blok na pojedynczπ cyfrÍ (uøywajπc postaci potÍgowej bloku).
+	\end{block}
+
+	\begin{exampleblock}{Przyk≥ad}
+		LiczbÍ $10011010111_2$ zapisaÊ w systemie o podstawie 8.
+		
+		$8=2^3$, wiÍc danπ liczbÍ dzielimy na bloki 3-cyfrowe i kaødy z nich konwertujemy na system oktalny: 
+		$$\begin{array}{|c|c|c|c|}\hline
+		\textcolor{gray}{0}10&011&010&111\\\hline
+		2&3&2&7\\\hline
+		\end{array}$$
+		
+		Zatem $10011010111_2=2327_8$.
+	\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Konwersja $a^s \to a$}
+		Konwertujemy kaødπ cyfrÍ osobno i ewentualnie uzupe≥niamy zerami z lewej aby kaødy otrzymany blok mia≥ dok≥adnie $s$ cyfr.
+	\end{block}
+
+	\begin{exampleblock}{Przyk≥ad}
+	LiczbÍ $3AD2_{16}$ zapisaÊ w systemie o podstawie 2.
+	
+	$16=2^4$, wiÍc kaødπ cyfrÍ konwertujemy na blok 4-cyfrowy w systemie binarnym:
+	$$\begin{array}{|c|c|c|c|}\hline
+	3&A&D&2\\\hline
+	\textcolor{gray}{00}11&1010&1101&0010\\\hline
+	\end{array}$$
+	
+	Zatem $3AD2_{16}=11101011010010_2$.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Konwersja $a^s \to a^t$}
+		System o podstawie $a$ moøe pos≥uøyÊ jako system poúredni miÍdzy systemami o~podstawiach $a^s$ i $a^t$:
+		$$n_{a^s}\to n_a\to n_{a^t}.$$
+	\end{block}
+
+	\begin{exampleblock}{Przyk≥ad}
+		LiczbÍ $10012031_4$ zapisaÊ w systemie o podstawie 8.
+		
+		Liczby 4 i 8 sπ potÍgami liczby 2, wiÍc poúrednio uøyjemy systemu binarnego.
+		
+		$$\begin{array}{|c|c|c|c|c|c|c|c|}\hline
+		1&0&0&1&2&0&3&1\\\hline
+		\textcolor{gray}{0}1&00&00&01&10&00&11&01\\\hline
+		\end{array}$$
+		
+		Zatem $10012031_4=100000110001101_2$.
+		
+		$$\begin{array}{|c|c|c|c|c|}\hline
+		100&000&110&001&101\\\hline
+		4&0&6&1&5\\\hline
+		\end{array}$$
+		
+		Ostatecznie $10012031_4=40615_8$.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+
+
+\begin{frame}
+
+\begin{exampleblock}{Przyk≥ad}
+WyznaczyÊ $b$, jeøeli $247_b=1310_5$.
+
+Korzystajπc (obustronnie) z twierdzenia o postaci potÍgowej, moøemy powyøsze rÛwnanie zapisaÊ w postaci
+$$2\cdot b^2+4\cdot b+7=1\cdot5^3+3\cdot5^2+1\cdot5^1+0.$$
+Po uproszczeniu otrzymanego rÛwnania dostajemy
+$$b^2+2b-99=0.$$
+Jedynymi rozwiπzaniami sπ $b=9$ oraz $b=-11$. Drugie z otrzymanych rozwiπzaÒ jest sprzeczne z za≥oøeniem, øe podstawa systemu pozycyjnego jest liczbπ ca≥kowitπ wiÍkszπ od $1$. 
+
+Zatem ostatecznie  jedynym rozwiπzaniem jest $b=9$.
+\end{exampleblock}
+
+
+\end{frame}
+
+
+
+%\begin{frame}
+	
+%	{
+%		\setbeamercolor{block body}{fg=black, bg=lightgray}
+%		\setbeamercolor{block title}{fg=black, bg=darkgray}
+%		\begin{block}{{\it Pan raczy øartowaÊ, Panie Feynman!} (1985)}
+%			{\it [...] Dam przyk≥ad: uczyli dzieci, øe system dziesiÍtny nie jest jedynym moøliwym, co moøe byÊ dla dziecka ciekawπ rozrywkπ umys≥owπ. Ale w tych podrÍcznikach by≥o to tak zrobione, øe \textbf{kaøde} dziecko mia≥o siÍ nauczyÊ innej podstawy! No i~potem by≥y takie potwornoúci: "ZamieÒ te liczby, ktÛre sπ napisane w~systemie siÛdemkowym, na system piπtkowy". Zamienianie z jednej podstawy na innπ jest czymú \textbf{ca≥kowicie bezuøytecznym}. Jeøeli umiesz to robiÊ, moøe sprawi ci to frajdÍ; jeøeli nie umiesz, nie zaprzπtaj sobie tym g≥owy.}
+			
+%			\vspace{0.5cm}
+			
+%			(Feynman pisa≥ o nauczaniu szkolnym w Kalifornii w drugiej po≥owie XX wieku.) 
+%		\end{block}
+%	}
+	
+	% str. 373, Feynman by≥ cz≥onkiem Stanowej Komisji ds. Programu Nauczania, ktÛra zatwierdza≥a nowe podrÍczniki dla stanu Kalifornia. Generalnie mia≥ bardzo krytyczny stosunek do zaprezentowanych podrÍcznikÛw z matematyki. Nie mia≥ nic przeciwko przedstawianiu w ksiπøkach rÛønych ciekawostek, ale irytowa≥o go, gdy bezmyúlnie WYMAGANO od uczniÛw uczenia siÍ na pamiÍÊ niepotrzebnych pojÍÊ. Pytanie do studentÛw: czy moøna prze≥oøyÊ kontekst z kalifornijskich szkÛ≥ z drugiej po≥owy XX wieku na informatykÍ w XXI wieku? Czy znajomoúÊ zamiany podstaw jest przydatna dla informatyka?
+	
+%\end{frame}
+
+
+
+\begin{frame}{RozwiniÍcie liczby rzeczywistej przy danej podstawie}
+	
+	\begin{block}{Twierdzenie}
+		Niech $b$ bÍdzie wiÍkszπ od 1 liczbπ ca≥kowitπ. Kaøda nieujemna liczba rzeczywista $x$ jest sumπ \underline{jednoznacznie} okreúlonego szeregu postaci $\displaystyle\sum\limits_{k=0}^\infty\frac{x_k}{b^k}$, takiego øe
+		\begin{itemize}
+			\item $x_0=\lfloor x\rfloor$ oraz $x_k\in\{0,1,\ldots,b-1\}$ dla $k>0$.
+			\item Nie istnieje liczba naturalna $K$ taka, øe dla kaødego $k>K$ zachodzi $x_k=b-1$.
+		\end{itemize}
+	\end{block}
+	
+	\bigskip
+
+	Szereg zdefiniowany w powyøszym twierdzeniu nazywamy {\bf standardowym (lub normalnym) rozwiniÍciem liczby $x$ przy podstawie $b$}.
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	Zauwaømy, øe poprzednie twierdzenie umoøliwia zapis dowolnej dodatniej liczby rzeczywistej $x$ w systemie o podstawie $b$. Jeøeli $$x=\sum\limits_{k=0}^\infty\frac{x_k}{b^k},$$ to moøemy przyjπÊ, øe
+	$$x=(\bar{a}_n\bar{a}_{n-1}\ldots \bar{a}_0.\bar{x}_1\bar{x}_2\ldots)_b,$$
+	gdzie $(\bar{a}_n\bar{a}_{n-1}\ldots \bar{a}_0)_b=x_0$ oraz $\bar{x}_i$ jest cyfrπ o wartoúci $x_i$. 
+	
+	
+	
+\begin{exampleblock}{Przyk≥ad}
+Zauwaømy, øe 
+\begin{align*}
+251.84=&\,250+1+0.6+0.24=\\
+=&\,2\cdot125+1+4\cdot0.2+1\cdot0.04=\\
+=&\,2\cdot5^3+0\cdot5^2+0\cdot5^1+1\cdot5^0+4\cdot5^{-1}+1\cdot5^{-2}=\\
+=&\,2001.41_5.
+\end{align*}
+Zatem $251.84=2001.41_5$.
+
+\end{exampleblock}	
+
+	
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+
+	\begin{block}{Wniosek}
+		Standardowe rozwiniÍcie liczby \underline{wymiernej} $x$ przy dowolnej podstawie jest skoÒczone lub okresowe (tzn.~istniejπ liczby ca≥kowite dodatnie $s$ i $t$ takie, øe $x_k=x_{k+t}$ dla kaødego ca≥kowitego $k>s$).
+	\end{block}
+	
+	\begin{block}{Uwagi}
+	\begin{itemize}
+		\item Najmniejszπ liczbÍ $t$ o powyøszej w≥asnoúci nazywamy okresem podstawowym.
+		\item RozwiniÍcie liczby $x$ jest skoÒczone, gdy dzielniki pierwsze mianownika skrÛconej postaci $x$ dzielπ rÛwnieø podstawÍ $b$ rozwaøanego systemu pozycyjnego.
+		\item W przypadku rozwiniÍcia okresowego uøywa siÍ nawiasÛw ({\it notacja europejska}):
+		$$(\bar{a}_n\ldots\bar{a}_0.\bar{x}_1\ldots\bar{x}_{s-1}(\bar{x}_s\ldots \bar{x}_{s+t-1}))_b$$
+		lub kreski ({\it notacja amerykaÒska}):
+		$$(\bar{a}_n\ldots\bar{a}_0.\bar{x}_1\ldots\bar{x}_{s-1}\overline{\bar{x}_s\ldots \bar{x}_{s+t-1}})_b.$$
+	\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+
+\begin{frame}{Liczba cyfr}
+	
+	\begin{block}{}
+		$\lfloor x\rfloor$ oznacza czÍúÊ ca≥kowitπ liczby rzeczywistej $x$.
+	\end{block}
+	
+	\begin{exampleblock}{Przyk≥ad}
+		$\displaystyle\lfloor5\rfloor=5,\ \ \lfloor1.31\rfloor=1,\ \ \left\lfloor\frac52\right\rfloor=2,\ \ \lfloor\pi\rfloor=3,\ \ \lfloor-2\rfloor=-2,\ \ \lfloor-6.28\rfloor=-7.$
+	\end{exampleblock}
+	
+	\begin{block}{Twierdzenie}
+		Liczba cyfr liczby $n$ w zapisie przy podstawie $b$ jest rÛwna $\lfloor\log_bn\rfloor+1.$
+	\end{block}
+
+	\begin{exampleblock}{Przyk≥ad: googol}
+		Ile cyfr ma liczba $10^{100}$ w zapisie przy podstawach $10$ i $12$ ?
+		\begin{itemize}
+			\item $\displaystyle \lfloor\log_{10}10^{100}\rfloor+1=\lfloor100\log_{10}{10}\rfloor+1=\lfloor100\rfloor+1=101$
+			\item $\displaystyle \lfloor\log_{12}10^{100}\rfloor+1=\lfloor100\log_{12}{10}\rfloor+1=\lfloor100\cdot0.92662\ldots\rfloor+1=93$
+		\end{itemize}
+	\end{exampleblock}
+\end{frame}
+
+
+
+\end{document}

@@ -1,0 +1,495 @@
+
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[T1,plmath]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usefonttheme[onlymath]{serif}
+
+
+\usepackage{ulem} % kolorowe podkreœlenia
+\usepackage{xcolor} % kolorowe podkreœlenia
+
+\usepackage{diagbox}
+\usepackage{tasks}
+
+
+
+
+\newcommand{\outdeg}{{\,\rm{outdeg}\,}}
+\newcommand{\indeg}{{\,\rm{indeg}\,}}
+
+%\definecolor{green1}{html}{22B14C}
+
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarañczowe podkreœlenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % ¿ó³te podkreœlenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreœlenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreœlenie
+
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+%\usecolortheme[rgb={1,0.5,0}]{structure}
+
+\title{\bf Grafy eulerowskie i hamiltonowskie}
+%\subtitle{Matematyka, Kierunek: Architektura}
+\author[B. Pawlik]{\bf dr in¿. Bart³omiej Pawlik}
+%\institute{}
+
+
+
+%\setbeamercovered{transparent} % przezroczyste warstwy
+
+
+
+
+
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\begin{block}{Drzewa przeszukiwañ}
+\begin{itemize}
+\item {\bf Metoda przeszukiwania wszerz} ({\bf breadth-first search}, {\bf BFS})
+
+Odwiedzamy wszystkich s¹siadów aktualnego wierzcho³ka, zanim przejdziemy do nastêpnego wierzcho³ka.
+
+\item {\bf Metoda przeszukiwania w g³¹b} ({\bf deapth-first search}, {\bf DFS})
+
+Po odwiedzeniu s¹siada $v_{k+1}$ wierzcho³ka $v_k$, przechodzimy do nieodwiedzonego s¹siada $v_{k+2}$ wierzcho³ka $v_{k+1}$ albo --- w przypadku braku nieodwiedzony s¹siadów ---  cofamy siê do wierzcho³ka $v_k$ i powtarzamy.
+\end{itemize}
+\end{block}
+
+\medskip
+
+W {\it BFS} zanim zag³êbimy siê bardziej w drzewo, zag³adamy do tak wielu wierzcho³ków jak to mo¿liwe, a w {\it DFS} zag³êbiamy siê tak daleko, jak tylko jest to mo¿liwe, zanim zajrzymy do innych wierzcho³ków s¹siednich.
+\end{frame}
+
+
+\begin{frame}
+
+\begin{exampleblock}{Przyk³ad}
+	\begin{center}
+		\includegraphics[scale=0.25]{bfsdfs.png}
+	\end{center}
+Przyk³adowe wyniki algorytmów przeszukiwania wszerz i w g³¹b, zaczynaj¹c od wierzcho³ka $a$:
+$$BFS:\ a,\,b,\,g,\,c,\,d,\,e,\,h,\,f,\,i,\,j$$
+$$DFS:\ a,\,b,\,c,\,d,\,f,\,e,\,g,\,h,\,i,\,j$$
+Jakie wyniki mo¿e zwróciæ algorytm, gdy zaczniemy od wierzcho³ka $d$?
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+	
+\begin{block}{Definicja}
+	Niech $G=(V(G),E(G))$ bêdzie grafem i niech $w:\,E(G)\to\mathbb{R}$ bêdzie funkcj¹. Parê $(G,w)$ nazywamy {\it grafem wa¿onym}.
+\end{block}
+
+\medskip
+
+Innymi s³owy, grafem wa¿onym nazywamy graf, w którym ka¿ej krawêdzi przypisana jest liczba rzeczywista (mo¿e ona reprezentowaæ odleg³oœæ miêdzy wierzcho³kami, przepustowoœæ sieci, iloœæ interakcji itd.).
+
+\end{frame}
+
+
+
+
+\begin{frame}{Szukanie najkrótszej drogi - algorytm Dijkstry}
+	
+	Algorytm s³u¿y do wyszukiwania najkrótszej drogi od danego wierzcho³ka do pozosta³ych w grafie wa¿onym bez pêtli, w którym wagi s¹ liczbami \underline{nieujemnymi}.
+	
+	\begin{block}{}
+		Niech $V(G)=\{0,1,2,\ldots,n-1\}$. Bêdziemy szukaæ najkrótszej drogi od wierzcho³ka $0$ do pozosta³ych.
+		
+		{\bf Krok 1:} $Q:=\{0,1,\ldots,n\}$, $S:=\emptyset$,
+		
+		$d(0):=0$, $p(0):=0$ oraz $d(v):=\infty$, $p(v):=\infty$ dla $1\leq v\leq n$.
+		
+		{\bf Krok 2:} Dopóki $Q\neq\emptyset$ powtarzaj:
+		\begin{enumerate}
+			\item Wybierz $v\in Q$ o najmniejszej wartoœci $p(v)$.
+			\item $Q:=Q/\{v\}$, $S:=S\cup\{v\}$.
+			\item Dla ka¿dego wierzcho³ka $u$ s¹siedniego z $v$ dokonaj {\bf relaksacji}, tzn. jeœli $d(u)>d(v)+w(v,u)$, to $d(u):=d(u)+w(v,u)$ oraz $p(u)=v$.
+		\end{enumerate} 
+		{\bf Krok 3:} Minimalna d³ugoœæ drogi od $0$ do $v$ to $d(v)$. Jeœli $d(v)=\infty$ to nie istnieje droga od $0$ do $d(v)$ (to jest mo¿liwe w digrafie).
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przyk³ad}
+		W poni¿szym grafie znaleŸæ najkrótsze drogi z wierzcho³ka $B$ do pozosta³ych wierzcho³ków korzystaj¹c z algorytmu Dijkstry.
+		
+		\begin{minipage}{.45\textwidth}
+			\begin{center}
+				\includegraphics[scale=0.15]{dij1.png}
+			\end{center}
+		\end{minipage}
+		\begin{minipage}{.45\textwidth}
+				$$\begin{array}{|c|c|c|c|c|c|c|}\cline{2-7}			
+					\multicolumn{1}{c|}{}&A&C&D&E&F&G\\\hline
+					B_0&6_B&\infty&\textcolor{red}{1_B}&\infty&\infty&7_B\\\hline
+					BD_1&6_B&\textcolor{red}{4_D}&-&\infty&5_D&7_B\\\hline
+					BDC_4&\textcolor{magenta}{5_C}&-&-&9_C&\textcolor{red}{5_D}&7_B\\\hline
+					BDF_5&\textcolor{red}{5_C}&-&-&8_F&-&6_F\\\hline
+					BDCA_5&-&-&-&8_F&-&\textcolor{red}{6_F}\\\hline
+					BDFG_6&-&-&-&\textcolor{red}{8_F}&-&-\\\hline
+					BDFE_8&-&-&-&-&-&-\\\hline
+				\end{array}$$
+		\end{minipage}\\
+	\vspace{0.3cm}
+	W pierwszej kolumnie zapisane s¹ najkrótsze drogi (w indeksie ka¿dej z nich jest waga).
+	
+	Elementy tabeli to wagi dróg z wierzcho³ka $B$ do danego wierzcho³ka (w~indeksach s¹ wierzcho³ki bezpoœrednio poprzedzaj¹ce dany).
+	
+	Symbol ,,$-$'' oznacza, ¿e do danego wierzcho³ka ju¿ okreœlono najkrótsz¹ drogê.
+	
+	W sytuacji, gdy w wierszu mamy wiêcej ni¿ jedn¹ drogê o najmniejszej wadze ($\textcolor{magenta}{5_C}$ do $A$ i $\textcolor{red}{5_D}$ do $F$ w wierszu czwartym), wybieramy dowoln¹ z nich.
+		
+	\end{exampleblock}
+	
+\end{frame}
+
+\begin{frame}
+
+Zauwa¿my, ¿e problem najkrótszej drogi mo¿na rozwi¹zaæ równie¿ algorytmem {\it brute force} --- wystarczy okreœliæ wagê wszystkich œcie¿ek\footnote{Oczywiœcie najkrótsza droga musi byæ œcie¿k¹.} miêdzy rozwa¿anymi wierzcho³kami i wybraæ najmniejsz¹. Jednak ju¿ nawet dla grafów o~niewielkiej liczbie wierzcho³ków ten algorytm jest du¿o mniej optymalny.
+
+\medskip
+
+Zauwa¿my jednak, ¿e znalezienie jakiejkolwiek œcie¿ki miêdzy rozwa¿anymi wierzcho³kami daje w oczywisty sposób \underline{ograniczenie górne} na rozwi¹zanie problemu najkrótszej drogi.
+
+\end{frame}
+
+
+
+\begin{frame}{Grafy eulerowskie}
+
+	\begin{block}{Definicja}
+\begin{itemize}
+	\item	Je¿eli w grafie $G$ istnieje cykl niew³aœciwy $d$ przechodz¹cy przez ka¿d¹ krawêdŸ grafu $G$ dok³adnie jeden raz, to $d$ nazywamy {\bf cyklem Eulera}, a graf $G$ --- {\bf grafem eulerowskim}.
+	\item Je¿eli graf $G$ nie jest grafem eulerowskim i istnieje œcie¿ka $d$ przechodz¹ca przez ka¿d¹ krawêdŸ grafu $G$ dok³adnie jeden raz, to $G$ nazywamy {\bf grafem jednobie¿nym} ({\bf pó³eulerowskim}).
+\end{itemize}
+	\end{block}
+
+\medskip
+
+\begin{exampleblock}{Przyk³ad}
+		\begin{minipage}{.6\textwidth}
+			\begin{center}
+				\includegraphics[scale=0.15]{eulpr.png}
+			\end{center}
+		\end{minipage}
+\hfill
+		\begin{minipage}{.35\textwidth}
+$G_1$ --- graf eulerowski
+
+\medskip
+
+$G_2$ --- graf jednobie¿ny
+
+\medskip
+
+$G_3$ --- graf, który nie jest ani eulerowski, ani jednobie¿ny
+		\end{minipage}
+\end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Problem mostów królewieckich}
+Czy mo¿na przejœæ dok³adnie jeden raz przez ka¿dy z siedmiu mostów przedstawionych na poni¿szym rysunku i powróciæ do punktu wyjœcia?
+\end{block}
+\begin{center}
+	\includegraphics[scale=0.25]{mapakrolewca16521736.png}
+
+\begin{footnotesize}[ród³o: {\it https://pl.wikipedia.org/wiki/Królewiec\#/media/Plik:Image-Koenigsberg,\_Map\_by\_Merian-Erben\_1652.jpg}, 13.05.2024]\end{footnotesize}
+\end{center}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+	\begin{block}{Lemat 1}
+Je¿eli $\delta(G)\geqslant2$, to graf $G$ zawiera cykl.
+	\end{block}
+\begin{proof}
+Je¿eli $G$ zawiera pêtle lub krawêdzie wielokrotne, to lemat jest trywialny. Za³ó¿my zatem, ¿e $G$ jest grafem prostym i ¿e $v\in G$ jest dowolnym wierzcho³kiem $G$.
+
+Tworzymy trasê $$v\to v_1\to v_2\to\ldots$$
+tak aby $v_{k+1}$ by³ s¹siadem $v_k$ ró¿nym od $v_{k-1}$ (zawsze jest to mo¿liwe ze wzglêdu na za³o¿enie, ¿e stopieñ ka¿dego wierzcho³ka wynosi co najmniej $2$). Graf $G$ ma skoñczenie wiele wierzcho³ków, wiêc po skoñczonej liczbie kroków na trasie musi pojawiæ siê wierzcho³ek $v_K$, który pojawi³ siê na niej ju¿ wczeœniej. Fragment trasy $$v_K\to\ldots\to v_K$$ jest szukanym cyklem.
+\end{proof}	
+\end{frame}
+
+
+
+
+
+\begin{frame}
+	\begin{block}{Twierdzenie (Euler, 1741)}
+Niech $G$ bêdzie grafem spójnym. Graf $G$ jest eulerowski wtedy i tylko wtedy, gdy ka¿dy wierzcho³ek ma stopieñ parzysty.
+	\end{block}
+\begin{block}{Dowód. {\it (1/2)}}
+($\Rightarrow$)
+
+Niech $d$ bêdzie cyklem Eulera w grafie $G$ i niech $v\in V(G)$. Ka¿de przejœcie cyklu $d$ przez wierzcho³ek $v$ zwiêksza udzia³ krawêdzi nale¿¹cych do tego cyklu w stopniu wierzcho³ka $v$ o $2$. Ka¿da krawêdŸ wystêpuje w grafie $G$ dok³adnie raz, wiêc stopieñ ka¿dego wierzcho³ka musi byæ liczb¹ parzyst¹.
+\end{block}	
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Dowód {\it (2/2)}}
+($\Leftarrow$)
+
+Dowód indukcyjny wzglêdem liczby krawêdzi grafu $G$. $G$ jest grafem spójnym, w~którym stopieñ ka¿dego wierzcho³ka jest liczb¹ parzyst¹, wiêc $\delta(G)\geqslant2$. Zatem, na mocy Lematu 1, w $G$ istnieje cykl $c$.
+\begin{itemize}
+\item Je¿eli $c$ zawiera ka¿d¹ krawêdŸ grafu $G$, to twierdzenie jest udowodnione.
+\item Je¿eli $c$ nie zawiera ka¿dej krawêdzi grafu $G$, to usuwamy z grafu $G$ wszystkie krawêdzie nale¿¹ce do cyklu $c$, otrzymuj¹c graf $G\backslash\{c\}$, który ma mniej krawêdzi ni¿ $G$. Z za³o¿enia indukcyjnego ka¿da sk³adowa spójnoœci grafu $G\backslash\{c\}$ posiada cykl Eulera. Ze spólnoœci $G$ wynika, ¿e ka¿da sk³adowa spójnoœci grafu $G\backslash\{c\}$ ma co najmniej jeden wierzcho³ek wspólny z cyklem $c$. Zatem w grafie $G$ mo¿na stworzyæ cykl Eulera poprzez po³¹czenie cyklu $c$ z~cyklami Eulera wszystkich sk³adowych spójnoœci grafu $G\backslash\{c\}$ poprzez wierzcho³ki wspólne.
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przyk³ad}
+		\begin{minipage}{.4\textwidth}
+			\begin{center}
+				\includegraphics[scale=0.15]{r8.png}
+			\end{center}
+		\end{minipage}
+		\begin{minipage}{.55\textwidth}
+				Na powstawie powy¿szego twierdzenia Eulera okreœliæ czy dany graf jest eulerowski lub jednobie¿ny.
+
+\medskip
+\begin{itemize}
+\item Je¿eli jest eulerowski, to wskazaæ przyk³adowy cykl Eulera.
+\item Je¿eli jest jednobie¿ny to wskazaæ przyk³adow¹ œcie¿kê Eulera.
+\end{itemize}
+		\end{minipage}\\
+	\vspace{0.3cm}
+Dany graf jest eulerowski, poniewa¿ stopieñ ka¿dego wierzcho³ka jest liczb¹ parzyst¹. Przyk³adowy cykl Eulera to $$(1\to2\to8\to1)\to(3\to4\to2\to3)\to(5\to6\to4\to5)\to$$ $$\to(7\to8\to6\to7)\to1.$$
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Wniosek}
+Niech $G$ bêdzie grafem spójnym.
+\begin{itemize}
+\item Graf $G$ jest grafem eulerowskim wtedy i tylko wtedy, gdy jego zbiór krawêdzi mo¿na podzieliæ na roz³¹czne cykle.
+\item Graf $G$ jest grafem jednobie¿nym wtedy i tylko wtedy, gdy ma dok³adnie dwa wierzcho³ki nieparzystych stopni.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{Znajdowanie cyklu Eulera}
+	
+	\begin{block}{Definicja}
+	 {\bf Mostem} nazywamy tê krawêdŸ w grafie skoñczonym $G$, której usuniêcie powoduje zwiêkszenie liczby spójnych sk³adowych grafu $G$. 
+	\end{block}
+
+\begin{exampleblock}{Przyk³ad}
+	\begin{center}
+		\includegraphics[scale=0.2]{most.png}
+	\end{center}
+Jedynymi mostami w powy¿szym grafie s¹ krawêdzie $\{c,d\}$ oraz $\{f,g\}$.
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Znajdowanie cyklu Eulera - algorytm Fleury'ego}
+		Zaczynaj¹c od dowolnego wierzcho³ka, tworzymy cykl Eulera dodaj¹c do niego kolejne krawêdzie w taki sposób, ¿e dodajemy do cyklu most \underline{tylko wtedy}, gdy nie ma innej mo¿liwoœci.
+	\end{block}
+
+	\begin{exampleblock}{Przyk³ad}
+		Wyznaczyæ cykl Eulera w grafie $K_{2,4}$.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+
+
+\begin{frame}{Problem chiñskiego listonosza}
+	
+	\begin{block}{Sformu³owanie}
+		Znalezienie cyklu (niew³aœciwego) zawieraj¹cego ka¿d¹ krawêdŸ danego grafu co najmniej raz i maj¹cego jak najmniejszy koszt (czyli liczbê krawêdzi lub, w~przypadku grafu wa¿onego, sumê wag krawêdzi).
+	\end{block}
+	
+	\begin{block}{Rozwi¹zanie problemu chiñskiego listonosza}
+		\begin{itemize}
+			\item Je¿eli graf $G$ jest eulerowski to znajdujemy dowolny cykl Eulera.
+			\item Je¿eli graf nie jest eulerowski to dublujemy niektóre krawêdzie, aby otrzymaæ graf eulerowski i wtedy szukamy œcie¿ki Eulera. Aby otrzymaæ najoptymalniejsze (najkrótsze) œcie¿ki
+			\begin{itemize}
+				\item dla grafów niewa¿onych wystarczy przeszukaæ graf wszerz,
+				\item dla grafów z nieujemnymi wagami mo¿na skorzystaæ np. z algorytmu Dijkstry,
+				\item dla grafów z dowolnymi wagami mo¿na skorzystaæ np. z algorytmu Bellmana-Forda.
+			\end{itemize}
+		\end{itemize}
+		
+	\end{block}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przyk³ad}
+Rozwi¹¿ problem chiñskiego listonosza dla poni¿szego grafu. Jaki jest koszt cyklu stanowi¹cego rozwi¹zanie?
+
+		\begin{minipage}{.4\textwidth}
+			\begin{center}
+				\includegraphics[scale=0.15]{listonosz.png}
+			\end{center}
+		\end{minipage}
+		\begin{minipage}{.55\textwidth}
+			Wierzcho³ki $b$ i $f$ s¹ jedynymi wierzcho³kami nieparzystego stopnia, wiêc dany graf jest jednobie¿ny. Najkrótsza droga z $b$ do $f$ to $$b\to a\to d\to f,$$ wiêc w grafie dublujemy krawêdzie $$\{a,b\},\,\{a,d\}\mbox{ oraz }\{d,f\},$$ dziêki czemu uzyskaliœmy graf eulerowski.
+		\end{minipage}\\
+	\vspace{0.3cm}
+Przyk³adowym cyklem Eulera w nowym grafie (i zarazem rozwi¹zaniem problemu chiñskiego listonosza) jest
+$$a\to e\to h\to b\to a\to d\to f\to b\to a\to d\to$$
+$$\to e\to g\to h\to f\to d\to c\to g\to f\to c\to a,$$
+którego koszt wynosi $48$.
+	\end{exampleblock}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{Grafy hamiltonowskie}
+	
+\begin{block}{Definicja}
+\begin{itemize}
+	\item	Je¿eli w grafie $G$ istnieje cykl $h$ przechodz¹cy przez ka¿dy wierzcho³ek grafu $G$ dok³adnie jeden raz, to $h$ nazywamy {\bf cyklem Hamiltona}, a graf $G$ --- {\bf grafem hamiltonowskim}.
+	\item Je¿eli graf $G$ nie jest grafem hamiltonowskim i istnieje œcie¿ka $h$ przechodz¹ca przez ka¿dy wierzcho³ek tego grafu dok³adnie jeden raz, to $G$ nazywamy {\bf grafem trasowalnym} ({\bf pó³hamiltonowskim}).
+\end{itemize}
+\end{block}
+
+\medskip
+
+\begin{exampleblock}{Przyk³ad}
+		\begin{minipage}{.55\textwidth}
+			\begin{center}
+				\includegraphics[scale=0.2]{hampr.png}
+			\end{center}
+		\end{minipage}
+\hfill
+		\begin{minipage}{.4\textwidth}
+$G_1$ --- graf hamiltonowski
+
+\medskip
+
+$G_2$ --- graf trasowalny
+
+\medskip
+
+$G_3$ --- graf, który nie jest ani hamiltonowski, ani trasowalny
+		\end{minipage}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{alertblock}{Uwaga!}
+Powszechnie przyjête nazewnictwo: {\bf graf pó³eulerowski}, {\bf graf pó³hamiltonowski} jest trochê niefortunne, bo sugeruje, ¿e ka¿demu z tych grafów du¿o brakuje do bycia ,,pe³nymi" grafami eulerowskimi lub hamiltonowskimi, podczas gdy w ka¿dym przypadku wystarczy w tym celu do grafu dodaæ \underline{tylko jedn¹ krawêdŸ}.
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}	
+	\begin{block}{Twierdzenie (Ore, 1960)}
+		Je¿eli graf prosty $G$ ma $n$ wierzcho³ków ($n\geqslant3$) oraz $$\deg(u)+\deg(v)\geqslant n$$ dla ka¿dej pary wierzcho³ków nies¹siednich $u$ i $v$, to graf $G$ jest hamiltonowski.
+	\end{block}
+
+\begin{block}{Dowód. ({\it 1/2})}
+Za³ó¿my nie wprost, ¿e dla ustalonego $n\geq3$ istniej¹ grafy niehamiltonowskie spe³niaj¹ce za³o¿enia rozpatrywanego twierdzenia. Niech $G$ bêdzie takim grafem z~jak najwiêksz¹ liczb¹ krawêdzi --- je¿eli do $G$ do³¹czymy jedn¹ krawêdŸ to otrzymamy graf hamiltonowski.
+\end{block}
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Dowód. ({\it 2/2})}
+W $G$ istnieje co najmniej jedna para wierzcho³ków, które nie s¹ po³¹czone krawêdzi¹ --- bez straty ogólnoœci przyjmijmy ¿e s¹ to wierzcho³ki $v_1$ i $v_n$. Z faktu, ¿e po dodaniu krawêdzi otrzymalibyœmy cykl Hamiltona wynika, ¿e w grafie $G$ istnieje droga $$v_1\to v_2\to\ldots\to v_{n-1}\to v_n.$$ Z za³o¿enia wiemy, ¿e
+$$\deg v_1+\deg v_n\geqslant n,$$
+co oznacza ¿e istnieje indeks $k$ taki, ¿e $v_{k-1}$ jest s¹siadem $v_n$ i ¿e $v_k$ jest s¹siadem $v_1$. Jednak teraz cykl 
+$$v_1\to \ldots\to v_{k-1}\to v_n\to\ldots\to v_k\to v_1$$ jest cyklem Hamiltona, co daje nam szukan¹ sprzecznoœæ.
+\end{block}
+	
+	
+\end{frame}
+	
+	
+\begin{frame}
+	\begin{block}{Twierdzenie (Dirac, 1952)}
+		Je¿eli minimalny stopieñ grafu $G$ jest nie mniejszy ni¿ po³owa liczby wierzcho³ków tego grafu:
+		$$\delta(G)\geqslant\frac{|V(G)|}2,$$
+		 to $G$ jest grafem hamiltonowskim.
+	\end{block}
+	
+	
+	\begin{proof}
+		Niech $u,v\in V(G)$ i niech $|V(G)|=n$. Ka¿dy wierzcho³ek grafu $G$ ma stopieñ nie mniejszy ni¿ $\displaystyle \frac{n}2$, wiêc $$\deg(u)+\deg(v)\geqslant \frac{n}2+\frac{n}2=n.$$
+		Zatem w szczególnoœci sumy stopni wszystkich par \underline{nies¹siednich} wierzcho³ków s¹ nie mniejsze ni¿ $n$, wiêc z twierdzenia Orego otrzymujemy, ¿e $G$ jest grafem hamiltonowskim.
+	\end{proof}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{block}{Problem komiwoja¿era}
+		Podamy dwie wersje problemu:
+		\begin{itemize}
+		\item Maj¹c dan¹ listê miast i odleg³oœci miêdzy tymi miastami, znaleŸæ najkrótsz¹ drogê przechodz¹c¹ przez wszystkie miasta (przez ka¿de tylko raz) i~powracaj¹c¹ do punktu wyjœcia.	
+		\item ZnaleŸæ najoptymalniejszy cykl Hamiltona w wa¿onym grafie pe³nym.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Przyk³adowe rozwi¹zania}
+		\begin{itemize}
+			\item {\it Brute force}: Znajdujemy wszystkie cykle Hamiltona i wybieramy najodpowiedniejszy.
+			\item {\it Algorytm najbli¿szego s¹siada}: Zaczynamy od dowolnego wierzcho³ka i poruszamy siê zawsze wzd³u¿ krawêdzi o najmniejszych wagach. (jest to rozwizanie przybli¿one, œrednio o $25\%$ gorsze od optymalnego).
+		\end{itemize}
+	\end{block}
+
+\end{frame}
+
+
+
+
+
+\end{document}

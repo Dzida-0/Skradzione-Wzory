@@ -1,0 +1,384 @@
+
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[T1,plmath]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usefonttheme[onlymath]{serif}
+
+
+\usepackage{ulem} % kolorowe podkreœlenia
+\usepackage{xcolor} % kolorowe podkreœlenia
+
+\usepackage{diagbox}
+\usepackage{tasks}
+
+
+
+
+\newcommand{\outdeg}{{\,\rm{outdeg}\,}}
+\newcommand{\indeg}{{\,\rm{indeg}\,}}
+
+%\definecolor{green1}{html}{22B14C}
+
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarañczowe podkreœlenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % ¿ó³te podkreœlenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreœlenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreœlenie
+
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+%\usecolortheme[rgb={1,0.5,0}]{structure}
+
+\title{\bf Kolorowanie grafów}
+%\subtitle{Matematyka, Kierunek: Architektura}
+\author[B. Pawlik]{\bf dr in¿. Bart³omiej Pawlik}
+%\institute{}
+
+
+
+%\setbeamercovered{transparent} % przezroczyste warstwy
+
+
+
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Definicja}
+{\bf Grafem planarnym} nazywamy graf, który mo¿na narysowaæ na p³aszczyŸnie bez przeciêæ.
+\end{block}
+
+
+\begin{exampleblock}{Przyk³ad}
+Czy graf $K_4$ jest grafem planarnym?
+
+\medskip
+
+Tak (reprezentacja po prawej).
+
+\begin{center}
+	\includegraphics[scale=0.17]{pla.png}
+\end{center}
+\end{exampleblock}
+
+
+\begin{exampleblock}{Przyk³ad}
+Czy graf $K_{2,3}$ jest grafem planarnym?
+\end{exampleblock}
+
+
+
+\end{frame}
+
+
+\begin{frame}
+
+
+\begin{block}{Twierdzenie}
+Grafy $K_{3,3}$ i $K_5$ nie s¹ grafami planarnymi.
+\end{block}
+
+\begin{block}{Szkic dowodu.}
+Ka¿da reprezentacja graficzna $K_{3,3}$ musi zawieraæ cykl d³ugoœci $6$, a ka¿da reprezentacja graficzna $K_{5}$ musi zawieraæ cykl d³ugoœci $5$. Wystarczy narysowaæ te cykle i rozpatrzyæ wszystkie przypadki dorysowania pozosta³ych krawêdzi.\hfill\qed
+\end{block}
+
+\medskip
+
+W teorii grafów planarnych centraln¹ rolê ogrywa {\it twierdzenie Kuratowskiego}. Nie wchodz¹c w szczegó³y, orzeka ono ¿e dany graf nie jest planarny, je¿eli w pewnym sensie {\it zawiera} podgraf podobny do $K_{3,3}$ lub do $K_5$.
+
+\end{frame}
+
+
+\begin{frame}{Kolorowanie grafów prostych}
+
+	\begin{block}{Definicja}
+		Niech $G$ bêdzie grafem i niech dla pewnej liczby ca³kowitej $k$, zbiór $C$ bêdzie zbiorem $k$-elementowym. Funkcjê $c:\,V(G)\to C$ nazywamy {\bf $k$-kolorowaniem} grafu $G$, zbiór $C$ nazywamy {\bf zbiorem kolorów}, a elementy zbioru $C$ --- {\bf kolorami}.
+	\end{block}
+
+\medskip
+
+Czêsto przyjmuje siê, ¿e $C=\{1,2,\ldots,k\}$.
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{exampleblock}{Przyk³ad 1}
+Rozwa¿my graf $G$ (na rysunku po lewej) i kolorowanie $c$ ze zbiorem kolorów $C=\{1,\,2,\,3\}$ takie, ¿e
+$$c(v_1)=c(v_2)=c(v_4)=1,\ c(v_3)=c(v_5)=2,\ c(v_6)=3.$$
+Graf $G$ z zadanym kolorowaniem $c$ mo¿emy przedstawiæ graficznie na kilka sposobów.
+\begin{itemize}
+\item Je¿eli w rozwa¿anym kontekœcie opis wierzcho³ków jest nieistotny, to wierzcho³ki mo¿emy indeksowaæ kolorami (rysunek œrodkowy).
+\item Przymuj¹c, ¿e kolor $1$ to czerwony, kolor $2$ to zielony, a kolor $3$ to niebieski, wierzcho³ki mo¿emy (nomen omen) pokolorowaæ (rysunek po prawej). W~tej konwencji mo¿na zachowaæ opis wierzcho³ków.
+\end{itemize}
+
+\begin{center}
+	\includegraphics[scale=0.17]{kolp.png}
+\end{center}
+
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}	
+\begin{block}{Definicja}
+		Niech $G$ bêdzie grafem i $c$ bêdzie $k$-kolorowaniem grafu $G$. Kolorowanie $c$ nazywamy {\bf w³aœciwym $k$-kolorowaniem} grafu $G$, je¿eli dla ka¿dej pary s¹siednich wierzcho³ków przyjmuje ono róŸne wartoœci:
+$$\forall_{u,v\in V(G)}:\ \{u,v\}\in E(G)\ \Rightarrow\ c(u)\neq c(v).$$
+\end{block}
+
+\bigskip
+
+\begin{block}{Definicja}
+Graf jest {\bf $k$-kolorowalny}, gdy istnieje w³aœciwe $k$-kolorowanie tego grafu.
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Przyk³ad 2}
+Zauwa¿my, ¿e kolorowanie $c$ w przyk³adzie 1 nie jest kolorowaniem w³aœciwym, poniewa¿ wystêpuje w nim dwie para s¹siednich wierzcho³ków (np. $\{v_1,v_2\}$) maj¹cych przypisany ten sam kolor.
+
+\medskip
+
+Przyk³adowymi kolorowaniami w³aœciwymi grafu $G$ z przyk³adu 1 s¹:
+
+\begin{center}
+	\includegraphics[scale=0.17]{kolp2.png}
+\end{center}
+
+Na rysunkach mamy przedstawione w³aœciwe 6-kolorowanie (po lewej), w³aœciwie 3-kolorowanie (w œrodku) i w³aœciwe 2-kolorowanie (po prawej) grafu $G$.
+
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+	\begin{alertblock}{Uwaga!}
+		W dalszej czêœci wyk³adu pisz¹c o {\bf kolorowaniu} ({\bf $k$-kolorowaniu}) bêdziemy mieli na myœli wy³¹cznie {\bf kolorowanie w³aœciwe} ({\bf $k$-kolorowanie w³aœciwe}).
+	\end{alertblock}
+
+\bigskip
+
+\begin{block}{Definicja}
+Kolorowanie, które ka¿demu wierzcho³kowi przyporz¹dkowuje unikalny kolor nazywamy {\bf kolorowaniem naiwnym}.
+\end{block}
+
+\bigskip
+
+\begin{exampleblock}{Przyk³ad}
+Rysunek po lewej stronie w przyk³adzie 2 przedstawia przyk³adowe kolorowanie naiwne rozpatrywanego grafu. 
+\end{exampleblock}
+	
+\end{frame}
+
+
+
+
+
+\begin{frame}
+	
+	\begin{block}{Definicja}
+		{\bf Liczb¹ chromatyczn¹} $\chi(G)$ grafu prostego $G$ nazywamy najmniejsz¹ liczbê $k$ tak¹, ¿e istnieje kolorowanie $c:V(G)\to\{1,2,\ldots,k\}$.
+	\end{block}
+
+\medskip
+
+	Nietrudno zauwa¿yæ, ¿e dla dowolnego grafu prostego $G$ zachodz¹ nierównoœci
+	$$1\leq \chi(G)\leq |V(n)|.$$
+
+\medskip
+
+	\begin{exampleblock}{Przyk³ad}
+		Wyznaczyæ liczby chromatyczne grafów $P_n$ i $C_n$ dla ka¿dego $n$.
+	\end{exampleblock}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+	\begin{block}{Stwierdzenie}
+		\begin{itemize}
+			\item $\chi(G)=1$ wtedy i tylko wtedy, gdy $G$ jest grafem pustym.
+			\item $\chi(G)=|V(G)|$ wtedy i tylko wtedy, gdy $G$ jest grafem pe³nym.
+		\end{itemize}
+	\end{block}
+
+\medskip
+
+	\begin{block}{Stwierdzenie}
+		$\chi(G)=2$ wtedy i tylko wtedy, gdy $G$ jest niepustym grafem dwudzielnym.
+	\end{block}
+
+\medskip
+
+	\begin{block}{Wniosek}
+		$\chi(G)\geqslant3$ wtedy i tylko wtedy, gdy $G$ zawiera cykl d³ugoœci nieparzystej.
+	\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{Twierdzenie}%Dowoód ind. Wilson s.111
+ 	Je¿eli $G$ jest grafem prostym, to $$\chi(G)\leqslant\Delta(G)+1.$$
+\end{block}
+
+
+\begin{proof}
+PrzeprowadŸmy dowód indukcyjny wzglêdem liczby wierzcho³ków. Niech $G$ bêdzie grafem prostym maj¹cym $n$ wierzcho³ków i niech $\Delta=\Delta(G)$.
+
+Z grafu $G$ usuwamy wierzcho³ek $v$ wraz z przylegaj¹cymi do niego krawêdziami. Graf $G\backslash\{v\}$ ma $(n-1)$ wierzcho³ków i $\Delta(G\backslash\{v\})\leqslant\Delta$.
+Z za³o¿enia indukcyjnego wynika, ¿e $\chi(G\backslash\{v\})\leqslant\Delta+1$.
+
+Wykonujemy $(\Delta+1)$-kolorowanie grafu $G\backslash\{v\}$. Dodajemy do grafu wierzcho³ek $v$ (z przyleg³ymi krawêdziami) i nadajemy mu inny kolor ni¿ maj¹ jego s¹siedzi --- mo¿emy to zrobiæ, bo liczba s¹siadów wierzcho³ka $v$ nie przekracza $\Delta$. W ten sposób uzyskaliœmy $(\Delta+1)$ kolorowanie grafu $G$.
+
+\end{proof}
+
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Przyk³ad}
+Okreœliæ dla których cykli i dla których grafów pe³nych zachodzi $\chi(G)=\Delta(G)+1$.
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{Twierdzenie (Brooks, 1941)}
+	Je¿eli $G$ jest spójnym grafem prostym, nie bêd¹cym cyklem nieparzystej d³ugoœci ani grafem pe³nym, to $$\chi(G)\leqslant\Delta(G).$$
+\end{block}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Twierdzenie o czterech barwach (Appel, Haken, 1976)}
+Je¿eli $G$ jest planarnym grafem prostym, to $$\chi(G)\leqslant4.$$
+\end{block}
+
+\only<1>{\begin{center}
+	\includegraphics[scale=0.2]{euro1.png}
+\end{center}}
+\only<2>{\begin{center}
+	\includegraphics[scale=0.2]{euro2.png}
+\end{center}}
+\only<3>{\begin{center}
+	\includegraphics[scale=0.2]{euro3.png}
+\end{center}}
+\only<4>{\begin{center}
+	\includegraphics[scale=0.2]{euro4.png}
+\end{center}}
+\only<5>{\begin{center}
+	\includegraphics[scale=0.2]{euro5.png}
+\end{center}}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Definicja}
+ Niech $G$ bêdzie grafem i niech dla pewnej liczby ca³kowitej $k$, zbiór $C$ bêdzie zbiorem $k$-elementowym. Funkcjê $c':\,E(G)\to C$ nazywamy {\bf $k$-kolorowaniem krawêdziowym} grafu $G$, zbiór $C$ nazywamy {\bf zbiorem kolorów}, a elementy zbioru $C$ --- {\bf kolorami}.
+\end{block}
+
+\begin{block}{Definicja}
+Niech $G$ bêdzie grafem prostym i $c'$ bêdzie $k$-kolorowaniem krawêdziowym grafu~$G$. Kolorowanie $c$ nazywamy {\bf w³aœciwym $k$-kolorowaniem krawêdziowym} grafu $G$, je¿eli dla ka¿dej pary s¹siednich krawêdzi przyjmuje ono róŸne wartoœci:
+$$\forall_{\{u,v_1\},\{u,v_2\}\in E(G)}:\ v_1\neq v_2\ \Rightarrow\ c'(\{u,v_1\})\neq c'(\{u,v_2\}).$$
+\end{block}
+
+	\begin{alertblock}{Uwaga!}
+		W dalszej czêœci wyk³adu pisz¹c o {\bf kolorowaniu krawêdziowym} ({\bf $k$-kolorowaniu krawêdziowym}) bêdziemy mieli na myœli wy³¹cznie {\bf w³aœciwe kolorowanie krawêdziowe} ({\bf w³aœciwe $k$-kolorowanie krawêdziowe}).
+	\end{alertblock}
+
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{block}{Definicja}
+		{\bf Indeksem chromatycznym} $\chi'(G)$ grafu prostego $G$ nazywamy najmniejsz¹ liczbê $k$ tak¹, ¿e istnieje kolorowanie krawêdziowe $c':E(G)\to\{1,2,\ldots,k\}$.
+	\end{block}
+
+	\begin{exampleblock}{Przyk³ad}
+		Wyznaczyæ indeks chromatyczny grafu $K_{1,n}$ dla ka¿dej liczby ca³kowitej dodatniej~$n$.
+	\end{exampleblock}
+
+	Graf $K_{1,n}$ nazywany bywa gwiazd¹ $S_{n-1}$.
+
+	\begin{block}{Stwierdzenie}
+		Dla ka¿dego grafu prostego $G$ zachodzi $$\chi'(G)\geqslant\Delta(G).$$
+	\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Twierdzenie Vizinga (1964)}
+ Je¿eli $G$ jest grafem prostym, to
+$$\Delta(G)\leqslant\chi'(G)\leqslant\Delta(G)+1.$$
+\end{block}
+
+
+\end{frame}
+
+
+\begin{frame}
+
+
+\begin{block}{Definicja}
+\begin{itemize}
+\item Je¿eli $\chi'(G)=\Delta(G)$, to $G$ nazywamy grafem klasy I.
+\item Je¿eli $\chi'(G)=\Delta(G)+1$, to $G$ nazywamy grafem klasy II.
+\end{itemize}
+\end{block}
+
+\medskip
+
+Poni¿szy wynik równie¿ jest autorstwa Vadima G. Vizinga.
+
+\begin{block}{Twierdzenie}
+Je¿eli graf $G$ jest grafem klasy II, to co najmniej trzy wierzcho³ki tego grafu maj¹ maksymalny stopieñ.
+\end{block}
+
+
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Twierdzenie Erd\H{o}sa-Wilsona (1975)}
+Niech $Gr(n)$ oznacza zbiór wszystkich grafów prostych maj¹cych $n$ wierzcho³ków i~niech $Cl_I(n)$ oznacza zbiór wszystkich grafów prostych klasy I maj¹cych $n$~wierzcho³ków. Wtedy
+$$\lim_{n\to\infty}\frac{|Cl_I(n)|}{|Gr(n)|}=1.$$ 
+\end{block}
+
+\end{frame}
+
+
+
+
+
+
+\end{document}
