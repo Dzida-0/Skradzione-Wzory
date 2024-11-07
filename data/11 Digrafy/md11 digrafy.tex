@@ -9,8 +9,8 @@
 \usefonttheme[onlymath]{serif}
 
 
-\usepackage{ulem} % kolorowe podkreœlenia
-\usepackage{xcolor} % kolorowe podkreœlenia
+\usepackage{ulem} % kolorowe podkreÅ›lenia
+\usepackage{xcolor} % kolorowe podkreÅ›lenia
 
 \usepackage{diagbox}
 \usepackage{tasks}
@@ -23,10 +23,10 @@
 
 %\definecolor{green1}{html}{22B14C}
 
-\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarañczowe podkreœlenie
-\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % ¿ó³te podkreœlenie
-\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreœlenie
-\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreœlenie
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomaraÅ„czowe podkreÅ›lenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % Å¼Ã³Å‚te podkreÅ›lenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreÅ›lenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreÅ›lenie
 
 
 \usetheme{Boadilla}
@@ -35,7 +35,7 @@
 
 \title{\bf Digrafy}
 %\subtitle{Matematyka, Kierunek: Architektura}
-\author[B. Pawlik]{\bf dr in¿. Bart³omiej Pawlik}
+\author[B. Pawlik]{\bf dr inÅ¼. BartÅ‚omiej Pawlik}
 %\institute{}
 
 
@@ -54,20 +54,20 @@
 
 \begin{frame}
 	\begin{block}{Definicja}
-		{\bf Digrafem} ({\bf grafem skierowanym}) $D$ nazywamy parê zbiorów $\big(V(D),E(D)\big)$, gdzie $V(D)$ to {\bf zbiór wierzcho³ków}, a $E(D)\subset \big(V(D)\big)^2$ to {\bf zbiór ³uków}.
+		{\bf Digrafem} ({\bf grafem skierowanym}) $D$ nazywamy parÄ™ zbiorÃ³w $\big(V(D),E(D)\big)$, gdzie $V(D)$ to {\bf zbiÃ³r wierzchoÅ‚kÃ³w}, a $E(D)\subset \big(V(D)\big)^2$ to {\bf zbiÃ³r Å‚ukÃ³w}.
 	\end{block}
 
-	Wiele definicji dotycz¹cych grafów (np. rz¹d, rozmiar, podgraf indukowany, izomorfizm) przenosi siê równie¿ na digrafy.
+	Wiele definicji dotyczÄ…cych grafÃ³w (np. rzÄ…d, rozmiar, podgraf indukowany, izomorfizm) przenosi siÄ™ rÃ³wnieÅ¼ na digrafy.
 	
-	Zauwa¿my, ¿e z powy¿szej definicji wynika, ¿e ka¿dy ³uk to uporz¹dkowana para wierzcho³ków (zbiór ³uków to \underline{podzbiór} kwadratu kartezjañskiego zbioru wierzcho³ków).
+	ZauwaÅ¼my, Å¼e z powyÅ¼szej definicji wynika, Å¼e kaÅ¼dy Å‚uk to uporzÄ…dkowana para wierzchoÅ‚kÃ³w (zbiÃ³r Å‚ukÃ³w to \underline{podzbiÃ³r} kwadratu kartezjaÅ„skiego zbioru wierzchoÅ‚kÃ³w).
 
 \begin{block}{Definicja}
 Niech $(x,y)\in E(D)$.
 \begin{itemize}
-\item	Parê $(x,y)$ nazywamy {\bf ³ukiem} ({\bf krawêdzi¹ skierowan¹}) od $x$ do $y$.
-\item Wierzcho³ek $y$ nazywamy {\bf s¹siednim} do $x$.
-\item Wierzcho³ek $x$ nazywamy {\bf pocz¹tkiem ³uku}, a $y$ - {\bf koñcem ³uku}.
-\item KrawêdŸ $(x,x)$ nazywamy {\bf pêtl¹}.
+\item	ParÄ™ $(x,y)$ nazywamy {\bf Å‚ukiem} ({\bf krawÄ™dziÄ… skierowanÄ…}) od $x$ do $y$.
+\item WierzchoÅ‚ek $y$ nazywamy {\bf sÄ…siednim} do $x$.
+\item WierzchoÅ‚ek $x$ nazywamy {\bf poczÄ…tkiem Å‚uku}, a $y$ - {\bf koÅ„cem Å‚uku}.
+\item KrawÄ™dÅº $(x,x)$ nazywamy {\bf pÄ™tlÄ…}.
 \end{itemize}
 \end{block}
 \end{frame}
@@ -77,17 +77,17 @@ Niech $(x,y)\in E(D)$.
 	
 \begin{frame}
 	
-	\begin{exampleblock}{Przyk³ad 1}
+	\begin{exampleblock}{PrzykÅ‚ad 1}
 		\begin{minipage}{3.5cm}
-		\includegraphics[scale=0.2]{graf1.png}
+		
 		\end{minipage}
 		\begin{minipage}{8cm}
-			Rysunek przedstawia reprezentacjê graficzn¹ digrafu $D$ takiego, ¿e
+			Rysunek przedstawia reprezentacjÄ™ graficznÄ… digrafu $D$ takiego, Å¼e
 			\begin{align*}
 				V(D)&=\{1,2,3,4,5,6\}\\
 				E(D)&=\{(1,4),\,(3,5),\,(4,2),\,(4,5)\}
 			\end{align*}
-		Rz¹d $D$ wynosi $6$, natomiast rozmiar to $4$.
+		RzÄ…d $D$ wynosi $6$, natomiast rozmiar to $4$.
 		\end{minipage}
 	\end{exampleblock}
 	
@@ -98,13 +98,13 @@ Niech $(x,y)\in E(D)$.
 \begin{frame}
 \begin{block}{Definicja}
 		\begin{itemize}
-			\item {\bf Stopniem wyjœciowym $\outdeg v$ wierzcho³ka $v$} w digrafie $D$ nazywamy liczbê krawêdzi, których pocz¹tkiem jest $v$.
-			\item {\bf Stopniem wejœciowym $\indeg v$ wierzcho³ka $v$} w digrafie $D$ nazywamy liczbê krawêdzi, których koñcem jest $v$.
+			\item {\bf Stopniem wyjÅ›ciowym $\outdeg v$ wierzchoÅ‚ka $v$} w digrafie $D$ nazywamy liczbÄ™ krawÄ™dzi, ktÃ³rych poczÄ…tkiem jest $v$.
+			\item {\bf Stopniem wejÅ›ciowym $\indeg v$ wierzchoÅ‚ka $v$} w digrafie $D$ nazywamy liczbÄ™ krawÄ™dzi, ktÃ³rych koÅ„cem jest $v$.
 		\end{itemize}
 \end{block}
 
-\begin{exampleblock}{Przyk³ad 2}
-Stopnie wierzcho³ków digrafu z przyk³adu 1 to: %mo¿e lepiej odeg lub og i ideg lub ig
+\begin{exampleblock}{PrzykÅ‚ad 2}
+Stopnie wierzchoÅ‚kÃ³w digrafu z przykÅ‚adu 1 to: %moÅ¼e lepiej odeg lub og i ideg lub ig
 $$\outdeg(1)=1,\ \ \ \outdeg(2)=0,\ \ \ \outdeg(3)=1,$$ $$\indeg(1)=0,\ \ \ \ \ \indeg(2)=1,\ \ \ \ \ \indeg(3)=0,$$
 
 $$\outdeg(4)=2,\ \ \ \outdeg(5)=0,\ \ \ \outdeg(6)=0,$$ $$\indeg(4)=1,\ \ \ \ \ \indeg(5)=2,\ \ \ \ \ \indeg(6)=0.$$
@@ -114,17 +114,17 @@ $$\outdeg(4)=2,\ \ \ \outdeg(5)=0,\ \ \ \outdeg(6)=0,$$ $$\indeg(4)=1,\ \ \ \ \ 
 
 \begin{frame}
 
-\begin{block}{Podstawowe twierdzenie teorii digrafów}
-Dla ka¿dego digrafu $D$ zachodzi $$\sum\limits_{v\in V(D)}\outdeg v=\sum\limits_{v\in V(D)}\indeg v=|E(D)|.$$
+\begin{block}{Podstawowe twierdzenie teorii digrafÃ³w}
+Dla kaÅ¼dego digrafu $D$ zachodzi $$\sum\limits_{v\in V(D)}\outdeg v=\sum\limits_{v\in V(D)}\indeg v=|E(D)|.$$
 \end{block}
 
 \begin{proof}
- Podczas dodawania stopni wyjœciowych ka¿dy ³uk jest liczony tylko raz --- podobnie jak podczas dodawania stopni wejœciowych.
+ Podczas dodawania stopni wyjÅ›ciowych kaÅ¼dy Å‚uk jest liczony tylko raz --- podobnie jak podczas dodawania stopni wejÅ›ciowych.
 \end{proof}
 
 \medskip
 
-Powy¿sze twierdzenie jest digrafowym odpowiednikiem {\bf lematu o uœciskach d³oni}.
+PowyÅ¼sze twierdzenie jest digrafowym odpowiednikiem {\bf lematu o uÅ›ciskach dÅ‚oni}.
 
 \end{frame}
 
@@ -132,11 +132,11 @@ Powy¿sze twierdzenie jest digrafowym odpowiednikiem {\bf lematu o uœciskach d³on
 
 \begin{frame}
 	\begin{block}{Definicja}
-		{\bf Macierz¹ s¹siedztwa} (multi)digrafu $D$ to macierz $A_D=[s_{ij}]$, w której $a_{ij}$ okreœla liczbê ³uków od $i$-tego do $j$-tego wierzcho³ka.  
+		{\bf MacierzÄ… sÄ…siedztwa} (multi)digrafu $D$ to macierz $A_D=[s_{ij}]$, w ktÃ³rej $a_{ij}$ okreÅ›la liczbÄ™ Å‚ukÃ³w od $i$-tego do $j$-tego wierzchoÅ‚ka.  
 	\end{block}
 
-\begin{exampleblock}{Przyk³ad 3}
-Macierz¹ s¹siedztwa digrafu przedstawionego w przyk³adzie 1 jest
+\begin{exampleblock}{PrzykÅ‚ad 3}
+MacierzÄ… sÄ…siedztwa digrafu przedstawionego w przykÅ‚adzie 1 jest
 $$\left[\begin{array}{cccccc}0&0&0&1&0&0\\0&0&0&0&0&0\\0&0&0&0&1&0\\0&1&0&0&1&0\\0&0&0&0&0&0\\0&0&0&0&0&0\end{array}\right].$$
 \end{exampleblock}
 \end{frame}
@@ -145,14 +145,14 @@ $$\left[\begin{array}{cccccc}0&0&0&1&0&0\\0&0&0&0&0&0\\0&0&0&0&1&0\\0&1&0&0&1&0\
 \begin{frame}
 	
 		\begin{block}{Definicja}
-		{\bf Macierz incydencji digrafu} $D$ to macierz $B_D=[b_{ij}]$, w której
-		$$B_{ij}=\left\{\begin{array}{ll}1,&\mbox{ gdy wierzcho³ek }v_i\mbox{ jest pocz¹tkiem ³uku }e_j\\-1,&\mbox{ gdy wierzcho³ek }v_i\mbox{ jest koñcem ³uku }e_j\\0,&\mbox{ gdy wierzcho³ek }v_i\mbox{ nie jest incydentny z ³ukiem }e_j\end{array}\right..$$
+		{\bf Macierz incydencji digrafu} $D$ to macierz $B_D=[b_{ij}]$, w ktÃ³rej
+		$$B_{ij}=\left\{\begin{array}{ll}1,&\mbox{ gdy wierzchoÅ‚ek }v_i\mbox{ jest poczÄ…tkiem Å‚uku }e_j\\-1,&\mbox{ gdy wierzchoÅ‚ek }v_i\mbox{ jest koÅ„cem Å‚uku }e_j\\0,&\mbox{ gdy wierzchoÅ‚ek }v_i\mbox{ nie jest incydentny z Å‚ukiem }e_j\end{array}\right..$$
 	\end{block}
 	
 	\begin{block}{Wniosek}
 	\begin{itemize}
-	\item Suma elementów w $i$-tym wierszu macierzy incydencji digrafu $D$ wynosi $\outdeg v_i+\indeg v_i$.
-	\item Suma elementów w $j$-tej kolumnie macierzy incydencji digrafu $D$ wynosi $0$.
+	\item Suma elementÃ³w w $i$-tym wierszu macierzy incydencji digrafu $D$ wynosi $\outdeg v_i+\indeg v_i$.
+	\item Suma elementÃ³w w $j$-tej kolumnie macierzy incydencji digrafu $D$ wynosi $0$.
 	\end{itemize}
 	\end{block}
 
@@ -160,8 +160,8 @@ $$\left[\begin{array}{cccccc}0&0&0&1&0&0\\0&0&0&0&0&0\\0&0&0&0&1&0\\0&1&0&0&1&0\
 
 
 \begin{frame}
-\begin{exampleblock}{Przyk³ad 4}
-Macierz¹ incydencji digrafu przedstawionego w przyk³adzie 1 jest
+\begin{exampleblock}{PrzykÅ‚ad 4}
+MacierzÄ… incydencji digrafu przedstawionego w przykÅ‚adzie 1 jest
 $$\left[\begin{array}{cccc}
 1&0&0&0\\
 0&0&-1&0\\
@@ -176,21 +176,21 @@ $$\left[\begin{array}{cccc}
 
 \begin{frame}
 \begin{block}{Definicja}
-Niech $D=(V(D),E(D))$ bêdzie digrafem.
+Niech $D=(V(D),E(D))$ bÄ™dzie digrafem.
 \begin{itemize}
-\item $D$ jest {\bf symetryczny}, gdy dla ka¿dej pary wierzcho³ków $u,v\in V(D)$ z~warunku $(u,v)\in E(D)$ wynika, ¿e równie¿ $(v,u)\in E(D)$.
-\item $D$ jest {\bf grafem zorientowanym}, gdy dla ka¿dej pary wierzcho³ków $u,v\in V(D)$ z warunku $(u,v)\in E(D)$ wynika, ¿e $(v,u)\not\in E(D)$.
+\item $D$ jest {\bf symetryczny}, gdy dla kaÅ¼dej pary wierzchoÅ‚kÃ³w $u,v\in V(D)$ z~warunku $(u,v)\in E(D)$ wynika, Å¼e rÃ³wnieÅ¼ $(v,u)\in E(D)$.
+\item $D$ jest {\bf grafem zorientowanym}, gdy dla kaÅ¼dej pary wierzchoÅ‚kÃ³w $u,v\in V(D)$ z warunku $(u,v)\in E(D)$ wynika, Å¼e $(v,u)\not\in E(D)$.
 \end{itemize}
 \end{block}
 
 \medskip
 
-\begin{exampleblock}{Przyk³ad 5}
-Zauwa¿my, ¿e digraf z przyk³adu 1 jest grafem zorientowanym.
+\begin{exampleblock}{PrzykÅ‚ad 5}
+ZauwaÅ¼my, Å¼e digraf z przykÅ‚adu 1 jest grafem zorientowanym.
 
 \medskip
 
-Co najmniej ile ³uków nale¿y do tego digrafu do³¹czyæ (bez zwiêkszania jego rzêdu), aby mieæ pewnoœæ ¿e nowo otrzymany digraf nie jest grafem zorientowanym?
+Co najmniej ile Å‚ukÃ³w naleÅ¼y do tego digrafu doÅ‚Ä…czyÄ‡ (bez zwiÄ™kszania jego rzÄ™du), aby mieÄ‡ pewnoÅ›Ä‡ Å¼e nowo otrzymany digraf nie jest grafem zorientowanym?
 
 \medskip
 
@@ -205,15 +205,15 @@ $12$.
 \begin{frame}
 
 \begin{block}{Definicja}
-{\bf Grafem pierwotnym} digrafu $D$ nazywamy graf otrzymany przez zast¹pienie ka¿dego ³uku $(u,v)$ lub symetrycznej pary ³uków $(u,v)$ i $(v,u)$ przez krawêdŸ $\{u,v\}$.
+{\bf Grafem pierwotnym} digrafu $D$ nazywamy graf otrzymany przez zastÄ…pienie kaÅ¼dego Å‚uku $(u,v)$ lub symetrycznej pary Å‚ukÃ³w $(u,v)$ i $(v,u)$ przez krawÄ™dÅº $\{u,v\}$.
 \end{block}
 
 
-\begin{exampleblock}{Przyk³ad 6}
-Poni¿sze digrafy $D_1$ i $D_2$ maj¹ taki sam graf pierwotny ($G$).
+\begin{exampleblock}{PrzykÅ‚ad 6}
+PoniÅ¼sze digrafy $D_1$ i $D_2$ majÄ… taki sam graf pierwotny ($G$).
 
 \begin{center}
-\includegraphics[scale=0.2]{pierw.png}
+
 \end{center}
 
 \end{exampleblock}
@@ -228,20 +228,20 @@ Poni¿sze digrafy $D_1$ i $D_2$ maj¹ taki sam graf pierwotny ($G$).
 
 \begin{frame}	
 	\begin{block}{Definicja}
-		Niech $D=\big(V(D),E(D)\big)$ bêdzie digrafem.
+		Niech $D=\big(V(D),E(D)\big)$ bÄ™dzie digrafem.
 \begin{itemize}
-\item {\bf Drog¹} nazywamy ci¹g wierzcho³ków $(v_1,v_2,\ldots,v_n)$ taki, ¿e $(v_i,v_{i+1})\in E(D)$ dla ka¿dego $1\leq i\leq n-1$.
-\item {\bf Drog¹ nieskierowan¹} nazywamy ci¹g wierzcho³ków $(v_1,v_2,\ldots,v_n)$ taki, ¿e $(v_i,v_{i+1})\in E(D)$ lub $(v_{i+1},v_i)\in E(D)$ dla ka¿dego $1\leq i\leq n-1$.
-\item {\bf Œcie¿k¹} nazywamy drogê w której ka¿dy wierzcho³ek wystêpuje co najwy¿ej jeden raz.
-\item {\bf Cyklem} nazywamy drogê w której $v_1=v_n$ oraz wszystkie pozosta³e wierzcho³ki wystêpuj¹ co najwy¿ej jeden raz.
-\item {\bf Cyklem niew³aœciwym} nazywamy drogê w której $v_1=v_n$.
-\item Digraf jest {\bf acykliczny}, je¿eli nie posiada cykli.
+\item {\bf DrogÄ…} nazywamy ciÄ…g wierzchoÅ‚kÃ³w $(v_1,v_2,\ldots,v_n)$ taki, Å¼e $(v_i,v_{i+1})\in E(D)$ dla kaÅ¼dego $1\leq i\leq n-1$.
+\item {\bf DrogÄ… nieskierowanÄ…} nazywamy ciÄ…g wierzchoÅ‚kÃ³w $(v_1,v_2,\ldots,v_n)$ taki, Å¼e $(v_i,v_{i+1})\in E(D)$ lub $(v_{i+1},v_i)\in E(D)$ dla kaÅ¼dego $1\leq i\leq n-1$.
+\item {\bf ÅšcieÅ¼kÄ…} nazywamy drogÄ™ w ktÃ³rej kaÅ¼dy wierzchoÅ‚ek wystÄ™puje co najwyÅ¼ej jeden raz.
+\item {\bf Cyklem} nazywamy drogÄ™ w ktÃ³rej $v_1=v_n$ oraz wszystkie pozostaÅ‚e wierzchoÅ‚ki wystÄ™pujÄ… co najwyÅ¼ej jeden raz.
+\item {\bf Cyklem niewÅ‚aÅ›ciwym} nazywamy drogÄ™ w ktÃ³rej $v_1=v_n$.
+\item Digraf jest {\bf acykliczny}, jeÅ¼eli nie posiada cykli.
 \end{itemize}
 	\end{block}
 
 \medskip
 
-Podobnie jak droga nieskierowana jest pierwotnym odpowiednikiem drogi w~digrafie, tak i {\bf œcie¿ka nieskierowana}, {\bf cykl nieskierowany} i {\bf cykl niew³aœciwy nieskierowany} to pierwotne odpowiedniki œcie¿ki, cyklu i cyklu niew³aœciwego.
+Podobnie jak droga nieskierowana jest pierwotnym odpowiednikiem drogi w~digrafie, tak i {\bf Å›cieÅ¼ka nieskierowana}, {\bf cykl nieskierowany} i {\bf cykl niewÅ‚aÅ›ciwy nieskierowany} to pierwotne odpowiedniki Å›cieÅ¼ki, cyklu i cyklu niewÅ‚aÅ›ciwego.
 
 \end{frame}
 
@@ -249,18 +249,18 @@ Podobnie jak droga nieskierowana jest pierwotnym odpowiednikiem drogi w~digrafie
 \begin{frame}
 	\begin{block}{Definicja}
 	\begin{itemize}
-	\item	Digraf $D$ jest {\bf spójny}, gdy dla ka¿dej pary jego wierzcho³ków istnieje œcie¿ka nieskierowana ³¹cz¹ca te wierzcho³ki.
-	\item Digraf $D$ jest {\bf silnie spójny}, gdy dla ka¿dej pary jego wierzcho³ków $u$ i $v$ istnieje œcie¿ka o pocz¹tku w $u$ i koñcu w $v$ oraz istnieje œcie¿ka o pocz¹tku w~$v$ i koñcu w $u$.
+	\item	Digraf $D$ jest {\bf spÃ³jny}, gdy dla kaÅ¼dej pary jego wierzchoÅ‚kÃ³w istnieje Å›cieÅ¼ka nieskierowana Å‚Ä…czÄ…ca te wierzchoÅ‚ki.
+	\item Digraf $D$ jest {\bf silnie spÃ³jny}, gdy dla kaÅ¼dej pary jego wierzchoÅ‚kÃ³w $u$ i $v$ istnieje Å›cieÅ¼ka o poczÄ…tku w $u$ i koÅ„cu w $v$ oraz istnieje Å›cieÅ¼ka o poczÄ…tku w~$v$ i koÅ„cu w $u$.
 	\end{itemize}
 	\end{block}
 
 
-\begin{exampleblock}{Przyk³ad 7}
-Digraf przedstawiony w przyk³adzie 1 nie jest spójny --- nie istnieje œcie¿ka ³¹cz¹ca wierzcho³ek $6$ z pozosta³ymi. Rozwa¿my poni¿sze digrafy:
+\begin{exampleblock}{PrzykÅ‚ad 7}
+Digraf przedstawiony w przykÅ‚adzie 1 nie jest spÃ³jny --- nie istnieje Å›cieÅ¼ka Å‚Ä…czÄ…ca wierzchoÅ‚ek $6$ z pozostaÅ‚ymi. RozwaÅ¼my poniÅ¼sze digrafy:
 
-\begin{center}\includegraphics[scale=0.2]{sppr.png}\end{center}
 
-Digraf $D_1$ jest spójny, ale nie jest silnie spójny. Digraf $D_2$ jest silnie spójny.
+
+Digraf $D_1$ jest spÃ³jny, ale nie jest silnie spÃ³jny. Digraf $D_2$ jest silnie spÃ³jny.
 \end{exampleblock}
 \end{frame}
 
@@ -269,13 +269,13 @@ Digraf $D_1$ jest spójny, ale nie jest silnie spójny. Digraf $D_2$ jest silnie s
 \begin{frame}
 
 \begin{block}{Definicja}
-Je¿eli $G$ jest grafem pierwotnym grafu zorientowanego $D$, to $D$ nazywamy {\bf orientacj¹} grafu $G$.
+JeÅ¼eli $G$ jest grafem pierwotnym grafu zorientowanego $D$, to $D$ nazywamy {\bf orientacjÄ…} grafu $G$.
 \end{block}
 
-\begin{exampleblock}{Przyk³ad 8}
+\begin{exampleblock}{PrzykÅ‚ad 8}
 Graf ($G$) i jedna z jego orientacji ($D$).
 
-\begin{center}\includegraphics[scale=0.2]{orien.png}\end{center}
+
 \end{exampleblock}
 
 \end{frame}
@@ -285,19 +285,19 @@ Graf ($G$) i jedna z jego orientacji ($D$).
 
 \begin{block}{Definicja}
 \begin{itemize}
-\item Dowoln¹ orientacjê grafu pe³nego nazywamy {\bf turniejem}.
-\item Digraf $D$ jest {\bf $r$-regularny}, je¿eli równania $$\outdeg v=\indeg v=r$$ zachodz¹ dla ka¿dego $v\in V(D)$.
+\item DowolnÄ… orientacjÄ™ grafu peÅ‚nego nazywamy {\bf turniejem}.
+\item Digraf $D$ jest {\bf $r$-regularny}, jeÅ¼eli rÃ³wnania $$\outdeg v=\indeg v=r$$ zachodzÄ… dla kaÅ¼dego $v\in V(D)$.
 \end{itemize}
 \end{block}
 
-\begin{exampleblock}{Przyk³ad 9}
-Grafy $D_1$ i $D_2$ z przyk³adu 7 s¹ jedynymi turniejami rzêdu $3$ (a zarazem jedynymi orientacjami grafu $K_3$). Ponadto graf $D_2$ jest grafem $1$-regularnym.
+\begin{exampleblock}{PrzykÅ‚ad 9}
+Grafy $D_1$ i $D_2$ z przykÅ‚adu 7 sÄ… jedynymi turniejami rzÄ™du $3$ (a zarazem jedynymi orientacjami grafu $K_3$). Ponadto graf $D_2$ jest grafem $1$-regularnym.
 
 \medskip
 
-Ile jest turniejów rzêdu $4$? S¹ cztery takie turnieje:
+Ile jest turniejÃ³w rzÄ™du $4$? SÄ… cztery takie turnieje:
 
-\begin{center}\includegraphics[scale=0.16]{t4.png}\end{center}
+
 \end{exampleblock}
 
 \end{frame}
@@ -307,17 +307,17 @@ Ile jest turniejów rzêdu $4$? S¹ cztery takie turnieje:
 \begin{frame}
 
 \begin{block}{Definicja}
-Turniej $T$ jest {\bf przechodni}, je¿eli z tego, ¿e $(u,v)$ i $(v,w)$ s¹ ³ukami w $T$ wynika, ¿e $(u,w)$ równie¿ jest ³ukiem w $T$.
+Turniej $T$ jest {\bf przechodni}, jeÅ¼eli z tego, Å¼e $(u,v)$ i $(v,w)$ sÄ… Å‚ukami w $T$ wynika, Å¼e $(u,w)$ rÃ³wnieÅ¼ jest Å‚ukiem w $T$.
 \end{block}
 
 \bigskip
 
-\begin{exampleblock}{Przyk³ad 10}
-Które turnieje rzêdu $4$ (przyk³ad 9) s¹ przechodnie?
+\begin{exampleblock}{PrzykÅ‚ad 10}
+KtÃ³re turnieje rzÄ™du $4$ (przykÅ‚ad 9) sÄ… przechodnie?
 
 \medskip
 
-Jedynym przechodnim turniejem rzêdu $4$ jest $T_{4,4}$.
+Jedynym przechodnim turniejem rzÄ™du $4$ jest $T_{4,4}$.
 \end{exampleblock}
 
 \end{frame}
@@ -328,25 +328,25 @@ Jedynym przechodnim turniejem rzêdu $4$ jest $T_{4,4}$.
 Turniej jest przechodni wtedy i tylko wtedy, gdy jest acykliczny.
 \end{block}
 
-\begin{block}{Dowód. (1/2)}
+\begin{block}{DowÃ³d. (1/2)}
 $(\Leftarrow)$
 
-Niech $T$ bêdzie acyklicznym turniejem i niech $(u,v),\,(v,w)\in E(T)$. Z~acyklicznoœci wynika, ¿e $(w,u)\not\in E(T)$. Pamiêtajmy, ¿e $T$ jest turniejem, wiêc dla ka¿dej pary wierzcho³ków $v_1,v_2$ je¿eli $(v_1,v_2)\not\in E(T)$, to $(v_2,v_1)\in E(T)$. Zatem z $(w,u)\not\in E(T)$ otrzymujemy, ¿e $(u,w)\in E(T)$, wiêc $T$ jest przechodni. 
+Niech $T$ bÄ™dzie acyklicznym turniejem i niech $(u,v),\,(v,w)\in E(T)$. Z~acyklicznoÅ›ci wynika, Å¼e $(w,u)\not\in E(T)$. PamiÄ™tajmy, Å¼e $T$ jest turniejem, wiÄ™c dla kaÅ¼dej pary wierzchoÅ‚kÃ³w $v_1,v_2$ jeÅ¼eli $(v_1,v_2)\not\in E(T)$, to $(v_2,v_1)\in E(T)$. Zatem z $(w,u)\not\in E(T)$ otrzymujemy, Å¼e $(u,w)\in E(T)$, wiÄ™c $T$ jest przechodni. 
 
 \end{block}
 \end{frame}
 
 \begin{frame}
 
-\begin{block}{Dowód. (2/2)}
+\begin{block}{DowÃ³d. (2/2)}
 $(\Rightarrow)$
 
-Niech $T$ bêdzie przechodnim turniejem. Za³ó¿my niewprost, ¿e w turnieju $T$ istnieje cykl $(v_1,v_2,\ldots,v_k,v_1)$, gdzie $k\geqslant3$. Przechodnioœæ $T$ pozwala nam skonstruowaæ ci¹g krawêdzi:
+Niech $T$ bÄ™dzie przechodnim turniejem. ZaÅ‚Ã³Å¼my niewprost, Å¼e w turnieju $T$ istnieje cykl $(v_1,v_2,\ldots,v_k,v_1)$, gdzie $k\geqslant3$. PrzechodnioÅ›Ä‡ $T$ pozwala nam skonstruowaÄ‡ ciÄ…g krawÄ™dzi:
 \begin{itemize}
-\item Z $(v_1,v_2),(v_2,v_3)\in E(T)$ wynika, ¿e $(v_1,v_3)\in E(T)$. 
-\item Z $(v_1,v_3),\,(v_3,v_4)\in E(T)$ wynika, ¿e $(v_1,v_4)\in E(T)$.
+\item Z $(v_1,v_2),(v_2,v_3)\in E(T)$ wynika, Å¼e $(v_1,v_3)\in E(T)$. 
+\item Z $(v_1,v_3),\,(v_3,v_4)\in E(T)$ wynika, Å¼e $(v_1,v_4)\in E(T)$.
 \item $\ldots$
-\item Z $(v_1,v_{k-1}),(v_{k-1},v_k)\in E(T)$ wynika, ¿e $(v_1,v_k)\in E(T)$ --- daje to sprzecznoœæ z faktem, ¿e $(v_k,v_1)\in E(T)$.
+\item Z $(v_1,v_{k-1}),(v_{k-1},v_k)\in E(T)$ wynika, Å¼e $(v_1,v_k)\in E(T)$ --- daje to sprzecznoÅ›Ä‡ z faktem, Å¼e $(v_k,v_1)\in E(T)$.
 \end{itemize}
 Zatem $T$ jest acykliczny.\vfill\qed
 \end{block}
@@ -354,7 +354,7 @@ Zatem $T$ jest acykliczny.\vfill\qed
 \medskip
 
 \begin{block}{Twierdzenie}
-Dla ka¿dej liczby ca³kowitej $n\geqslant3$ istnieje dok³adnie jeden przechodni (acykliczny) turniej rzêdu $n$.
+Dla kaÅ¼dej liczby caÅ‚kowitej $n\geqslant3$ istnieje dokÅ‚adnie jeden przechodni (acykliczny) turniej rzÄ™du $n$.
 \end{block}
 
 \end{frame}
@@ -368,13 +368,13 @@ Dla ka¿dej liczby ca³kowitej $n\geqslant3$ istnieje dok³adnie jeden przechodni (
 
 \begin{block}{Definicja}
 \begin{itemize}
-	\item	Je¿eli w digrafie $D$ istnieje cykl niew³aœciwy $d$ przechodz¹cy przez ka¿d¹ krawêdŸ digrafu $D$ dok³adnie jeden raz, to $d$ nazywamy {\bf cyklem Eulera}, a~digraf $D$ --- {\bf digrafem eulerowskim}.
-	\item Je¿eli digraf $D$ nie jest digrafem eulerowskim i istnieje œcie¿ka $d$ przechodz¹ca przez ka¿d¹ krawêdŸ digrafu $D$ dok³adnie jeden raz, to $d$ nazywamy {\bf œcie¿k¹ Eulera}, a digraf $D$ --- {\bf digrafem jednobie¿nym} ({\bf pó³eulerowskim}).
+	\item	JeÅ¼eli w digrafie $D$ istnieje cykl niewÅ‚aÅ›ciwy $d$ przechodzÄ…cy przez kaÅ¼dÄ… krawÄ™dÅº digrafu $D$ dokÅ‚adnie jeden raz, to $d$ nazywamy {\bf cyklem Eulera}, a~digraf $D$ --- {\bf digrafem eulerowskim}.
+	\item JeÅ¼eli digraf $D$ nie jest digrafem eulerowskim i istnieje Å›cieÅ¼ka $d$ przechodzÄ…ca przez kaÅ¼dÄ… krawÄ™dÅº digrafu $D$ dokÅ‚adnie jeden raz, to $d$ nazywamy {\bf Å›cieÅ¼kÄ… Eulera}, a digraf $D$ --- {\bf digrafem jednobieÅ¼nym} ({\bf pÃ³Å‚eulerowskim}).
 \end{itemize}
 \end{block}
 
-\begin{exampleblock}{Przyk³ad 11}
-Rozwa¿my turnieje rzêdu $3$ (przyk³ad 7). $D_2$ jest eulerowski, natomiast $D_1$ nie jest ani eulerowski ani jednobie¿ny.%nastêpnym razem  lepszy przyk³ad, na eulerowski i jednobie¿ny
+\begin{exampleblock}{PrzykÅ‚ad 11}
+RozwaÅ¼my turnieje rzÄ™du $3$ (przykÅ‚ad 7). $D_2$ jest eulerowski, natomiast $D_1$ nie jest ani eulerowski ani jednobieÅ¼ny.%nastÄ™pnym razem  lepszy przykÅ‚ad, na eulerowski i jednobieÅ¼ny
 \end{exampleblock}
 
 \end{frame}
@@ -384,11 +384,11 @@ Rozwa¿my turnieje rzêdu $3$ (przyk³ad 7). $D_2$ jest eulerowski, natomiast $D_1$
 
 \begin{block}{Stwierdzenie}
 \begin{itemize}
-	\item Digraf $D$ jest eulerowski wtedy i tylko wtedy, gdy jest spójny oraz dla ka¿dego wierzcho³ka $w\in V(D)$ zachodzi
+	\item Digraf $D$ jest eulerowski wtedy i tylko wtedy, gdy jest spÃ³jny oraz dla kaÅ¼dego wierzchoÅ‚ka $w\in V(D)$ zachodzi
 $$\outdeg w=\indeg w.$$
-	\item Digraf $D$ jest jednobie¿ny wtedy i tylko wtedy, gdy jest spójny i zawiera dwa wierzcho³ki $u$ i $v$ takie, ¿e
+	\item Digraf $D$ jest jednobieÅ¼ny wtedy i tylko wtedy, gdy jest spÃ³jny i zawiera dwa wierzchoÅ‚ki $u$ i $v$ takie, Å¼e
 $$\outdeg u=\indeg u+1\ \ \ \ \ \mbox{ oraz }\ \ \ \ \ \indeg v =\outdeg v+1$$
-oraz $$\outdeg w =\indeg w $$ dla wszystkich pozosta³ych ³uków $w\in V(D)$.  Co wiêcej, $u$ jest pocz¹tkiem, a~$v$ koñcem ka¿dej œcie¿ki Eulera w $D$. 
+oraz $$\outdeg w =\indeg w $$ dla wszystkich pozostaÅ‚ych Å‚ukÃ³w $w\in V(D)$.  Co wiÄ™cej, $u$ jest poczÄ…tkiem, a~$v$ koÅ„cem kaÅ¼dej Å›cieÅ¼ki Eulera w $D$. 
 \end{itemize}
 \end{block}
 
@@ -398,15 +398,15 @@ oraz $$\outdeg w =\indeg w $$ dla wszystkich pozosta³ych ³uków $w\in V(D)$.  Co 
 
 \begin{frame}
 
-\begin{exampleblock}{Przyk³ad 12}
+\begin{exampleblock}{PrzykÅ‚ad 12}
 
-\begin{center}\includegraphics[scale=0.2]{sppreul.png}\end{center}
+
 
 $D_1$ - digraf eulerowski
 
-$D_2$ - digraf jednobie¿ny
+$D_2$ - digraf jednobieÅ¼ny
 
-$D_3$ - digraf nie eulerowski i nie jednobie¿ny
+$D_3$ - digraf nie eulerowski i nie jednobieÅ¼ny
 
 \end{exampleblock}
 
@@ -418,8 +418,8 @@ $D_3$ - digraf nie eulerowski i nie jednobie¿ny
 
 \begin{block}{Definicja}
 \begin{itemize}
-	\item	Je¿eli w digrafie $D$ istnieje cykl $h$ przechodz¹cy przez ka¿dy wierzcho³ek digrafu $D$ dok³adnie jeden raz, to $h$ nazywamy {\bf cyklem Hamiltona}, a $D$ --- {\bf digrafem hamiltonowskim}.
-	\item Je¿eli digraf $D$ nie jest digrafem hamiltonowskim i istnieje œcie¿ka $h$ przechodz¹ca przez ka¿dy wierzcho³ek tego grafu dok³adnie jeden raz, to $h$ nazywamy {\bf œcie¿k¹ Hamiltona}, a $D$ --- {\bf digrafem trasowalnym} ({\bf pó³hamiltonowskim}).
+	\item	JeÅ¼eli w digrafie $D$ istnieje cykl $h$ przechodzÄ…cy przez kaÅ¼dy wierzchoÅ‚ek digrafu $D$ dokÅ‚adnie jeden raz, to $h$ nazywamy {\bf cyklem Hamiltona}, a $D$ --- {\bf digrafem hamiltonowskim}.
+	\item JeÅ¼eli digraf $D$ nie jest digrafem hamiltonowskim i istnieje Å›cieÅ¼ka $h$ przechodzÄ…ca przez kaÅ¼dy wierzchoÅ‚ek tego grafu dokÅ‚adnie jeden raz, to $h$ nazywamy {\bf Å›cieÅ¼kÄ… Hamiltona}, a $D$ --- {\bf digrafem trasowalnym} ({\bf pÃ³Å‚hamiltonowskim}).
 \end{itemize}
 \end{block}
 
@@ -428,9 +428,9 @@ $D_3$ - digraf nie eulerowski i nie jednobie¿ny
 
 \begin{frame}
 
-\begin{exampleblock}{Przyk³ad 13}
+\begin{exampleblock}{PrzykÅ‚ad 13}
 
-\begin{center}\includegraphics[scale=0.15]{hami.png}\end{center}
+
 
 $D_1$ - digraf hamiltonowski
 
@@ -442,8 +442,8 @@ $D_3$ - digraf nie hamiltonowski i nie trasowalny
 
 \bigskip
 
-\begin{exampleblock}{Przyk³ad 14}
-Które turnieje rzêdu $4$ (przyk³ad 9) s¹ hamiltonowskie, a które s¹ trasowalne?
+\begin{exampleblock}{PrzykÅ‚ad 14}
+KtÃ³re turnieje rzÄ™du $4$ (przykÅ‚ad 9) sÄ… hamiltonowskie, a ktÃ³re sÄ… trasowalne?
 
 \medskip
 
@@ -459,31 +459,31 @@ $T_{4,2},\,T_{4,3},\,T_{4,4}$ --- turnieje trasowalne
 
 \begin{frame}
 
-Zauwa¿my, ¿e turnieje mog¹ mieæ Ÿród³a i ujœcia, co sugeruje ¿e na ogó³ nie s¹ one digrafami hamiltonowskimi. Zachodzi jednak nastêpuj¹ce twierdzenie:
+ZauwaÅ¼my, Å¼e turnieje mogÄ… mieÄ‡ ÅºrÃ³dÅ‚a i ujÅ›cia, co sugeruje Å¼e na ogÃ³Å‚ nie sÄ… one digrafami hamiltonowskimi. Zachodzi jednak nastÄ™pujÄ…ce twierdzenie:
 
 \begin{block}{Twierdzenie (R\'{e}dei, Camion)}
-Ka¿dy turniej jest trasowalny lub hamiltonowski.
+KaÅ¼dy turniej jest trasowalny lub hamiltonowski.
 \end{block}
 
-\begin{block}{Dowód. (1/2)}
-Aby teza by³a prawdziwa, wystarczy aby turniej zawiera³ œcie¿kê Hamiltona. Niech $T$ bêdzie turniejem i niech $$P=(v_1,v_2,\ldots,v_k)$$ bêdzie najd³u¿sz¹ œcie¿k¹ w $T$. Je¿eli $P$ nie jest œcie¿k¹ Hamiltona, to $1\leqslant k<n$ oraz istnieje wierzcho³ek $v\in V(T)$ taki, ¿e $v\not\in P$.
+\begin{block}{DowÃ³d. (1/2)}
+Aby teza byÅ‚a prawdziwa, wystarczy aby turniej zawieraÅ‚ Å›cieÅ¼kÄ™ Hamiltona. Niech $T$ bÄ™dzie turniejem i niech $$P=(v_1,v_2,\ldots,v_k)$$ bÄ™dzie najdÅ‚uÅ¼szÄ… Å›cieÅ¼kÄ… w $T$. JeÅ¼eli $P$ nie jest Å›cieÅ¼kÄ… Hamiltona, to $1\leqslant k<n$ oraz istnieje wierzchoÅ‚ek $v\in V(T)$ taki, Å¼e $v\not\in P$.
 
-Z faktu, ¿e $P$ jest najd³u¿sz¹ œcie¿k¹ otrzymujemy, ¿e $$(v,v_1),\,(v_k,v)\not\in E(T).$$ Zatem, na mocy faktu ¿e $T$ jest turniejem, mamy $$(v_1,v),\,(v,v_k)\in E(T).$$ 
+Z faktu, Å¼e $P$ jest najdÅ‚uÅ¼szÄ… Å›cieÅ¼kÄ… otrzymujemy, Å¼e $$(v,v_1),\,(v_k,v)\not\in E(T).$$ Zatem, na mocy faktu Å¼e $T$ jest turniejem, mamy $$(v_1,v),\,(v,v_k)\in E(T).$$ 
 \end{block}
 \end{frame}
 
 
 \begin{frame}
 
-\begin{block}{Dowód. (2/2)}
+\begin{block}{DowÃ³d. (2/2)}
 
-W takim razie istnieje najwiêksza liczba ca³kowita $i$ ($1\leqslant i<k$) taka, ¿e $(v_i,v)\in E(T)$, co oznacza ¿e $(v,v_{i+1})\in E(T)$. 
+W takim razie istnieje najwiÄ™ksza liczba caÅ‚kowita $i$ ($1\leqslant i<k$) taka, Å¼e $(v_i,v)\in E(T)$, co oznacza Å¼e $(v,v_{i+1})\in E(T)$. 
 
-\begin{center}\includegraphics[scale=0.22]{dowod.png}\end{center}
 
-Zauwa¿my, ¿e teraz w turnieju $T$ istnieje œcie¿ka
+
+ZauwaÅ¼my, Å¼e teraz w turnieju $T$ istnieje Å›cieÅ¼ka
 $$(v_1,\,v_2,\,\ldots,\,v_{i-1},\,v_i,\,v,\,v_{i+1},\,\ldots,\,v_{k-1},\,v_k),$$
-która ma wiêksz¹ d³ugoœæ ($k+1$) ni¿ œcie¿ka $P$ --- co daje nam sprzecznoœæ z~faktem, ¿e $P$ nie jest œcie¿k¹ Hamiltona.
+ktÃ³ra ma wiÄ™kszÄ… dÅ‚ugoÅ›Ä‡ ($k+1$) niÅ¼ Å›cieÅ¼ka $P$ --- co daje nam sprzecznoÅ›Ä‡ z~faktem, Å¼e $P$ nie jest Å›cieÅ¼kÄ… Hamiltona.
 \end{block}
 
 
@@ -494,20 +494,20 @@ która ma wiêksz¹ d³ugoœæ ($k+1$) ni¿ œcie¿ka $P$ --- co daje nam sprzecznoœæ z~f
 
 
 \begin{block}{Wniosek}
-Ka¿dy turniej przechodni zawiera dok³adnie jedn¹ œcie¿kê Hamiltona.
+KaÅ¼dy turniej przechodni zawiera dokÅ‚adnie jednÄ… Å›cieÅ¼kÄ™ Hamiltona.
 \end{block}
 
 \bigskip
 
-Przyk³adowe warunki na digrafy hamiltonowskie:
+PrzykÅ‚adowe warunki na digrafy hamiltonowskie:
 
 \begin{block}{Twierdzenie}
-Niech $D$ bêdzie digrafem i niech $|V(D)|=n$.
+Niech $D$ bÄ™dzie digrafem i niech $|V(D)|=n$.
 \begin{itemize}
-\item Je¿eli dla ka¿dej pary wierzcho³ków $u,v\in V(G)$ takich, ¿e $(u,v)\not\in E(D)$ zachodzi
+\item JeÅ¼eli dla kaÅ¼dej pary wierzchoÅ‚kÃ³w $u,v\in V(G)$ takich, Å¼e $(u,v)\not\in E(D)$ zachodzi
 $$\outdeg u+\indeg v \geqslant n,$$
 to $D$ jest hamiltonowski.
-\item Je¿eli dla ka¿dego wierzcho³ka $v\in V(D)$ zachodzi $$\outdeg v\geqslant \frac{n}2\ \ \ \ \ \mbox{ oraz }\ \ \ \ \ \indeg v\geqslant\frac{n}2,$$
+\item JeÅ¼eli dla kaÅ¼dego wierzchoÅ‚ka $v\in V(D)$ zachodzi $$\outdeg v\geqslant \frac{n}2\ \ \ \ \ \mbox{ oraz }\ \ \ \ \ \indeg v\geqslant\frac{n}2,$$
 to $D$ jest hamiltonowski.
 \end{itemize}
 \end{block}
