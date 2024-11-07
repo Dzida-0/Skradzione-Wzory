@@ -9,8 +9,8 @@
 \usefonttheme[onlymath]{serif}
 
 
-\usepackage{ulem} % kolorowe podkreœlenia
-\usepackage{xcolor} % kolorowe podkreœlenia
+\usepackage{ulem} % kolorowe podkreÅ›lenia
+\usepackage{xcolor} % kolorowe podkreÅ›lenia
 
 \usepackage{diagbox}
 \usepackage{tasks}
@@ -23,19 +23,19 @@
 
 %\definecolor{green1}{html}{22B14C}
 
-\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarañczowe podkreœlenie
-\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % ¿ó³te podkreœlenie
-\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreœlenie
-\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreœlenie
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomaraÅ„czowe podkreÅ›lenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % Å¼Ã³Å‚te podkreÅ›lenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreÅ›lenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreÅ›lenie
 
 
 \usetheme{Boadilla}
 \usecolortheme{crane}
 %\usecolortheme[rgb={1,0.5,0}]{structure}
 
-\title{\bf Teoria grafów --- podstawy}
+\title{\bf Teoria grafÃ³w --- podstawy}
 %\subtitle{Matematyka, Kierunek: Architektura}
-\author[B. Pawlik]{\bf dr in¿. Bart³omiej Pawlik}
+\author[B. Pawlik]{\bf dr inÅ¼. BartÅ‚omiej Pawlik}
 %\institute{}
 
 
@@ -59,15 +59,15 @@
 
 \begin{frame}
 	
-	\begin{exampleblock}{Przyk³ad 1}
-	Rozpatrzmy parê zbiorów:
+	\begin{exampleblock}{PrzykÅ‚ad 1}
+	Rozpatrzmy parÄ™ zbiorÃ³w:
 \begin{align*}
 V(G)=&\,\{1,2,3,4,5,6\},\\
 E(G)=&\,\Big\{\{1,2\},\,\{1,4\},\,\{1,5\},\{2,3\},\,\{2,5\},\,\{3,4\},\,\{3,5\},\,\{5,6\}\Big\}.
 \end{align*}
-Jak mo¿na przedstawiæ graficznie te zbiory? Przyk³adowa reprezentacja to:
+Jak moÅ¼na przedstawiÄ‡ graficznie te zbiory? PrzykÅ‚adowa reprezentacja to:
 	\begin{center}
-		\includegraphics[scale=.2]{pr1.png}
+		
 	\end{center}
 	\end{exampleblock}
 	
@@ -77,26 +77,26 @@ Jak mo¿na przedstawiæ graficznie te zbiory? Przyk³adowa reprezentacja to:
 \begin{frame}
 	
 	\begin{block}{Definicja}
-		{\bf Grafem} nazywamy parê zbiorów $G=\big(V(G),E(G)\big)$, gdzie $V(G)$ to {\bf zbiór wierzcho³ków}, a $E(G)$ ({\bf zbiór krawêdzi}) to zbiór \underline{nieuporz¹dkowanych par} elementów zbioru $V(G)$.
+		{\bf Grafem} nazywamy parÄ™ zbiorÃ³w $G=\big(V(G),E(G)\big)$, gdzie $V(G)$ to {\bf zbiÃ³r wierzchoÅ‚kÃ³w}, a $E(G)$ ({\bf zbiÃ³r krawÄ™dzi}) to zbiÃ³r \underline{nieuporzÄ…dkowanych par} elementÃ³w zbioru $V(G)$.
 	\end{block}
 
 \medskip
 
-Parê zbiorów spe³niaj¹c¹ powy¿sz¹ definicjê nazywa siê niekiedy {\bf grafem nieskierowanym}.
+ParÄ™ zbiorÃ³w speÅ‚niajÄ…cÄ… powyÅ¼szÄ… definicjÄ™ nazywa siÄ™ niekiedy {\bf grafem nieskierowanym}.
 
 \medskip
 		
 \begin{block}{Definicja}
 \begin{itemize}
-	\item {\bf Rzêdem grafu} $G$ nazywamy liczbê jego wierzcho³ków $|V(G)|$. 
-	\item {\bf Rozmiarem grafu} $G$ nazywamy liczbê jego krawêdzi $|E(G)|$.
-	\item	Wierzcho³ki $x$ i $y$ nazywamy {\bf koñcami krawêdzi} $\{x,y\}$. 
-	\item KrawêdŸ $\{x,x\}$ nazywamy {\bf pêtl¹}.
+	\item {\bf RzÄ™dem grafu} $G$ nazywamy liczbÄ™ jego wierzchoÅ‚kÃ³w $|V(G)|$. 
+	\item {\bf Rozmiarem grafu} $G$ nazywamy liczbÄ™ jego krawÄ™dzi $|E(G)|$.
+	\item	WierzchoÅ‚ki $x$ i $y$ nazywamy {\bf koÅ„cami krawÄ™dzi} $\{x,y\}$. 
+	\item KrawÄ™dÅº $\{x,x\}$ nazywamy {\bf pÄ™tlÄ…}.
 \end{itemize}
 \end{block}
 
-\begin{exampleblock}{Przyk³ad}
-	Rz¹d grafu $G$ z przyk³adu 1 wynosi $6$, a jego rozmiar to $8$.
+\begin{exampleblock}{PrzykÅ‚ad}
+	RzÄ…d grafu $G$ z przykÅ‚adu 1 wynosi $6$, a jego rozmiar to $8$.
 \end{exampleblock}
 
 
@@ -107,28 +107,28 @@ Parê zbiorów spe³niaj¹c¹ powy¿sz¹ definicjê nazywa siê niekiedy {\bf grafem nies
 \begin{frame}
 
 \begin{block}{Oznaczenie}
-Rz¹d grafu oznaczamy przez $n$, a jego rozmiar przez $m$. KrawêdŸ $\{u,v\}$ bêdziemy czêsto zapisywaæ w postaci $uv$.
+RzÄ…d grafu oznaczamy przez $n$, a jego rozmiar przez $m$. KrawÄ™dÅº $\{u,v\}$ bÄ™dziemy czÄ™sto zapisywaÄ‡ w postaci $uv$.
 \end{block}
 
 	\begin{block}{Definicja}
-	Dany jest graf $G$ i wierzcho³ki $u,v,w\in V(G)$.
+	Dany jest graf $G$ i wierzchoÅ‚ki $u,v,w\in V(G)$.
 	\begin{itemize}
-		\item Je¿eli $uv\in E(G)$, to $u$ nazywamy {\bf wierzcho³kiem s¹siednim} do $v$ i~do krawêdzi $uv$. KrawêdŸ $uv$ nazywamy {\bf krawêdzi¹ s¹siedni¹} do wierzcho³ka $u$ i~do wierzcho³ka $v$.
-		\item Je¿eli $uv,vw\in E(G)$, to $uv$ jest {\bf krawêdzi¹ s¹siedni¹} do krawêdzi $vw$.
+		\item JeÅ¼eli $uv\in E(G)$, to $u$ nazywamy {\bf wierzchoÅ‚kiem sÄ…siednim} do $v$ i~do krawÄ™dzi $uv$. KrawÄ™dÅº $uv$ nazywamy {\bf krawÄ™dziÄ… sÄ…siedniÄ…} do wierzchoÅ‚ka $u$ i~do wierzchoÅ‚ka $v$.
+		\item JeÅ¼eli $uv,vw\in E(G)$, to $uv$ jest {\bf krawÄ™dziÄ… sÄ…siedniÄ…} do krawÄ™dzi $vw$.
 	\end{itemize}
 	\end{block}
 
 \medskip
 
 \begin{center}
-\includegraphics[scale=.18]{sasiednie.png}
+
 \end{center}
-Na powy¿szym rysunku przedstawiono fragment grafu, w którym
+Na powyÅ¼szym rysunku przedstawiono fragment grafu, w ktÃ³rym
 \begin{itemize}
-\item wierzcho³ki $u$ i $v$ s¹ s¹siednie, bo istnieje krawêdŸ $uv$,
-\item wierzcho³ki $v$ i $w$ s¹ s¹siednie, bo istnieje krawêdŸ $vw$,
-\item wierzcho³ki $u$ i $w$ nie s¹ s¹siednie, bo nie istnieje krawêdŸ $uw$,
-\item krawêdzie $uv$ i $vw$ s¹ s¹siednie, bo maj¹ wspólny wierzcho³ek $v$.
+\item wierzchoÅ‚ki $u$ i $v$ sÄ… sÄ…siednie, bo istnieje krawÄ™dÅº $uv$,
+\item wierzchoÅ‚ki $v$ i $w$ sÄ… sÄ…siednie, bo istnieje krawÄ™dÅº $vw$,
+\item wierzchoÅ‚ki $u$ i $w$ nie sÄ… sÄ…siednie, bo nie istnieje krawÄ™dÅº $uw$,
+\item krawÄ™dzie $uv$ i $vw$ sÄ… sÄ…siednie, bo majÄ… wspÃ³lny wierzchoÅ‚ek $v$.
 \end{itemize}
 \end{frame}
 
@@ -137,11 +137,11 @@ Na powy¿szym rysunku przedstawiono fragment grafu, w którym
 
 
 	\begin{block}{}
-		{\bf Rysunek grafu} to jego reprezentacja graficzna. Zwyczajowo, wierzcho³ki zaznacza siê punktami, a krawêdzie - odcinkami miêdzy punktami.
+		{\bf Rysunek grafu} to jego reprezentacja graficzna. Zwyczajowo, wierzchoÅ‚ki zaznacza siÄ™ punktami, a krawÄ™dzie - odcinkami miÄ™dzy punktami.
 	\end{block}
 
 \begin{alertblock}{Uwaga!}
-W tym wyk³adzie rozwa¿amy wy³¹cznie grafy {\bf skoñczone}, czyli grafy maj¹ce skoñczone rzêdy i rozmiary.
+W tym wykÅ‚adzie rozwaÅ¼amy wyÅ‚Ä…cznie grafy {\bf skoÅ„czone}, czyli grafy majÄ…ce skoÅ„czone rzÄ™dy i rozmiary.
 \end{alertblock}
 	
 \end{frame}
@@ -153,7 +153,7 @@ W tym wyk³adzie rozwa¿amy wy³¹cznie grafy {\bf skoñczone}, czyli grafy maj¹ce sk
 \begin{frame}
 			
 	\begin{block}{Definicja}
-		{\bf Multigrafem} ({\bf grafem z krawêdziami wielokrotnymi}) nazywamy graf, w którym krawêdzie mog¹ siê powtarzaæ ($E(G)$ jest multizbiorem).
+		{\bf Multigrafem} ({\bf grafem z krawÄ™dziami wielokrotnymi}) nazywamy graf, w ktÃ³rym krawÄ™dzie mogÄ… siÄ™ powtarzaÄ‡ ($E(G)$ jest multizbiorem).
 	\end{block}
 	
 
@@ -167,21 +167,21 @@ W tym wyk³adzie rozwa¿amy wy³¹cznie grafy {\bf skoñczone}, czyli grafy maj¹ce sk
 \begin{frame}
 	
 	\begin{block}{Definicja}
-	{\bf Grafem prostym} nazywamy graf nie zawieraj¹cy pêtli ani krawêdzi wielokrotnych. 
+	{\bf Grafem prostym} nazywamy graf nie zawierajÄ…cy pÄ™tli ani krawÄ™dzi wielokrotnych. 
 	\end{block}
 
 	\medskip
 
 	\begin{block}{Stwierdzenie}
-		Je¿eli $G$ jest grafem prostym, to
+		JeÅ¼eli $G$ jest grafem prostym, to
 	$$0\leqslant|E(G)|\leqslant{|V(G)|\choose2}.$$
 	\end{block}
 
 	\medskip
 
 	\begin{itemize}
-\item Je¿eli $|E(G)|=0$, to $G$ nazywamy {\it grafem pustym}.
-\item Je¿eli $\displaystyle |E(G)|={|V(G)|\choose2}$, to $G$ nazywamy {\it grafem pe³nym} ({\it klik¹}).
+\item JeÅ¼eli $|E(G)|=0$, to $G$ nazywamy {\it grafem pustym}.
+\item JeÅ¼eli $\displaystyle |E(G)|={|V(G)|\choose2}$, to $G$ nazywamy {\it grafem peÅ‚nym} ({\it klikÄ…}).
 	\end{itemize}
 
 \end{frame}
@@ -192,13 +192,13 @@ W tym wyk³adzie rozwa¿amy wy³¹cznie grafy {\bf skoñczone}, czyli grafy maj¹ce sk
 \begin{frame}
 	
 	\begin{block}{Definicja}
-		{\bf Stopniem $\deg v$ wierzcho³ka $v$} w grafie $G$ nazywamy liczbê krawêdzi s¹siednich z $v$ (pêtle licz¹ siê dwukrotnie).
+		{\bf Stopniem $\deg v$ wierzchoÅ‚ka $v$} w grafie $G$ nazywamy liczbÄ™ krawÄ™dzi sÄ…siednich z $v$ (pÄ™tle liczÄ… siÄ™ dwukrotnie).
 	\end{block}
 
 \medskip
 
-	\begin{exampleblock}{Przyk³ad}
-	Stopnie wierzcho³ków grafu $G$ z przyk³adu 1 wynosz¹
+	\begin{exampleblock}{PrzykÅ‚ad}
+	Stopnie wierzchoÅ‚kÃ³w grafu $G$ z przykÅ‚adu 1 wynoszÄ…
 	\begin{align*}
 	\deg(1)=&\,3,&\deg(2)=&\,3,&\deg(3)=&\,3,\\
 	\deg(4)=&\,2,&\deg(5)=&\,4,&\deg(6)=&\,1.\\
@@ -213,18 +213,18 @@ W tym wyk³adzie rozwa¿amy wy³¹cznie grafy {\bf skoñczone}, czyli grafy maj¹ce sk
 	
 	\begin{block}{Definicja}
 	\begin{itemize}
-	\item {\bf Minimalnym stopniem $\delta(G)$ grafu $G$} nazywamy najmniejszy ze stopni wierzcho³ków w grafie $G$:
+	\item {\bf Minimalnym stopniem $\delta(G)$ grafu $G$} nazywamy najmniejszy ze stopni wierzchoÅ‚kÃ³w w grafie $G$:
 		$$\delta(G)=\min\limits_{v\in V(G)}\deg v.$$
-	\item {\bf Maksymalnym stopniem $\Delta(G)$ grafu $G$} nazywamy najwiêkszy ze stopni wierzcho³ków w grafie $G$:
+	\item {\bf Maksymalnym stopniem $\Delta(G)$ grafu $G$} nazywamy najwiÄ™kszy ze stopni wierzchoÅ‚kÃ³w w grafie $G$:
 		$$\Delta(G)=\max\limits_{v\in V(G)}\deg v.$$
 	\end{itemize}
 	\end{block}
 
-Zauwa¿my, ¿e jeœli $v$ jest wierzcho³kiem grafu $G$, to
+ZauwaÅ¼my, Å¼e jeÅ›li $v$ jest wierzchoÅ‚kiem grafu $G$, to
 $$0\leqslant\delta(G)\leqslant\deg v\leqslant \Delta(G)\leqslant n-1.$$
 
-	\begin{exampleblock}{Przyk³ad}
-	Minimalne i maksymalne stopnie wierzcho³ków grafu $G$ z przyk³adu 1 wynosz¹
+	\begin{exampleblock}{PrzykÅ‚ad}
+	Minimalne i maksymalne stopnie wierzchoÅ‚kÃ³w grafu $G$ z przykÅ‚adu 1 wynoszÄ…
 	$$\delta(G)=1\ \ \ \ \ \mbox{ oraz }\ \ \ \ \ \Delta(G)=4.$$
 	\end {exampleblock}
 	
@@ -235,23 +235,23 @@ $$0\leqslant\delta(G)\leqslant\deg v\leqslant \Delta(G)\leqslant n-1.$$
 
 \begin{frame}
 
-\begin{block}{Podstawowe twierdzenie teorii grafów (L. Euler, 1736)}
-	Suma stopni wszystkich wierzcho³ków skoñczonego grafu prostego $G$ jest dwa razy wiêksza od liczby jego krawêdzi:
+\begin{block}{Podstawowe twierdzenie teorii grafÃ³w (L. Euler, 1736)}
+	Suma stopni wszystkich wierzchoÅ‚kÃ³w skoÅ„czonego grafu prostego $G$ jest dwa razy wiÄ™ksza od liczby jego krawÄ™dzi:
 	$$\sum\limits_{v\in V(G)}\deg v=2\cdot|E(G)|.$$
 \end{block}
 
 
 \begin{proof}
-Niech $G$ bêdzie skoñczonym grafem prostym. Niech $S$ oznacza liczbê wszystkich par $(v,e)$, gdzie $v\in V(G)$ oraz $e\in E(G)$ takich, ¿e wierzcho³ek $v$ przylega do krawêdzi $e$.
+Niech $G$ bÄ™dzie skoÅ„czonym grafem prostym. Niech $S$ oznacza liczbÄ™ wszystkich par $(v,e)$, gdzie $v\in V(G)$ oraz $e\in E(G)$ takich, Å¼e wierzchoÅ‚ek $v$ przylega do krawÄ™dzi $e$.
 \begin{itemize}
-\item Liczba krawêdzi do których przylega ustalony wierzcho³ek $v$ wynosi $\deg v$, wiêc $ S=\sum_{v\in V(G)}\deg v$.
-\item Z drugiej strony do ka¿dej krawêdzi przylegaj¹ dok³adnie dwa ró¿ne wierzcho³ki, wiêc $S=2\cdot|E(G)|$, co koñczy dowód.
+\item Liczba krawÄ™dzi do ktÃ³rych przylega ustalony wierzchoÅ‚ek $v$ wynosi $\deg v$, wiÄ™c $ S=\sum_{v\in V(G)}\deg v$.
+\item Z drugiej strony do kaÅ¼dej krawÄ™dzi przylegajÄ… dokÅ‚adnie dwa rÃ³Å¼ne wierzchoÅ‚ki, wiÄ™c $S=2\cdot|E(G)|$, co koÅ„czy dowÃ³d.
 \end{itemize}
 \end{proof}
 
 \medskip
 
-Powy¿szy (zaproponowany przez Eulera) dowód stanowi przyk³ad jednej z~podstawowych kombinatorycznych metod dowodzenia równoœci, tzw. {\it double counting proof}.
+PowyÅ¼szy (zaproponowany przez Eulera) dowÃ³d stanowi przykÅ‚ad jednej z~podstawowych kombinatorycznych metod dowodzenia rÃ³wnoÅ›ci, tzw. {\it double counting proof}.
 \end{frame}
 
 
@@ -259,12 +259,12 @@ Powy¿szy (zaproponowany przez Eulera) dowód stanowi przyk³ad jednej z~podstawowy
 \begin{frame}
 
 	\begin{block}{Twierdzenie 1}
-		Je¿eli graf prosty $G$ ma co najmniej dwa wierzcho³ki, to ma co najmniej jedn¹ parê wierzcho³ków tego samego stopnia.
+		JeÅ¼eli graf prosty $G$ ma co najmniej dwa wierzchoÅ‚ki, to ma co najmniej jednÄ… parÄ™ wierzchoÅ‚kÃ³w tego samego stopnia.
 	\end{block}
 	
 	\begin{proof}
-		Niech $n$ bêdzie liczb¹ wierzcho³ków grafu $G$. Za³ó¿my niewprost, ¿e ka¿dy wierzcho³ek ma inny stopieñ. Jedyn¹ mo¿liwoœci¹ jest, aby ci¹g stopni wierzcho³ków wygl¹da³ nastêpuj¹co: $$0,1,2,\ldots,n-1.$$
-		Zatem istnieje wierzcho³ek, który nie jest po³¹czony krawêdzi¹ z ¿adnym innym wierzcho³kiem (stopieñ $0$) oraz wierzcho³ek po³¹czony krawêdzi¹ z ka¿dym innym wierzcho³kiem (stopieñ $n-1$). Te dwa wierzcho³ki nie s¹ po³¹czone krawêdzi¹ ($0$) i s¹ po³¹czone krawêdzi¹ ($n-1$) - sprzecznoœæ.
+		Niech $n$ bÄ™dzie liczbÄ… wierzchoÅ‚kÃ³w grafu $G$. ZaÅ‚Ã³Å¼my niewprost, Å¼e kaÅ¼dy wierzchoÅ‚ek ma inny stopieÅ„. JedynÄ… moÅ¼liwoÅ›ciÄ… jest, aby ciÄ…g stopni wierzchoÅ‚kÃ³w wyglÄ…daÅ‚ nastÄ™pujÄ…co: $$0,1,2,\ldots,n-1.$$
+		Zatem istnieje wierzchoÅ‚ek, ktÃ³ry nie jest poÅ‚Ä…czony krawÄ™dziÄ… z Å¼adnym innym wierzchoÅ‚kiem (stopieÅ„ $0$) oraz wierzchoÅ‚ek poÅ‚Ä…czony krawÄ™dziÄ… z kaÅ¼dym innym wierzchoÅ‚kiem (stopieÅ„ $n-1$). Te dwa wierzchoÅ‚ki nie sÄ… poÅ‚Ä…czone krawÄ™dziÄ… ($0$) i sÄ… poÅ‚Ä…czone krawÄ™dziÄ… ($n-1$) - sprzecznoÅ›Ä‡.
 	\end{proof}
 \end{frame}
 
@@ -272,20 +272,20 @@ Powy¿szy (zaproponowany przez Eulera) dowód stanowi przyk³ad jednej z~podstawowy
 \begin{frame}
 
 \begin{alertblock}{Uwaga!}
-{\bf Podstawowe twierdzenie teorii grafów} jest czêsto nazywane {\bf Lematem o~uœciskach d³oni}. Pierwsza nazwa s³u¿y podkreœleniu fundamentalnego charakteru wyniku, druga --- wskazuj¹ca na bardzo naturaln¹ interpretacjê (poni¿ej) --- by³a stosowana przez Leonharda Eulera.
+{\bf Podstawowe twierdzenie teorii grafÃ³w} jest czÄ™sto nazywane {\bf Lematem o~uÅ›ciskach dÅ‚oni}. Pierwsza nazwa sÅ‚uÅ¼y podkreÅ›leniu fundamentalnego charakteru wyniku, druga --- wskazujÄ…ca na bardzo naturalnÄ… interpretacjÄ™ (poniÅ¼ej) --- byÅ‚a stosowana przez Leonharda Eulera.
 \end{alertblock}
 
 \bigskip
 
-Pogl¹dowe ujêcie powy¿szych twierdzeñ: 
+PoglÄ…dowe ujÄ™cie powyÅ¼szych twierdzeÅ„: 
 
 \begin{itemize}
-\item {\bf Lemat o uœciskach d³oni}
+\item {\bf Lemat o uÅ›ciskach dÅ‚oni}
 
-	Dla dowolnej grupy osób witaj¹cych siê uœciskiem d³oni, sumaryczna liczba wymienionych uœcisków jest parzysta.
+	Dla dowolnej grupy osÃ³b witajÄ…cych siÄ™ uÅ›ciskiem dÅ‚oni, sumaryczna liczba wymienionych uÅ›ciskÃ³w jest parzysta.
 \item {\bf Twierdzenie 1}
 
-	Wœród $n$ osób, które œciska³y miêdzy sob¹ d³onie, istnieje para osób które wykona³y tyle samo uœcisków.
+	WÅ›rÃ³d $n$ osÃ³b, ktÃ³re Å›ciskaÅ‚y miÄ™dzy sobÄ… dÅ‚onie, istnieje para osÃ³b ktÃ³re wykonaÅ‚y tyle samo uÅ›ciskÃ³w.
 \end{itemize}
 \end{frame}
 
@@ -297,12 +297,12 @@ Pogl¹dowe ujêcie powy¿szych twierdzeñ:
 \begin{frame}
 	
 	\begin{block}{Definicja}
-		{\bf Macierz s¹siedztwa} grafu $G$ to macierz $A_G=[a_{ij}]$, w której $a_{ij}$ okreœla liczbê krawêdzi od $i$-tego do $j$-tego wierzcho³ka.  
+		{\bf Macierz sÄ…siedztwa} grafu $G$ to macierz $A_G=[a_{ij}]$, w ktÃ³rej $a_{ij}$ okreÅ›la liczbÄ™ krawÄ™dzi od $i$-tego do $j$-tego wierzchoÅ‚ka.  
 	\end{block}
-	Oczywiœcie w przypadku grafu prostego macierz $A_G$ jest symetryczna i jej elementami wy³¹cznie liczby $0$ i $1$.
+	OczywiÅ›cie w przypadku grafu prostego macierz $A_G$ jest symetryczna i jej elementami wyÅ‚Ä…cznie liczby $0$ i $1$.
 	
 	\begin{block}{Stwierdzenie}
-		Niech $A_G$ bêdzie macierz¹ s¹siedztwa grafu $G$. Wtedy dla dowolnego $n\in\mathbb{N}$ mamy $(A_G)^n=[t_{ij}]$, gdzie $t_{ij}$ oznacza liczbê ró¿nych dróg d³ugoœci $n$ od $i$-tego do $j$-tego wierzcho³ka.
+		Niech $A_G$ bÄ™dzie macierzÄ… sÄ…siedztwa grafu $G$. Wtedy dla dowolnego $n\in\mathbb{N}$ mamy $(A_G)^n=[t_{ij}]$, gdzie $t_{ij}$ oznacza liczbÄ™ rÃ³Å¼nych drÃ³g dÅ‚ugoÅ›ci $n$ od $i$-tego do $j$-tego wierzchoÅ‚ka.
 	\end{block}
 	
 \end{frame}
@@ -312,14 +312,14 @@ Pogl¹dowe ujêcie powy¿szych twierdzeñ:
 \begin{frame}
 	
 	\begin{block}{Definicja}
-		{\bf Macierz incydencji grafu} $G$ to macierz $B_G=[b_{ij}]$, w której
-		$$B_{ij}=\left\{\begin{array}{ll}1,&\mbox{ gdy wierzcho³ek }v_i\mbox{ jest koñcem krawêdzi }e_j\\0,&\mbox{ gdy wierzcho³ek }v_i\mbox{ nie jest koñcem krawêdzi }e_j\end{array}\right..$$
+		{\bf Macierz incydencji grafu} $G$ to macierz $B_G=[b_{ij}]$, w ktÃ³rej
+		$$B_{ij}=\left\{\begin{array}{ll}1,&\mbox{ gdy wierzchoÅ‚ek }v_i\mbox{ jest koÅ„cem krawÄ™dzi }e_j\\0,&\mbox{ gdy wierzchoÅ‚ek }v_i\mbox{ nie jest koÅ„cem krawÄ™dzi }e_j\end{array}\right..$$
 	\end{block}
 	
 	\begin{block}{Wniosek}
 	\begin{itemize}
-	\item Suma elementów w $i$-tym wierszu macierzy incydencji grafu $G$ wynosi $\deg v_i$.
-	\item Suma elementów w $j$-tej kolumnie macierzy incydencji grafu $G$ wynosi $2$.
+	\item Suma elementÃ³w w $i$-tym wierszu macierzy incydencji grafu $G$ wynosi $\deg v_i$.
+	\item Suma elementÃ³w w $j$-tej kolumnie macierzy incydencji grafu $G$ wynosi $2$.
 	\end{itemize}
 	\end{block}
 
@@ -334,27 +334,27 @@ Pogl¹dowe ujêcie powy¿szych twierdzeñ:
 \begin{frame}
 	
 	\begin{block}{Definicja}
-		Graf $H$ nazywamy {\bf podgrafem} grafu $G$, je¿eli $V(H)\subset V(G)$ oraz $E(H)\subset E(G)$. Mówimy te¿, ¿e graf $G$ jest {\bf nadgrafem} grafu $H$.
+		Graf $H$ nazywamy {\bf podgrafem} grafu $G$, jeÅ¼eli $V(H)\subset V(G)$ oraz $E(H)\subset E(G)$. MÃ³wimy teÅ¼, Å¼e graf $G$ jest {\bf nadgrafem} grafu $H$.
 	\end{block}
 
 \bigskip
 
-\begin{block}{Czêsto bêdziemy stosowaæ nastêpuj¹ce oznaczenia:}
-Niech $G$ bêdzie grafem i niech $v\in V(G)$ oraz $e\in E(G)$.
+\begin{block}{CzÄ™sto bÄ™dziemy stosowaÄ‡ nastÄ™pujÄ…ce oznaczenia:}
+Niech $G$ bÄ™dzie grafem i niech $v\in V(G)$ oraz $e\in E(G)$.
 \begin{itemize}
-\item Przez $G-e$ oznaczamy podgraf grafu $G$ otrzymany przez usuniêcie krawêdzi~$e$.
-\item Przez $G-v$ oznaczamy podgraf grafu $G$ otrzymany przez usuniêcie wierzcho³ka $v$ i wszystkich krawêdzi do niego s¹siednich.
+\item Przez $G-e$ oznaczamy podgraf grafu $G$ otrzymany przez usuniÄ™cie krawÄ™dzi~$e$.
+\item Przez $G-v$ oznaczamy podgraf grafu $G$ otrzymany przez usuniÄ™cie wierzchoÅ‚ka $v$ i wszystkich krawÄ™dzi do niego sÄ…siednich.
 \end{itemize}
 \end{block}
 
 \bigskip
 
 	\begin{block}{Definicja}
-		Podgraf $H$ grafu $G$ nazywamy {\bf podgrafem indukowanym przez zbiór wierzcho³ków $W\subset V(G)$}, je¿eli $W=V(H)$ oraz $H$ zawiera wszystkie krawêdzie grafu $G$ ³¹cz¹ce wierzcho³ki ze zbioru $W$.
+		Podgraf $H$ grafu $G$ nazywamy {\bf podgrafem indukowanym przez zbiÃ³r wierzchoÅ‚kÃ³w $W\subset V(G)$}, jeÅ¼eli $W=V(H)$ oraz $H$ zawiera wszystkie krawÄ™dzie grafu $G$ Å‚Ä…czÄ…ce wierzchoÅ‚ki ze zbioru $W$.
 	\end{block}
 
 
-%JAKIŒ PRZYK£AD W STYLU STR 25 WILSON
+%JAKIÅš PRZYKÅAD W STYLU STR 25 WILSON
 	
 \end{frame}	
 
@@ -363,14 +363,14 @@ Niech $G$ bêdzie grafem i niech $v\in V(G)$ oraz $e\in E(G)$.
 \begin{frame}
 	
 	\begin{block}{Definicja}
-		Niech $G=\big(V(G),E(G)\big)$ bêdzie grafem.
+		Niech $G=\big(V(G),E(G)\big)$ bÄ™dzie grafem.
 		\begin{itemize}
-			\item {\bf Drog¹} nazywamy ci¹g wierzcho³ków $(v_1,v_2,\ldots,v_n)$ w grafie $G$ taki, ¿e $v_iv_{i+1}\in E(G)$ dla ka¿dego $1\leq i\leq n-1$.
-			\item {\bf Œcie¿k¹} nazywamy drogê w której ka¿dy wierzcho³ek wystêpuje co najwy¿ej jeden raz.
-			\item {\bf Cyklem} nazywamy drogê w której $v_1=v_n$ oraz wszystkie pozosta³e wierzcho³ki wystêpuj¹ co najwy¿ej jeden raz.
-			\item {\bf Cyklem niew³aœciwym} nazywamy drogê w której $v_1=v_n$.
-			\item Graf $G$ jest {\bf spójny}, gdy dla ka¿dej pary jego wierzcho³ków istnieje œcie¿ka zawieraj¹ca te wierzcho³ki.
-			\item Maksymalny (w sensie zawierania) podgraf spójny danego grafu nazywamy {\bf sk³adow¹ spójnoœci}.
+			\item {\bf DrogÄ…} nazywamy ciÄ…g wierzchoÅ‚kÃ³w $(v_1,v_2,\ldots,v_n)$ w grafie $G$ taki, Å¼e $v_iv_{i+1}\in E(G)$ dla kaÅ¼dego $1\leq i\leq n-1$.
+			\item {\bf ÅšcieÅ¼kÄ…} nazywamy drogÄ™ w ktÃ³rej kaÅ¼dy wierzchoÅ‚ek wystÄ™puje co najwyÅ¼ej jeden raz.
+			\item {\bf Cyklem} nazywamy drogÄ™ w ktÃ³rej $v_1=v_n$ oraz wszystkie pozostaÅ‚e wierzchoÅ‚ki wystÄ™pujÄ… co najwyÅ¼ej jeden raz.
+			\item {\bf Cyklem niewÅ‚aÅ›ciwym} nazywamy drogÄ™ w ktÃ³rej $v_1=v_n$.
+			\item Graf $G$ jest {\bf spÃ³jny}, gdy dla kaÅ¼dej pary jego wierzchoÅ‚kÃ³w istnieje Å›cieÅ¼ka zawierajÄ…ca te wierzchoÅ‚ki.
+			\item Maksymalny (w sensie zawierania) podgraf spÃ³jny danego grafu nazywamy {\bf skÅ‚adowÄ… spÃ³jnoÅ›ci}.
 		\end{itemize}
 	\end{block}
 	
@@ -379,29 +379,29 @@ Niech $G$ bêdzie grafem i niech $v\in V(G)$ oraz $e\in E(G)$.
 
 
 
-\begin{frame}{Izomorfizm grafów}
+\begin{frame}{Izomorfizm grafÃ³w}
 
-\begin{exampleblock}{Przyk³ad}
-Czy mo¿na uznaæ poni¿sze rysunki za dwie ró¿ne reprezentacje graficzne tego samego grafu?
+\begin{exampleblock}{PrzykÅ‚ad}
+Czy moÅ¼na uznaÄ‡ poniÅ¼sze rysunki za dwie rÃ³Å¼ne reprezentacje graficzne tego samego grafu?
 \begin{center}
-	\includegraphics[scale=.15]{petersennull.png}
+	
 \end{center}
 Tak!
 \end{exampleblock}
 
 \medskip
 
-Graf w powy¿szym przyk³adzie to tzw. {\it graf Petersena}.
+Graf w powyÅ¼szym przykÅ‚adzie to tzw. {\it graf Petersena}.
 
 \end{frame}
 
 
 \begin{frame}
 	\begin{block}{Definicja}
-		Funkcjê $f:V(G)\to V(H)$ nazywamy {\bf izomorfizmem} grafów $G$ i $H$, je¿eli $f$ jest bijekcj¹ zachowuj¹c¹ s¹siedztwo wierzcho³ków. Grafy $G$ i $H$ nazywamy {\bf izomorficznymi}, gdy istnieje izomorfizm $f$ miêdzy tymi grafami i oznaczamy to przez $G\cong H$.
+		FunkcjÄ™ $f:V(G)\to V(H)$ nazywamy {\bf izomorfizmem} grafÃ³w $G$ i $H$, jeÅ¼eli $f$ jest bijekcjÄ… zachowujÄ…cÄ… sÄ…siedztwo wierzchoÅ‚kÃ³w. Grafy $G$ i $H$ nazywamy {\bf izomorficznymi}, gdy istnieje izomorfizm $f$ miÄ™dzy tymi grafami i oznaczamy to przez $G\cong H$.
 		\begin{itemize}
-			\item Je¿eli $G$ i $H$ s¹ grafami wa¿onymi, to $f$ zachowuje równie¿ wagi krawêdzi.
-			\item Je¿eli $G$ i $H$ s¹ multigrafami, to $f$ zachowuje równie¿ liczbê krawêdzi miêdzy danymi wierzcho³kami.
+			\item JeÅ¼eli $G$ i $H$ sÄ… grafami waÅ¼onymi, to $f$ zachowuje rÃ³wnieÅ¼ wagi krawÄ™dzi.
+			\item JeÅ¼eli $G$ i $H$ sÄ… multigrafami, to $f$ zachowuje rÃ³wnieÅ¼ liczbÄ™ krawÄ™dzi miÄ™dzy danymi wierzchoÅ‚kami.
 		\end{itemize}
 	\end{block}
 	
@@ -412,24 +412,24 @@ Graf w powy¿szym przyk³adzie to tzw. {\it graf Petersena}.
 
 \begin{frame}
 
-\begin{block}{Niektóre niezmienniki izomorfizmów}
+\begin{block}{NiektÃ³re niezmienniki izomorfizmÃ³w}
 	\begin{itemize}
-		\item rz¹d
+		\item rzÄ…d
 		\item rozmiar
-		\item liczba wierzcho³ków danego stopnia
-		\item liczba sk³adowych spójnoœci
-		\item liczba pêtli i krawêdzi wielokrotnych
-		\item liczba cykli danej d³ugoœci
-		\item liczba œcie¿ek
+		\item liczba wierzchoÅ‚kÃ³w danego stopnia
+		\item liczba skÅ‚adowych spÃ³jnoÅ›ci
+		\item liczba pÄ™tli i krawÄ™dzi wielokrotnych
+		\item liczba cykli danej dÅ‚ugoÅ›ci
+		\item liczba Å›cieÅ¼ek
 	\end{itemize}
 \end{block}
 
 \begin{alertblock}{Uwaga!}
-	Powy¿sze niezmienniki stanowi¹ warunki konieczne, ale niewystarczaj¹ce dla istnienia izomorfizmu.	
+	PowyÅ¼sze niezmienniki stanowiÄ… warunki konieczne, ale niewystarczajÄ…ce dla istnienia izomorfizmu.	
 \end{alertblock}
 
-\begin{exampleblock}{Przyk³ad}
-	Wszystkie z dok³adnoœci¹ do izomorfizmu grafy proste rzêdu 4.
+\begin{exampleblock}{PrzykÅ‚ad}
+	Wszystkie z dokÅ‚adnoÅ›ciÄ… do izomorfizmu grafy proste rzÄ™du 4.
 \end{exampleblock}
 
 \end{frame}
@@ -446,13 +446,13 @@ Graf w powy¿szym przyk³adzie to tzw. {\it graf Petersena}.
 		\end{minipage}
 		\begin{minipage}{.45\textwidth}
 			\begin{center}
-				\includegraphics[scale=.15]{en.png}
+				
 			\end{center}
 		\end{minipage}
 	\end{block}
 		
 
-	\begin{block}{Graf pe³ny (klika) $K_n$}
+	\begin{block}{Graf peÅ‚ny (klika) $K_n$}
 		
 	\begin{minipage}{.52\textwidth}
 	$V(K_n)=\{1,2,\ldots,n\}$,
@@ -461,7 +461,7 @@ Graf w powy¿szym przyk³adzie to tzw. {\it graf Petersena}.
 	\end{minipage}
 	\begin{minipage}{.3\textwidth}
 	\begin{center}
-		\includegraphics[scale=.15]{kn.png}
+
 	\end{center}
 	\end{minipage}	
 	\end{block}
@@ -471,7 +471,7 @@ Graf w powy¿szym przyk³adzie to tzw. {\it graf Petersena}.
 
 \begin{frame}{Podstawowe grafy proste}
 	
-	\begin{block}{Œcie¿ka $P_n$}
+	\begin{block}{ÅšcieÅ¼ka $P_n$}
 	\begin{minipage}{.55\textwidth}
 		$V(P_n)=\{1,2,\ldots,n\}$,
 		
@@ -479,7 +479,7 @@ Graf w powy¿szym przyk³adzie to tzw. {\it graf Petersena}.
 	\end{minipage}
 	\begin{minipage}{.35\textwidth}
 			\begin{center}
-				\includegraphics[scale=.15]{pn.png}
+			
 		\end{center}
 	\end{minipage}
 	\end{block}
@@ -493,7 +493,7 @@ Graf w powy¿szym przyk³adzie to tzw. {\it graf Petersena}.
 		\end{minipage}
 		\begin{minipage}{.3\textwidth}
 			\begin{center}
-				\includegraphics[scale=.15]{cn.png}
+			
 			\end{center}
 		\end{minipage}
 	\end{block}
@@ -503,15 +503,15 @@ Graf w powy¿szym przyk³adzie to tzw. {\it graf Petersena}.
 
 \begin{frame}{Podstawowe grafy proste}
 	
-	\begin{block}{Graf pe³ny dwudzielny $K_{m,n}$}
+	\begin{block}{Graf peÅ‚ny dwudzielny $K_{m,n}$}
 		
 		\begin{minipage}{.6\textwidth}
-			Graf w którym zbiór wierzcho³ków mo¿na podzieliæ na dwa roz³¹czne podzbiory $V_1,V_2$ takie, ¿e
+			Graf w ktÃ³rym zbiÃ³r wierzchoÅ‚kÃ³w moÅ¼na podzieliÄ‡ na dwa rozÅ‚Ä…czne podzbiory $V_1,V_2$ takie, Å¼e
 			$$E(K_{m,n})=\big\{\{i,j\}:\,i\in V_1,\,j\in V_2\big\}.$$
 		\end{minipage}
 		\begin{minipage}{.3\textwidth}
 			\begin{center}
-				\includegraphics[scale=.15]{kmn.png}
+			
 			\end{center}
 		\end{minipage}
 		
@@ -539,16 +539,16 @@ Graf w powy¿szym przyk³adzie to tzw. {\it graf Petersena}.
 \begin{frame}{Podstawowe grafy proste}
 	\begin{block}{Inne}
 		\begin{itemize}
-			\item {\bf Graf dwudzielny} - graf w którym zbiór wierzcho³ków mo¿na podzieliæ na dwa roz³¹czne podzbiory $V_1,V_2$ takie, ¿e
+			\item {\bf Graf dwudzielny} - graf w ktÃ³rym zbiÃ³r wierzchoÅ‚kÃ³w moÅ¼na podzieliÄ‡ na dwa rozÅ‚Ä…czne podzbiory $V_1,V_2$ takie, Å¼e
 			$$E(G)\textcolor{red}{\subset}\big\{\{i,j\}:\,i\in V_1,\,j\in V_2\big\}.$$
-			\item {\bf Drzewo} - graf spójny nie zawieraj¹cy cykli.
-			\item {\bf Las} - graf nie zawieraj¹cy cykli.
-			\item {\bf Graf $r$-regularny} - graf w którym stopieñ ka¿dego wierzcho³ka wynosi $r$.
+			\item {\bf Drzewo} - graf spÃ³jny nie zawierajÄ…cy cykli.
+			\item {\bf Las} - graf nie zawierajÄ…cy cykli.
+			\item {\bf Graf $r$-regularny} - graf w ktÃ³rym stopieÅ„ kaÅ¼dego wierzchoÅ‚ka wynosi $r$.
 		\end{itemize}
 	\end{block}
 
 \begin{block}{Definicja}
-Je¿eli $\deg v=1$ dla pewnego wierzcho³a $v\in V(G)$, to $v$ nazywamy {\bf liœciem}.
+JeÅ¼eli $\deg v=1$ dla pewnego wierzchoÅ‚a $v\in V(G)$, to $v$ nazywamy {\bf liÅ›ciem}.
 \end{block}
 		
 \end{frame}
@@ -557,15 +557,15 @@ Je¿eli $\deg v=1$ dla pewnego wierzcho³a $v\in V(G)$, to $v$ nazywamy {\bf liœci
 \begin{frame}
 
 \begin{block}{Twierdzenie}
-Graf $G$ jest dwudzielny wtedy i tylko wtedy, gdy  $G$ nie zawiera cyklu nieparzystej d³ugoœci.
+Graf $G$ jest dwudzielny wtedy i tylko wtedy, gdy  $G$ nie zawiera cyklu nieparzystej dÅ‚ugoÅ›ci.
 \end{block}
 
-\begin{block}{Dowód. {\it (1/2)}}
+\begin{block}{DowÃ³d. {\it (1/2)}}
 ($\Rightarrow$)
-Je¿eli $G$ jest grafem dwudzielnym, to $V(G)=V_1\cup V_2$, gdzie $V_1\cap V_2=\emptyset$. Niech $(v_1,v_2,\ldots,v_l)$ bêdzie cyklem d³ugoœci $l$. 
+JeÅ¼eli $G$ jest grafem dwudzielnym, to $V(G)=V_1\cup V_2$, gdzie $V_1\cap V_2=\emptyset$. Niech $(v_1,v_2,\ldots,v_l)$ bÄ™dzie cyklem dÅ‚ugoÅ›ci $l$. 
 
 \begin{minipage}{.38\textwidth}
-Za³ó¿my (bez straty ogólnoœci), ¿e $v_1\in V_1$. Wtedy 
+ZaÅ‚Ã³Å¼my (bez straty ogÃ³lnoÅ›ci), Å¼e $v_1\in V_1$. Wtedy 
 \begin{itemize}
 \item $v_2\in V_2$,
 \item $v_3\in V_1$,
@@ -573,10 +573,10 @@ Za³ó¿my (bez straty ogólnoœci), ¿e $v_1\in V_1$. Wtedy
 \item $\ldots$,
 \item $v_l\in V_2$.
 \end{itemize}
-Ogólnie $v_i\in V_1$ wtedy i tylko wtedy, gdy $i$ jest liczb¹ nieparzyst¹. Zatem $l$ jest liczb¹ parzyst¹.
+OgÃ³lnie $v_i\in V_1$ wtedy i tylko wtedy, gdy $i$ jest liczbÄ… nieparzystÄ…. Zatem $l$ jest liczbÄ… parzystÄ….
 \end{minipage}\hfill\begin{minipage}{.58\textwidth}
 \begin{center}
-\includegraphics[scale=.15]{dwudo.png}
+
 \end{center}
 \end{minipage}
 \end{block}
@@ -585,19 +585,19 @@ Ogólnie $v_i\in V_1$ wtedy i tylko wtedy, gdy $i$ jest liczb¹ nieparzyst¹. Zatem
 
 \begin{frame}
 
-\begin{block}{Dowód. {\it (2/2)}}
+\begin{block}{DowÃ³d. {\it (2/2)}}
 
 ($\Leftarrow$)
 
-Zak³adamy, ¿e $G$ nie zawiera cyklu nieparzystej d³ugoœci. 
+ZakÅ‚adamy, Å¼e $G$ nie zawiera cyklu nieparzystej dÅ‚ugoÅ›ci. 
 
 \medskip
 
-Graf $G$ jest dwudzielny wtedy i tylko wtedy, gdy ka¿da jego sk³adowa jest grafem dwudzielnym, wiêc mo¿emy za³o¿yæ, ¿e $G$ jest spójny.
+Graf $G$ jest dwudzielny wtedy i tylko wtedy, gdy kaÅ¼da jego skÅ‚adowa jest grafem dwudzielnym, wiÄ™c moÅ¼emy zaÅ‚oÅ¼yÄ‡, Å¼e $G$ jest spÃ³jny.
 
 \medskip
 
-Niech $x\in V(G)$ i niech $V_1$ bêdzie zbiorem wierzcho³ków, których odleg³oœæ od $x$ jest nieparzysta i niech $V_2=V\backslash V_1$. Nie ma krawêdzi ³¹cz¹cych dwa wierzcho³ki ze zbioru $V_i$, bo gdyby taka krawêdŸ istnia³a, to $G$ zawiera³by cykl nieparzystej d³ugoœci. Zatem $G$ jest dwudzielny.
+Niech $x\in V(G)$ i niech $V_1$ bÄ™dzie zbiorem wierzchoÅ‚kÃ³w, ktÃ³rych odlegÅ‚oÅ›Ä‡ od $x$ jest nieparzysta i niech $V_2=V\backslash V_1$. Nie ma krawÄ™dzi Å‚Ä…czÄ…cych dwa wierzchoÅ‚ki ze zbioru $V_i$, bo gdyby taka krawÄ™dÅº istniaÅ‚a, to $G$ zawieraÅ‚by cykl nieparzystej dÅ‚ugoÅ›ci. Zatem $G$ jest dwudzielny.
 
 \vfill\qed
 \end{block}
