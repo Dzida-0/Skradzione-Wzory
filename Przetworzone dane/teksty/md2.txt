@@ -1,0 +1,238 @@
+a4paper,10pt beamer T1,plmath polski cp1250 inputenc amssymb indentfirst graphicx onlymath serif ulem % kolorowe podkreślenia xcolor % kolorowe podkreślenia diagbox %\definecolor{green1}{html}{22B14C} 1 orange black #1 % pomarańczowe podkreślenie 1 yellow black #1 % żółte podkreślenie 1 blue black #1 % niebieskie podkreślenie 1 RGB 34,177,76 black #1 % zielone podkreślenie Boadilla crane %\usecolortheme[rgb={1,0.5,0}]{structure}  Elementy kombinatoryki %\subtitle{Matematyka, Kierunek: Architektura} B. Pawlik  dr inż. Bartłomiej Pawlik %\institute{} %\setbeamercovered{transparent} % przezroczyste warstwy  It is difficult to find a definition of combinatorics that is both concise and complete, unless we are satisfied with the statement “Combinatorics is what combinatorialists do.”  W.T. Tutte, 1969	
+		 0.5cm  Combinatorics is the nanotechnology of mathematics.  Sara Billey, 2005	
+	 
+Więcej punktów widzenia: \\ https://www.math.ucla.edu/~pak/hidden/papers/Quotes/Combinatorics-quotes.htm blue  What is Combinatorics? (A collection of quotes by Igor Pak) Przykład 
+	W szafie mam 4 pary butów, 6 par spodni, 9 koszul i 5 casualowych marynarek. Na ile różnych sposobów mogę się ubrać?
+	
+	 0.3cm 4 6 9 5=1080 Przykład 
+	Na ile sposobów można  wybrać czterocyfrowy kod PIN?
+	
+	 0.3cm 10 10 10 10=10 \, 000 Prawo iloczynu 
+Jeżeli  S_1, \, \, , \, S_n  są zbiorami skończonymi, to  |S_1  S_2  S_n|= _ i=1 ^n|S_i| .
+ Combinatorial explosion 
+Szybki (często wykładniczy) wzrost złożoności problemu wraz z niewielkimi zmianami w~liczbie danych wejściowych. 
+ Permutacje Przykład 
+	Na ile sposobów można ułożyć w ciąg elementy zbioru  \{ 1,2,3,4 \} ? 
+	
+	
+	Szukana liczba sposobów to
+	
+ Definicja  Permutacją  zbioru  n -elementowego nazywamy dowolny  n -elementowy ciąg różnych elementów tego zbioru. 
+	 Silnia n!  --- (czyt.  n  silnia ) jest zdefiniowana dla nieujemnych liczb całkowitych w~następujący sposób:
+
+Zauważmy, że dla  n 1  mamy 
+Początkowe wartości (do  12! ) to
+
+
+	 Stwierdzenie 
+		Liczba różnych permutacji zbioru  n -elementowego wynosi  n! .
+	 
+Mówimy, że słowo  A  jest   anagramem  słowa  B , jeżeli można otrzymać  A  poprzez zamianę kolejności liter w  B .
+ 
+Przykładowo, anagramami są słowa  elevenplustwo  oraz  twelveplusone . Przykład ex2 
+Ile różnych anagramów ma słowo  real ?
+
+ 
+Zauważmy, że liczba anagramów słowa  real  to liczba uporządkowań elementów zbioru  \{ r , e , a , l \} , więc odpowiedź to  4!=24 .
+
+
+ k -permutacje Przykład 
+		Losujemy trzy spośród siedmiu numerowanych kul i wkładamy po jednej z nich do trzech rozróżnialnych koszyków. Na ile sposobów możemy to zrobić?
+		
+		 0.3cm 
+		Szukana liczba możliwości to  7 6 5=210 .
+	 Przykład 
+	Na ile sposobów można wybrać czterocyfrowy kod PIN, w którym żadna cyfra się nie powtarza?
+	
+	 0.3cm 10 9 8 7=5040 .
+	 Definicja 
+		Niech  k  n .  k -permutacją (  permutacją częściową ) zbioru  n -elementowego nazywamy dowolny  k -elementowy ciąg różnych elementów tego zbioru. 
+	 Stwierdzenie  Liczba różnych  k -permutacji zbioru  n -elementowego wynosi  n! (n-k)! .
+		  Permutacja zbioru  n -elementowego jest jego  n -permutacją.
+		 Uwaga! (semantyczne wariactwo) 
+		W starszej literaturze naukowej (oraz w polskich szkołach) permutacje częściowe bywają nazywane wariacjami i oznaczane przez  V_n^k ,  P_n^k ,  _nP_k ,  ^nP_k ,  P_ n,k  itp. (w~zależności od źródła).
+	 Kombinacje Przykład 
+		Losujemy trzy spośród siedmiu numerowanych kul. Na ile sposobów możemy to zrobić?
+		
+		 0.3cm 
+		Z poprzedniego przykładu wiemy, że liczba uporządkowanych trójek kul wynosi 210. Teraz interesuje nas liczba  nieuporządkowanych  trójek.
+		
+		Zauważmy, że  każdej  nieuporządkowanej trójce  \{ K_1,K_2,K_3 \}  odpowiada  dokładnie  sześć uporządkowanych trójek:
+		 
+		Zatem szukana liczba to  210 6=35 .
+	 Definicja  Kombinacją  n  po  k  nazywamy  k -elementowy podzbiór zbioru  n -elementowego. 
+ Symbol dwumianowy Newtona Definicja  Symbolem dwumianowym Newtona  nazywamy wyrażenie  dla  0  k  n .
+ 
+Czasami przyjmuje się, że jeżeli  k>n , to  n  k =0 .
+
+ Stwierdzenie 
+	Liczba różnych  k -elementowych podzbiorów zbioru  n -elementowego wynosi  n  k .
+ Przykład 
+Określ liczbę  12 -cyfrowych liczb złożonych z czterech cyfr  1 , czterech cyfr  2 , trzech cyfr  5  i jednej cyfry  8 .
+
+
+ Przykład 
+Wyznacz liczbę anagramów słowa  rearrange .
+
+ 
+W rozważanym słowie występują trzy litery  r , dwie litery  e , dwie litery  a  i po jednej literze  n  i  g .
+
+ 
+Wartości symbolu dwumianowego  n  k  dla małych wartości  n  i  k :
+
+ Podstawowe własności symbolu dwumianowego 
+		Niech  k,n  będą nieujemnymi liczbami całkowitymi takimi, że  k  n . 
+		 n  0 = n  n =1 n  1 = n  n-1 =n n  k = n  n-k 
+Powyższe równania można łatwo udowodnić wprost z definicji symbolu dwumianowego.
+	
+ Wzór Pascala 
+Równanie
+
+zachodzi dla każdej pary liczb naturalnych  n  i  k  takich, że  1  k<n .
+ Dowód 
+Trójkąt Pascala (I):
+
+
+
+ 
+Trójkąt Pascala (II):
+
+
+
+ Przykład 
+		Wyznaczyć liczbę wszystkich podzbiorów zbioru  \{ a,b,c \} .
+		 0.3cm  sposób pierwszy 
+		Zbiór jest tak mały, że możemy to przeliczyć na palcach:
+		
+		 
+		Ostatecznie zbiór  \{ a,b,c \}  ma 8 podzbiorów.
+	 Przykład 
+		Wyznaczyć liczbę wszystkich podzbiorów zbioru  \{ a,b,c \} .
+		 0.3cm  sposób drugi 
+		Określmy, na ile sposobów można skonstruować podzbiór danego zbioru.
+
+		Element  a  należy do podzbioru lub nie, co daje dwie możliwości. Identycznie jest z~elementami  b  i  c .
+		
+		Zatem z zasady mnożenia wynika, że podzbiór danego zbioru można otrzymać na  sposobów.
+	 
+	Zauważmy, że z drugi sposób rozwiązania powyższego przykładu sugeruje bijekcję między liczbą podzbiorów zbioru 3-elementowego i liczbą ciągów binarnych długości 3. Istotnie:
+	
+	 Stwierdzenie 
+	Liczba podzbiorów zbioru  n -elementowego wynosi  2^n .
+ 	
+	Zbiór wszystkich podzbiorów zbioru  A  często (całkiem słusznie) nazywa się   zbiorem potęgowym  zbioru  A  i oznacza przez  P(A)  lub  2^A .
+	
+	Stosując drugie z powyższych oznaczeń, stwierdzenie o liczbie podzbiorów zbioru  n -elementowego możemy zapisać w postaci
+	
+ Wniosek 
+		Dla każdej liczby całkowitej nieujemnej  n  zachodzi
+		
+	 
+	Zauważmy, że  n  k  oznacza liczbę podzbiorów zbioru  n -elementowego. Zatem  to liczba wszystkich podzbiorów zbioru  n -elementowego. Z drugiej strony, wiemy że liczba podzbiorów danego zbioru to  2^n , więc dana równość jest prawdziwa. 
+	 Twierdzenie (Wzór dwumianowy Newtona) 
+		Dla dowolnych  x,y R  i dla dowolnego  n N  zachodzi
+			
+	 Przykład 
+	Korzystając ze wzoru dwumianowego Newtona opracować wzory skróconego mnożenia dla wyrażeń  (x+y)^4  oraz  (x-y)^4 .
+	
+Analogicznie
+	
+		
+	 Przykład 		
+		Korzystając ze wzoru dwumianowego Newtona udowodnić wzór  n  0 + n 1 + + n  n =2^n .
+		
+	 Liczba elementów sumy zbiorów Przykład 		
+		Adaś uczy się dwóch języków europejskich, Beatka uczy się jednego języka afrykańskiego, a~Celinka uczy się trzech języków azjatyckich. Ilu różnych języków uczą się dzieci?
+		
+	 Prawo sumy dla zbiorów rozłącznych 
+		Niech  S_1, ,S_n  będą zbiorami skończonymi, które są parami rozłączne. Wtedy
+		
+	 Przykład 		
+		W klasie każde dziecko uczy się co najmniej jednego języka. 15 dzieci uczy się języka angielskiego, 11 dzieci uczy się języka francuskiego i 5 dzieci uczy się obu tych języków. Z ilu uczniów składa się klasa?
+		
+		 0.3cm 
+		Dodając do siebie liczbę dzieci uczących się angielskiego (15) i uczących się francuskiego (11),  dwukrotnie  policzyliśmy te, które uczą się obu języków (5). Zatem liczba uczniów wynosi
+		
+	 Uogólnione prawo sumy dla dwóch zbiorów 
+		Dla dowolnych zbiorów skończonych  S_1  i  S_2  mamy
+		
+	 Przykład 
+		Uogólnić powyższy wzór na trzy zbiory  S_1,S_2,S_3 .
+		
+		
+		Zatem
+			
+	 Zasada włączeń i wyłączeń 
+		Niech  n 2  i niech  S_1,S_2, ,S_n  będą zbiorami skończonymi. Liczba elementów sumy zbiorów  S_1, ,S_n  jest równa liczbie elementów wszystkich możliwych różnych przecięć nieparzystej liczby zbiorów spośród  S_1, ,S_n  pomniejszonej o~liczbę elementów wszystkich możliwych różnych przecięć parzystej liczby zbiorów spośród  S_1, ,S_n :
+		
+	 Dowód (1/2). 
+		Niech  1  m  n  i niech   s _ i=1 ^nS_i . Załóżmy, że element  s  należy do dokładnie  m  zbiorów spośród  S_1,S_2, ,S_n . 
+		
+		Określmy, ile razy element  s  jest zliczony przez wyrażenie
+		
+		Zauważmy, że w sumie  _ i=1 ^n|S_i|  element  s  jest policzony  m= m 1  razy.
+		
+		W sumie  _ i,j:i<j |S_i  S_j|  element  s  jest policzony  m 2  razy itd.
+		
+		Ostatecznie element  s  został zliczony
+		 razy.
+	 Dowód (2/2). 
+Dodajemy z lewej strony  red sztuczne zero , a następnie korzystamy ze  blue wzoru dwumianowego Newtona : 
+		
+Zatem powyższe wyrażenie zliczyło element  s  dokładnie raz, co dowodzi poprawności zasady włączeń i wyłączeń. Specjalne przypadki zasady włączeń i wyłączeń 
+Niech  S_1,S_2,S_3,S_4  będą zbiorami skończonymi.
+
+ Przykład 
+Ile jest liczb dodatnich mniejszych od  1000 , które są podzielne przez  2  lub  9  lub~ 11 ?
+
+ 
+Zauważmy, że
+
+ A_2  --- zbiór rozpatrywanych liczb podzielnych przez  2 ;  |A_2|=499 A_9  --- zbiór rozpatrywanych liczb podzielnych przez  9 ;  |A_9|=111 A_ 11  --- zbiór rozpatrywanych liczb podzielnych przez  11 ;  |A_ 11 |=90 A_ 18 =A_2  A_9 ;  |A_ 18 |=55 A_ 22 =A_2  A_ 11 ;  |A_ 22 |=45 A_ 99 =A_9  A_ 11 ;  |A_ 99 |=10 A_ 198 =A_2  A_9  A_ 11 ;  |A_ 198 |=5 
+Ostatecznie, stosując zasadę włączeń i wyłączeń, otrzymujemy
+
+ Przykład (1/5) 
+Wyzaczyć liczbę permutacji zbioru  [ 7 ] = \{ 1,2,3,4,5,6,7 \} , które nie zawierają czterech kolejnych elementów w porządku rosnącym.
+
+ 
+Niech  X  będzie zbiorem permutacji o szukanej własności. Zauważmy, że liczba wszystkich permutacji zbioru  [ 7 ]  to  7!=5040 .
+
+W zbiorze  [ 7 ]  wyszczególnimy pozdbiór  A  złożony z tych permutacji, które zawierają cztery kolejne elementy w porządku rosnącym. Oczywiście 
+
+W zbiorze  A  określamy cztery podzbiory:
+ A_1  --- zbiór permutacji zawierających elementy w porządku rosnącym na pozycjach 1, 2, 3 i 4. ( )
+ A_2  --- zbiór permutacji zawierających elementy w porządku rosnącym na pozycjach 2, 3, 4 i 5. ( )
+ A_3  --- zbiór permutacji zawierających elementy w porządku rosnącym na pozycjach 3, 4, 5 i 6. ( )
+ A_4  --- zbiór permutacji zawierających elementy w porządku rosnącym na pozycjach 4, 5, 6 i 7. ( )
+ Przykład (2/5) 
+Zauważmy, że  ale wyróżnione podzbiory nie są rozłączne. Aby policzyć  |A| , zastosujemy zasadę włączeń i wyłączeń.
+
+ 
+Obliczmy  |A_1| . ( )
+
+Elementy na pierwszych czterech pozycjach ( ) możemy wybrać na  7 4  sposobów i układamy je jednoznacznie (rosnąco). Zostały nam 3 elementy ( ), które możemy ustawić dowolnie, co daje  3!  możliwości. Zatem liczba permutacji należących do zbioru  A_1  to 
+Oczywiście 
+ Przykład (3/5) 
+Obliczmy  |A_1  A_2| .
+
+Elementy zbioru  A_1  A_2  muszą być ustawione w porządku rosnącym na pozycjach 1, 2, 3 i 4 oraz na pozycjach 2, 3, 4 i 5, więc muszą być ustawione rosnąco na pozycjach 1, 2, 3, 4 i 5 ( ). Zatem (analogicznie jak w~przypadku  |A_1| ) otrzymujemy
+
+
+Zauważmy, że dla  |A_1  A_3|  musimy mieć elementy w porządku rosnącym na pozycjach 1, 2, 3, 4, 5 i 6 ( ). Mamy
+
+Ostatnim przypadkiem dla przecięć dwóch podzbiorów jest  |A_1  A_4| ( ). Mamy tylko jedno ustawienie w porządku rosnącym na siedmiu pozycjach:
+
+ Przykład (4/5) 
+Obliczmy  |A_1  A_2  A_3| .
+
+Zauważmy, że w tym przypadku elementy na początkowych 6-ciu pozycjach muszą być ustawione w porządku rosnącym ( ), więc
+
+
+Natomiast w przypadku, w którym pomijamy jeden z ``wewnętrznych'' podzbiorów, np.  A_3 , musimy mieć wszystkie elementy w porządku rosnącym ( ). Zatem
+
+
+W przypadku przecięcia wszystkich zbiorów ( ) ponownie mamy tylko jeden przypadek, więc 
+ Przykład (5/5) 
+Zatem
+
+Zatem liczba permutacji zbioru  [ 7 ] , które nie zawierają czterech kolejnych elementów w porządku rosnącym to

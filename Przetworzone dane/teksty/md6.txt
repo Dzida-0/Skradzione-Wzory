@@ -1,0 +1,178 @@
+a4paper,10pt beamer T1,plmath polski cp1250 inputenc amssymb indentfirst graphicx onlymath serif ulem % kolorowe podkreślenia xcolor % kolorowe podkreślenia diagbox tasks arcctg \, arctg \, \, d \, Int %\definecolor{green1}{html}{22B14C} 1 orange black #1 % pomarańczowe podkreślenie 1 yellow black #1 % żółte podkreślenie 1 blue black #1 % niebieskie podkreślenie 1 RGB 34,177,76 black #1 % zielone podkreślenie Boadilla crane %\usecolortheme[rgb={1,0.5,0}]{structure}  Elementy teorii liczb %\subtitle{Matematyka, Kierunek: Architektura} B. Pawlik  dr inż. Bartłomiej Pawlik %\institute{} %\setbeamercovered{transparent} % przezroczyste warstwy Słowniczek Definicja NWD 
+		Niech  a,b Z  i niech co najmniej jedna z nich jest różna od  0 . Liczbę naturalną  d  nazywamy   największym wspólnym dzielnikiem  liczb  a  i  b , gdy
+		 d|a  i  d|b ,
+			  jeżeli dla  c N  mamy  c|a  i  c|b , to  c|d .
+		 
+Największy wspólny dzielnik liczb  a  i  b  oznaczamy jako  NWD (a,b) .
+
+	 Przykład NWD (6,8)=2, \  \  NWD (14,-17)=1, \  \  NWD (-3,-9)=3, \  \  NWD (0,24)=24. Definicja NWW 
+		Niech  a,b Z / \{ 0 \} . Liczbę  D N  nazywamy   najmniejszą wspólną wielokrotnością  liczb  a  i  b , gdy
+		 a|D  i  b|D ,
+			  jeżeli dla  c N  mamy  a|c  i  b|c , to  D|c .
+		 
+	Najmniejszą wspólną wielokrotność liczb  a  i  b  oznaczamy jako  NWW (a,b) .
+	
+	 Przykład NWW (6,8)=24, \  \  NWW (14,-17)=238, \  \  NWW (-3,-9)=9. 
+		W literaturze często można spotkać się z oznaczeniami  NWD (a,b)=(a,b)  i~ NWW (a,b)= [ a,b ] .		
+	 Własności NWD i NWW 
+		Niech  a,b Z / \{ 0 \}  i  q Z .
+		  Jeżeli  a|b , to  NWD (a,b)=|a|  i  NWW (a,b)=|b| .
+			 NWD (a,b)= NWD (|a|,|b|)  i  NWW (a,b)= NWW (|a|,|b|) .
+			 NWD (a,b)= NWD (a-qb,b) .
+			 mno NWD (a,b) NWW (a,b)=|a  b|. Wyznaczenie NWW i NWD Twierdzenie 
+		Niech 
+		Wtedy
+		
+		oraz
+			
+	 Przykład 
+		Wyznaczyć największy wspólny dzielnik oraz najmniejszą wspólną wielokrotność liczb  48  i  180 .
+		
+		Zauważmy, że  48=2^4 3  oraz  180=2^2 3^2 5 .
+		
+		Zatem 
+		oraz 
+		
+	 
+Przedstawiona metoda nie jest efektywna (ponieważ wymaga rozkładu na czynniki). NWD można obliczyć szybciej korzystając z algorytmu Euklidesa.
+	
+ Algorytm Euklidesa dla NWD 
+	Niech  a,b N  i  a>b .
+	
+	Po podzieleniu z resztą  a  przez  b  otrzymujemy  a=q_1b+r_1 .
+	
+	Jeżeli  r_1=0 , to  NWD (a,b)=b .
+	
+	Jeżeli  r_1 0 , to dzielimy z resztą  b  przez  r_1  i otrzymujemy  b=q_2r_1+r_2 .
+	
+	Procedura kończy się, gdy dla pewnego indeksu  n  mamy  r_n 0  oraz  r_ n+1 =0 . Wtedy  NWD(a,b)=r_n .
+	
+	 Przykład 
+		Wyznaczyć największy wspólny dzielnik oraz najmniejszą wspólną wielokrotność liczb  48  i  180 .
+		
+		Stosując algorytm Euklidesa otrzymujemy
+				
+		Zatem  NWD (48,180)=12 .
+		
+		Z faktu  NWD (a,b) NWW (a,b)=|a  b|  otrzymujemy  NWW (a,b)= |a  b| NWD (a,b) .
+		
+		Zatem 
+		
+	 Poprawność algorytmu Euklidesa  Algorytm produkuje  malejący  ciąg liczb całkowitych nieujemnych  r_1>r_2> >r_n (jedna liczba w jednym kroku). Zatem algorytm zatrzymuje się po skończonej liczbie kroków (nie większej niż wartość  r_1 ). 
+			  Z własności  NWD (a,b)= NWD (a-qb,b)  otrzymujemy
+			
+		 Twierdzenie (NWD jako kombinacja liniowa) 
+		Dla  a,b Z  takich, że co najmniej jedna z nich jest różna od 0, istnieją  u,v Z  takie, że
+		
+		Ponadto  NWD (a,b)  jest najmniejszą możliwą  dodatnią  kombinacją liniową  a  i  b .
+	 Przykład 
+		Wyznaczyć najmniejszą dodatnią kombinację liniową liczb  3  i  7  oraz podać jej przykładowe współczynniki.
+		
+	 Odwrotny algorytm Euklidesa 
+	Algorytm służy wyznaczenia  u  i  v  takich, że  a  u+b  v= NWD (a,b) .
+	
+	  Obliczamy  NWD (a,b)  korzystając z algorytmu Euklidesa otrzymując ciąg równań
+			
+			 a=q_1  b+r_1, \  \  \  b=q_2  r_1+r_2, \  \  \  r_1=q_3  r_2+r_3, \  \  \  , r_ n-3 =q_ n-1  r_ n-2 +r_ n-1 , \  \  \  r_ n-2 =q_n  r_ n-1 +r_n, \  \  \  r_ n-1 =q_ n+1  r_n.  Z  i -tego równania wyznaczamy wartość  r_i  dla każdego  i=1,2, ,n (więc pomijamy ostatnie równanie).
+			
+			  Wyliczone  r_n  daje nam równanie
+			
+			 NWD (a,b)=r_ n-2 -q_n  r_ n-1 . 
+			
+			Do tego równania wstawiamy wyliczoną wartość  r_ n-1 (w ten sposób otrzymujemy  NWD (a,b)  w kombinacji liniowej  r_ n-2  i  r_ n-3 ).
+			
+			  Kontynuujemy podstawianie  r_ n-2 ,  r_ n-3  itd. aż do  r_1 , po drodze upraszczając współczynniki. W efekcie dostajemy zapis implikujący wartości  u  i  v .
+		 Definicja 
+		Liczba  n N  jest   liczbą pierwszą , jeżeli  n  ma dokładnie dwa dodatnie dzielniki. 
+	 0  nie jest liczbą pierwszą (po pierwsze nie jest liczbą dodatnią, a po drugie ma nieskończenie wiele dzielników).
+		
+		 1  nie jest liczbą pierwszą (ma dokładnie jeden dodatni dzielnik).
+		
+		  Początkowe liczby pierwsze:  2, \, 3, \, 5, \, 7, \, 11, \, 13, \, 17, \, 19, \, 23 .
+		
+		  Liczby naturalne  większe od  1  dzielimy na liczby pierwsze i liczby złożone (złożone to te, które nie są pierwsze). 
+		
+		 1  nie jest ani liczbą pierwszą, ani liczbą złożoną.
+		
+		  Zbiór liczb pierwszych oznaczamy przez  P .
+		 Twierdzenie 
+		Liczb pierwszych jest nieskończenie wiele.
+	 
+		Załóżmy nie wprost, że teza twierdzenia jest fałszywa, tj. zbiór liczb pierwszych jest skończony. Zatem dla pewnej liczby naturalnej  n  mamy  Niech  P  będzie następnikiem iloczynu wszystkich elementów powyższego zbioru  P :
+		
+		Zauważmy, że liczba  P  przy dzieleniu przez  p_i (dla  i=1,2, ,n ) daje resztę  1 , zatem liczba  P  nie jest podzielna przez żadną liczbę pierwszą --- uzyskaliśmy sprzeczność.
+	 
+	Powyższy dowód ma  2500 lat (  Elementy  Euklidesa).
+	
+ 
+	Czy z powyższego dowodu wynika, że liczba  P  jest liczbą pierwszą? Nie!
+	
+	Zatem konstrukcja w powyższym dowodzie nie daje przepisu na tworzenie coraz większych liczb pierwszych, a jedynie wskazuje, że istnieją liczby pierwsze nienależące do dowolnego skończonego zbioru liczb pierwszych.
+ 
+Liczby o jeden większe od iloczynu początkowych liczb pierwszych to tzw.   liczby Euklidesa :
+
+
+ Definicja 
+Liczbę  nazywamy  n -tą liczbą Euklidesa .
+ 
+Do dzisiaj nie wiadomo czy
+  jest nieskończenie wiele liczb pierwszych Euklidesa?
+  każda liczba Euklidesa jest bezkwadratowa?
+ Podstawowe twierdzenie arytmetyki 
+		Każdą liczbę całkowitą dodatnią można przedstawić jako iloczyn liczb pierwszych. Przedstawienie takie jest jednoznaczne z dokładnością do kolejności czynników.
+	 Przykład 12=2 2 3=2 3 2=3 2 2 Wniosek 
+		Każda większa od  1  liczba naturalna  n  może być jednoznacznie zapisana w tzw.   postaci kanonicznej 
+		gdzie  q_ i  są liczbami pierwszymi,  _i  są liczbami naturalnymi oraz  q_1<q_2< <q_k .
+	 Przykład 
+	Postacią kanoniczną liczby  12  jest  2^2 3 .
+	 Funkcja  -Eulera Definicja 
+		Liczby całkowite  a  i  b  nazywamy   względnie pierwszymi , gdy  NWD (a,b)=1 . 
+	 
+		Zapis  a  b  oznacza, że  a  i  b  są liczbami względnie pierwszymi.
+	 Stwierdzenie 
+		Liczby  a NWD (a,b)  i  b NWD (a,b)  są względnie pierwsze.
+	 Przykład NWD (48,180)=12 , więc  48  i  180  nie są liczbami względnie pierwszymi.
+		
+		Zauważmy, że  NWD (4,15)=1 . Zatem  4 15 .
+	 Definicja 
+		Dla każdej liczby  n N / \{ 1 \}  określamy liczbę  (n)  jako liczbę dodatnich liczb całkowitych mniejszych od  n  i względnie pierwszych z  n :
+		
+		
+		
+		 Funkcję  = (n)  nazywamy   funkcją  -Eulera .
+	 Przykład 
+		Obliczmy  NWD (k,12)  dla  k  mniejszych od 12:
+			
+		Zatem
+		
+
+	 Stwierdzenie 
+ Dla dowolnej liczby pierwszej  p  i liczby całkowitej dodatniej   zachodzi:
+  (p)=p-1 , \\ (p^ )=p^ 1- 1p .  Liczba pierwsza  p  jest  względnie pierwsza z każdą z liczb  1,2, ,p-1 .
+		  Zauważmy, że jedynie wielokrotności liczby pierwszej  p  mają wspólny nietrywialny dzielnik z  p^ . Zatem w zbiorze  \{ 1,2, ,p^ -1 \}  liczbami niebędącymi liczbami względnie pierwszymi z  p^  są
+		
+		więc ich liczba wynosi  p^ -1 -1 .
+		Zatem
+		
+	 Stwierdzenie 
+	Jeżeli  a  b , to  (ab)= (a) (b) .  %dowodzi się z Chińskiego twierdzenia o resztach 
+	Z dwóch ostatnich stwierdzeń wynika następujące
+
+	 Twierdzenie 
+		Niech   p_ 1 ^ _ 1  p_ 2 ^ _ 2  p_ k ^ _ k  będzie postacią kanoniczną liczby  n N / \{ 1 \} . Wtedy
+		
+	 Przykład 
+		Wyznaczyć liczby  (180)  i  (12 \, 936) .
+		  Postać kanoniczna liczby  180  to  2^2 3^2 5 , więc jedynymi dzielnikami pierwszymi danej liczby są  2, \, 3  i  5 . Zatem
+			
+			 12 \, 936=2^3 3 7^2 11 , więc dzielnikami pierwszymi danej liczby są  2 ,  3 ,  7  i~ 11 . Zatem 
+		 Współczynniki rozkładu silni Twierdzenie 
+Niech  n  będzie liczbą całkowitą dodatnią i niech  _p(N)  oznacza największą potęgę liczby  p  dzielącą liczbę  N . Wtedy
+
+ Przykład 
+Wskaż największą potęgę liczby  3  dzieląca liczbę  100! 
+Korzystając z powyższego wzoru mamy
+
+Zatem szukana potęga to  3^ 48 .
+ Twierdzenie 
+Dla każdej liczby pierwszej  p  i dla każdej liczby całkowitej dodatniej  n  zachodzi

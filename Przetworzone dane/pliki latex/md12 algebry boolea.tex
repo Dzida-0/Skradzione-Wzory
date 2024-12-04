@@ -1,0 +1,556 @@
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[T1,plmath]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usefonttheme[onlymath]{serif}
+
+
+\usepackage{ulem} % kolorowe podkreślenia
+\usepackage{xcolor} % kolorowe podkreślenia
+
+\newcommand{\arcctg}{{\rm{arcctg}\,}}
+\newcommand{\arctg}{{\rm{arctg}\,}}
+\newcommand{\ddd}{{\,\rm{d}}}
+\newcommand{\Int}{{\,\rm{Int}}}
+
+%\definecolor{green1}{html}{22B14C}
+
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarańczowe podkreślenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % żółte podkreślenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreślenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreślenie
+
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+%\usecolortheme[rgb={1,0.5,0}]{structure}
+
+\title{\bf Algebry Boole'a i funkcje boolowskie}
+%\subtitle{Matematyka, Kierunek: Architektura}
+\author[B. Pawlik]{\bf dr inż. Bartłomiej Pawlik}
+%\institute{}
+
+
+
+%\setbeamercovered{transparent} % przezroczyste warstwy
+
+
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Algebry Boole'a}
+
+\begin{frame}{Logika - powtórka}
+	
+	
+	$$\begin{array}{c|c}
+		p&\neg p\\\hline
+		0&1\\
+		1&0
+	\end{array}\ \ \ 
+	\begin{array}{cc|cccc}
+	p&q&p\vee q&p\wedge q&p\Rightarrow q&p\Leftrightarrow q\\\hline
+	0&0&0&0&1&1\\
+	0&1&1&0&1&0\\
+	1&0&1&0&0&0\\
+	1&1&1&1&1&1
+	\end{array}$$
+	
+	
+	Każde zdanie (formuła zdaniowa) może być zapisane w równoważnej postaci wyłącznie za pomocą spójników $\wedge,\,\vee$ i $\neg$.
+	
+	\begin{block}{}
+		Przykładowe reprezentacje implikacji i równoważności:
+		\begin{align*}
+			(p\Rightarrow q)&\iff(\neg p\vee q)\\ 
+			(p\Leftrightarrow q)&\iff\big( (\neg p\vee q)\wedge(p\vee \neg q)\big)\\ 
+		\end{align*}
+	\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Definicja}
+		\begin{itemize}
+		\item {\bf Wielomianem boolowskim $W$ zmiennych $x_1,x_2,\ldots,x_n$} nazywamy formułę zdaniową zbudowaną wyłącznie z $x_1,x_2,\ldots,x_n$ oraz spójników $\wedge,\,\vee$ i $\neg$.
+		
+		\item Wartościowanie logiczne wielomianu boolowskiego $W$ nazywamy {\bf $n$-argumentową funkcją boolowską} $f=W(x_1,x_2,\ldots,x_n)$ i mówimy wtedy, że $W$ {\bf generuje} $f$.
+		
+		\item Zbiór wszystkich $n$-argumentowych fukcji boolowskich oznaczamy przez $\mathtt{Bool}(n)$.
+		\end{itemize}
+	\end{block}
+
+	\begin{exampleblock}{Przykład}
+		Podać przykład wielomianu boolowskiego zmiennych $x,y,z$. Ustalić jego wartościowanie logiczne.
+		
+		Rozpatrzmy wielomian $(x\vee y)\wedge(\neg z)$ generujący funkcję $f(x,y,z)=(x\vee y)\wedge(\neg z)$. Mamy
+		\begin{align*}
+			f(0,0,0)&=0&f(1,0,0)&=1\\
+			f(0,0,1)&=0&f(1,0,1)&=0\\
+			f(0,1,0)&=1&f(1,1,0)&=1\\
+			f(0,1,1)&=0&f(1,1,1)&=0
+		\end{align*}
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład}
+		Określić $\mathtt{Bool}(1)$.
+		
+		Wypiszmy wszystkie możliwe wartościowania funkcji boolowskiej na jednej binarnej zmiennej $x$:
+		$$\begin{array}{c||c|c|c|c}x&f_1&f_2&f_3&f_4\\\hline0&0&0&1&1\\1&0&1&0&1\end{array}$$
+		Nietrudno zauważyć, że $f_1(x)=0,\, f_2(x)=x,\, f_3(x)=\neg x$ i $f_4(x)=1$.
+		
+		Zatem $\mathtt{Bool}(1)=\{0,\,1,\,x,\,\neg x\}$.
+	\end{exampleblock}
+
+		\begin{exampleblock}{Przykład}
+		Podać trzy przykładowe elementy zbioru $\mathtt{Bool}(3)$.
+		\begin{align*}
+			f_1(x,y,z)&=\big(x\wedge (\neg y)\big)\vee z,\\
+			f_2(x,y,z)&=1,\\
+			f_3(x,y,z)&=x\wedge y\wedge z
+		\end{align*}
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{block}{Stwierdzenie}
+		Dla każdej liczby naturalnej $n$ zachodzi $|\mathtt{Bool}(n)|=2^{2^n}$. 
+	\end{block}
+
+	\begin{proof}
+		Funkcja boolowska $f$ każdemu argumentowi przypisuję jedną z dwóch wartości ($0$~lub~$1$). Zatem liczba różnych $n$-argumentowych funkcji boolowskich wynosi $2^{|D_f|}$, gdzie $|D_f|$ to liczba elementów dziedziny funkcji $f$.
+		
+		Dziedzina składa się z $n$-elementowych ciągów binarnych, których jest $2^n$. Zatem ostatecznie $|\mathtt{Bool}(n)|=2^{2^n}$.
+	\end{proof}
+	
+\end{frame}
+
+
+
+
+\begin{frame}
+	
+	\begin{block}{Definicja}
+		Niech $B$ będzie zbiorem z działaniami binarnymi $\wedge$, $\vee$, działaniem unarnym $\neg$ i~niech $0,1\in B$, $0\neq1$. Szóstkę $(B,\wedge,\vee,\neg,0,1)$ nazywamy {\bf algebrą Boole'a} wtedy i tylko wtedy, gdy dla dowolnych $x,y,z\in B$ mamy
+		\begin{itemize}
+			\item $x\wedge y=y\wedge x,\ \ x\vee y=y\vee x$,
+			\item $(x\wedge y)\wedge z=x\wedge(y\wedge z),\ \ (x\vee y)\vee z=x\vee(y\vee z)$,
+			\item $x\vee(y\wedge z)=(x\vee y)\wedge (x\vee z),\ \ x\wedge(y\vee z)=(x\wedge y)\vee (x\wedge z),$
+			\item $1\wedge x=x,\ \ 0\vee x=x$,
+			\item $\neg x\wedge x=0,\ \ \neg x\vee x=1$
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{}
+		\begin{itemize}
+			\item Działania można interpretować następująco: $\wedge$ to mnożenie, $\vee$ to dodawanie, a $\neg$ to dopełnienie.
+			\item Jeżeli operacje są z góry określone, to $(B,\wedge,\vee,\neg,0,1)$ oznaczamy w skrócie przez $B$.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}{Podstawowe przykłady algebry Boole'a}
+	
+	\begin{block}{}
+			$\mathbb{B}=\{0,1\}$ --- zbiór wartości logicznych (boolowskich); działaniami są $\wedge,\vee,\neg$.
+	\end{block}
+
+	\begin{block}{}
+			$\mathbb{B}^n=\{0,1\}^n$ --- produkt kartezjański $n$ kopii zbioru $\mathbb{B}$ z naturalnie określonymi działaniami (po współrzędnych).
+	\end{block}
+
+	\begin{exampleblock}{Przykład}
+		Wykonać działania $\wedge,\vee,\neg$ na elementach $(1,1,0,0,0),(0,1,1,0,1)\in\mathbb{B}^5$.
+		\begin{align*}
+			(1,1,0,0,0)\wedge(0,1,1,0,1)&=(0,1,0,0,0)\\
+			(1,1,0,0,0)\vee(0,1,1,0,1)&=(1,1,1,0,1)\\
+			\neg(1,1,0,0,0)&=(0,0,1,1,1)\\
+			\neg(0,1,1,0,1)&=(1,0,0,1,0)
+		\end{align*}
+	\end{exampleblock}	
+	
+\end{frame}
+
+
+
+\begin{frame}{Podstawowe przykłady algebr Boole'a}
+	
+	\begin{block}{}
+		$\mathtt{Bool}(n)$ wraz z naturalnie określonymi działaniami (po wartościach) stanowi algebrę Boole'a ze względu na fakt, że każda $n$-argumentowa funkcja boolowska działa z $\mathbb{B}^n$ w $\mathbb{B}$.
+	\end{block}
+	
+	\begin{exampleblock}{Przykład}
+		Wykonać działania w $\mathtt{Bool}(1)$.
+		
+		W jednym z poprzednich przykładów określiliśmy, że $\mathtt{Bool}(1)=\{0,1,x,\neg x\}$.
+		
+		$$\begin{array}{c|cccccc|cccc}
+		\wedge&0&1&x&\neg x&       &\vee&0&1&x&\neg x\\\cline{1-5}\cline{7-11}
+		0&0&0&0&0&                 &0&0&1&x&\neg x\\
+		1&0&1&x&\neg x&            &1&1&1&1&1\\
+		x&0&x&x&0&                 &x&x&1&x&1\\
+		\neg x&0&\neg x&0&\neg x&  &\neg x&\neg x&1&1&\neg x
+		\end{array}$$
+		
+		Ponadto $\neg 0=1, \neg1=0, \neg(x)=\neg x, \neg(\neg x)=x$.
+		
+	\end{exampleblock}	
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{block}{Stwierdzenie}
+		W każdej algebrze Boola elementy 0, 1 oraz $\neg x$ (dla każdego elementu $x$) są określone jednoznacznie.
+	\end{block}
+	
+	\begin{block}{Twierdzenie}
+		Niech $B$ będzie algebrą Boole'a. Wówczas dla każdego $x,y\in B$ mamy
+		\begin{itemize}
+			\item $x\vee 1=1,\ \ x\wedge0=0$,
+			\item $(x\wedge y)\vee x=x,\ \ (x\vee y)\wedge x=x,$
+			\item $\neg0=1,\ \ \neg1=0,\ \ \neg(\neg x)=x$,
+			\item $x\vee x=x,\ \ x\wedge x=x$,
+			\item $\neg(x\vee y)=\neg x\wedge\neg y,\ \ \neg(x\wedge y)=\neg x\vee\neg y.$
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+
+\begin{frame}
+
+	\begin{block}{Definicja}
+		W algebrze Boole'a $B$ definiujemy relację $\leq$ następująco:
+		$$\forall_{x,y\in B}\ \ x\leq y\iff x\vee y=y.$$
+	\end{block}
+
+	\begin{block}{Twierdzenie}
+		Niech $B$ będzie algebrą Boole'a i niech $x,y\in B$. Wtedy
+		\begin{enumerate}
+			\item $x\leq y\iff x\wedge y =x$
+			\item $x\wedge y\leq x\leq x\vee y$
+			\item $0\leq x\leq 1$
+		\end{enumerate}
+		Ponadto $(B,\leq)$ jest kratą (tzn. zbiorem częściowo uporządkowanym, w którym każdy dwuelementowy podzbiór ma supremum i infimum).
+	\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład}
+		Narysować diagram Hassego dla $\mathbb{B}^3$.
+		
+		\begin{center}
+			
+		\end{center}
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{block}{Definicja}
+		Niech $B$ będzie nietrywialną algebrą Boole'a.
+		\begin{itemize}
+			\item Niezerowy element $a\in B$ nazywamy {\bf atomem $B$} wtedy i tylko wtedy, gdy dla każdych $b,c\in B$ z równania $a=b\vee c$ wynika, że $a=b$ lub $a=c$.
+			\item Niejedynkowy element $a\in B$ nazywamy {\bf co-atomem $B$} wtedy i tylko wtedy, gdy dla każdych $b,c\in B$ z równania $a=b\wedge c$ wynika, że $a=b$ lub $a=c$. 
+		\end{itemize}
+	\end{block}
+	Zauważmy, że co-atom to dopełnienie atomu.
+	
+	\begin{block}{Wniosek}
+		\begin{itemize}
+			\item Niezerowy element $a\in B$ jest atomem algebry $B$ wtedy i tylko wtedy, gdy \underline{nie istnieje} $x\in B$ taki, że $0<x<a$.
+			\item Niejedynkowy $a\in B$ jest co-atomem algebry $B$ wtedy i tylko wtedy, gdy \underline{nie istnieje} $x\in B$ taki, że $a<x<1$.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład}
+		Wyznaczyć atomy i co-atomy $\mathbb{B}_3$ i $\mathbb{B}_n$ dla dowolnej liczby naturalnej $n$.
+		
+		Atomami $\mathbb{B}_3$ są $$(0,0,1),\,(0,1,0)\,\mbox{ i }(1,0,0),$$ natomiast co-atomy $\mathbb{B}_3$ to $$(0,1,1),\,(1,0,1)\,\mbox{ i }(1,1,0),$$ (por. przykład z diagramem Hassego $\mathbb{B}_3$).
+		
+		Analogicznie, atomy $\mathbb{B}_n$ to elementy zawierające 1 na dokładnie jednej współrzędnej, a co-atomy to elementy zawierające 0 na dokładnie jednej współrzędnej.
+		
+		Zauważmy, że liczba różnych (co-)atomów $\mathbb{B}_n$ wynosi $n$.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{block}{Twierdzenie}
+		Każdy niezerowy element \underline{skończonej} algebry Boole'a jest sumą różnych atomów tej algebry. Przedstawienie to jest jednoznaczne z dokładnością do kolejności czynników. 
+	\end{block}
+
+	Dokładniej, jeżeli niezerowy element algebry Boole'a nie jest atomem, to jest sumą wszystkich atomów mniejszych od niego. 
+	
+	\begin{block}{Wniosek}
+		Każdy niejedynkowy element skończonej algebry Boole'a jest iloczynem różnych co-atomów tej algebry. Przedstawienie to jest jednoznaczne z dokładnością do kolejności czynników. 
+	\end{block}
+
+	\begin{exampleblock}{Przykład}
+		Zapisać $(1,0,1,1,0)$ jako sumę atomów i jako iloczyn co-atomów.
+		\begin{align*}
+			(1,0,1,1,0)&=(1,0,0,0,0)\vee(0,0,1,0,0)\vee(0,0,0,1,0)\\
+			(1,0,1,1,0)&=(1,0,1,1,1)\wedge(1,1,1,1,0)
+		\end{align*}
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{block}{Definicja}
+		Niech $B_1$, $B_2$ będą algebrami Boole'a. Funkcję $f:B_1\to B_2$ nazywamy {\bf izomorfizmem} $B_1$ i $B_2$ wtedy i tylko wtedy, gdy dla każdych $x,\,y\in B_1$ mamy
+		\begin{enumerate}
+			\item $f$ jest bijekcją,
+			\item $f(x\wedge y)=f(x)\wedge f(y)$,
+			\item $f(x\vee y)=f(x)\vee f(y)$,
+			\item $f(\neg x)=\neg f(x)$,
+			\item $f(0)=0$,
+			\item $f(1)=1$.
+		\end{enumerate}
+	\end{block}
+	
+	Zatem izomorfizm to bijekcja, która zachowuje wszystkie działania.
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{block}{Twierdzenie}
+		Dwie \underline{skończone} algebry Boole'a są izomorficzne, gdy mają taką samą liczbę atomów.
+	\end{block}
+
+	\begin{block}{Wniosek}%z powyższego twierdzenie i twierdzenia ze slajdu 14
+		Każda skończona algebra Boole'a jest izomorficzna z $\mathbb{B}^n$ dla pewnej liczby naturalnej $n$.
+	\end{block}
+
+	Pamiętamy, że $\mathbb{B}^n$ ma dokładnie $n$ atomów.
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Metody reprezentacji funkcji boolowskich}
+		\begin{enumerate}
+		\item Za pomocą wielomianów boolowskich.
+		\item Za pomocą wartości --- zazwyczaj w tabelce.
+		\item Za pomocą indeksów atomów: {\bf indeksem atomu $a$} nazywamy ten argument, dla którego funkcja przyjmuje wartość 1. Indeks atomu zwykle zapisywany jest nie w postaci ciągu zer i jedynek, ale jako liczba w systemie dziesiętnym, która ten ciąg reprezentuje. Takie przedstawienie funkcji zaczyna się od symbolu $\sum$, po którym wypisuje się indeksy odpowiednich atomów (w~dowolnej kolejności).
+		\item Za pomocą indeksów co-atomów: {\bf indeksem co-atomu $c$} nazywamy ten argument, dla którego funkcja przyjmuje wartość 0. Takie przedstawienie $f$ zaczyna się od symbolu $\prod$.
+		\end{enumerate}
+	\end{block}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{block}{Definicja}
+		\begin{enumerate}
+			\item {\bf Literałem} dla zmiennej $x_i$ nazywamy $x_i$ lub $\neg x_i$.
+			\item {\bf Termem} nazywamy iloczyn literałów \underline{różnych} zmiennych.
+			\item {\bf Mintermem} nazywamy term zawierający \underline{wszystkie} zmienne.
+			\item {\bf Co-termem} nazywamy sumę literałów różnych zmiennych.
+			\item {\bf Maxtermem} nazywamy co-term zawierający wszystkie zmienne.
+		\end{enumerate}
+	\end{block}
+
+	\begin{exampleblock}{Przykład}
+		Rozpatrzmy algebrę $\mathbb{B}_3$ na zmiennych $x_1,x_2,x_3$.
+		
+		Literałami są $x_1,\neg x_1,x_2,\neg x_2, x_3,\neg x_3$.
+		
+		Przykładowe termy to $x_1\wedge x_3$, $\neg x_1 \wedge x_2 \wedge x_3$, $\neg x_1 \wedge \neg x_2$. 
+		
+		Jedynym mintermem wśród powyższych termów jest $\neg x_1 \wedge x_2 \wedge x_3$.
+		
+		Przykładowe co-termy to $x_1 \vee x_2$, $x_2\vee \neg x_3$, $x_1 \vee \neg x_2\vee \neg x_3$. 
+		
+		Jedynym maxtermem wśród powyższych co-termów jest $x_1 \vee \neg x_2\vee \neg x_3$.
+		
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}{Generowanie funkcji boolowskich przez wielomiany}
+	
+	\begin{block}{Twierdzenie}
+		Każdy atom $\mathtt{Bool}(n)$ jest generowany przez dokładnie jeden minterm.
+	\end{block}
+
+	\begin{block}{Wniosek}
+		Każda funkcja boolowska jest generowana przez sumę mintermów.
+	\end{block}
+
+	Reprezentacja wielomianu boolowskiego w postaci sumy mintermów jest nazywana jego {\bf dysjunkcyjną (alternatywną) postacią normalną (DNF)}.
+	
+\end{frame}
+		
+		
+		
+\begin{frame}
+			
+	\begin{exampleblock}{Przykład}
+		Wygenerować funkcję $f\in\mathtt{Bool}(3) $ daną wzorem $$f(x,y,z)=\neg\big(x\wedge(\neg y\Leftrightarrow z)\big)\Rightarrow y$$ za pomocą wielomianu DNF.
+		
+		Zapiszmy tabelę wartości funkcji $f$, aby sprawdzić, kiedy przyjmuje ona wartość $1$:
+		$$\begin{array}{ccc|ccccc}
+			x&y&z&f(x,y,z)\\\cline{1-4}
+			0&0&0&0\\
+			0&0&1&0\\
+			0&1&0&1&&\to&&\neg x\wedge y\wedge \neg z\\
+			0&1&1&1&&\to&&\neg x\wedge y\wedge z\\
+			1&0&0&0\\
+			1&0&1&1&&\to&&x\wedge\neg y\wedge z\\
+			1&1&0&1&&\to&&x\wedge y\wedge \neg z\\
+			1&1&1&1&&\to&&x\wedge y\wedge z
+		\end{array}$$
+	Zatem funkcja $f$ w postaci wielomianu $DNF$ to
+	$$(\neg x\wedge y\wedge \neg z)\vee(\neg x\wedge y\wedge z)\vee(x\wedge\neg y\wedge z)\vee(x\wedge y\wedge \neg z)\vee(x\wedge y\wedge z)$$
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	Analogicznie:
+	
+	\begin{block}{Twierdzenie}
+		Każdy co-atom $\mathtt{Bool}(n)$ jest generowany przez dokładnie jeden maxterm.
+	\end{block}
+	
+	\begin{block}{Wniosek}
+		Każda funkcja boolowska jest generowana przez iloczyn maxtermów.
+	\end{block}
+	
+	Reprezentacja wielomianu boolowskiego w postaci iloczynu maxtermów jest nazywana jego {\bf koniunkcyjną postacią normalną (CNF)}.
+	
+	\begin{alertblock}{Uwaga!}
+		Każda funkcja boolowska może być generowana przez nieskończenie wiele wielomianów boolowskich.
+	\end{alertblock}
+
+	
+\end{frame}
+
+
+\begin{frame}
+		
+		\begin{exampleblock}{Przykład}
+			Wygenerować funkcję $f\in\mathtt{Bool}(3) $ daną wzorem $$f(x,y,z)=\neg\big(x\wedge(\neg y\Leftrightarrow z)\big)\Rightarrow y$$ za pomocą wielomianu CNF.
+			
+			Zapiszmy tabelę wartości funkcji $f$, aby sprawdzić, kiedy przyjmuje ona wartość $0$:
+			$$\begin{array}{ccc|ccccc}
+			x&y&z&f(x,y,z)\\\cline{1-4}
+			0&0&0&0&&\to&& x\vee y\vee z\\
+			0&0&1&0&&\to&& x\vee y\vee \neg z\\
+			0&1&0&1&\\
+			0&1&1&1&\\
+			1&0&0&0&&\to&& \neg x\vee y\vee z\\
+			1&0&1&1&\\
+			1&1&0&1&\\
+			1&1&1&1&
+			\end{array}$$
+			Zatem funkcja $f$ w postaci wielomianu CNF to
+			$$(x\vee y\vee z)\wedge(x\vee y\vee \neg z)\wedge(\neg x\vee y\vee z)$$
+		\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}{Zastosowanie do układów elektrycznych}
+	\begin{itemize}
+		\item {\bf Switch (łącznik)} to urządzenie dwustanowe. Może być ustawiony albo w pozycji otwartej (wartość 0, prąd nie płynie) lub zamkniętej (wartość 1, prąd płynie).
+		\item {\bf (Prosty) system przełączający (obwód elektryczny)} składa się ze źródła energii, wyjścia oraz switchów.
+		\item Dwa podstawowe sposoby łączenia switchów to {\bf równoległy} ($\vee$) i~{\bf szeregowy}~($\wedge$). Czasami konieczne jest użycie switcha, który zawsze jest w~pozycji odwrotnej do ustalonego ($\neg$).
+		\item Prosty system przełączający nie zawiera pętli, więc wyjście zależy tylko od sposobu połączenia switchy (nie od czasu).
+	\end{itemize}
+	Zatem wszystkie połączenia switchów w systemie przełączającym można opisać wielomianem boolowskim, a wyjście --- funkcją boolowską generowaną przez ten wielomian.
+\end{frame}
+
+\begin{frame}
+	
+	\begin{itemize}
+		\item {\bf Sieć logiczna} to matematyczny model systemu przełączającego. 
+		\item Switche są reprezentowane przez {\bf bramki logiczne}, źródło energii się pomija. Podstawowe bramki logiczne to
+		
+		\begin{center}
+			
+		\end{center}
+	\end{itemize}
+
+	\begin{exampleblock}{Przykład}
+		Podać wzór funkcji boolowskiej zrealizowanej za pomocą poniższej sieci:
+		
+		\begin{center}
+			
+		\end{center}
+	
+	Przyjmując, że na wejściu mamy źródła $x$, $y$, $z$ (od góry), otrzymujemy
+	$$f(x,y,z)=\neg\big(\neg(x\vee\neg y)\vee(x\vee z)\big)\wedge y$$ 
+	\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+	\begin{exampleblock}{Przykład}
+		Narysować sieć logiczną realizującą $x\wedge\neg x$.
+	\end{exampleblock}
+
+	\begin{exampleblock}{Przykład}
+		Narysować sieć logiczną realizującą $(x\vee(y\wedge\neg z))\wedge(\neg x\vee z)$.
+	\end{exampleblock}
+	
+\end{frame}
+
+% Jeszcze coś o minimalizacji sieci logicznej (czyli automatycznie funkcji boolowskiej), na przykład algorytm Quine'a-McCluskey'a
+
+
+
+
+
+\end{document}

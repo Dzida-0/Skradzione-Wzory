@@ -1,0 +1,384 @@
+
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[T1,plmath]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usefonttheme[onlymath]{serif}
+
+
+\usepackage{ulem} % kolorowe podkreślenia
+\usepackage{xcolor} % kolorowe podkreślenia
+
+\usepackage{diagbox}
+\usepackage{tasks}
+
+
+
+
+\newcommand{\outdeg}{{\,\rm{outdeg}\,}}
+\newcommand{\indeg}{{\,\rm{indeg}\,}}
+
+%\definecolor{green1}{html}{22B14C}
+
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarańczowe podkreślenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % żółte podkreślenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreślenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreślenie
+
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+%\usecolortheme[rgb={1,0.5,0}]{structure}
+
+\title{\bf Kolorowanie grafów}
+%\subtitle{Matematyka, Kierunek: Architektura}
+\author[B. Pawlik]{\bf dr inż. Bartłomiej Pawlik}
+%\institute{}
+
+
+
+%\setbeamercovered{transparent} % przezroczyste warstwy
+
+
+
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Definicja}
+{\bf Grafem planarnym} nazywamy graf, który można narysować na płaszczyźnie bez przecięć.
+\end{block}
+
+
+\begin{exampleblock}{Przykład}
+Czy graf $K_4$ jest grafem planarnym?
+
+\medskip
+
+Tak (reprezentacja po prawej).
+
+\begin{center}
+	
+\end{center}
+\end{exampleblock}
+
+
+\begin{exampleblock}{Przykład}
+Czy graf $K_{2,3}$ jest grafem planarnym?
+\end{exampleblock}
+
+
+
+\end{frame}
+
+
+\begin{frame}
+
+
+\begin{block}{Twierdzenie}
+Grafy $K_{3,3}$ i $K_5$ nie są grafami planarnymi.
+\end{block}
+
+\begin{block}{Szkic dowodu.}
+Każda reprezentacja graficzna $K_{3,3}$ musi zawierać cykl długości $6$, a każda reprezentacja graficzna $K_{5}$ musi zawierać cykl długości $5$. Wystarczy narysować te cykle i rozpatrzyć wszystkie przypadki dorysowania pozostałych krawędzi.\hfill\qed
+\end{block}
+
+\medskip
+
+W teorii grafów planarnych centralną rolę ogrywa {\it twierdzenie Kuratowskiego}. Nie wchodząc w szczegóły, orzeka ono że dany graf nie jest planarny, jeżeli w pewnym sensie {\it zawiera} podgraf podobny do $K_{3,3}$ lub do $K_5$.
+
+\end{frame}
+
+
+\begin{frame}{Kolorowanie grafów prostych}
+
+	\begin{block}{Definicja}
+		Niech $G$ będzie grafem i niech dla pewnej liczby całkowitej $k$, zbiór $C$ będzie zbiorem $k$-elementowym. Funkcję $c:\,V(G)\to C$ nazywamy {\bf $k$-kolorowaniem} grafu $G$, zbiór $C$ nazywamy {\bf zbiorem kolorów}, a elementy zbioru $C$ --- {\bf kolorami}.
+	\end{block}
+
+\medskip
+
+Często przyjmuje się, że $C=\{1,2,\ldots,k\}$.
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{exampleblock}{Przykład 1}
+Rozważmy graf $G$ (na rysunku po lewej) i kolorowanie $c$ ze zbiorem kolorów $C=\{1,\,2,\,3\}$ takie, że
+$$c(v_1)=c(v_2)=c(v_4)=1,\ c(v_3)=c(v_5)=2,\ c(v_6)=3.$$
+Graf $G$ z zadanym kolorowaniem $c$ możemy przedstawić graficznie na kilka sposobów.
+\begin{itemize}
+\item Jeżeli w rozważanym kontekście opis wierzchołków jest nieistotny, to wierzchołki możemy indeksować kolorami (rysunek środkowy).
+\item Przymując, że kolor $1$ to czerwony, kolor $2$ to zielony, a kolor $3$ to niebieski, wierzchołki możemy (nomen omen) pokolorować (rysunek po prawej). W~tej konwencji można zachować opis wierzchołków.
+\end{itemize}
+
+\begin{center}
+
+\end{center}
+
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}	
+\begin{block}{Definicja}
+		Niech $G$ będzie grafem i $c$ będzie $k$-kolorowaniem grafu $G$. Kolorowanie $c$ nazywamy {\bf właściwym $k$-kolorowaniem} grafu $G$, jeżeli dla każdej pary sąsiednich wierzchołków przyjmuje ono róźne wartości:
+$$\forall_{u,v\in V(G)}:\ \{u,v\}\in E(G)\ \Rightarrow\ c(u)\neq c(v).$$
+\end{block}
+
+\bigskip
+
+\begin{block}{Definicja}
+Graf jest {\bf $k$-kolorowalny}, gdy istnieje właściwe $k$-kolorowanie tego grafu.
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Przykład 2}
+Zauważmy, że kolorowanie $c$ w przykładzie 1 nie jest kolorowaniem właściwym, ponieważ występuje w nim dwie para sąsiednich wierzchołków (np. $\{v_1,v_2\}$) mających przypisany ten sam kolor.
+
+\medskip
+
+Przykładowymi kolorowaniami właściwymi grafu $G$ z przykładu 1 są:
+
+\begin{center}
+
+\end{center}
+
+Na rysunkach mamy przedstawione właściwe 6-kolorowanie (po lewej), właściwie 3-kolorowanie (w środku) i właściwe 2-kolorowanie (po prawej) grafu $G$.
+
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+	\begin{alertblock}{Uwaga!}
+		W dalszej części wykładu pisząc o {\bf kolorowaniu} ({\bf $k$-kolorowaniu}) będziemy mieli na myśli wyłącznie {\bf kolorowanie właściwe} ({\bf $k$-kolorowanie właściwe}).
+	\end{alertblock}
+
+\bigskip
+
+\begin{block}{Definicja}
+Kolorowanie, które każdemu wierzchołkowi przyporządkowuje unikalny kolor nazywamy {\bf kolorowaniem naiwnym}.
+\end{block}
+
+\bigskip
+
+\begin{exampleblock}{Przykład}
+Rysunek po lewej stronie w przykładzie 2 przedstawia przykładowe kolorowanie naiwne rozpatrywanego grafu. 
+\end{exampleblock}
+	
+\end{frame}
+
+
+
+
+
+\begin{frame}
+	
+	\begin{block}{Definicja}
+		{\bf Liczbą chromatyczną} $\chi(G)$ grafu prostego $G$ nazywamy najmniejszą liczbę $k$ taką, że istnieje kolorowanie $c:V(G)\to\{1,2,\ldots,k\}$.
+	\end{block}
+
+\medskip
+
+	Nietrudno zauważyć, że dla dowolnego grafu prostego $G$ zachodzą nierówności
+	$$1\leq \chi(G)\leq |V(n)|.$$
+
+\medskip
+
+	\begin{exampleblock}{Przykład}
+		Wyznaczyć liczby chromatyczne grafów $P_n$ i $C_n$ dla każdego $n$.
+	\end{exampleblock}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+	\begin{block}{Stwierdzenie}
+		\begin{itemize}
+			\item $\chi(G)=1$ wtedy i tylko wtedy, gdy $G$ jest grafem pustym.
+			\item $\chi(G)=|V(G)|$ wtedy i tylko wtedy, gdy $G$ jest grafem pełnym.
+		\end{itemize}
+	\end{block}
+
+\medskip
+
+	\begin{block}{Stwierdzenie}
+		$\chi(G)=2$ wtedy i tylko wtedy, gdy $G$ jest niepustym grafem dwudzielnym.
+	\end{block}
+
+\medskip
+
+	\begin{block}{Wniosek}
+		$\chi(G)\geqslant3$ wtedy i tylko wtedy, gdy $G$ zawiera cykl długości nieparzystej.
+	\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{Twierdzenie}%Dowoód ind. Wilson s.111
+ 	Jeżeli $G$ jest grafem prostym, to $$\chi(G)\leqslant\Delta(G)+1.$$
+\end{block}
+
+
+\begin{proof}
+Przeprowadźmy dowód indukcyjny względem liczby wierzchołków. Niech $G$ będzie grafem prostym mającym $n$ wierzchołków i niech $\Delta=\Delta(G)$.
+
+Z grafu $G$ usuwamy wierzchołek $v$ wraz z przylegającymi do niego krawędziami. Graf $G\backslash\{v\}$ ma $(n-1)$ wierzchołków i $\Delta(G\backslash\{v\})\leqslant\Delta$.
+Z założenia indukcyjnego wynika, że $\chi(G\backslash\{v\})\leqslant\Delta+1$.
+
+Wykonujemy $(\Delta+1)$-kolorowanie grafu $G\backslash\{v\}$. Dodajemy do grafu wierzchołek $v$ (z przyległymi krawędziami) i nadajemy mu inny kolor niż mają jego sąsiedzi --- możemy to zrobić, bo liczba sąsiadów wierzchołka $v$ nie przekracza $\Delta$. W ten sposób uzyskaliśmy $(\Delta+1)$ kolorowanie grafu $G$.
+
+\end{proof}
+
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Przykład}
+Określić dla których cykli i dla których grafów pełnych zachodzi $\chi(G)=\Delta(G)+1$.
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{Twierdzenie (Brooks, 1941)}
+	Jeżeli $G$ jest spójnym grafem prostym, nie będącym cyklem nieparzystej długości ani grafem pełnym, to $$\chi(G)\leqslant\Delta(G).$$
+\end{block}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Twierdzenie o czterech barwach (Appel, Haken, 1976)}
+Jeżeli $G$ jest planarnym grafem prostym, to $$\chi(G)\leqslant4.$$
+\end{block}
+
+\only<1>{\begin{center}
+	
+\end{center}}
+\only<2>{\begin{center}
+	
+\end{center}}
+\only<3>{\begin{center}
+	
+\end{center}}
+\only<4>{\begin{center}
+	
+\end{center}}
+\only<5>{\begin{center}
+	
+\end{center}}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Definicja}
+ Niech $G$ będzie grafem i niech dla pewnej liczby całkowitej $k$, zbiór $C$ będzie zbiorem $k$-elementowym. Funkcję $c':\,E(G)\to C$ nazywamy {\bf $k$-kolorowaniem krawędziowym} grafu $G$, zbiór $C$ nazywamy {\bf zbiorem kolorów}, a elementy zbioru $C$ --- {\bf kolorami}.
+\end{block}
+
+\begin{block}{Definicja}
+Niech $G$ będzie grafem prostym i $c'$ będzie $k$-kolorowaniem krawędziowym grafu~$G$. Kolorowanie $c$ nazywamy {\bf właściwym $k$-kolorowaniem krawędziowym} grafu $G$, jeżeli dla każdej pary sąsiednich krawędzi przyjmuje ono róźne wartości:
+$$\forall_{\{u,v_1\},\{u,v_2\}\in E(G)}:\ v_1\neq v_2\ \Rightarrow\ c'(\{u,v_1\})\neq c'(\{u,v_2\}).$$
+\end{block}
+
+	\begin{alertblock}{Uwaga!}
+		W dalszej części wykładu pisząc o {\bf kolorowaniu krawędziowym} ({\bf $k$-kolorowaniu krawędziowym}) będziemy mieli na myśli wyłącznie {\bf właściwe kolorowanie krawędziowe} ({\bf właściwe $k$-kolorowanie krawędziowe}).
+	\end{alertblock}
+
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{block}{Definicja}
+		{\bf Indeksem chromatycznym} $\chi'(G)$ grafu prostego $G$ nazywamy najmniejszą liczbę $k$ taką, że istnieje kolorowanie krawędziowe $c':E(G)\to\{1,2,\ldots,k\}$.
+	\end{block}
+
+	\begin{exampleblock}{Przykład}
+		Wyznaczyć indeks chromatyczny grafu $K_{1,n}$ dla każdej liczby całkowitej dodatniej~$n$.
+	\end{exampleblock}
+
+	Graf $K_{1,n}$ nazywany bywa gwiazdą $S_{n-1}$.
+
+	\begin{block}{Stwierdzenie}
+		Dla każdego grafu prostego $G$ zachodzi $$\chi'(G)\geqslant\Delta(G).$$
+	\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Twierdzenie Vizinga (1964)}
+ Jeżeli $G$ jest grafem prostym, to
+$$\Delta(G)\leqslant\chi'(G)\leqslant\Delta(G)+1.$$
+\end{block}
+
+
+\end{frame}
+
+
+\begin{frame}
+
+
+\begin{block}{Definicja}
+\begin{itemize}
+\item Jeżeli $\chi'(G)=\Delta(G)$, to $G$ nazywamy grafem klasy I.
+\item Jeżeli $\chi'(G)=\Delta(G)+1$, to $G$ nazywamy grafem klasy II.
+\end{itemize}
+\end{block}
+
+\medskip
+
+Poniższy wynik również jest autorstwa Vadima G. Vizinga.
+
+\begin{block}{Twierdzenie}
+Jeżeli graf $G$ jest grafem klasy II, to co najmniej trzy wierzchołki tego grafu mają maksymalny stopień.
+\end{block}
+
+
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Twierdzenie Erd\H{o}sa-Wilsona (1975)}
+Niech $Gr(n)$ oznacza zbiór wszystkich grafów prostych mających $n$ wierzchołków i~niech $Cl_I(n)$ oznacza zbiór wszystkich grafów prostych klasy I mających $n$~wierzchołków. Wtedy
+$$\lim_{n\to\infty}\frac{|Cl_I(n)|}{|Gr(n)|}=1.$$ 
+\end{block}
+
+\end{frame}
+
+
+
+
+
+
+\end{document}
