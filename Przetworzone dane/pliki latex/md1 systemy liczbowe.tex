@@ -1,0 +1,600 @@
+
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[T1,plmath]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usefonttheme[onlymath]{serif}
+
+
+\usepackage{ulem} % kolorowe podkreślenia
+\usepackage{xcolor} % kolorowe podkreślenia
+
+\newcommand{\arcctg}{{\rm{arcctg}\,}}
+\newcommand{\arctg}{{\rm{arctg}\,}}
+\newcommand{\ddd}{{\,\rm{d}}}
+\newcommand{\Int}{{\,\rm{Int}}}
+
+%\definecolor{green1}{html}{22B14C}
+
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarańczowe podkreślenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % żółte podkreślenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreślenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreślenie
+
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+%\usecolortheme[rgb={1,0.5,0}]{structure}
+
+\title{\bf Systemy liczbowe}
+%\subtitle{Matematyka, Kierunek: Architektura}
+\author[B. Pawlik]{\bf dr inż. Bartłomiej Pawlik}
+%\institute{}
+
+
+
+%\setbeamercovered{transparent} % przezroczyste warstwy
+
+
+
+
+
+\begin{document}
+
+
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\section{Wstęp}
+
+\subsection{Matematyka dyskretna}
+
+% Czym jest matematyka dyskretna.
+% Zeilberger stwierdził, że pojęcie liczby rzeczywistej to oksymoron.
+% Promień obserwowalnego Wszechświata to 10^27 metrów (największa możliwa do zaobserwowania odległość). Jeżeli chcemy wyliczyć obwód obserwowalnego Wszechświata z dokładnością do odległości Plancka (10^{-35} metra, najmniejsza obserwowalna odległość), to wystarczy znać PI z dokładnością do 62 miejsc po przecinku
+
+
+
+\section{Oznaczenia}
+
+
+\begin{frame}{Oznaczenia}
+\begin{itemize}
+\item $A,B,C,\ldots$ --- zbiory
+\item $\emptyset$ --- zbiór pusty (bywa zapisywany jako \{\} )
+\item $a,b,c,\ldots$ --- elementy zbiorów
+\item $a\in S$ --- $a$ należy do zbioru $S$
+\item $a\not\in S$ --- $a$ nie należy do zbioru $S$
+\item $A\subset S$ --- $A$ jest pozbiorem zbioru $S$
+\item $|S|$ --- liczba elementów zbioru $S$
+\item $\displaystyle\sum\limits_{i=1}^na_i$ --- suma liczb $a_i$ dla $i=1,2,\ldots,n$:
+$$\sum\limits_{i=1}^na_i=a_1+a_2+\ldots+a_n$$
+\item $\displaystyle\prod\limits_{i=1}^na_i$ --- iloczyn liczb $a_i$ dla $i=1,2,\ldots,n$:
+$$\prod\limits_{i=1}^na_i=a_1\cdot a_2\cdot\ldots\cdot a_n$$
+\end{itemize}
+\end{frame}
+
+
+
+\subsection{Zbiory liczbowe}
+
+
+\begin{frame}{Niektóre zbiory liczbowe}
+\begin{itemize}
+\item $\mathbb{N}$ --- zbiór liczb naturalnych
+$$\mathbb{N}=\{\textcolor{red}{0},1,2,\ldots\}$$ 
+(UWAGA! W trakcie tego kursu będziemy domyślnie zakładać, że $0$ nie jest liczbą naturalną.)
+\item $\mathbb{Z}$ --- zbiór liczb całkowitych
+$$\mathbb{Z}=\{\ldots,-2,-1,0,1,2,\ldots\}=\{0,\pm1,\pm2,\pm3,\ldots\}$$
+\item $\mathbb{Q}$ --- zbiór liczb wymiernych
+$$\mathbb{Q}=\left\{\frac{p}q:\,p\in\mathbb{Z},q\in\mathbb{N},q\neq0\right\}$$
+\item $\mathbb{R}$ --- zbiór liczb rzeczywistych
+
+\begin{center}
+$\mathbb{R}$ --- zbiór granic wszystkich ciągów zbieżnych o~współczynnikach wymiernych
+\end{center}
+\item $\mathbb{C}$ --- zbiór liczb zespolonych
+$$\mathbb{C}=\left\{a+bi:\,a,b\in\mathbb{R},\ i^2=-1\right\}$$
+\item $\mathbb{H},\,\mathbb{O},\,\mathbb{S},\ldots$
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{Systemy liczbowe}
+	
+ {\bf Systemem liczbowym} nazywamy sposób zapisu liczb.
+
+\bigskip
+
+Przykładowe dawne systemy liczbowe:
+\begin{itemize}
+\item egipski (ok. $3000$ p.n.e. --- $1000$ n.e.) --- system oparty na hieroglifach reprezentujących kolejne potęgi liczby $10$
+\begin{center}
+
+
+{\footnotesize Źródło: {\it https://mathshistory.st-andrews.ac.uk/HistTopics/Egyptian\_numerals}}
+\end{center}
+\item babiloński --- używany w Mezopotamii, system pozycyjny o podstawie $60$
+\item grecki --- system alfabetyczny (każdej literze alfabetu przypisywano wartość liczbową) %gematria
+\item rzymski --- (wybrane litery alfabetu, dodawanie i odejmowanie) obecnie używany głównie w celach edukacyjnych lub w pewnych specyficznych kontekstach (liczby na zegarach, numery rozdziałów)
+\end{itemize}
+
+
+
+\end{frame}
+
+
+
+
+
+\begin{frame}
+	
+\begin{block}{Twierdzenie o dzieleniu z resztą}
+	Dla dowolnych niezerowych całkowitych liczb $a$ i $b$ istnieją \underline{jednoznacznie} wyznaczone liczby całkowite $q$ i $r$ ($0\leqslant r<|b|$) takie, że
+	$$a=q\cdot b+r.$$
+	Liczbę $q$ nazywamy {\bf ilorazem}, a liczbę $r$ {\bf resztą z dzielenia $a$ przez $b$}.
+\end{block}
+
+\begin{exampleblock}{Przykład 1}
+	\begin{itemize}
+		\item Dla $a=33$ i $b=7$ otrzymujemy $q=4$ i $r=5$:
+		$$33=4\cdot7+5.$$
+		\item Dla $a=-27$ i $b=-6$ otrzymujemy $q=5$ i $r=3$:
+		$$-27=5\cdot(-6)+3.$$
+		\item Dla $a=59$ i $b=-20$ otrzymujemy $q=-2$ i $r=19$:
+		$$59=(-2)\cdot(-20)+19.$$
+	\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+
+
+
+\begin{frame}
+	
+\begin{block}{Twierdzenie o postaci potęgowej}
+	Niech $b$ będzie liczbą całkowitą większą od $1$. Każdą liczbę całkowitą nieujemną $n$ można \underline{jednoznacznie} zapisać w postaci
+	\begin{equation}\label{potegowa}
+		n=a_kb^k+a_{k-1}b^{k-1}+\ldots+a_1b^1+a_0b^0,
+	\end{equation}
+	gdzie $k$ jest nieujemną liczbą całkowitą, $a_k\neq0$ oraz $a_i\in\{0,1,2,\ldots,b-1\}$ dla $i=0,1,\ldots,k-1$.
+\end{block}	
+
+Prawą stronę równania \eqref{potegowa} nazywamy {\bf postacią potęgową liczby $n$ przy podstawie $b$}.
+
+Dowód powyższego twierdzenia można przeprowadzić poprzez iteracyjne stosowanie twierdzenia o dzieleniu z resztą - zaczynamy od podzielenia $n$ przez $b$, następnie od podzielenia otrzymanej reszty przez $b$ itd. Otrzymany ciąg reszt pokrywa się z ciągiem $a_0,a_1,\ldots,a_k$.
+	
+\end{frame}
+
+
+
+
+\begin{frame}
+
+\begin{exampleblock}{Przykład}
+Zauważmy, że
+\begin{align*}1202=&\,1\cdot10^3+2\cdot10^2+0\cdot10^1+2\cdot10^0\\
+=&\,1\cdot5^4+4\cdot5^3+3\cdot5^2+0\cdot5^1+2\cdot5^0\\
+=&\,1\cdot2^{10}+0\cdot2^9+0\cdot2^8+1\cdot2^7+0\cdot2^6+1\cdot2^5+1\cdot2^4+\\
+&\,+0\cdot2^3+0\cdot2^2+1\cdot2^1+0\cdot2^0
+\end{align*}
+Zatem $$1\cdot10^3+2\cdot10^2+0\cdot10^1+2\cdot10^0$$
+jest {\it postacią potęgową liczby $1202$ przy podstawie $10$},
+$$1\cdot5^4+4\cdot5^3+3\cdot5^2+0\cdot5^1+2\cdot5^0$$
+jest {\it postacią potęgową liczby $1202$ przy podstawie $5$}, natomiast
+$$1\cdot2^{10}+0\cdot2^9+0\cdot2^8+1\cdot2^7+0\cdot2^6+1\cdot2^5+1\cdot2^4+0\cdot2^3+0\cdot2^2+1\cdot2^1+0\cdot2^0$$
+jest {\it postacią potęgową liczby $1202$ przy podstawie $2$}.
+\end{exampleblock}
+
+
+\end{frame}
+
+
+\begin{frame}
+	Korzystając ze wzoru (\ref{potegowa}), można przyjąć notację 
+	\begin{equation}\label{zapispot}
+		n=a_kb^k+a_{k-1}b^{k-1}+\ldots+a_1b^1+a_0b^0=:\left(\bar{a}_k\bar{a}_{k-1}\ldots\bar{a}_1\bar{a}_0\right)_b,
+	\end{equation}
+	gdzie $\bar{a}_i$ jest cyfrą odpowiadającą liczbie $a_i$ (nawiasy można pominąć).
+	
+	Prawą stronę równania \eqref{zapispot} nazywamy {\bf zapisem liczby $n$ przy podstawie $b$}.
+	
+	
+	\begin{exampleblock}{Przykład}
+Otrzymujemy\begin{align*}1202=&\,(1202)_{10}\\
+=&\,(14302)_5\\
+=&\,(10010110010)_2
+\end{align*}
+\end{exampleblock}
+	
+	
+
+	\begin{alertblock}{Uwaga!}
+		Liczby w zapisie o podstawie 10 będziemy zwyczajowo zapisywać w postaci $\bar{a}_k\bar{a}_{k-1}\ldots\bar{a}_1\bar{a}_0$ zamiast $\left(\bar{a}_k\bar{a}_{k-1}\ldots\bar{a}_1\bar{a}_0\right)_b$.
+	\end{alertblock}
+\end{frame}
+
+
+
+
+\begin{frame}
+
+	\begin{block}{}
+		W systemach liczbowych o podstawach $2,3,\ldots,16$ zwyczajowo\footnote{Wyjątkiem od tej reguły jest system dwunastkowy --- stowarzyszenie {\it Doznal Society of America} ,,spopularyzowało'' cyfry $\rotatebox[origin=c]{180}{2}$ (dek) i $\reflectbox{3}$ (el) na oznaczenie $10$ i $11$.} przyjmuje się następujące oznaczenia cyfr:
+		$$\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}\hline
+		\mbox{wartość}&0&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15\\\hline
+		\mbox{cyfra}&0&1&2&3&4&5&6&7&8&9&A&B&C&D&E&F\\\hline
+		\end{array}$$
+	\end{block}
+	
+
+
+\begin{center}
+
+ 	Jasper Johns, {\it 0 through 9} (1961) \newline Tate Gallery, London\end{minipage}
+\end{center}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}{\bf Nazwy niektórych systemów pozycyjnych}
+	
+	\begin{center}
+		
+	\begin{tabular}{|c|l|l|}\hline
+		Podstawa systemu& Nazwa &Inne nazwy\\\hline
+		-2&minus-dwójkowy&negabinarny\\\hline
+		2& dwójkowy& binarny\\\hline
+		8&ósemkowy&oktalny\\\hline
+		12&dwunastkowy&duodecymalny\\\hline
+		16& szesnastkowy&heksadecymalny\\\hline
+	\end{tabular}
+
+	\end{center}
+	
+\end{frame}
+
+
+\begin{frame}{Konwersja na system dziesiętny}
+	
+	Aby wykonać konwersję na system dziesiętny, wystarczy wprost zastosować twierdzenie o postaci potęgowej.
+	
+	\begin{exampleblock}{Przykład}
+		Zapisać liczby $10100_2$, $320_5$ i $2CA_{14}$ w systemie dziesiętnym.		
+	\begin{align*}
+	10100_2&=1\cdot2^4+0\cdot2^3+1\cdot2^2+0\cdot2^1+0\cdot2^0=16+4=20\\
+	320_5&=3\cdot5^2+2\cdot5^1+0\cdot5^0=75+10+0=85\\
+	2CA_{14}&=2\cdot14^2+12\cdot14^1+10\cdot14^0=392+168+10=570
+	\end{align*}
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Schemat Hornera}
+		Zauważmy, że postać potęgową
+		$$n=a_kb^k+a_{k-1}b^{k-1}+\ldots+a_1b+a_0$$
+		można przekształcić na
+		$$n=b\Big(b\ldots\big(b(b\cdot a_k+a_{k-1})+a_{k-2}\big)+\ldots+a_1\Big)+a_0.$$
+	\end{block}
+
+	Ile mnożeń należy wykonać, aby obliczyć $n$ w każdej z powyższych postaci?
+	
+	\begin{exampleblock}{Przykład}
+		Zapisać liczby $10100_2$, $320_5$ i $2CA_{14}$ w systemie dziesiętnym.		
+		\begin{align*}
+			10100_2&=2\cdot(2\cdot(2\cdot(2\cdot1+0)+1)+0)+0=2\cdot(2\cdot(2\cdot2+1))=\\
+				   &=2\cdot2\cdot5=20\\
+			320_5&=5\cdot(5\cdot3+2)+0=5\cdot17=85\\
+			2CA_{14}&=14\cdot(14\cdot2+12)+10=14\cdot40+10=570
+		\end{align*}
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}{Konwersja z systemu dziesiętnego}
+	Jak przekształcić liczbę naturalną $n$ zapisaną w systemie o podstawie $10$ na liczbę~$n$ zapisaną w systemie o podstawie $b$?
+	\begin{block}{Konwersja z systemu dziesiętnego: Pierwszy sposób}
+		\begin{enumerate}
+			\item Liczbę $n$ zapisujemy w postaci $n=q_0\cdot b+r_0$. Liczba $r_0$ odpowiada cyfrze $\bar{a}_0$ w zapisie liczby $n$ przy podstawie $b$.
+			\item Liczbę $q_0$ zapisujemy w postaci $q_0=q_1\cdot b+r_1$. Liczba $r_1$ odpowiada cyfrze $\bar{a}_1$ w zapisie liczby $n$ przy podstawie $b$.
+			\item Procedurę powtarzamy do momentu, gdy $q_i=0$.
+		\end{enumerate}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\begin{exampleblock}{Przykład}
+		Liczbę 352 zapisać w systemie o podstawie 11.
+		\begin{align*}
+			352&=32\cdot11+\textcolor{red}0\\
+			32&=2\cdot11+\textcolor{red}{10}\\
+			2&=0\cdot11+\textcolor{red}2
+		\end{align*}		
+		Resztom $\textcolor{red}0,\textcolor{red}{10}$ i $\textcolor{red}2$ przypisujemy, odpowiednio, cyfry $\textcolor{red}0,\textcolor{red}{A}$ i $\textcolor{red}2$.
+		
+		Ostatecznie $352=\textcolor{red}{2A0}_{11}$.
+	\end{exampleblock}
+\end{frame}
+
+
+
+	
+\begin{frame}
+	\begin{block}{Konwersja z systemu dziesiętnego: Drugi sposób}
+		\begin{enumerate}
+			\item Określić największą potęgę liczby $b$ nie większą niż $n$, tj. znaleźć największą liczbę całkowitą nieujemną $w_0$ taką, że $n-b^{w_0}\geq0$.
+			\item Określić największą liczbę całkowitą $k_0$ taką, że $n-k_0\cdot b^{w_0}\geq0$. Liczba $k_0$ odpowiada cyfrze $\bar{a}_{w_0}$ zapisu liczby $n$ w systemie o~podstawie $b$.
+			\item Krok 2 powtórzyć $w_0$ razy, za każdy razem zmniejszając wykładnik o 1, a~zamiast $n$ przyjmować ostatnie otrzymane $n_i-k_ib^{w_i}$.
+		\end{enumerate}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{exampleblock}{Przykład}
+		Liczbę 352 zapisać w systemie o podstawie 11.
+		
+		Kolejne potęgi liczby $11$ to $1,\,11,\,121,\,1331,\,\ldots$. Zauważmy, że $121<352$ i~$1331>352$, więc otrzymamy liczbę 3-cyfrową (liczba cyfr jest o 1 większa od wykładnika $121=11^2$).
+		$$352-\textcolor{red}{2}\cdot11^2=110\geq0\ \ \mbox{ oraz }\ \ 352-3\cdot11^2=-11<0,$$
+		więc pierwszą (od lewej) cyfrą w zapisie liczby $352$ w systemie o podstawie 11 jest~$\textcolor{red}{2}$.
+		$$110-\textcolor{red}{10}\cdot11^1=0\geq0\ \ \mbox{ oraz }\ \ 110-11\cdot11^1=-11<0,$$
+		więc kolejną cyfrą jest $\textcolor{red}{A}$ (odpowiadająca wartości liczbowej $\textcolor{red}{10}$).
+		$$0-\textcolor{red}{0}\cdot11^0=0\geq0\ \ \mbox{ oraz }\ \ 0-1\cdot11^0=-1<0,$$
+		więc ostatnią cyfrą jest $\textcolor{red}{0}$.
+		
+		Ostatecznie $352=\textcolor{red}{2A0}_{11}$.
+	\end{exampleblock}
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}{Konwersja między systemami przy dowolnych podstawach}
+	
+	Jak przekonwertować zapis liczby $n$ w systemie o podstawie $a$ na system o~podstawie $b$? Wyróżnimy kilka przypadków. Zakładamy, że $a$, $b$, $s$, $t$ są większymi od 1 liczbami całkowitymi.
+	
+	\begin{block}{Kowersja $a\to b$ (przypadek ogólny)}
+		Dla dowolnej liczby $n$ system dziesiętny może posłużyć za system {\it pośredni} między systemami o~podstawach $a$ i $b$: $$n_a\to n_{10}\to n_b.$$	
+	\end{block}
+
+
+	\begin{exampleblock}{Przykład}
+		Liczbę $1213_4$ zapisać w systemie o podstawie 7.	
+		\begin{align*}
+			1213_4=&\,1\cdot4^3+2\cdot4^2+1\cdot4^1+3\cdot4^0=64+32+4+3=103=\\
+			=&\,2\cdot7^2+0\cdot7^1+5\cdot7^0=205_7
+		\end{align*}
+	
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Konwersja $a \to a^t$}
+		Dzielimy liczbę $n$ na bloki $t$-cyfrowe (od prawej) i konwertujemy każdy blok na pojedynczą cyfrę (używając postaci potęgowej bloku).
+	\end{block}
+
+	\begin{exampleblock}{Przykład}
+		Liczbę $10011010111_2$ zapisać w systemie o podstawie 8.
+		
+		$8=2^3$, więc daną liczbę dzielimy na bloki 3-cyfrowe i każdy z nich konwertujemy na system oktalny: 
+		$$\begin{array}{|c|c|c|c|}\hline
+		\textcolor{gray}{0}10&011&010&111\\\hline
+		2&3&2&7\\\hline
+		\end{array}$$
+		
+		Zatem $10011010111_2=2327_8$.
+	\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Konwersja $a^s \to a$}
+		Konwertujemy każdą cyfrę osobno i ewentualnie uzupełniamy zerami z lewej aby każdy otrzymany blok miał dokładnie $s$ cyfr.
+	\end{block}
+
+	\begin{exampleblock}{Przykład}
+	Liczbę $3AD2_{16}$ zapisać w systemie o podstawie 2.
+	
+	$16=2^4$, więc każdą cyfrę konwertujemy na blok 4-cyfrowy w systemie binarnym:
+	$$\begin{array}{|c|c|c|c|}\hline
+	3&A&D&2\\\hline
+	\textcolor{gray}{00}11&1010&1101&0010\\\hline
+	\end{array}$$
+	
+	Zatem $3AD2_{16}=11101011010010_2$.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Konwersja $a^s \to a^t$}
+		System o podstawie $a$ może posłużyć jako system pośredni między systemami o~podstawiach $a^s$ i $a^t$:
+		$$n_{a^s}\to n_a\to n_{a^t}.$$
+	\end{block}
+
+	\begin{exampleblock}{Przykład}
+		Liczbę $10012031_4$ zapisać w systemie o podstawie 8.
+		
+		Liczby 4 i 8 są potęgami liczby 2, więc pośrednio użyjemy systemu binarnego.
+		
+		$$\begin{array}{|c|c|c|c|c|c|c|c|}\hline
+		1&0&0&1&2&0&3&1\\\hline
+		\textcolor{gray}{0}1&00&00&01&10&00&11&01\\\hline
+		\end{array}$$
+		
+		Zatem $10012031_4=100000110001101_2$.
+		
+		$$\begin{array}{|c|c|c|c|c|}\hline
+		100&000&110&001&101\\\hline
+		4&0&6&1&5\\\hline
+		\end{array}$$
+		
+		Ostatecznie $10012031_4=40615_8$.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+
+
+\begin{frame}
+
+\begin{exampleblock}{Przykład}
+Wyznaczyć $b$, jeżeli $247_b=1310_5$.
+
+Korzystając (obustronnie) z twierdzenia o postaci potęgowej, możemy powyższe równanie zapisać w postaci
+$$2\cdot b^2+4\cdot b+7=1\cdot5^3+3\cdot5^2+1\cdot5^1+0.$$
+Po uproszczeniu otrzymanego równania dostajemy
+$$b^2+2b-99=0.$$
+Jedynymi rozwiązaniami są $b=9$ oraz $b=-11$. Drugie z otrzymanych rozwiązań jest sprzeczne z założeniem, że podstawa systemu pozycyjnego jest liczbą całkowitą większą od $1$. 
+
+Zatem ostatecznie  jedynym rozwiązaniem jest $b=9$.
+\end{exampleblock}
+
+
+\end{frame}
+
+
+
+%\begin{frame}
+	
+%	{
+%		\setbeamercolor{block body}{fg=black, bg=lightgray}
+%		\setbeamercolor{block title}{fg=black, bg=darkgray}
+%		\begin{block}{{\it Pan raczy żartować, Panie Feynman!} (1985)}
+%			{\it [...] Dam przykład: uczyli dzieci, że system dziesiętny nie jest jedynym możliwym, co może być dla dziecka ciekawą rozrywką umysłową. Ale w tych podręcznikach było to tak zrobione, że \textbf{każde} dziecko miało się nauczyć innej podstawy! No i~potem były takie potworności: "Zamień te liczby, które są napisane w~systemie siódemkowym, na system piątkowy". Zamienianie z jednej podstawy na inną jest czymś \textbf{całkowicie bezużytecznym}. Jeżeli umiesz to robić, może sprawi ci to frajdę; jeżeli nie umiesz, nie zaprzątaj sobie tym głowy.}
+			
+%			\vspace{0.5cm}
+			
+%			(Feynman pisał o nauczaniu szkolnym w Kalifornii w drugiej połowie XX wieku.) 
+%		\end{block}
+%	}
+	
+	% str. 373, Feynman był członkiem Stanowej Komisji ds. Programu Nauczania, która zatwierdzała nowe podręczniki dla stanu Kalifornia. Generalnie miał bardzo krytyczny stosunek do zaprezentowanych podręczników z matematyki. Nie miał nic przeciwko przedstawianiu w książkach różnych ciekawostek, ale irytowało go, gdy bezmyślnie WYMAGANO od uczniów uczenia się na pamięć niepotrzebnych pojęć. Pytanie do studentów: czy można przełożyć kontekst z kalifornijskich szkół z drugiej połowy XX wieku na informatykę w XXI wieku? Czy znajomość zamiany podstaw jest przydatna dla informatyka?
+	
+%\end{frame}
+
+
+
+\begin{frame}{Rozwinięcie liczby rzeczywistej przy danej podstawie}
+	
+	\begin{block}{Twierdzenie}
+		Niech $b$ będzie większą od 1 liczbą całkowitą. Każda nieujemna liczba rzeczywista $x$ jest sumą \underline{jednoznacznie} określonego szeregu postaci $\displaystyle\sum\limits_{k=0}^\infty\frac{x_k}{b^k}$, takiego że
+		\begin{itemize}
+			\item $x_0=\lfloor x\rfloor$ oraz $x_k\in\{0,1,\ldots,b-1\}$ dla $k>0$.
+			\item Nie istnieje liczba naturalna $K$ taka, że dla każdego $k>K$ zachodzi $x_k=b-1$.
+		\end{itemize}
+	\end{block}
+	
+	\bigskip
+
+	Szereg zdefiniowany w powyższym twierdzeniu nazywamy {\bf standardowym (lub normalnym) rozwinięciem liczby $x$ przy podstawie $b$}.
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	Zauważmy, że poprzednie twierdzenie umożliwia zapis dowolnej dodatniej liczby rzeczywistej $x$ w systemie o podstawie $b$. Jeżeli $$x=\sum\limits_{k=0}^\infty\frac{x_k}{b^k},$$ to możemy przyjąć, że
+	$$x=(\bar{a}_n\bar{a}_{n-1}\ldots \bar{a}_0.\bar{x}_1\bar{x}_2\ldots)_b,$$
+	gdzie $(\bar{a}_n\bar{a}_{n-1}\ldots \bar{a}_0)_b=x_0$ oraz $\bar{x}_i$ jest cyfrą o wartości $x_i$. 
+	
+	
+	
+\begin{exampleblock}{Przykład}
+Zauważmy, że 
+\begin{align*}
+251.84=&\,250+1+0.6+0.24=\\
+=&\,2\cdot125+1+4\cdot0.2+1\cdot0.04=\\
+=&\,2\cdot5^3+0\cdot5^2+0\cdot5^1+1\cdot5^0+4\cdot5^{-1}+1\cdot5^{-2}=\\
+=&\,2001.41_5.
+\end{align*}
+Zatem $251.84=2001.41_5$.
+
+\end{exampleblock}	
+
+	
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+
+	\begin{block}{Wniosek}
+		Standardowe rozwinięcie liczby \underline{wymiernej} $x$ przy dowolnej podstawie jest skończone lub okresowe (tzn.~istnieją liczby całkowite dodatnie $s$ i $t$ takie, że $x_k=x_{k+t}$ dla każdego całkowitego $k>s$).
+	\end{block}
+	
+	\begin{block}{Uwagi}
+	\begin{itemize}
+		\item Najmniejszą liczbę $t$ o powyższej własności nazywamy okresem podstawowym.
+		\item Rozwinięcie liczby $x$ jest skończone, gdy dzielniki pierwsze mianownika skróconej postaci $x$ dzielą również podstawę $b$ rozważanego systemu pozycyjnego.
+		\item W przypadku rozwinięcia okresowego używa się nawiasów ({\it notacja europejska}):
+		$$(\bar{a}_n\ldots\bar{a}_0.\bar{x}_1\ldots\bar{x}_{s-1}(\bar{x}_s\ldots \bar{x}_{s+t-1}))_b$$
+		lub kreski ({\it notacja amerykańska}):
+		$$(\bar{a}_n\ldots\bar{a}_0.\bar{x}_1\ldots\bar{x}_{s-1}\overline{\bar{x}_s\ldots \bar{x}_{s+t-1}})_b.$$
+	\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+
+\begin{frame}{Liczba cyfr}
+	
+	\begin{block}{}
+		$\lfloor x\rfloor$ oznacza część całkowitą liczby rzeczywistej $x$.
+	\end{block}
+	
+	\begin{exampleblock}{Przykład}
+		$\displaystyle\lfloor5\rfloor=5,\ \ \lfloor1.31\rfloor=1,\ \ \left\lfloor\frac52\right\rfloor=2,\ \ \lfloor\pi\rfloor=3,\ \ \lfloor-2\rfloor=-2,\ \ \lfloor-6.28\rfloor=-7.$
+	\end{exampleblock}
+	
+	\begin{block}{Twierdzenie}
+		Liczba cyfr liczby $n$ w zapisie przy podstawie $b$ jest równa $\lfloor\log_bn\rfloor+1.$
+	\end{block}
+
+	\begin{exampleblock}{Przykład: googol}
+		Ile cyfr ma liczba $10^{100}$ w zapisie przy podstawach $10$ i $12$ ?
+		\begin{itemize}
+			\item $\displaystyle \lfloor\log_{10}10^{100}\rfloor+1=\lfloor100\log_{10}{10}\rfloor+1=\lfloor100\rfloor+1=101$
+			\item $\displaystyle \lfloor\log_{12}10^{100}\rfloor+1=\lfloor100\log_{12}{10}\rfloor+1=\lfloor100\cdot0.92662\ldots\rfloor+1=93$
+		\end{itemize}
+	\end{exampleblock}
+\end{frame}
+
+
+
+\end{document}

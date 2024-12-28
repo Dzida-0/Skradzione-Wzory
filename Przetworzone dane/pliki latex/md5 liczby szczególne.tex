@@ -1,0 +1,567 @@
+
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[T1,plmath]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usefonttheme[onlymath]{serif}
+
+
+\usepackage{ulem} % kolorowe podkreœlenia
+\usepackage{xcolor} % kolorowe podkreœlenia
+
+\usepackage{diagbox}
+\usepackage{tasks}
+\usepackage{tikz}
+
+\newcommand{\arcctg}{{\rm{arcctg}\,}}
+\newcommand{\arctg}{{\rm{arctg}\,}}
+\newcommand{\ddd}{{\,\rm{d}}}
+\newcommand{\Int}{{\,\rm{Int}}}
+
+%\definecolor{green1}{html}{22B14C}
+
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarañczowe podkreœlenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % ¿ó³te podkreœlenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreœlenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreœlenie
+
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+%\usecolortheme[rgb={1,0.5,0}]{structure}
+
+\title{\bf Liczby szczególne}
+%\subtitle{Matematyka, Kierunek: Architektura}
+\author[B. Pawlik]{\bf dr in¿. Bart³omiej Pawlik}
+%\institute{}
+
+
+
+%\setbeamercovered{transparent} % przezroczyste warstwy
+
+
+
+
+
+\begin{document}
+
+
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{Potêgi krocz¹ce}
+\begin{block}{Definicja}
+Niech $m\geqslant0$ bêdzie liczb¹ ca³kowit¹.
+\begin{itemize}
+\item {\it Doln¹ silni¹} nazywamy wyra¿enie
+$$x^{\underline{m}}=x(x-1)(x-2)\cdots(x-m+1).$$
+\item {\it Górn¹ silni¹} nazywamy wyra¿enie
+$$x^{\overline{m}}=x(x+1)(x+2)\cdots(x+m-1).$$
+\end{itemize}
+\end{block}
+
+\bigskip
+
+Wyra¿enie $x^{\underline{m}}$ czytamy ,,$x$ do $m$-tej ubywaj¹cej'', a $x^{\overline{m}}$ --- ,,$x$ do $m$-tej przybywaj¹cej''.
+\end{frame}
+
+
+\begin{frame}
+
+\begin{exampleblock}{Przyk³ad}
+\begin{itemize}
+\item $5^{\underline{3}}=5\cdot4\cdot3=60$
+\item $5^{\overline{3}}=5\cdot6\cdot7=210$
+\item $4^{\underline{5}}=4\cdot3\cdot2\cdot1\cdot0=0$
+\end{itemize}
+\end{exampleblock}
+
+\begin{block}{}
+$$n!=n^{\underline{n}}=1^{\overline{n}}$$
+\end{block}
+
+\begin{exampleblock}{Przyk³ad}
+\begin{itemize}
+\item $x^{\underline{3}}=x(x-1)(x-2)=x^3-3x^2+2x$
+\item $x^{\overline{3}}=x(x+1)(x+2)=x^3+3x^2+2x$
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}{Liczby Stirlinga drugiego rodzaju}
+
+\begin{block}{Definicja}
+{\it Podzia³em} skoñczonego zbioru $S$ nazywamy rodzinê \underline{parami roz³¹cznych} podzbiorów $\{S_1,S_2,\ldots,S_k\}$ zbioru $S$ tak¹, ¿e $$S_1\cup S_2\cup\ldots\cup S_k=S.$$
+\end{block}
+
+\bigskip
+
+\begin{block}{Definicja (liczby Stirlinga drugiego rodzaju)}
+Symbol ${n\brace k}$ (czyt. $k$ podzbiorów $n$) oznacza liczbê sposobów podzia³u zbioru $n$-elementowego na $k$ niepustych podzbiorów.
+\end{block}
+
+\smallskip
+
+\begin{small}Liczby Stirlinga drugiego rodzaju wystêpuj¹ czêœciej ni¿ liczby Stirlinga pierwszego rodzaju, wiêc zaczynamy od nich --- tak jak James Stirling w swojej ksi¹¿ce {\it Methodus Differentialis} (1730).\end{small}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Przyk³ad}
+Wyznacz wartoœæ ${4\brace2}$.
+
+\smallskip
+
+Wyznaczymy liczbê podzia³ów zbioru czterolementowego $\{a,b,c,d\}$ na dwa niepuste zbiory. Zauwa¿my, ¿e $4=1+3=2+2$, wiêc dany zbiór mo¿emy zapisaæ jako sumê zbiórów trój- oraz jednoelementowego lub dwóch dwuelementowych: 
+$$\begin{array}{cccccc}
+1+3:&\{a\}\cup\{b,c,d\},&\{b\}\cup\{c,d,e\},&\{c\}\cup\{a,b,d\},&\{d\}\cup\{a,b,c\},\\
+2+2:&\{a,b\}\cup\{c,d\},&\{a,c\}\cup\{b,d\},&\{a,d\}\cup\{b,c\}.$$
+\end{array}$$
+
+Zatem ${4\brace2}=7$.
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+
+Wartoœci $\displaystyle{n\brace k}$ dla ma³ych wartoœci $k$:
+\begin{itemize}
+\item $k=0$.
+
+Przyjmujemy, ¿e $\displaystyle{0\brace0}=1$. Je¿eli $n>0$ to, oczywiœcie, $\displaystyle{n\brace0}=0$.
+
+\item $k=1$.
+
+Mamy $\displaystyle{0\brace1}=0$. Dla $n>0$ istnieje dok³adnie jeden $n$-elementowy podzia³ $n$-elementowego zbioru, wiêc $$\displaystyle{n\brace1}=1.$$
+
+\item $k=2$.
+
+Oczywiœcie $\displaystyle{0\brace2}=0$. Za³ó¿my, ¿e $n>0$. Chcemy rozbiæ zbiór $S=\{a_1,a_2,\ldots,a_n\}$ na dwa podzbiory $S_1$ i $S_2$. Bez straty ogólnoœci mo¿emy przyj¹æ, ¿e $a_1\in S_1$. Pozosta³e $a_i$ mo¿emy przypisaæ do zbioru $S_1$ na $2^{n-1}$ sposobów, ale musimy pamiêtaæ, ¿e nie mo¿emy do niego przypisaæ \underline{wszystkich} elementów zbioru $S$. Zatem
+$${n\brace2}=2^{n-1}-1.$$
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+Wartoœci $\displaystyle{n\brace k}$ dla ma³ych $n$ i $k$:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}\hline
+\backslashbox{$n$}{$k$}&$0$&$1$&$2$&$3$&$4$&$5$&$6$&$7$&$8$&$9$\\\hline
+$0$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\\hline
+$1$&$0$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\\hline
+$2$&$0$&$1$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\\hline
+$3$&$0$&$1$&$3$&$1$&$0$&$0$&$0$&$0$&$0$&$0$\\\hline
+$4$&$0$&$1$&$7$&$6$&$1$&$0$&$0$&$0$&$0$&$0$\\\hline
+$5$&$0$&$1$&$15$&$25$&$10$&$1$&$0$&$0$&$0$&$0$\\\hline
+$6$&$0$&$1$&$31$&$90$&$65$&$15$&$1$&$0$&$0$&$0$\\\hline
+$7$&$0$&$1$&$63$&$301$&$350$&$140$&$21$&$1$&$0$&$0$\\\hline
+$8$&$0$&$1$&$127$&$966$&$1701$&$1050$&$266$&$28$&$1$&$0$\\\hline
+$9$&$0$&$1$&$255$&$3025$&$7770$&$6951$&$2646$&$462$&$36$&$1$\\\hline
+%$10$&$0$&$1$&$511$&$9330$&$34\,105$&$42\,525$&$22\,827$&$5880$&$750$&$45$&$1$\\\hline
+\end{tabular}
+\end{center}
+
+\begin{block}{Uwaga!}
+W przypadku, gdy $n\geqslant0$ i $k<0$ zak³adamy, ¿e $\displaystyle{n\brace k}=0$.
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Twierdzenie}
+Dla $n>0$ zachodzi zale¿noœæ rekurencyjna
+$${n\brace k}={{n-1}\brace{k-1}}+k\cdot{{n-1}\brace k}.$$
+\end{block}
+
+\begin{block}{Dowód. {\it (1/2)}}
+Niech $S=\{a_1,a_2,\ldots,a_n\}$. Okreœlimy liczbê podzia³ów $S$ na $k$ niepustych podzbiorów $S_1,S_2,\ldots,S_k$. Zauwa¿my, ¿e w ka¿dym takim podziale elementy $a_1,a_2,\ldots,a_{n-1}$ mo¿na przydzieliæ \underline{albo} do zbiorów $S_1,S_2,\ldots,S_{k-1}$ \underline{albo} do zbiorów $S_1,S_2,\ldots,S_{k-1},S_k$ (w obu przypadkach ka¿dy z wymienionych zbiorów posiada co najmniej jeden z elementów $a_1,\ldots,a_{n-1}$).
+\smallskip
+
+W pierwszym przypadku mamy $\displaystyle{{n-1}\brace{k-1}}$ mo¿liwoœci. Zauwa¿my, ¿e dla ka¿dego takiego podzia³u element $a_n$ tworzy jednoznaczenie jednoelementowy ostatni zbiór $S_k$: $S_k=\{a_n\}$.
+\end{block}
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Dowód. \it(2/2)}
+W drugim przypadku mamy $\displaystyle{{n-1}\brace k}$ mo¿liwoœci podzia³u zbioru $\{a_1,a_2,\ldots,a_{k-1}\}$ na $S_1,S_2,\ldots,S_k$. Zauwa¿my, ¿e w przypadku ka¿dego takiego podzia³u element $a_n$ mo¿e trafiæ do jednego z $k$ zbiorów $S_1,S_2,\ldots,S_k$. Zatem w~tym przypadku mamy $\displaystyle k\cdot {{n-1}\brace k}$ mo¿liwoœci.
+
+\smallskip
+
+Ostatecznie $${n\brace k}={{n-1}\brace{k-1}}+k\cdot{{n-1}\brace k}.$$
+\hfill$\square$
+\end{block}
+\end{frame}
+
+\begin{frame}
+Trójk¹t Stirlinga dla podzbiorów:
+
+$$\begin{array}{ccccccccccc}
+&&&&&{0\brace0}&&&&&\\
+&&&&{1\brace0}&&{1\brace1}&&&&\\
+&&&{2\brace0}&&{2\brace1}&&{2\brace2}&&&\\
+&&{3\brace0}&&{3\brace1}&&{3\brace2}&&{3\brace3}&&\\
+&{4\brace0}&&{4\brace1}&&{4\brace2}&&{4\brace3}&&{4\brace4}&\\
+{5\brace0}&&{5\brace1}&&{5\brace2}&&{5\brace3}&&{5\brace4}&&{5\brace5}\\
+&&&&&\vdots&&&&&
+\end{array}$$
+
+\bigskip
+
+Trójk¹t Stirlinga dla podzbiorów:
+
+$$\begin{array}{ccccccccccc}
+&&&&&1&&&&&\\
+&&&&0&&1&&&&\\
+&&&0&&1&&1&&&\\
+&&0&&1&&3&&1&&\\
+&0&&1&&7&&6&&1&\\
+0&&1&&15&&25&&10&&1\\
+&&&&&\vdots&&&&&
+\end{array}
+$$
+
+\end{frame}
+
+
+
+\begin{frame}
+\begin{exampleblock}{Przyk³ad}
+Oblicz wartoœci wyra¿eñ
+\begin{tasks}(2)
+\task $x^\underline{1}+x^\underline{2},$
+\task $x^\underline{1}+3x^\underline{2}+x^\underline{3},$
+\task $x^\underline{1}+7x^\underline{2}+6x^\underline{3}+x^\underline{4}.$
+\task $x^\underline{1}+15x^\underline{2}+25x^\underline{3}+10x^\underline{4}+x^\underline5.$
+\end{tasks}
+\end{exampleblock}
+
+\bigskip
+
+Powy¿szy przyk³ad pokazuje, ¿e dla ma³ych wartoœci $n$ wyra¿enie $x^n$ mo¿na zapisaæ jako sumê potêg zstêpuj¹cych ze wspó³czynnikami wynikaj¹cymi z tabeli liczb Stirlinga drugiego rodzaju:
+\begin{align*}
+x^0=&\,x^\underline0,\\
+x^1=&\,x^\underline1,\\
+x^2=&\,x^\underline1+x^\underline2,\\
+x^3=&\,x^\underline1+3x^\underline2+x^\underline3,\\
+x^4=&\,x^\underline1+7x^\underline2+6x^\underline3+x^\underline4,\\
+x^5=&\,x^\underline{1}+15x^\underline{2}+25x^\underline{3}+10x^\underline{4}+x^\underline5.
+\end{align*}
+Czy prawdziwa jest ogólna zale¿noœæ?
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Twierdzenie}
+Wzór
+$$x^n=\sum\limits_{k=0}^n{n\brace k}x^\underline{k}$$
+zachodzi dla ka¿dej liczby ca³kowitej dodatniej $n$. 
+\end{block}
+
+\begin{block}{Dowód. {\it(1/2)}}
+Zauwa¿my, ¿e z $$x^\underline{k+1}=x^\underline{k}(x-k)$$ wynika, ¿e $$x^\underline{k}\cdot x=x^{\underline{k+1}}+kx^\underline{k}.$$
+
+Przeprowadzimy dowód indukcyjny. Wiemy, ¿e wzór jest prawdziwy dla ma³ych wartoœci $n$. Za³ó¿my $(ZI)$, ¿e zachodzi on dla $(n-1)$, czyli
+$$x^{n-1}=\sum\limits_{k=0}^{n-1}{n-1\brace k}x^\underline{k}.$$
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Dowód. \it(2/2)}
+Mamy
+\begin{align*}
+x^n=&\,x\cdot x^{n-1}\mathop{=}\limits^{(ZI)}x\cdot\sum\limits_{k=0}^{n-1}{n-1\brace k}x^\underline{k}=\sum\limits_{k=0}^{n-1}{n-1\brace k}x^\underline{k}\cdot x=\\
+=&\,\sum\limits_{k=0}^{n-1}{n-1\brace k}(x^\underline{k+1}+kx^\underline{k})=\sum\limits_{\textcolor{teal}{k=0}}^{\textcolor{teal}{n-1}}{n-1\brace \textcolor{teal}k}x^\underline{\textcolor{teal}{k+1}}+\sum\limits_{k=0}^{n-1}{n-1\brace k}kx^\underline{k}=\\
+=&\,\textcolor{red}0+\sum\limits_{\textcolor{teal}{k=1}}^{\textcolor{teal}{n}}{n-1\brace \textcolor{teal}{k-1}}x^\underline{\textcolor{teal}{k}}+\sum\limits_{k=0}^{n-1}{n-1\brace k}kx^\underline{k}+\textcolor{blue}0=\\
+=&\,\textcolor{red}{{n-1\brace -1}x^\underline0}+\sum\limits_{k=1}^n{n-1\brace k-1}x^\underline{k}+\sum\limits_{k=0}^{n-1}{n-1\brace k}kx^\underline{k}+\textcolor{blue}{{n-1\brace n}nx^\underline{n}}=\\
+=&\,\sum\limits_{k=\textcolor{red}0}^n{n-1\brace k-1}x^\underline{k}+\sum\limits_{k=0}^{\textcolor{blue}n}{n-1\brace k}kx^\underline{k}=\sum\limits_{k=0}^n\left({n-1\brace k-1}+{n-1\brace k}k\right)\cdot x^\underline{k}=\\
+=&\,\sum\limits_{k=0}^n{n\brace k}\cdot x^\underline{k}.
+\end{align*}\hfill$\square$
+\end{block}
+\end{frame}
+
+
+
+
+\begin{frame}{Liczby Stirlinga pierwszego rodzaju}
+
+\begin{block}{Definicja}
+{\it Cyklem} nazywamy cykliczne ustawienia elementów danego zbioru.
+\end{block}
+
+\bigskip
+
+\begin{minipage}{0.75\textwidth}
+Przyk³adowo jednym z cykli zbioru $\{A,B,C,D\}$ jest cykl w~którym $A$ przechodzi na $D$, $D$ na $B$, $B$ na $C$, a $C$ na $A$. Ten cykl zapisujemy w postaci $[A,D,B,C]$. Oczywiœcie
+$$[A,D,B,C]=[D,B,C,A]=[B,C,A,D]=[C,A,D,B].$$
+\end{minipage}
+\hfill
+\begin{minipage}{0.2\textwidth}
+\begin{tikzpicture}
+[
+whitenode/.style={circle, very thick, minimum size=2mm},
+]
+\node[whitenode] (node0) {};
+\node[whitenode] (nodeA) [above of=node0] {$A$};
+\node[whitenode] (nodeD) [right of=node0] {$D$};
+\node[whitenode] (nodeB) [below of=node0] {$B$};
+\node[whitenode] (nodeC) [left of=node0] {$C$};
+\draw[->] (nodeA) .. controls (0.7,0.7) .. (nodeD);
+\draw[->] (nodeD) .. controls (0.7,-0.7) .. (nodeB);
+\draw[->] (nodeB) .. controls (-0.7,-0.7) .. (nodeC);
+\draw[->] (nodeC) .. controls (-0.7,0.7) .. (nodeA);
+\end{tikzpicture}
+\end{minipage}
+
+\begin{block}{Definicja (liczby Stirlinga pierwszego rodzaju)}
+Symbol ${n\brack k}$ (czyt. $k$ cykli $n$) oznacza liczbê sposobów na rozmieszczenie $n$ elementów w $k$ roz³¹cznych cyklach.
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Przyk³ad}
+Wyznacz wartoœæ ${4\brack2}$.
+
+\smallskip
+
+Wyznaczymy liczbê podzia³u elementów czterolementowego zbioru $\{a,b,c,d\}$ na dwa niepuste cykle:
+$$\begin{array}{cccc}
+[a]\,[b,c,d],&[b]\,[a,c,d],&[c]\,[a,b,d],&[d]\,[a,b,c],\\{}
+[a]\,[b,d,c],&[b]\,[a,d,c],&[c]\,[a,d,b],&[d]\,[a,c,b],\\{}
+[a,b]\,[c,d],&[a,c]\,[b,d],&[a,d]\,[b,c].
+\end{array}$$
+
+Zatem ${4\brack2}=11$.
+\end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}
+
+Wartoœci $\displaystyle{n\brack k}$ dla ma³ych wartoœci $k$:
+\begin{itemize}
+\item $k=0$.
+
+Podobnie jak w przypadku liczb Stirlinga drugiego rodzaju mamy $\displaystyle{0\brack0}=1$ oraz $\displaystyle{n\brack0}=0$ dla $n>0$.
+
+\item $k=1$.
+
+Oczywiœcie $\displaystyle{0\brack1}=0$. Pamiêtamy, ¿e zbiór $n$-elementowy ma dok³adnie $n!$ permutacji. Ka¿demu cyklowi odpowiada dok³adnie $n$ permutacji (ka¿da rozpoczyna siê od innego elementu danego zbioru), zatem
+$${n\brack1}=\frac{n!}n=(n-1)!$$
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+Wartoœci $\displaystyle{n\brack k}$ dla ma³ych $n$ i $k$:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}\hline
+\backslashbox{$n$}{$k$}&$0$&$1$&$2$&$3$&$4$&$5$&$6$&$7$&$8$\\\hline
+$0$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\\hline
+$1$&$0$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\\hline
+$2$&$0$&$1$&$1$&$0$&$0$&$0$&$0$&$0$&$0$\\\hline
+$3$&$0$&$2$&$3$&$1$&$0$&$0$&$0$&$0$&$0$\\\hline
+$4$&$0$&$6$&$11$&$6$&$1$&$0$&$0$&$0$&$0$\\\hline
+$5$&$0$&$24$&$50$&$35$&$10$&$1$&$0$&$0$&$0$\\\hline
+$6$&$0$&$120$&$274$&$225$&$85$&$15$&$1$&$0$&$0$\\\hline
+$7$&$0$&$720$&$1764$&$1624$&$735$&$175$&$21$&$1$&$0$\\\hline
+$8$&$0$&$5040$&$13\,068$&$13\,132$&$6769$&$1960$&$322$&$28$&$1$\\\hline
+$9$&$0$&$40\,320$&$109\,584$&$118\,124$&$67\,284$&$22\,449$&$4536$&$546$&$36$\\\hline
+\end{tabular}
+\end{center}
+\begin{block}{Uwaga!}
+W przypadku, gdy $n\geqslant0$ i $k<0$ zak³adamy, ¿e $\displaystyle{n\brack k}=0$.
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{block}{Twierdzenie}
+Dla $n>0$ zachodzi zale¿noœæ rekurencyjna
+$${n\brack k}={{n-1}\brack{k-1}}+(n-1)\cdot{{n-1}\brack k}.$$
+\end{block}
+
+\begin{small}Poni¿szy dowód jest modyfikacj¹ wczeœniej przedstawionego dowodu zale¿noœci rekurencyjnej dla liczb Stirlinga drugiego rodzaju.\end{small}
+
+\begin{block}{Dowód. {\it (1/2)}}
+Niech $S=\{a_1,a_2,\ldots,a_n\}$. Okreœlimy liczbê podzia³ów $S$ na $k$ cykli $C_1,C_2,\ldots,C_k$. Zauwa¿my, ¿e w ka¿dym takim podziale elementy $a_1,a_2,\ldots,a_{n-1}$ mo¿na rozmieœciæ \underline{albo} w~cyklach $C_1,C_2,\ldots,C_{k-1}$ \underline{albo} w~cyklach  $C_1,C_2,\ldots,C_{k-1},C_k$. 
+
+W pierwszym przypadku mamy $\displaystyle {{n-1}\brack {k-1}}$ mo¿liwoœci. Zaywa¿my, ¿e dla ka¿dego takiego podzia³u element $a_n$ tworzy ostatni, jednoelementowy cykl $C_k=[a_n]$.
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{block}{Dowód. \it(2/2)}
+W drugim przypadku mamy $\displaystyle{{n-1}\brack k}$ mo¿liwoœci podzia³u zbioru $\{a_1,a_2,\ldots,a_{k-1}\}$ na cykle $C_1,C_2,\ldots,C_k$. W przypadku ka¿dego takiego podzia³u element $a_n$ mo¿e trafia do jednego z tych cykli. Nietrudno zauwa¿yæ, ¿e mo¿na go tak umieœciæ na $(n-1)$ sposobów (cykl d³ugoœci $L$ mo¿na rozszerzyæ o~jeden element na $L$ sposobów).  Zatem w~tym przypadku mamy $\displaystyle (n-1)\cdot {{n-1}\brack k}$ mo¿liwoœci.
+
+\smallskip
+
+Ostatecznie $${n\brack k}={{n-1}\brack{k-1}}+(n-1)\cdot{{n-1}\brack k}.$$
+\hfill$\square$
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+Trójk¹t Stirlinga dla cykli:
+
+$$\begin{array}{ccccccccccc}
+&&&&&{0\brack0}&&&&&\\
+&&&&{1\brack0}&&{1\brack1}&&&&\\
+&&&{2\brack0}&&{2\brack1}&&{2\brack2}&&&\\
+&&{3\brack0}&&{3\brack1}&&{3\brack2}&&{3\brack3}&&\\
+&{4\brack0}&&{4\brack1}&&{4\brack2}&&{4\brack3}&&{4\brack4}&\\
+{5\brack0}&&{5\brack1}&&{5\brack2}&&{5\brack3}&&{5\brack4}&&{5\brack5}\\
+&&&&&\vdots&&&&&
+\end{array}$$
+
+\bigskip
+
+Trójk¹t Stirlinga dla cykli:
+
+$$\begin{array}{ccccccccccc}
+&&&&&1&&&&&\\
+&&&&0&&1&&&&\\
+&&&0&&1&&1&&&\\
+&&0&&2&&3&&1&&\\
+&0&&6&&11&&6&&1&\\
+0&&24&&50&&35&&10&&1\\
+&&&&&\vdots&&&&&
+\end{array}
+$$
+\end{frame}
+
+
+
+
+\begin{frame}
+Zauwa¿my, ¿e $\displaystyle {n\brack k}$ oznacza liczbê permutacji $n$ obiektów, które zawieraj¹ dok³adnie $k$ cykli. Zatem aby otrzymaæ liczbê wszystkich permutacji $n$ obiektów, mo¿na zsumowaæ wartoœci wyra¿enia $\displaystyle {n\brack k}$ dla wszystkich $k$ takich, ¿e $0\leqslant k\leqslant n$:
+
+\begin{block}{}
+$$\sum\limits_{k=0}^n{n\brack k}=n!$$
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{exampleblock}{Przyk³ad}
+Zapisz w postaci ogólnej wielomiany $x^{\overline{s}}$ dla $s=0,1,2,3,4,5$.
+\begin{align*}
+x^{\overline0}=1=&\,x^0,\\
+x^{\overline1}=x=&\,x^1,\\
+x^{\overline2}=x(x+1)=&\,x^1+x^2,\\
+x^{\overline3}=x(x+1)(x+2)=&\,2x^1+3x^2+x^3,\\
+x^{\overline4}=x(x+1)(x+2)(x+3)=&\,6x^1+11x^2+6x^3+x^4,\\
+x^{\overline5}=x(x+1)(x+2)(x+3)(x+4)=&\,24x^1+50x^2+35x^3+10x^4+x^5.
+\end{align*}
+\end{exampleblock}
+
+\bigskip
+
+Jak powinno wygl¹daæ uogólnienie zaobserwowanych wyników?
+
+\end{frame}
+
+\begin{frame}
+\begin{block}{Twierdzenie}
+Wzór
+$$x^{\overline{n}}=\sum_{k=0}^n{n\brack k}x^k$$
+zachodzi dla ka¿dej liczby ca³kowitej dodatniej $n$.
+\end{block}
+
+\bigskip
+
+\begin{itemize}
+\item Zauwa¿my, ¿e jak w powy¿szym wzorze podstawimy $x=1$, to otrzymamy jeden z omawianych wczeœniej wzorów.
+\item Dowód powy¿szego twierdzenia mo¿na przeprowadziæ indukcyjnie --- podobnie do przeprowadzonego wczeœniej dowodu analogicznego twierdzenia dla liczb Stirlinga drugiego rodzaju (nale¿y pamiêtaæ, ¿e $\displaystyle x^{\overline{n}}=(x+n-1)x^{\overline{n-1}}$).
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}{Zale¿noœci miêdzy liczbami Strilinga pierwszego i drugiego rodzaju}
+
+Zauwa¿my, ¿e liczba cykli musi byæ co najmniej równa liczbie podzbiorów, wiêc mamy
+\begin{block}{}
+$${n\brace k}\leqslant{n\brack k}$$
+\end{block}
+dla ca³kowitych nieujemnych $n$ i $k$.
+
+\bigskip
+
+Zachodz¹ tzw. {\it wzory inwersji}:
+
+\begin{block}{}
+Je¿eli $m\neq n$, to
+$$\sum\limits_{k=m}^n{n\brack k}{k\brace m}(-1)^{n-k}=\sum\limits_{k=m}^n{n\brace k}{k\brack m}(-1)^{n-k}=0$$
+\end{block}
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}
+
+\begin{itemize}
+\item ${n\choose k}$ --- liczba $k$-elementowych podzbiorów zbioru $n$-elementowego
+\item ${n\brace k}$ --- liczba podzia³ów $n$-elementowego zbioru na $k$ niepustych podzbiorów
+\item ${n\brack k}$ --- liczba permutacji $n$-elementowego zbioru zawieraj¹cych $k$ cykli
+\end{itemize}
+
+\bigskip
+
+\begin{block}{}
+Liczby Stirlinga pierwszego rodzaju nazywane s¹ {\it liczbami cyklicznymi Stirlinga}, a~drugiego rodzaju --- {\it liczbami podzbiorowymi Stirlinga}.
+\end{block}
+
+
+\end{frame}
+
+\end{document}

@@ -1,0 +1,191 @@
+a4paper,10pt beamer T1,plmath polski cp1250 inputenc amssymb indentfirst graphicx onlymath serif ulem % kolorowe podkreślenia xcolor % kolorowe podkreślenia arcctg \, arctg \, \, d \, Int %\definecolor{green1}{html}{22B14C} 1 orange black #1 % pomarańczowe podkreślenie 1 yellow black #1 % żółte podkreślenie 1 blue black #1 % niebieskie podkreślenie 1 RGB 34,177,76 black #1 % zielone podkreślenie Boadilla crane %\usecolortheme[rgb={1,0.5,0}]{structure}  Algebry Boole'a i funkcje boolowskie %\subtitle{Matematyka, Kierunek: Architektura} B. Pawlik  dr inż. Bartłomiej Pawlik %\institute{} %\setbeamercovered{transparent} % przezroczyste warstwy Algebry Boole'a Logika - powtórka 
+	Każde zdanie (formuła zdaniowa) może być zapisane w równoważnej postaci wyłącznie za pomocą spójników  , \,  i  .
+	
+	 
+		Przykładowe reprezentacje implikacji i równoważności:
+		
+	 Definicja  Wielomianem boolowskim  W  zmiennych  x_1,x_2, ,x_n  nazywamy formułę zdaniową zbudowaną wyłącznie z  x_1,x_2, ,x_n  oraz spójników  , \,  i  .
+		
+		  Wartościowanie logiczne wielomianu boolowskiego  W  nazywamy  n -argumentową funkcją boolowską f=W(x_1,x_2, ,x_n)  i mówimy wtedy, że  W  generuje f .
+		
+		  Zbiór wszystkich  n -argumentowych fukcji boolowskich oznaczamy przez  Bool (n) .
+		 Przykład 
+		Podać przykład wielomianu boolowskiego zmiennych  x,y,z . Ustalić jego wartościowanie logiczne.
+		
+		Rozpatrzmy wielomian  (x  y) (  z)  generujący funkcję  f(x,y,z)=(x  y) (  z) . Mamy
+		
+	 Przykład 
+		Określić  Bool (1) .
+		
+		Wypiszmy wszystkie możliwe wartościowania funkcji boolowskiej na jednej binarnej zmiennej  x :
+		
+		Nietrudno zauważyć, że  f_1(x)=0, \,  f_2(x)=x, \,  f_3(x)=  x  i  f_4(x)=1 .
+		
+		Zatem  Bool (1)= \{ 0, \, 1, \, x, \,  x \} .
+	 Przykład 
+		Podać trzy przykładowe elementy zbioru  Bool (3) .
+		
+	 Stwierdzenie 
+		Dla każdej liczby naturalnej  n  zachodzi  | Bool (n)|=2^ 2^n . 
+	 
+		Funkcja boolowska  f  każdemu argumentowi przypisuję jedną z dwóch wartości ( 0 ~lub~ 1 ). Zatem liczba różnych  n -argumentowych funkcji boolowskich wynosi  2^ |D_f| , gdzie  |D_f|  to liczba elementów dziedziny funkcji  f .
+		
+		Dziedzina składa się z  n -elementowych ciągów binarnych, których jest  2^n . Zatem ostatecznie  | Bool (n)|=2^ 2^n .
+	 Definicja 
+		Niech  B  będzie zbiorem z działaniami binarnymi  ,  , działaniem unarnym   i~niech  0,1  B ,  0 1 . Szóstkę  (B, , , ,0,1)  nazywamy   algebrą Boole'a  wtedy i tylko wtedy, gdy dla dowolnych  x,y,z  B  mamy
+		 x  y=y  x, \  \  x  y=y  x ,
+			 (x  y)  z=x (y  z), \  \  (x  y)  z=x (y  z) ,
+			 x (y  z)=(x  y) (x  z), \  \  x (y  z)=(x  y) (x  z), 1  x=x, \  \  0  x=x ,
+			  x  x=0, \  \   x  x=1  Działania można interpretować następująco:   to mnożenie,   to dodawanie, a   to dopełnienie.
+			  Jeżeli operacje są z góry określone, to  (B, , , ,0,1)  oznaczamy w skrócie przez  B .
+		 Podstawowe przykłady algebry Boole'a B = \{ 0,1 \}  --- zbiór wartości logicznych (boolowskich); działaniami są  , , .
+	 B ^n= \{ 0,1 \} ^n  --- produkt kartezjański  n  kopii zbioru  B  z naturalnie określonymi działaniami (po współrzędnych).
+	 Przykład 
+		Wykonać działania  , ,  na elementach  (1,1,0,0,0),(0,1,1,0,1) B ^5 .
+		
+	 Podstawowe przykłady algebr Boole'a Bool (n)  wraz z naturalnie określonymi działaniami (po wartościach) stanowi algebrę Boole'a ze względu na fakt, że każda  n -argumentowa funkcja boolowska działa z  B ^n  w  B .
+	 Przykład 
+		Wykonać działania w  Bool (1) .
+		
+		W jednym z poprzednich przykładów określiliśmy, że  Bool (1)= \{ 0,1,x,  x \} .
+		
+		
+		
+		Ponadto   0=1,  1=0,  (x)=  x,  (  x)=x .
+		
+	 Stwierdzenie 
+		W każdej algebrze Boola elementy 0, 1 oraz   x (dla każdego elementu  x ) są określone jednoznacznie.
+	 Twierdzenie 
+		Niech  B  będzie algebrą Boole'a. Wówczas dla każdego  x,y  B  mamy
+		 x  1=1, \  \  x 0=0 ,
+			 (x  y)  x=x, \  \  (x  y)  x=x, 0=1, \  \  1=0, \  \  (  x)=x ,
+			 x  x=x, \  \  x  x=x ,
+			 (x  y)=  x  y, \  \  (x  y)=  x  y. Definicja 
+		W algebrze Boole'a  B  definiujemy relację   następująco:
+		
+	 Twierdzenie 
+		Niech  B  będzie algebrą Boole'a i niech  x,y  B . Wtedy
+		 x  y  x  y =x x  y  x  x  y 0  x  1 
+		Ponadto  (B, )  jest kratą (tzn. zbiorem częściowo uporządkowanym, w którym każdy dwuelementowy podzbiór ma supremum i infimum).
+	 Przykład 
+		Narysować diagram Hassego dla  B ^3 .
+		
+		 Definicja 
+		Niech  B  będzie nietrywialną algebrą Boole'a.
+		  Niezerowy element  a  B  nazywamy   atomem  B  wtedy i tylko wtedy, gdy dla każdych  b,c  B  z równania  a=b  c  wynika, że  a=b  lub  a=c .
+			  Niejedynkowy element  a  B  nazywamy   co-atomem  B  wtedy i tylko wtedy, gdy dla każdych  b,c  B  z równania  a=b  c  wynika, że  a=b  lub  a=c . 
+		 
+	Zauważmy, że co-atom to dopełnienie atomu.
+	
+	 Wniosek  Niezerowy element  a  B  jest atomem algebry  B  wtedy i tylko wtedy, gdy  nie istnieje x  B  taki, że  0<x<a .
+			  Niejedynkowy  a  B  jest co-atomem algebry  B  wtedy i tylko wtedy, gdy  nie istnieje x  B  taki, że  a<x<1 .
+		 Przykład 
+		Wyznaczyć atomy i co-atomy  B _3  i  B _n  dla dowolnej liczby naturalnej  n .
+		
+		Atomami  B _3  są  natomiast co-atomy  B _3  to  (por. przykład z diagramem Hassego  B _3 ).
+		
+		Analogicznie, atomy  B _n  to elementy zawierające 1 na dokładnie jednej współrzędnej, a co-atomy to elementy zawierające 0 na dokładnie jednej współrzędnej.
+		
+		Zauważmy, że liczba różnych (co-)atomów  B _n  wynosi  n .
+	 Twierdzenie 
+		Każdy niezerowy element  skończonej  algebry Boole'a jest sumą różnych atomów tej algebry. Przedstawienie to jest jednoznaczne z dokładnością do kolejności czynników. 
+	 
+	Dokładniej, jeżeli niezerowy element algebry Boole'a nie jest atomem, to jest sumą wszystkich atomów mniejszych od niego. 
+	
+	 Wniosek 
+		Każdy niejedynkowy element skończonej algebry Boole'a jest iloczynem różnych co-atomów tej algebry. Przedstawienie to jest jednoznaczne z dokładnością do kolejności czynników. 
+	 Przykład 
+		Zapisać  (1,0,1,1,0)  jako sumę atomów i jako iloczyn co-atomów.
+		
+	 Definicja 
+		Niech  B_1 ,  B_2  będą algebrami Boole'a. Funkcję  f:B_1  B_2  nazywamy   izomorfizmem B_1  i  B_2  wtedy i tylko wtedy, gdy dla każdych  x, \, y  B_1  mamy
+		 f  jest bijekcją,
+			 f(x  y)=f(x)  f(y) ,
+			 f(x  y)=f(x)  f(y) ,
+			 f(  x)=  f(x) ,
+			 f(0)=0 ,
+			 f(1)=1 .
+		 
+	Zatem izomorfizm to bijekcja, która zachowuje wszystkie działania.
+ Twierdzenie 
+		Dwie  skończone  algebry Boole'a są izomorficzne, gdy mają taką samą liczbę atomów.
+	 Wniosek %z powyższego twierdzenie i twierdzenia ze slajdu 14 
+		Każda skończona algebra Boole'a jest izomorficzna z  B ^n  dla pewnej liczby naturalnej  n .
+	 
+	Pamiętamy, że  B ^n  ma dokładnie  n  atomów.
+	
+ Metody reprezentacji funkcji boolowskich  Za pomocą wielomianów boolowskich.
+		  Za pomocą wartości --- zazwyczaj w tabelce.
+		  Za pomocą indeksów atomów:   indeksem atomu  a  nazywamy ten argument, dla którego funkcja przyjmuje wartość 1. Indeks atomu zwykle zapisywany jest nie w postaci ciągu zer i jedynek, ale jako liczba w systemie dziesiętnym, która ten ciąg reprezentuje. Takie przedstawienie funkcji zaczyna się od symbolu  , po którym wypisuje się indeksy odpowiednich atomów (w~dowolnej kolejności).
+		  Za pomocą indeksów co-atomów:   indeksem co-atomu  c  nazywamy ten argument, dla którego funkcja przyjmuje wartość 0. Takie przedstawienie  f  zaczyna się od symbolu  .
+		 Definicja  Literałem  dla zmiennej  x_i  nazywamy  x_i  lub   x_i .
+			  Termem  nazywamy iloczyn literałów  różnych  zmiennych.
+			  Mintermem  nazywamy term zawierający  wszystkie  zmienne.
+			  Co-termem  nazywamy sumę literałów różnych zmiennych.
+			  Maxtermem  nazywamy co-term zawierający wszystkie zmienne.
+		 Przykład 
+		Rozpatrzmy algebrę  B _3  na zmiennych  x_1,x_2,x_3 .
+		
+		Literałami są  x_1,  x_1,x_2,  x_2, x_3,  x_3 .
+		
+		Przykładowe termy to  x_1  x_3 ,   x_1   x_2   x_3 ,   x_1   x_2 . 
+		
+		Jedynym mintermem wśród powyższych termów jest   x_1   x_2   x_3 .
+		
+		Przykładowe co-termy to  x_1   x_2 ,  x_2  x_3 ,  x_1   x_2  x_3 . 
+		
+		Jedynym maxtermem wśród powyższych co-termów jest  x_1   x_2  x_3 .
+		
+	 Generowanie funkcji boolowskich przez wielomiany Twierdzenie 
+		Każdy atom  Bool (n)  jest generowany przez dokładnie jeden minterm.
+	 Wniosek 
+		Każda funkcja boolowska jest generowana przez sumę mintermów.
+	 
+	Reprezentacja wielomianu boolowskiego w postaci sumy mintermów jest nazywana jego   dysjunkcyjną (alternatywną) postacią normalną (DNF) .
+	
+ Przykład 
+		Wygenerować funkcję  f Bool (3)   daną wzorem  za pomocą wielomianu DNF.
+		
+		Zapiszmy tabelę wartości funkcji  f , aby sprawdzić, kiedy przyjmuje ona wartość  1 :
+		
+	Zatem funkcja  f  w postaci wielomianu  DNF  to
+	
+	 
+	Analogicznie:
+	
+	 Twierdzenie 
+		Każdy co-atom  Bool (n)  jest generowany przez dokładnie jeden maxterm.
+	 Wniosek 
+		Każda funkcja boolowska jest generowana przez iloczyn maxtermów.
+	 
+	Reprezentacja wielomianu boolowskiego w postaci iloczynu maxtermów jest nazywana jego   koniunkcyjną postacią normalną (CNF) .
+	
+	 Uwaga! 
+		Każda funkcja boolowska może być generowana przez nieskończenie wiele wielomianów boolowskich.
+	 Przykład 
+			Wygenerować funkcję  f Bool (3)   daną wzorem  za pomocą wielomianu CNF.
+			
+			Zapiszmy tabelę wartości funkcji  f , aby sprawdzić, kiedy przyjmuje ona wartość  0 :
+			
+			Zatem funkcja  f  w postaci wielomianu CNF to
+			
+		 Zastosowanie do układów elektrycznych  Switch (łącznik)  to urządzenie dwustanowe. Może być ustawiony albo w pozycji otwartej (wartość 0, prąd nie płynie) lub zamkniętej (wartość 1, prąd płynie).
+		 (Prosty) system przełączający (obwód elektryczny)  składa się ze źródła energii, wyjścia oraz switchów.
+		  Dwa podstawowe sposoby łączenia switchów to   równoległy ( ) i~  szeregowy ~( ). Czasami konieczne jest użycie switcha, który zawsze jest w~pozycji odwrotnej do ustalonego ( ).
+		  Prosty system przełączający nie zawiera pętli, więc wyjście zależy tylko od sposobu połączenia switchy (nie od czasu).
+	 
+	Zatem wszystkie połączenia switchów w systemie przełączającym można opisać wielomianem boolowskim, a wyjście --- funkcją boolowską generowaną przez ten wielomian.
+  Sieć logiczna  to matematyczny model systemu przełączającego. 
+		  Switche są reprezentowane przez   bramki logiczne , źródło energii się pomija. Podstawowe bramki logiczne to
+		
+		 Przykład 
+		Podać wzór funkcji boolowskiej zrealizowanej za pomocą poniższej sieci:
+		
+		 
+	Przyjmując, że na wejściu mamy źródła  x ,  y ,  z (od góry), otrzymujemy
+	 
+	 Przykład 
+		Narysować sieć logiczną realizującą  x  x .
+	 Przykład 
+		Narysować sieć logiczną realizującą  (x (y  z)) (  x  z) .
+	 % Jeszcze coś o minimalizacji sieci logicznej (czyli automatycznie funkcji boolowskiej), na przykład algorytm Quine'a-McCluskey'a

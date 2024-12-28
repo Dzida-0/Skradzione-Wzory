@@ -1,0 +1,431 @@
+
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[T1,plmath]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usefonttheme[onlymath]{serif}
+
+
+\usepackage{ulem} % kolorowe podkreślenia
+\usepackage{xcolor} % kolorowe podkreślenia
+
+\usepackage{diagbox}
+\usepackage{tasks}
+
+\newcommand{\arcctg}{{\rm{arcctg}\,}}
+\newcommand{\arctg}{{\rm{arctg}\,}}
+\newcommand{\ddd}{{\,\rm{d}}}
+\newcommand{\Int}{{\,\rm{Int}}}
+
+%\definecolor{green1}{html}{22B14C}
+
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarańczowe podkreślenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % żółte podkreślenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreślenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreślenie
+
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+%\usecolortheme[rgb={1,0.5,0}]{structure}
+
+\title{\bf Równania diofantyczne i arytmetyka modularna}
+%\subtitle{Matematyka, Kierunek: Architektura}
+\author[B. Pawlik]{\bf dr inż. Bartłomiej Pawlik}
+%\institute{}
+
+
+
+%\setbeamercovered{transparent} % przezroczyste warstwy
+
+
+
+
+
+\begin{document}
+
+
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+
+\begin{frame}{Liniowe równania diofantyczne}
+		
+		\begin{block}{Definicja}
+			{\bf Równaniem diofantycznym} nazywamy dowolne równanie typu $$f(x_1,x_2,\ldots,x_n)=0,$$ w którym szukane rozwiązanie składa się z liczb całkowitych. 
+		\end{block}
+		
+		\begin{block}{Definicja}
+			Niech $a_1,a_2,\ldots,a_n\in\mathbb{Z}/\{0\}$ i niech $b\in\mathbb{Z}$. Równanie diofantyczne postaci
+			$$a_1x_1+a_2x_2+\ldots+a_nx_n=b$$
+			o niewiadomych $x_1,x_2,\ldots,x_n$ nazywamy {\bf liniowym równaniem diofantycznym}, a liczby $a_1,a_2,\ldots,a_n$ nazywamy współczynnikami.
+ 		\end{block}
+		
+\end{frame}
+	
+
+
+	
+
+
+\begin{frame}
+	
+	\begin{block}{Twierdzenie}
+		\begin{enumerate}
+			\item Równanie diofantyczne $ax+by=c$ o niewiadomych $x$ i $y$ ma rozwiązanie, wtedy i tylko wtedy, gdy  $\mbox{NWD}(a,b)|c$.
+			\item Jeżeli para $x_0,y_0$ jest rozwiązaniem równania diofantycznego $ax+by=c$, to wszystkie rozwiązania tego równania dane są wzorami
+			$$x=x_0+\frac{b}{\mbox{NWD}(a,b)}\cdot t,\ \ \ \ \ y=y_0-\frac{a}{\mbox{NWD}(a,b)}\cdot t,$$
+			gdzie $t\in\mathbb{Z}$.
+		\end{enumerate}
+	\end{block}
+	
+
+\end{frame}
+
+
+%przenieść na następny wykład, a w tym rozwinąć wątek równań diofantycznych
+
+
+
+
+
+\begin{frame}{Arytmetyka modularna}
+	
+	\begin{block}{Definicja}
+		Niech $m\in\mathbb{N}/\{1\}$ i $a,b\in\mathbb{Z}$.
+		\begin{itemize}
+			\item {\bf $a$ przystaje do $b$ modulo $m$}, gdy $a$ i $b$ mają taką samą resztę z dzielenia przez $m$, co zapisujemy $a\equiv_mb$ lub $a=b\mod m$.
+			\item W przeciwnym przypadku mówimy, że {\bf $a$ nie przystaje do $b$ modulo $m$}, co zapisujemy $a\not\equiv_mb$ lub $a\neq b\mod m$.
+			\item Liczbę $m$ nazywamy {\bf modułem}.
+		\end{itemize}
+	\end{block}
+	
+	\begin{exampleblock}{Przykład}				
+		$15\equiv_{12}3,\ 15\not\equiv_{12}7$
+		
+		$15\equiv_43,\ 15\equiv_47$
+	\end{exampleblock}
+
+	\begin{block}{Stwierdzenie}
+		$a\equiv_m b$ wtedy i tylko wtedy, gdy $m|(a-b)$.
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Stwierdzenie}
+		Relacja przystawania modulo $m$ w pierścieniu liczb całkowitych jest {\bf kongruencją}, to znaczy jest relacją równoważności (zwrotna, symetryczna, przechodnia) oraz dla dowolnych liczb całkowitych $a,b,c,d$ takich, że $a\equiv_mb$ i $c\equiv_md$ zachodzi
+		\begin{itemize}
+			\item $(a+c)\equiv_m(b+d)$
+			\item $ac\equiv_mbd$
+		\end{itemize}
+	\end{block}
+
+	Z definicji przystawania modulo $m$ oraz z twierdzenia o dzieleniu z resztą wynika, że każda liczba całkowita przystaje modulo $m$ dokładnie do jednej liczby ze zbioru reszt z dzielenia przez $m$, czyli zbioru $\{0,1,\ldots,m-1\}$. Każda z tych reszt określa klasę abstrakcji relacji przystawania.
+	
+	\begin{exampleblock}{Przykład}
+		Klasy abstrakcji przystawania modulo $3$:
+		\begin{align*}
+			[0]_3&=\{\ldots,\,-9,\,-6,\,-3,\,0,\,3,\,6,\,9,\,\ldots\}\\
+			[1]_3&=\{\ldots,\,-8,\,-5,\,-2,\,1,\,4,\,7,\,10,\,\ldots\}\\
+			[2]_3&=\{\ldots,\,-7,\,-4,\,-1,\,2,\,5,\,8,\,11,\,\ldots\}
+		\end{align*}		
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	Na zbiorze $\mathbb{Z}_m$ klas abstrakcji relacji przystawania modulo $m$ definiujemy działania
+	\begin{itemize}
+		\item dodawanie modulo $m$:
+		$$[a]_m +_m[b]_m=[a+b]_m$$
+		\item mnożenie modulo $m$:
+		$$[a]_m \cdot_m[b]_m=[a\cdot b]_m$$
+	\end{itemize}
+
+	\begin{exampleblock}{Przykład}
+		$5+_62=1$, $4\cdot_86=0$.
+	\end{exampleblock}
+	
+	\begin{block}{Twierdzenie}
+		Zbiór $\mathbb{Z}_m$ klas abstrakcji relacji przystawania modulo $m$ z działaniami dodawania modulo $m$ i mnożenia modulo $m$ jest pierścieniem przemiennym z jedynką, który nazywamy {\bf pierścieniem reszt modulo $m$}.
+	\end{block}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład}
+		W pierścieniu $\mathbb{Z}_6$ obliczyć $2+4$, $1-3$, $-3$, $5^{-1}$ oraz $2^{-1}$.
+		\begin{align*}
+			2+4&=0\ \ \ \mbox{(ponieważ }6\equiv_60\mbox{)}\\
+			1-3&=4\ \ \ \mbox{(ponieważ }-2\equiv_64\mbox{)}\\
+			-3&=3\ \ \ \mbox{(ponieważ }-3\equiv_63\mbox{)}\\
+			5^{-1}&=5\ \ \ \mbox{(ponieważ }5\cdot5=25\equiv_61\mbox{)}
+		\end{align*}
+	$2^{-1}$ nie istnieje, gdyż każdy z iloczynów $2\cdot0,\,2\cdot1,\,2\cdot2,\,2\cdot3,\,2\cdot4$ i $2\cdot5$ nie przystaje do 1 modulo 6.
+	\end{exampleblock}
+
+	\begin{block}{Stwierdzenie}
+		Element $a\in\mathbb{Z}_m$ jest odwracalny wtedy i tylko wtedy, gdy $a\perp m$. W~szczególności, pierścień reszt modulo $m$ jest ciałem wtedy i tylko wtedy, gdy $m$ jest liczbą pierwszą.
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Definicja}
+		Równanie w pierścieniu reszt modulo $m$ nazywamy {\bf równaniem modularnym}.
+	\end{block}
+
+	Zauważmy, że \underline{każde} równanie modularne można traktować jako równanie diofantyczne. Wynika to z faktu, że $a\equiv_mb$ wtedy i tylko wtedy, gdy istnieje liczba całkowita $k$ taka, że $a+mk=b$.
+	
+	\begin{block}{Twierdzenie}
+		\begin{itemize}
+			\item Równanie $ax=b$ ma rozwiązanie w $\mathbb{Z}_m$ wtedy i tylko wtedy, gdy $\mbox{NWD}(a,m)|b$.
+			\item Jeżeli $x_0$ jest rozwiązaniem równania $ax=b$ w $\mathbb{Z}_m$, to liczba różnych rozwiązań tego równania w $\mathbb{Z}_m$ wynosi $\mbox{NWD}(a,m)$ oraz każde rozwiązanie ma postać
+			$$x_t=x_0+_mt\cdot\frac{m}{\mbox{NWD}(a,m)}$$ 
+			dla $t\in\left\{0,1,\ldots,\mbox{NWD}(a,m)-1\right\}$.
+		\end{itemize}	
+	\end{block}
+	
+\end{frame}
+
+
+
+\begin{frame}
+
+	\begin{block}{Twierdzenie}
+		Niech $a,b,c,d\in\mathbb{Z}$ i $m,k\in\mathbb{N}/\{1\}$.
+		\begin{itemize}
+			\item $a\equiv_mb$ wtedy i tylko wtedy, gdy $ak\equiv_{mk}bk$.
+			\item Jeżeli $a\equiv_mb$, to $ac\equiv_mbc$.
+			\item Jeżeli $ac\equiv_mbc$ \textcolor{red}{oraz $c\perp m$}, to $a\equiv_mb$.
+			\item Jeżeli $a\equiv_{mk}b$, to $a\equiv_mb$ oraz $a\equiv_kb$.
+			\item Jeżeli  $a\equiv_mb$ oraz $a\equiv_kb$ \textcolor{red}{oraz $m\perp k$}, to $a\equiv_{mk}b$.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład}
+		Obliczyć $7^{-1}$ w $\mathbb{Z}_{15}$.
+		
+		Szukamy rozwiązania równania $7x=1$ w $\mathbb{Z}_{15}$. Zauważmy, że rozwiązanie istnieje, ponieważ $7\perp15$.
+		
+		Mnożąc obustronnie równanie $7x\equiv_{15}1$ przez 2 otrzymujemy
+		$$14x\equiv_{15}2,$$
+		a z faktu $14\equiv_{15}-1$ otrzymujemy
+		$$-1\cdot x\equiv_{15}2,$$
+		więc
+		$$x\equiv_{15}-2\equiv_{15}13.$$
+		Ostatecznie $7^{-1}=13$ w $\mathbb{Z}_{15}$.
+		
+		{\bf Sprawdzenie wyniku:} $7\cdot13=91=6\cdot15+1$.
+	\end{exampleblock}
+
+
+\end{frame}
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład}
+		Rozwiązać równanie $10x+9=17$ w $\mathbb{Z}_{24}$.
+
+		Po obustronnym odjęciu liczby 9 otrzymujemy $10x\equiv_{24}8.$
+		
+		Zauważmy, że $\mbox{NWD}(10,24)=2$, więc - po pierwsze - równanie jest rozwiązywalne (gdyż $2|8$) oraz - po drugie - posiada dokładnie 2 rozwiązania w $\mathbb{Z}_{24}$.
+		
+		Mnożąc otrzymane równanie obustronnie przez $5$ dostajemy $$50x\equiv_{24}40,$$ więc (biorąc pod uwagę, że $50\equiv_{24}2$ i $40\equiv_{24}16$) mamy $$2x\equiv_{24} 16.$$
+		Nietrudno zauważyć, że jednym z rozwiązań ostatniego równania jest $x_0=8$. Drugie równanie ma postać $$x_1=x_0+_{24}1\cdot\frac{24}{\mbox{NWD}(10,24)}=8+_{24}1\cdot\frac{24}2=20,$$
+		więc ostatecznie rozwiązaniami zadania są liczby 8 oraz 20.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Twierdzenie Eulera}
+		Dla $a\in\mathbb{Z}$ i $m\in\mathbb{N}/\{1\}$ takich, że $a\perp m$ zachodzi
+		$$a^{\varphi(m)}\equiv_m1.$$
+	\end{block}
+
+	\begin{block}{Małe twierdzenie Fermata}
+		Dla $a\in\mathbb{Z}$ i $p\in\mathbb{P}$ takich, że $a\perp p$ zachodzi
+		$$a^{p-1}\equiv_p1.$$
+	\end{block}
+
+	\begin{exampleblock}{Przykład}
+	Wyznaczyć ostatnią cyfrę liczby $7^{2022}$.
+	
+	Zadanie jest równoważne z określeniem wartości liczby $7^{2022}$ modulo 10.
+	Zauważmy, że 
+	$$7^2=49\equiv_{10}9\equiv_{10}(-1).$$
+	Zatem $$7^{2022}\equiv_{10}(7^2)^{1011}\equiv_{10}(-1)^{1011}=-1\equiv_{10}9.$$
+	Ostatnią cyfrą liczby $7^{2022}$ jest $9$.
+\end{exampleblock}
+
+\end{frame}
+
+
+
+
+\begin{frame}{Algorytm szybkiego potęgowania modularnego}
+	
+	Algorytm służy do obliczania wartości $a^n$ w $\mathbb{Z}_m$ dla dużych wartości $m$ i $n$. Polega on na iteracyjnym obliczaniu wartości (modulo $m$) funkcji rekurencyjnej
+	$$G(n)=\left\{
+	\begin{array}{cl}a&\mbox{ dla }n=1\\
+	\Big(G\left(\frac{n}{2}\right)\Big)^2&\mbox{ dla }n=2k\\
+	a\cdot\Big(G\left(\frac{n-1}{2}\right)\Big)^2&\mbox{ dla }n=2k+1
+	\end{array}
+	\right.$$
+	gdzie $k$ jest liczbą całkowitą dodatnią.
+	
+	\begin{block}{}
+		\begin{itemize}
+			\item $w:=a$
+			\item Obliczyć reprezentację binarną liczby $n$, czyli $n=(1n_sn_{s-1}\cdots n_1n_0)_2$
+			\item Dla wszystkich $k\in\{s,s-1,\ldots,1,0\}$ wykonać w $\mathbb{Z}_m$
+			\begin{itemize}
+				\item jeżeli $n_k=0$, to $w\leftarrow w^2$
+				\item jeżeli $n_k=1$, to $w\leftarrow a\cdot w^2$
+			\end{itemize}
+			\item $a^n=w$
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład (pierwszy sposób)}
+		Wyznaczyć przedostatnią cyfrę liczby $7^{2022}$.
+		
+		Aby rozwiązać zadanie wystarczy obliczyć wartość wyrażenia $7^{2022}$ modulo 100.
+		
+		Wykładnik reprezentujemy w postaci binarnej: $2022=11111100110_2$.
+		
+		Wypisujemy w tabeli cyfry reprezentacji binarnej od końca i wykonujemy działania:
+		$$\begin{array}{l|l}
+		1&w=7\\\hline
+		1&w=7\cdot7^2=343\equiv_{100}43\\
+		1&w=7\cdot43^2=12943\equiv_{100}43\\
+		1&w=7\cdot43^2=12943\equiv_{100}43\\
+		1&w=7\cdot43^2=12943\equiv_{100}43\\
+		1&w=7\cdot43^2=12943\equiv_{100}43\\
+		0&w=43^2=1849\equiv_{100}49\\
+		0&w=49^2=2401\equiv_{100}1\\
+		1&w=7\cdot1^2=7\\
+		1&w=7\cdot7^2=343\equiv_{100}43\\
+		0&w=43^2=1849\equiv_{100}49\\
+		\end{array}$$
+		Wartość liczby $7^{2022}$ modulo 100 to 49, więc przedostatnia cyfra liczby $7^{2022}$ to 4.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład (drugi sposób)}
+		Wyznaczyć przedostatnią cyfrę liczby $7^{2022}$.
+		
+		Zauważmy, że można uprościć obliczeniowo poprzednie rozwiązanie redukując wykładnik przy pomocy \textcolor{red}{twierdzenia Eulera}.
+		$$\varphi(100)=\varphi(2^2\cdot5^2)=100\cdot\frac12\cdot\frac45=40\ \mbox{ oraz }\ 2022=40\cdot50+22.$$
+		Zatem
+		$$7^{2022}=7^{40\cdot50+22}=(\textcolor{red}{7^{40}})^{50}\cdot7^{22}\textcolor{red}{\equiv_{100}1}^{50}\cdot7^{22}=7^{22}.$$
+		Kontynuujemy zgodnie z algorytmem szybkiego potęgowania modularnego.
+		$22=10110_2$, więc rozpisujemy tabelę
+		$$\begin{array}{l|l}
+		1&w=7\\\hline
+		0&w=7^2=49\\
+		1&w=7\cdot49^2=16807\equiv_{100}7\\
+		1&w=7\cdot7^2=343\equiv_{100}43\\
+		0&w=43^2=1849\equiv_{100}49
+		\end{array}$$
+		Ponownie okazało się, że przedostatnią cyfrą liczby $7^{2022}$ jest cyfra 4.
+		
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Chińskie twierdzenie o resztach}
+		Niech $m_1,m_2,\ldots,m_n\in\mathbb{N}/\{1\}$ będą \underline{parami względnie pierwsze}  oraz niech $r_1,r_2,\ldots,r_n\in\mathbb{Z}$. Wtedy układ równań
+		$$\left\{\begin{array}{l}x\equiv_{m_1}r_1\\x\equiv_{m_2}r_2\\\vdots\\x\equiv_{m_n}r_n\end{array}\right.$$
+		ma \underline{dokładnie jedno} rozwiązanie modulo $M=m_1\cdot m_2\cdot\ldots\cdot m_n$ postaci
+		$$x=N_1M_1+N_2M_2+\ldots+N_nM_n,$$
+		gdzie $\displaystyle M_i=\frac{M}{m_i}$ oraz $N_i$ jest rozwiązaniem równania $M_iN_i\equiv_{m_i}r_i$ dla $i=1,2,\ldots,n$.
+	\end{block}
+
+	Oczywiście rozwiązania rozpatrywanego układu równań w zbiorze liczb całkowitych mają postać $x=N_1M_1+N_2M_2+\ldots+N_nM_n+Mt$, gdzie $t$ jest dowolną liczbą całkowitą.
+		
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład}
+		Wyznaczyć najmniejszą liczbę naturalną spełniającą układ kongruencji $\displaystyle\left\{\begin{array}{l}x\equiv_61\\x\equiv_{11}6\end{array}\right.$.
+		
+		Zauważmy, że mamy $m_1=6$, $m_2=11$, $r_1=1$ i $r_2=6$.
+		
+		Chińskie twierdzenie o resztach orzeka, że najmniejsze naturalne rozwiązanie układu jest liczbą mniejszą od $66$.
+		
+		$M_1=11$ i $M_2=6$. Otrzymujemy równania
+		$$11\cdot N_1\equiv_61\ \mbox{ oraz }\ 6\cdot N_2\equiv_{11}6.$$
+		Rozwiązaniami powyższych równań są $N_1=5$ oraz $N_2=1$. Zatem
+		$$x=5\cdot11+1\cdot6=61.$$
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład}
+		Wyznaczyć najmniejszą liczbę naturalną spełniającą układ kongruencji $\displaystyle\left\{\begin{array}{l}x\equiv_21\\x\equiv_31\\x\equiv_53\end{array}\right.$.
+		
+		Z danych zadania otrzymujemy $m_1=2$, $m_2=3$, $m_3=5$, $r_1=r_2=1$ oraz $r_3=3
+		$.
+		
+		Mamy $M_1=3\cdot5=15$, $M_2=2\cdot5=10$ oraz $M_3=2\cdot3=6$. Otrzymujemy równania
+		$$15\cdot N_1\equiv_21,\ \ 10\cdot N_2\equiv_31,\ \ 6\cdot N_3\equiv_53.$$
+		Rozwiązaniami powyższych równań są $N_1=1$, $N_2=1$ oraz $N_3=3$. Zatem
+		$$x=1\cdot15+1\cdot10+3\cdot6=43\equiv_{30}13.$$
+		Ostatecznie najmniejszą liczbą naturalną spełniającą dany układ kongruencji jest $13$.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+
+
+
+
+\end{document}

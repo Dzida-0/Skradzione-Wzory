@@ -1,0 +1,408 @@
+
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[T1,plmath]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usepackage{multicol}
+
+\usefonttheme[onlymath]{serif}
+
+
+\usepackage{ulem} % kolorowe podkreślenia
+\usepackage{xcolor} % kolorowe podkreślenia
+
+\newcommand{\arcctg}{{\rm{arcctg}\,}}
+\newcommand{\arctg}{{\rm{arctg}\,}}
+\newcommand{\ddd}{{\,\rm{d}}}
+\newcommand{\Int}{{\,\rm{Int}}}
+
+%\definecolor{green1}{html}{22B14C}
+
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarańczowe podkreślenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % żółte podkreślenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreślenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreślenie
+
+
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+%\usecolortheme[rgb={1,0.5,0}]{structure}
+
+\title{\bf Notacja $\mathcal{O}$}
+%\subtitle{Matematyka, Kierunek: Architektura}
+\author[B. Pawlik]{\bf dr inż. Bartłomiej Pawlik}
+%\institute{}
+
+
+
+%\setbeamercovered{transparent} % przezroczyste warstwy
+
+
+
+
+
+\begin{document}
+
+
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\section{Wstęp}
+
+\subsection{Matematyka dyskretna}
+
+% Czym jest matematyka dyskretna.
+% Zeilberger stwierdził, że pojęcie liczby rzeczywistej to oksymoron.
+% Promień obserwowalnego Wszechświata to 10^27 metrów (największa możliwa do zaobserwowania odległość). Jeżeli chcemy wyliczyć obwód obserwowalnego Wszechświata z dokładnością do odległości Plancka (10^-35 metra, najmniejsza obserwowalna odległość), to wystarczy znać PI z dokładnością do 62 miejsc po przecinku
+
+\begin{frame}
+W całym wykładzie przyjmujemy, że zbiór liczb naturalnych to zbiór liczb całkowitych dodatnich.
+
+\bigskip
+
+Jeżeli $n$ jest liczbą naturalną, to
+$$\ldots\leqslant \sqrt[4]n\leqslant \sqrt[3]n\leqslant \sqrt{n}\leqslant n\leqslant n^2\leqslant n^3\leqslant n^4\leqslant \ldots$$
+Dużo ogólniej:
+\begin{block}{}
+Jeżeli $n$ jest liczbą naturalną i $\alpha,\beta$ są liczbami rzeczywistymi takimi, że $0\leqslant\alpha\leqslant\beta$, to
+$$n^\alpha\leqslant n^\beta.$$
+\end{block}
+\medskip
+Zauważmy, że jeżeli założymy dodatkowo, że $n>1$, to powyższe nierówności będą ostre.
+
+\end{frame}
+
+
+
+
+\begin{frame}
+
+\begin{block}{}
+Dla dowolnej liczby naturalnej $n$ mamy $$n<2^n.$$
+\end{block}{}
+
+\begin{proof}
+Dla $n=1$ nierówność jest oczywista.
+
+Dla dowolnej liczby naturalnej $n>1$ mamy
+$$n=\underbrace{2\cdot\frac32\cdot\frac43\cdot\ldots\cdot\frac{n-1}{n-2}\cdot\frac{n}{n-1}}_{n-1}\leqslant\underbrace{2\cdot2\cdot2\cdot\ldots\cdot2\cdot2}_{n-1}=2^{n-1}<2^n.$$
+\end{proof}
+Zauważmy, że powyżej uzasadniliśmy mocniejszą nierówność
+$$n\leqslant2^{n-1}$$
+dla $n>1$.
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{}
+Dla dowolnej liczby naturalnej $n>4$ mamy $$n^2<2^n.$$
+\end{block}{}
+
+\begin{proof}
+Mamy
+$$n^2=4^2\cdot\underbrace{\left(\frac54\right)^2\cdot\left(\frac65\right)^2\cdot\ldots\cdot\left(\frac{n-1}{n-2}\right)^2\cdot\left(\frac{n}{n-1}\right)^2}_{n-4}.$$
+Zauważmy, że $\displaystyle\left(\frac54\right)^2<2$ i że jest to największy spośród powyższych ułamków. Zatem
+$$n^2<4^2\cdot\underbrace{2\cdot2\cdot\ldots\cdot2\cdot2}_{n-4}=4^2\cdot2^{n-4}=2^n.$$
+\end{proof}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{block}{}
+Dla dowolnej liczby naturalnej $n$ mamy $$\log_2n<n.$$
+\end{block}{}
+
+\begin{proof}
+Nierówność otrzymujemy po zlogarytmowaniu stronami wyrażenia $n<2^n$, które wcześniej udowodniliśmy.
+\end{proof}
+
+\medskip
+
+Z powyższej nierówności wynika, że dla dowolnej liczby dodatniej $\alpha$ mamy $$\log_2n^\alpha<n^\alpha.$$ W szególności $$\log_2\sqrt{n}<\sqrt{n}.$$
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+Dla dowolnej liczby dodatniej $\alpha$ i dla dostatecznie dużych wartości $n$ zachodzi $$\log_2n^\alpha<n.$$
+\end{block}{}
+
+\begin{proof}
+Mamy $$\log_2n^\alpha=\alpha\cdot\log_2n=2\alpha\cdot\frac12\log n=2\alpha\cdot\log\sqrt{n}<2\alpha\cdot\sqrt{n}=\frac{2\alpha}{\sqrt{n}}\cdot n.$$
+Zauważmy że dla $n>4\alpha^2$ zachodzi
+$$\frac{2\alpha}{\sqrt{n}}\cdot n<\frac{2\alpha}{\sqrt{4\alpha^2}}\cdot n=n,$$
+więc ostatecznie dla $n>4\alpha^2$ mamy $\log_2n^\alpha<n.$
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+
+Z nierówności $\log_2n^\alpha<n$ dla $n>4\alpha^2$ wynikają następujące fakty:
+
+\bigskip
+
+\begin{block}{}
+Dla dowolnej liczby dodatniej $\alpha$ zachodzą nierówności
+$$n^\alpha<2^n\ \ \ \ \mbox{ oraz }\ \ \ \ \log_2n<\sqrt[\alpha]{n}$$
+dla dostatecznie dużych wartości $n$.
+\end{block}
+
+\bigskip
+
+Reasumując:
+
+\begin{itemize}
+\item $2^n$ rośnie szybciej niż jakakolwiek potęga z $n$
+\item $\log_2n$ rośnie wolniej niż jakikolwiek pierwiastek z $n$
+\end{itemize}
+
+\bigskip
+
+Zatem dla dowolnego $\alpha>1$ mamy
+$$\log_2n<\sqrt[\alpha]n<n<n^\alpha<2^n$$
+dla dostatecznie dużych $n$.
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{block}{}
+Nierówność $$2^n<n!$$ zachodzi dla każdej liczby naturalnej $n>3$.
+\end{block}{}
+
+\begin{proof}
+Mamy $2^4<4!$ oraz
+$$2^n=2^4\cdot\underbrace{2\cdot2\cdot\ldots\cdot2\cdot2}_{n-4}<4!\cdot\underbrace{2\cdot2\cdot\ldots\cdot2\cdot2}_{n-4}<4!\cdot\underbrace{5\cdot6\cdot\ldots\cdot(n-1)\cdot n}_{n-4}=n!$$ 
+\end{proof}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{}
+Nierówność $$100^n<n!$$ zachodzi dla każdej dostatecznie dużej liczby naturalnej $n$.
+\end{block}{}
+
+Powyższą nierówność można udowodnić podobnie jak poprzednią $(2^n<n!)$, znajdując najmniejszą liczbę $k$ taką, że $100^k<k!$ i przeprowadzić szacowanie lub indukcję. Poniżej pokażemy dowód nie odwołujący się do poszukiwania tej najmniejszej liczby.
+
+\begin{proof}
+Zauważmy, że dla $n>200$ mamy
+\begin{align*}
+n!>&\,\underbrace{201\cdot202\cdot\ldots\cdot(n-1)\cdot n}_{n-200}>\underbrace{200\cdot200\cdot\ldots\cdot200\cdot200}_{n-200}=200^{n-200}=\\
+&\,100^n\cdot2^n\cdot\frac1{200^{200}}=100^n\cdot\frac{2^n}{200^{200}}.
+\end{align*}
+Oczywiście $2^n$ jest funkcją rosną i nieograniczoną z góry, więc począwszy od pewnego $n$ mamy $2^n>200^{200}$, więc $\displaystyle100^n\cdot\frac{2^n}{200^{200}}>100^n,$ co kończy dowód.
+\end{proof}
+\end{frame}
+
+
+
+\begin{frame}
+Analogicznie możemy pokazać, że dla każdej liczby dodatniej $C$ mamy
+$$C^n<n!$$
+dla dostatecznie dużych $n$, co oznacza że 
+
+\begin{itemize}
+\item $n!$ rośnie szybciej niż jakikolwiek ciąg geometryczny
+\end{itemize}
+
+\begin{block}{}
+Dla dowolnej liczby naturalnej $n>1$ mamy $$n!<n^n$$
+\end{block}{}
+
+\begin{proof}
+$$n!=1\cdot2\cdot\ldots\cdot(n-1)\cdot n<n\cdot n\cdot\ldots\cdot n\cdot n=n^n$$ 
+\end{proof}
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{}
+$$ \log_2n<n<2^n<n!<n^n$$
+\end{block}
+
+\bigskip
+
+Precyzyjniej:
+\begin{block}{}
+$$1<\ldots<\log_3n<\log_2n<\ldots<\sqrt[3]n<\sqrt{n}<n<n^2<n^3<\ldots$$
+oraz
+$$\ldots<\sqrt[3]n<\sqrt{n}<n<n^2<n^3<\ldots<2^n<3^n<\ldots<n!<n^n$$
+\end{block}
+
+\bigskip
+
+Oczywiście prawdziwe są również nierówności typu
+$$n<n\sqrt n<n^2,\ \ \ n<n\cdot\log_2n<n^2,$$
+itp.
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Definicja}
+Niech $f$ i $g$ będą ciągami liczb rzeczywistych. Przyjmujemy, że $$f_n=\mathcal{O}(g_n)$$ gdy istnieje dodatnia stała $C$ taka, że
+$$|f_n|<C\cdot|g_n|$$ dla dostatecznie dużych $n$.
+\end{block}
+
+\bigskip
+
+Wyrażenie ,,$f_n=\mathcal{O}(g_n)$'' czytamy ,,{\it $f_n$ jest $O$ od $g_n$}''.
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Przykład 1}
+Z prezentowanych wcześniej nierówności wynika, że
+\begin{multicols}{3}
+\begin{itemize}
+\item $\sqrt{n}=\mathcal{O}(n),$
+\item $n=\mathcal{O}(n^2),$
+\item $n=\mathcal{O}(2^{n-1}),$
+\item $n=\mathcal{O}(2^n),$
+\item $n^2=\mathcal{O}(2^n),$
+\item $2^n=\mathcal{O}(n!),$
+\item $200^n=\mathcal{O}(n!),$
+\item $n!=\mathcal{O}(n^n),$
+\item $n\log_2{n}=\mathcal{O}(n^2),$
+\end{itemize}
+\end{multicols}
+itp.
+\end{exampleblock}
+
+\bigskip
+
+Notacja $O$ służy do szacowania szybkości wzrostu rozpatrywanego ciągu poprzez porównanie ją z szybkością wzrostu prostszego (dobrze znanego) ciągu.
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Przykład 2}%najmniejsze n to 6
+Rozpatrzmy ciąg $$2n^5+9n^3+2024.$$ Dla dużych $n$ wartość wyrażenia $n^5$ jest dużo większa niż wartość wyrażenia $9n^3+2024$, zatem dla dostatecznie dużych $n$ mamy
+$$2n^5+9n^3+2024<2n^5+n^5=3n^5.$$
+Zatem $$2n^5+9n^3+2024=\mathcal{O}(n^5).$$
+\end{exampleblock}
+
+{\bf Uwaga!} Zauważmy, że możemy również szacować:
+\begin{itemize}
+\item $2n^5+9n^3+2024=\mathcal{O}(n^6),$
+\item $2n^5+9n^3+2024=\mathcal{O}(n^5\log_2n),$
+\item $2n^5+9n^3+2024=\mathcal{O}(n!),$
+\end{itemize}
+itp., ale zaproponowane w powyższym przykładzie $\mathcal{O}(n^5)$ jest dużo precyzyjniejszą informacją.
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Przykład 3 (1/2)}
+Rozpatrzmy ciąg $h_n=1+\frac12+\ldots+\frac1n$ dla $n\geqslant1$. Pokażemy, że $h_n=\mathcal{O}(\log_2n)$.
+
+\medskip
+
+Zauważmy, że
+\begin{align*}
+h_2=&\,1+\frac12<2,\\
+h_4=&\,h_2+\left(\frac13+\frac14\right)<2+\left(\frac12+\frac12\right)=2+1=3,\\
+h_8=&\,h_4+\left(\frac15+\frac16+\frac17+\frac18\right)<3+\left(\frac14+\frac14+\frac14+\frac14\right)=3+1=4,\\
+\intertext{itd. Ogólnie mamy}
+h_{2^k}<&\,k+1,
+\end{align*}
+co można łatwo uzasadnić indukcyjnie.
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Przykład 3 (2/2)}
+ Niech $n$ będzie liczbą ograniczoną kolejnymi potęgami dwójki: $2^k<n\leqslant2^{k+1}$. Zauważmy, że pierwsza z tych nierówność daje nam $k<\log_2n$. Mamy zatem
+ $$h_n\leqslant h_{2^{k+1}}<(k+1)+1=k+2<\log_2n+2.$$
+ Dla dostatecznie dużych $n$ mamy $$\log_2n+2<\log_2n+\log_2n=2\log_2n,$$ więc ostatecznie $$h_n=\mathcal{O}(\log_2n).$$
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Notacja $\mathcal{O}$ --- własności}
+\begin{enumerate}
+\item Jeżeli $f_n=\mathcal{O}(a_n)$ i $c$ jest stałą, to $$c\cdot f_n=\mathcal{O}(a_n).$$
+\item Jeżeli $f_n=\mathcal{O}(a_n)$ i $g_n=\mathcal{O}(a_n)$, to $$f_n+g_n=\mathcal{O}(a_n).$$
+\item Jeżeli $f_n=\mathcal{O}(a_n)$ i $g_n=\mathcal{O}(b_n)$, to
+$$f_n+g_n=\mathcal{O}(\max\{|a_n|,|b_n|\})\ \mbox{ oraz }\ f_n\cdot g_n=\mathcal{O}(a_n\cdot b_n).$$
+\item Jeżeli $a_n=\mathcal{O}(b_n)$ i $b_n=\mathcal{O}(c_n)$, to $$a_n=\mathcal{O}(c_n).$$
+\end{enumerate}
+\end{block}
+
+\bigskip
+
+(Zauważmy, że powyższe własności pozwalają nam szybko ustalić szacowanie w~przykładzie 2: mamy $2n^5+9n^3+2024=\mathcal{O}(n^5).$)
+\end{frame}
+
+
+
+\begin{frame}
+\begin{block}{Dowód {\it(1/3)}.}
+\begin{enumerate}
+\item Jeżeli $f_n=\mathcal{O}(a_n)$, to istnieje stała $C>0$ taka, że $|f_n|\leqslant C\cdot|a_n|$ dla dostatecznie dużych $n$. Mamy
+$$|c\cdot f_n|=|c|\cdot|f_n|\leqslant|c|\cdot C\cdot |a_n|=(|c|\cdot C)\cdot|a_n|$$ dla dostatecznie dużych $n$, więc $c\cdot f_n=\mathcal{O}(a_n)$.
+\item Jeżeli $f_n=\mathcal{O}(a_n)$ oraz $g_n=\mathcal{O}(a_n)$, to istnieją dodatnie stałe $C$ i $D$ takie, że
+$$|f_n|\leqslant C\cdot|a_n|\ \ \ \mbox{ oraz }\ \ \ |g_n|\leqslant D\cdot |a_n|$$ dla dostatecznie dużych $n$. W poniższym szacowaniu skorzystamy z nierówności trójkąta $|x+y|\leqslant|x|+|y|$ dla dowonych $x,y\in\mathbb{R}$. Mamy
+$$|f_n+g_n|\leqslant|f_n|+|g_n|\leqslant C\cdot|a_n|+D\cdot|a_n|=(C+D)\cdot|a_n|,$$
+więc $f_n+g_n=\mathcal{O}(a_n)$.
+\end{enumerate}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{block}{Dowód {\it(2/3)}.}
+\begin{enumerate}
+  \setcounter{enumi}{2}
+\item Jeżeli $f_n=\mathcal{O}(a_n)$ oraz $g_n=\mathcal{O}(b_n)$, to istnieją dodatnie stałe $C$ i $D$ takie, że
+$$|f_n|\leqslant C\cdot|a_n|\ \ \ \mbox{ oraz }\ \ \ |g_n|\leqslant D\cdot |b_n|$$ dla dostatecznie dużych $n$. Ponownie korzystając z nierówności trójkąta mamy 
+\begin{align*}
+|f_n+g_n|\leqslant&\,|f_n|+|g_n|\leqslant C\cdot|a_n|+D\cdot|b_n|\leqslant\\
+&\,C\cdot\max\{|a_n|,|b_n|\}+D\cdot\max\{|a_n|,|b_n|\}=\\
+&\,(C+D)\cdot\max\{|a_n|,|b_n|\},
+\end{align*}
+więc $f_n+g_n=\mathcal{O}(\max\{|a_n|,|b_n|\})$. Ponadto
+$$|f_n\cdot g_n|=|f_n|\cdot|g_n|\leqslant C\cdot|a_n|\cdot D\cdot|b_n|=(C\cdot D)\cdot|a_n\cdot b_n|,$$
+więc $f_n\cdot g_n=\mathcal{O}(a_n\cdot b_n)$.
+\end{enumerate}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{proof}[Dowód {\it(3/3)}]
+\begin{enumerate}
+  \setcounter{enumi}{3}
+\item Jeżeli $a_n=\mathcal{O}(b_n)$ oraz $b_n=\mathcal{O}(c_n)$, to istnieją dodatnie stałe $B$ i $C$ takie, że
+$$|a_n|\leqslant B\cdot|b_n|\ \ \ \mbox{ oraz }\ \ \ |b_n|\leqslant C\cdot |c_n|$$ dla dostatecznie dużych $n$. Zatem
+$$|a_n|\leqslant B\cdot |b_n|\leqslant B\cdot |C\cdot c_n|=(B\cdot C)\cdot|c_n|,$$
+więc $a_n=\mathcal{O}(c_n)$.
+\end{enumerate}
+\end{proof}
+\end{frame}
+
+
+
+
+
+
+
+
+\end{document}

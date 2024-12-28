@@ -1,0 +1,140 @@
+a4paper,10pt beamer T1,plmath polski cp1250 inputenc amssymb indentfirst graphicx multicol onlymath serif ulem % kolorowe podkreślenia xcolor % kolorowe podkreślenia arcctg \, arctg \, \, d \, Int %\definecolor{green1}{html}{22B14C} 1 orange black #1 % pomarańczowe podkreślenie 1 yellow black #1 % żółte podkreślenie 1 blue black #1 % niebieskie podkreślenie 1 RGB 34,177,76 black #1 % zielone podkreślenie Boadilla crane %\usecolortheme[rgb={1,0.5,0}]{structure}  Notacja  O %\subtitle{Matematyka, Kierunek: Architektura} B. Pawlik  dr inż. Bartłomiej Pawlik %\institute{} %\setbeamercovered{transparent} % przezroczyste warstwy Wstęp Matematyka dyskretna % Czym jest matematyka dyskretna. % Zeilberger stwierdził, że pojęcie liczby rzeczywistej to oksymoron. % Promień obserwowalnego Wszechświata to 10^27 metrów (największa możliwa do zaobserwowania odległość). Jeżeli chcemy wyliczyć obwód obserwowalnego Wszechświata z dokładnością do odległości Plancka (10^-35 metra, najmniejsza obserwowalna odległość), to wystarczy znać PI z dokładnością do 62 miejsc po przecinku 
+W całym wykładzie przyjmujemy, że zbiór liczb naturalnych to zbiór liczb całkowitych dodatnich.
+
+ 
+Jeżeli  n  jest liczbą naturalną, to
+
+Dużo ogólniej:
+ 
+Jeżeli  n  jest liczbą naturalną i  ,  są liczbami rzeczywistymi takimi, że  0 , to
+
+ 
+Zauważmy, że jeżeli założymy dodatkowo, że  n>1 , to powyższe nierówności będą ostre.
+
+ 
+Dla dowolnej liczby naturalnej  n  mamy 
+ 
+Dla  n=1  nierówność jest oczywista.
+
+Dla dowolnej liczby naturalnej  n>1  mamy
+
+ 
+Zauważmy, że powyżej uzasadniliśmy mocniejszą nierówność
+
+dla  n>1 .
+ 
+Dla dowolnej liczby naturalnej  n>4  mamy 
+ 
+Mamy
+
+Zauważmy, że  54 ^2<2  i że jest to największy spośród powyższych ułamków. Zatem
+
+ 
+Dla dowolnej liczby naturalnej  n  mamy 
+ 
+Nierówność otrzymujemy po zlogarytmowaniu stronami wyrażenia  n<2^n , które wcześniej udowodniliśmy.
+ 
+Z powyższej nierówności wynika, że dla dowolnej liczby dodatniej   mamy  W szególności 
+ 
+Dla dowolnej liczby dodatniej   i dla dostatecznie dużych wartości  n  zachodzi 
+ 
+Mamy 
+Zauważmy że dla  n>4 ^2  zachodzi
+
+więc ostatecznie dla  n>4 ^2  mamy  _2n^ <n. 
+Z nierówności  _2n^ <n  dla  n>4 ^2  wynikają następujące fakty:
+
+ 
+Dla dowolnej liczby dodatniej   zachodzą nierówności
+
+dla dostatecznie dużych wartości  n .
+ 
+Reasumując:
+
+ 2^n  rośnie szybciej niż jakakolwiek potęga z  n _2n  rośnie wolniej niż jakikolwiek pierwiastek z  n 
+Zatem dla dowolnego  >1  mamy
+
+dla dostatecznie dużych  n .
+ 
+Nierówność  zachodzi dla każdej liczby naturalnej  n>3 .
+ 
+Mamy  2^4<4!  oraz
+ 
+ 
+Nierówność  zachodzi dla każdej dostatecznie dużej liczby naturalnej  n .
+ 
+Powyższą nierówność można udowodnić podobnie jak poprzednią  (2^n<n!) , znajdując najmniejszą liczbę  k  taką, że  100^k<k!  i przeprowadzić szacowanie lub indukcję. Poniżej pokażemy dowód nie odwołujący się do poszukiwania tej najmniejszej liczby.
+
+ 
+Zauważmy, że dla  n>200  mamy
+
+Oczywiście  2^n  jest funkcją rosną i nieograniczoną z góry, więc począwszy od pewnego  n  mamy  2^n>200^ 200 , więc  100^n 2^n 200^ 200 >100^n,  co kończy dowód.
+ 
+Analogicznie możemy pokazać, że dla każdej liczby dodatniej  C  mamy
+
+dla dostatecznie dużych  n , co oznacza że 
+
+ n!  rośnie szybciej niż jakikolwiek ciąg geometryczny
+ 
+Dla dowolnej liczby naturalnej  n>1  mamy 
+ 
+Precyzyjniej:
+ 
+oraz
+
+ 
+Oczywiście prawdziwe są również nierówności typu
+
+itp.
+ Definicja 
+Niech  f  i  g  będą ciągami liczb rzeczywistych. Przyjmujemy, że  gdy istnieje dodatnia stała  C  taka, że
+ dla dostatecznie dużych  n .
+ 
+Wyrażenie ,, f_n= O (g_n) '' czytamy ,, f_n  jest  O  od  g_n ''.
+
+ Przykład 1 
+Z prezentowanych wcześniej nierówności wynika, że
+ 3 n = O (n), n= O (n^2), n= O (2^ n-1 ), n= O (2^n), n^2= O (2^n), 2^n= O (n!), 200^n= O (n!), n!= O (n^n), n _2 n = O (n^2), 
+itp.
+ 
+Notacja  O  służy do szacowania szybkości wzrostu rozpatrywanego ciągu poprzez porównanie ją z szybkością wzrostu prostszego (dobrze znanego) ciągu.
+ Przykład 2 %najmniejsze n to 6 
+Rozpatrzmy ciąg  Dla dużych  n  wartość wyrażenia  n^5  jest dużo większa niż wartość wyrażenia  9n^3+2024 , zatem dla dostatecznie dużych  n  mamy
+
+Zatem 
+  Uwaga!  Zauważmy, że możemy również szacować:
+ 2n^5+9n^3+2024= O (n^6), 2n^5+9n^3+2024= O (n^5 _2n), 2n^5+9n^3+2024= O (n!), 
+itp., ale zaproponowane w powyższym przykładzie  O (n^5)  jest dużo precyzyjniejszą informacją.
+ Przykład 3 (1/2) 
+Rozpatrzmy ciąg  h_n=1+ 12+ + 1n  dla  n 1 . Pokażemy, że  h_n= O ( _2n) .
+
+ 
+Zauważmy, że
+
+co można łatwo uzasadnić indukcyjnie.
+ Przykład 3 (2/2) 
+ Niech  n  będzie liczbą ograniczoną kolejnymi potęgami dwójki:  2^k<n 2^ k+1 . Zauważmy, że pierwsza z tych nierówność daje nam  k< _2n . Mamy zatem
+ 
+ Dla dostatecznie dużych  n  mamy  więc ostatecznie 
+ Notacja  O  --- własności  Jeżeli  f_n= O (a_n)  i  c  jest stałą, to 
+  Jeżeli  f_n= O (a_n)  i  g_n= O (a_n) , to 
+  Jeżeli  f_n= O (a_n)  i  g_n= O (b_n) , to
+
+  Jeżeli  a_n= O (b_n)  i  b_n= O (c_n) , to 
+ (Zauważmy, że powyższe własności pozwalają nam szybko ustalić szacowanie w~przykładzie 2: mamy  2n^5+9n^3+2024= O (n^5). )
+ Dowód  (1/3) .  Jeżeli  f_n= O (a_n) , to istnieje stała  C>0  taka, że  |f_n|  C |a_n|  dla dostatecznie dużych  n . Mamy
+ dla dostatecznie dużych  n , więc  c  f_n= O (a_n) .
+  Jeżeli  f_n= O (a_n)  oraz  g_n= O (a_n) , to istnieją dodatnie stałe  C  i  D  takie, że
+ dla dostatecznie dużych  n . W poniższym szacowaniu skorzystamy z nierówności trójkąta  |x+y| |x|+|y|  dla dowonych  x,y R . Mamy
+
+więc  f_n+g_n= O (a_n) .
+ Dowód  (2/3) . enumi 2  Jeżeli  f_n= O (a_n)  oraz  g_n= O (b_n) , to istnieją dodatnie stałe  C  i  D  takie, że
+ dla dostatecznie dużych  n . Ponownie korzystając z nierówności trójkąta mamy 
+
+więc  f_n+g_n= O ( \{ |a_n|,|b_n| \} ) . Ponadto
+
+więc  f_n  g_n= O (a_n  b_n) .
+ Dowód  (3/3) enumi 3  Jeżeli  a_n= O (b_n)  oraz  b_n= O (c_n) , to istnieją dodatnie stałe  B  i  C  takie, że
+ dla dostatecznie dużych  n . Zatem
+
+więc  a_n= O (c_n) .

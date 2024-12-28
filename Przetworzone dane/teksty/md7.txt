@@ -1,0 +1,151 @@
+a4paper,10pt beamer T1,plmath polski cp1250 inputenc amssymb indentfirst graphicx onlymath serif ulem % kolorowe podkreślenia xcolor % kolorowe podkreślenia diagbox tasks arcctg \, arctg \, \, d \, Int %\definecolor{green1}{html}{22B14C} 1 orange black #1 % pomarańczowe podkreślenie 1 yellow black #1 % żółte podkreślenie 1 blue black #1 % niebieskie podkreślenie 1 RGB 34,177,76 black #1 % zielone podkreślenie Boadilla crane %\usecolortheme[rgb={1,0.5,0}]{structure}  Równania diofantyczne i arytmetyka modularna %\subtitle{Matematyka, Kierunek: Architektura} B. Pawlik  dr inż. Bartłomiej Pawlik %\institute{} %\setbeamercovered{transparent} % przezroczyste warstwy Liniowe równania diofantyczne Definicja  Równaniem diofantycznym  nazywamy dowolne równanie typu  w którym szukane rozwiązanie składa się z liczb całkowitych. 
+		 Definicja 
+			Niech  a_1,a_2, ,a_n Z / \{ 0 \}  i niech  b Z . Równanie diofantyczne postaci
+			
+			o niewiadomych  x_1,x_2, ,x_n  nazywamy   liniowym równaniem diofantycznym , a liczby  a_1,a_2, ,a_n  nazywamy współczynnikami.
+ 		 Twierdzenie  Równanie diofantyczne  ax+by=c  o niewiadomych  x  i  y  ma rozwiązanie, wtedy i tylko wtedy, gdy   NWD (a,b)|c .
+			  Jeżeli para  x_0,y_0  jest rozwiązaniem równania diofantycznego  ax+by=c , to wszystkie rozwiązania tego równania dane są wzorami
+			
+			gdzie  t Z .
+		 %przenieść na następny wykład, a w tym rozwinąć wątek równań diofantycznych Arytmetyka modularna Definicja 
+		Niech  m N / \{ 1 \}  i  a,b Z .
+		 a  przystaje do  b  modulo  m , gdy  a  i  b  mają taką samą resztę z dzielenia przez  m , co zapisujemy  a _mb  lub  a=b  m .
+			  W przeciwnym przypadku mówimy, że  a  nie przystaje do  b  modulo  m , co zapisujemy  a _mb  lub  a  b  m .
+			  Liczbę  m  nazywamy   modułem .
+		 Przykład 15 _ 12 3, \  15 _ 12 7 15 _43, \  15 _47 Stwierdzenie a _m b  wtedy i tylko wtedy, gdy  m|(a-b) .
+	 Stwierdzenie 
+		Relacja przystawania modulo  m  w pierścieniu liczb całkowitych jest   kongruencją , to znaczy jest relacją równoważności (zwrotna, symetryczna, przechodnia) oraz dla dowolnych liczb całkowitych  a,b,c,d  takich, że  a _mb  i  c _md  zachodzi
+		 (a+c) _m(b+d) ac _mbd 
+	Z definicji przystawania modulo  m  oraz z twierdzenia o dzieleniu z resztą wynika, że każda liczba całkowita przystaje modulo  m  dokładnie do jednej liczby ze zbioru reszt z dzielenia przez  m , czyli zbioru  \{ 0,1, ,m-1 \} . Każda z tych reszt określa klasę abstrakcji relacji przystawania.
+	
+	 Przykład 
+		Klasy abstrakcji przystawania modulo  3 :
+				
+	 
+	Na zbiorze  Z _m  klas abstrakcji relacji przystawania modulo  m  definiujemy działania
+	  dodawanie modulo  m :
+		
+		  mnożenie modulo  m :
+		
+	 Przykład 5+_62=1 ,  4 _86=0 .
+	 Twierdzenie 
+		Zbiór  Z _m  klas abstrakcji relacji przystawania modulo  m  z działaniami dodawania modulo  m  i mnożenia modulo  m  jest pierścieniem przemiennym z jedynką, który nazywamy   pierścieniem reszt modulo  m .
+	 Przykład 
+		W pierścieniu  Z _6  obliczyć  2+4 ,  1-3 ,  -3 ,  5^ -1  oraz  2^ -1 .
+		
+	 2^ -1  nie istnieje, gdyż każdy z iloczynów  2 0, \, 2 1, \, 2 2, \, 2 3, \, 2 4  i  2 5  nie przystaje do 1 modulo 6.
+	 Stwierdzenie 
+		Element  a Z _m  jest odwracalny wtedy i tylko wtedy, gdy  a  m . W~szczególności, pierścień reszt modulo  m  jest ciałem wtedy i tylko wtedy, gdy  m  jest liczbą pierwszą.
+	 Definicja 
+		Równanie w pierścieniu reszt modulo  m  nazywamy   równaniem modularnym .
+	 
+	Zauważmy, że  każde  równanie modularne można traktować jako równanie diofantyczne. Wynika to z faktu, że  a _mb  wtedy i tylko wtedy, gdy istnieje liczba całkowita  k  taka, że  a+mk=b .
+	
+	 Twierdzenie  Równanie  ax=b  ma rozwiązanie w  Z _m  wtedy i tylko wtedy, gdy  NWD (a,m)|b .
+			  Jeżeli  x_0  jest rozwiązaniem równania  ax=b  w  Z _m , to liczba różnych rozwiązań tego równania w  Z _m  wynosi  NWD (a,m)  oraz każde rozwiązanie ma postać
+			 
+			dla  t 0,1, , NWD (a,m)-1 .
+		 Twierdzenie 
+		Niech  a,b,c,d Z  i  m,k N / \{ 1 \} .
+		 a _mb  wtedy i tylko wtedy, gdy  ak _ mk bk .
+			  Jeżeli  a _mb , to  ac _mbc .
+			  Jeżeli  ac _mbc red oraz  c  m , to  a _mb .
+			  Jeżeli  a _ mk b , to  a _mb  oraz  a _kb .
+			  Jeżeli   a _mb  oraz  a _kb red oraz  m  k , to  a _ mk b .
+		 Przykład 
+		Obliczyć  7^ -1  w  Z _ 15 .
+		
+		Szukamy rozwiązania równania  7x=1  w  Z _ 15 . Zauważmy, że rozwiązanie istnieje, ponieważ  7 15 .
+		
+		Mnożąc obustronnie równanie  7x _ 15 1  przez 2 otrzymujemy
+		
+		a z faktu  14 _ 15 -1  otrzymujemy
+		
+		więc
+		
+		Ostatecznie  7^ -1 =13  w  Z _ 15 .
+		
+		  Sprawdzenie wyniku: 7 13=91=6 15+1 .
+	 Przykład 
+		Rozwiązać równanie  10x+9=17  w  Z _ 24 .
+
+		Po obustronnym odjęciu liczby 9 otrzymujemy  10x _ 24 8. 
+		Zauważmy, że  NWD (10,24)=2 , więc - po pierwsze - równanie jest rozwiązywalne (gdyż  2|8 ) oraz - po drugie - posiada dokładnie 2 rozwiązania w  Z _ 24 .
+		
+		Mnożąc otrzymane równanie obustronnie przez  5  dostajemy  więc (biorąc pod uwagę, że  50 _ 24 2  i  40 _ 24 16 ) mamy 
+		Nietrudno zauważyć, że jednym z rozwiązań ostatniego równania jest  x_0=8 . Drugie równanie ma postać 
+		więc ostatecznie rozwiązaniami zadania są liczby 8 oraz 20.
+	 Twierdzenie Eulera 
+		Dla  a Z  i  m N / \{ 1 \}  takich, że  a  m  zachodzi
+		
+	 Małe twierdzenie Fermata 
+		Dla  a Z  i  p P  takich, że  a  p  zachodzi
+		
+	 Przykład 
+	Wyznaczyć ostatnią cyfrę liczby  7^ 2022 .
+	
+	Zadanie jest równoważne z określeniem wartości liczby  7^ 2022  modulo 10.
+	Zauważmy, że 
+	
+	Zatem 
+	Ostatnią cyfrą liczby  7^ 2022  jest  9 .
+ Algorytm szybkiego potęgowania modularnego 
+	Algorytm służy do obliczania wartości  a^n  w  Z _m  dla dużych wartości  m  i  n . Polega on na iteracyjnym obliczaniu wartości (modulo  m ) funkcji rekurencyjnej
+	 G(n)= cl a&  dla  n=1 \\ G n 2 ^2&  dla  n=2k \\ 
+	a G n-1 2 ^2&  dla  n=2k+1
+	 
+	gdzie  k  jest liczbą całkowitą dodatnią.
+	
+	 w:=a  Obliczyć reprezentację binarną liczby  n , czyli  n=(1n_sn_ s-1  n_1n_0)_2  Dla wszystkich  k \{ s,s-1, ,1,0 \}  wykonać w  Z _m  jeżeli  n_k=0 , to  w  w^2  jeżeli  n_k=1 , to  w  a  w^2 a^n=w Przykład (pierwszy sposób) 
+		Wyznaczyć przedostatnią cyfrę liczby  7^ 2022 .
+		
+		Aby rozwiązać zadanie wystarczy obliczyć wartość wyrażenia  7^ 2022  modulo 100.
+		
+		Wykładnik reprezentujemy w postaci binarnej:  2022=11111100110_2 .
+		
+		Wypisujemy w tabeli cyfry reprezentacji binarnej od końca i wykonujemy działania:
+		
+		Wartość liczby  7^ 2022  modulo 100 to 49, więc przedostatnia cyfra liczby  7^ 2022  to 4.
+	 Przykład (drugi sposób) 
+		Wyznaczyć przedostatnią cyfrę liczby  7^ 2022 .
+		
+		Zauważmy, że można uprościć obliczeniowo poprzednie rozwiązanie redukując wykładnik przy pomocy  red twierdzenia Eulera .
+		
+		Zatem
+		
+		Kontynuujemy zgodnie z algorytmem szybkiego potęgowania modularnego.
+		 22=10110_2 , więc rozpisujemy tabelę
+		
+		Ponownie okazało się, że przedostatnią cyfrą liczby  7^ 2022  jest cyfra 4.
+		
+	 Chińskie twierdzenie o resztach 
+		Niech  m_1,m_2, ,m_n N / \{ 1 \}  będą  parami względnie pierwsze   oraz niech  r_1,r_2, ,r_n Z . Wtedy układ równań
+		
+		ma  dokładnie jedno  rozwiązanie modulo  M=m_1  m_2  m_n  postaci
+		
+		gdzie   M_i= M m_i  oraz  N_i  jest rozwiązaniem równania  M_iN_i _ m_i r_i  dla  i=1,2, ,n .
+	 
+	Oczywiście rozwiązania rozpatrywanego układu równań w zbiorze liczb całkowitych mają postać  x=N_1M_1+N_2M_2+ +N_nM_n+Mt , gdzie  t  jest dowolną liczbą całkowitą.
+		
+ Przykład 
+		Wyznaczyć najmniejszą liczbę naturalną spełniającą układ kongruencji  l x _61 \\ x _ 11 6 .
+		
+		Zauważmy, że mamy  m_1=6 ,  m_2=11 ,  r_1=1  i  r_2=6 .
+		
+		Chińskie twierdzenie o resztach orzeka, że najmniejsze naturalne rozwiązanie układu jest liczbą mniejszą od  66 .
+		
+		 M_1=11  i  M_2=6 . Otrzymujemy równania
+		
+		Rozwiązaniami powyższych równań są  N_1=5  oraz  N_2=1 . Zatem
+		
+	 Przykład 
+		Wyznaczyć najmniejszą liczbę naturalną spełniającą układ kongruencji  l x _21 \\ x _31 \\ x _53 .
+		
+		Z danych zadania otrzymujemy  m_1=2 ,  m_2=3 ,  m_3=5 ,  r_1=r_2=1  oraz  r_3=3
+		 .
+		
+		Mamy  M_1=3 5=15 ,  M_2=2 5=10  oraz  M_3=2 3=6 . Otrzymujemy równania
+		
+		Rozwiązaniami powyższych równań są  N_1=1 ,  N_2=1  oraz  N_3=3 . Zatem
+		
+		Ostatecznie najmniejszą liczbą naturalną spełniającą dany układ kongruencji jest  13 .

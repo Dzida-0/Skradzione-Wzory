@@ -1,0 +1,536 @@
+
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[T1,plmath]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usefonttheme[onlymath]{serif}
+
+
+\usepackage{ulem} % kolorowe podkreślenia
+\usepackage{xcolor} % kolorowe podkreślenia
+
+\usepackage{diagbox}
+\usepackage{tasks}
+
+
+
+
+\newcommand{\outdeg}{{\,\rm{outdeg}\,}}
+\newcommand{\indeg}{{\,\rm{indeg}\,}}
+
+%\definecolor{green1}{html}{22B14C}
+
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarańczowe podkreślenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % żółte podkreślenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreślenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreślenie
+
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+%\usecolortheme[rgb={1,0.5,0}]{structure}
+
+\title{\bf Digrafy}
+%\subtitle{Matematyka, Kierunek: Architektura}
+\author[B. Pawlik]{\bf dr inż. Bartłomiej Pawlik}
+%\institute{}
+
+
+
+%\setbeamercovered{transparent} % przezroczyste warstwy
+
+
+
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Definicja}
+		{\bf Digrafem} ({\bf grafem skierowanym}) $D$ nazywamy parę zbiorów $\big(V(D),E(D)\big)$, gdzie $V(D)$ to {\bf zbiór wierzchołków}, a $E(D)\subset \big(V(D)\big)^2$ to {\bf zbiór łuków}.
+	\end{block}
+
+	Wiele definicji dotyczących grafów (np. rząd, rozmiar, podgraf indukowany, izomorfizm) przenosi się również na digrafy.
+	
+	Zauważmy, że z powyższej definicji wynika, że każdy łuk to uporządkowana para wierzchołków (zbiór łuków to \underline{podzbiór} kwadratu kartezjańskiego zbioru wierzchołków).
+
+\begin{block}{Definicja}
+Niech $(x,y)\in E(D)$.
+\begin{itemize}
+\item	Parę $(x,y)$ nazywamy {\bf łukiem} ({\bf krawędzią skierowaną}) od $x$ do $y$.
+\item Wierzchołek $y$ nazywamy {\bf sąsiednim} do $x$.
+\item Wierzchołek $x$ nazywamy {\bf początkiem łuku}, a $y$ - {\bf końcem łuku}.
+\item Krawędź $(x,x)$ nazywamy {\bf pętlą}.
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+
+	
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład 1}
+		\begin{minipage}{3.5cm}
+		
+		\end{minipage}
+		\begin{minipage}{8cm}
+			Rysunek przedstawia reprezentację graficzną digrafu $D$ takiego, że
+			\begin{align*}
+				V(D)&=\{1,2,3,4,5,6\}\\
+				E(D)&=\{(1,4),\,(3,5),\,(4,2),\,(4,5)\}
+			\end{align*}
+		Rząd $D$ wynosi $6$, natomiast rozmiar to $4$.
+		\end{minipage}
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}
+\begin{block}{Definicja}
+		\begin{itemize}
+			\item {\bf Stopniem wyjściowym $\outdeg v$ wierzchołka $v$} w digrafie $D$ nazywamy liczbę krawędzi, których początkiem jest $v$.
+			\item {\bf Stopniem wejściowym $\indeg v$ wierzchołka $v$} w digrafie $D$ nazywamy liczbę krawędzi, których końcem jest $v$.
+		\end{itemize}
+\end{block}
+
+\begin{exampleblock}{Przykład 2}
+Stopnie wierzchołków digrafu z przykładu 1 to: %może lepiej odeg lub og i ideg lub ig
+$$\outdeg(1)=1,\ \ \ \outdeg(2)=0,\ \ \ \outdeg(3)=1,$$ $$\indeg(1)=0,\ \ \ \ \ \indeg(2)=1,\ \ \ \ \ \indeg(3)=0,$$
+
+$$\outdeg(4)=2,\ \ \ \outdeg(5)=0,\ \ \ \outdeg(6)=0,$$ $$\indeg(4)=1,\ \ \ \ \ \indeg(5)=2,\ \ \ \ \ \indeg(6)=0.$$
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{Podstawowe twierdzenie teorii digrafów}
+Dla każdego digrafu $D$ zachodzi $$\sum\limits_{v\in V(D)}\outdeg v=\sum\limits_{v\in V(D)}\indeg v=|E(D)|.$$
+\end{block}
+
+\begin{proof}
+ Podczas dodawania stopni wyjściowych każdy łuk jest liczony tylko raz --- podobnie jak podczas dodawania stopni wejściowych.
+\end{proof}
+
+\medskip
+
+Powyższe twierdzenie jest digrafowym odpowiednikiem {\bf lematu o uściskach dłoni}.
+
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{block}{Definicja}
+		{\bf Macierzą sąsiedztwa} (multi)digrafu $D$ to macierz $A_D=[s_{ij}]$, w której $a_{ij}$ określa liczbę łuków od $i$-tego do $j$-tego wierzchołka.  
+	\end{block}
+
+\begin{exampleblock}{Przykład 3}
+Macierzą sąsiedztwa digrafu przedstawionego w przykładzie 1 jest
+$$\left[\begin{array}{cccccc}0&0&0&1&0&0\\0&0&0&0&0&0\\0&0&0&0&1&0\\0&1&0&0&1&0\\0&0&0&0&0&0\\0&0&0&0&0&0\end{array}\right].$$
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+	
+		\begin{block}{Definicja}
+		{\bf Macierz incydencji digrafu} $D$ to macierz $B_D=[b_{ij}]$, w której
+		$$B_{ij}=\left\{\begin{array}{ll}1,&\mbox{ gdy wierzchołek }v_i\mbox{ jest początkiem łuku }e_j\\-1,&\mbox{ gdy wierzchołek }v_i\mbox{ jest końcem łuku }e_j\\0,&\mbox{ gdy wierzchołek }v_i\mbox{ nie jest incydentny z łukiem }e_j\end{array}\right..$$
+	\end{block}
+	
+	\begin{block}{Wniosek}
+	\begin{itemize}
+	\item Suma elementów w $i$-tym wierszu macierzy incydencji digrafu $D$ wynosi $\outdeg v_i+\indeg v_i$.
+	\item Suma elementów w $j$-tej kolumnie macierzy incydencji digrafu $D$ wynosi $0$.
+	\end{itemize}
+	\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{exampleblock}{Przykład 4}
+Macierzą incydencji digrafu przedstawionego w przykładzie 1 jest
+$$\left[\begin{array}{cccc}
+1&0&0&0\\
+0&0&-1&0\\
+0&1&0&0\\
+-1&0&1&1\\
+0&-1&0&-1\\
+0&0&0&0\\
+\end{array}\right].$$
+\end{exampleblock}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Definicja}
+Niech $D=(V(D),E(D))$ będzie digrafem.
+\begin{itemize}
+\item $D$ jest {\bf symetryczny}, gdy dla każdej pary wierzchołków $u,v\in V(D)$ z~warunku $(u,v)\in E(D)$ wynika, że również $(v,u)\in E(D)$.
+\item $D$ jest {\bf grafem zorientowanym}, gdy dla każdej pary wierzchołków $u,v\in V(D)$ z warunku $(u,v)\in E(D)$ wynika, że $(v,u)\not\in E(D)$.
+\end{itemize}
+\end{block}
+
+\medskip
+
+\begin{exampleblock}{Przykład 5}
+Zauważmy, że digraf z przykładu 1 jest grafem zorientowanym.
+
+\medskip
+
+Co najmniej ile łuków należy do tego digrafu dołączyć (bez zwiększania jego rzędu), aby mieć pewność że nowo otrzymany digraf nie jest grafem zorientowanym?
+
+\medskip
+
+$12$.
+\end{exampleblock}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+
+\begin{block}{Definicja}
+{\bf Grafem pierwotnym} digrafu $D$ nazywamy graf otrzymany przez zastąpienie każdego łuku $(u,v)$ lub symetrycznej pary łuków $(u,v)$ i $(v,u)$ przez krawędź $\{u,v\}$.
+\end{block}
+
+
+\begin{exampleblock}{Przykład 6}
+Poniższe digrafy $D_1$ i $D_2$ mają taki sam graf pierwotny ($G$).
+
+\begin{center}
+
+\end{center}
+
+\end{exampleblock}
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}	
+	\begin{block}{Definicja}
+		Niech $D=\big(V(D),E(D)\big)$ będzie digrafem.
+\begin{itemize}
+\item {\bf Drogą} nazywamy ciąg wierzchołków $(v_1,v_2,\ldots,v_n)$ taki, że $(v_i,v_{i+1})\in E(D)$ dla każdego $1\leq i\leq n-1$.
+\item {\bf Drogą nieskierowaną} nazywamy ciąg wierzchołków $(v_1,v_2,\ldots,v_n)$ taki, że $(v_i,v_{i+1})\in E(D)$ lub $(v_{i+1},v_i)\in E(D)$ dla każdego $1\leq i\leq n-1$.
+\item {\bf Ścieżką} nazywamy drogę w której każdy wierzchołek występuje co najwyżej jeden raz.
+\item {\bf Cyklem} nazywamy drogę w której $v_1=v_n$ oraz wszystkie pozostałe wierzchołki występują co najwyżej jeden raz.
+\item {\bf Cyklem niewłaściwym} nazywamy drogę w której $v_1=v_n$.
+\item Digraf jest {\bf acykliczny}, jeżeli nie posiada cykli.
+\end{itemize}
+	\end{block}
+
+\medskip
+
+Podobnie jak droga nieskierowana jest pierwotnym odpowiednikiem drogi w~digrafie, tak i {\bf ścieżka nieskierowana}, {\bf cykl nieskierowany} i {\bf cykl niewłaściwy nieskierowany} to pierwotne odpowiedniki ścieżki, cyklu i cyklu niewłaściwego.
+
+\end{frame}
+
+
+\begin{frame}
+	\begin{block}{Definicja}
+	\begin{itemize}
+	\item	Digraf $D$ jest {\bf spójny}, gdy dla każdej pary jego wierzchołków istnieje ścieżka nieskierowana łącząca te wierzchołki.
+	\item Digraf $D$ jest {\bf silnie spójny}, gdy dla każdej pary jego wierzchołków $u$ i $v$ istnieje ścieżka o początku w $u$ i końcu w $v$ oraz istnieje ścieżka o początku w~$v$ i końcu w $u$.
+	\end{itemize}
+	\end{block}
+
+
+\begin{exampleblock}{Przykład 7}
+Digraf przedstawiony w przykładzie 1 nie jest spójny --- nie istnieje ścieżka łącząca wierzchołek $6$ z pozostałymi. Rozważmy poniższe digrafy:
+
+
+
+Digraf $D_1$ jest spójny, ale nie jest silnie spójny. Digraf $D_2$ jest silnie spójny.
+\end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Definicja}
+Jeżeli $G$ jest grafem pierwotnym grafu zorientowanego $D$, to $D$ nazywamy {\bf orientacją} grafu $G$.
+\end{block}
+
+\begin{exampleblock}{Przykład 8}
+Graf ($G$) i jedna z jego orientacji ($D$).
+
+
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{Definicja}
+\begin{itemize}
+\item Dowolną orientację grafu pełnego nazywamy {\bf turniejem}.
+\item Digraf $D$ jest {\bf $r$-regularny}, jeżeli równania $$\outdeg v=\indeg v=r$$ zachodzą dla każdego $v\in V(D)$.
+\end{itemize}
+\end{block}
+
+\begin{exampleblock}{Przykład 9}
+Grafy $D_1$ i $D_2$ z przykładu 7 są jedynymi turniejami rzędu $3$ (a zarazem jedynymi orientacjami grafu $K_3$). Ponadto graf $D_2$ jest grafem $1$-regularnym.
+
+\medskip
+
+Ile jest turniejów rzędu $4$? Są cztery takie turnieje:
+
+
+\end{exampleblock}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Definicja}
+Turniej $T$ jest {\bf przechodni}, jeżeli z tego, że $(u,v)$ i $(v,w)$ są łukami w $T$ wynika, że $(u,w)$ również jest łukiem w $T$.
+\end{block}
+
+\bigskip
+
+\begin{exampleblock}{Przykład 10}
+Które turnieje rzędu $4$ (przykład 9) są przechodnie?
+
+\medskip
+
+Jedynym przechodnim turniejem rzędu $4$ jest $T_{4,4}$.
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Twierdzenie}
+Turniej jest przechodni wtedy i tylko wtedy, gdy jest acykliczny.
+\end{block}
+
+\begin{block}{Dowód. (1/2)}
+$(\Leftarrow)$
+
+Niech $T$ będzie acyklicznym turniejem i niech $(u,v),\,(v,w)\in E(T)$. Z~acykliczności wynika, że $(w,u)\not\in E(T)$. Pamiętajmy, że $T$ jest turniejem, więc dla każdej pary wierzchołków $v_1,v_2$ jeżeli $(v_1,v_2)\not\in E(T)$, to $(v_2,v_1)\in E(T)$. Zatem z $(w,u)\not\in E(T)$ otrzymujemy, że $(u,w)\in E(T)$, więc $T$ jest przechodni. 
+
+\end{block}
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Dowód. (2/2)}
+$(\Rightarrow)$
+
+Niech $T$ będzie przechodnim turniejem. Załóżmy niewprost, że w turnieju $T$ istnieje cykl $(v_1,v_2,\ldots,v_k,v_1)$, gdzie $k\geqslant3$. Przechodniość $T$ pozwala nam skonstruować ciąg krawędzi:
+\begin{itemize}
+\item Z $(v_1,v_2),(v_2,v_3)\in E(T)$ wynika, że $(v_1,v_3)\in E(T)$. 
+\item Z $(v_1,v_3),\,(v_3,v_4)\in E(T)$ wynika, że $(v_1,v_4)\in E(T)$.
+\item $\ldots$
+\item Z $(v_1,v_{k-1}),(v_{k-1},v_k)\in E(T)$ wynika, że $(v_1,v_k)\in E(T)$ --- daje to sprzeczność z faktem, że $(v_k,v_1)\in E(T)$.
+\end{itemize}
+Zatem $T$ jest acykliczny.\vfill\qed
+\end{block}
+
+\medskip
+
+\begin{block}{Twierdzenie}
+Dla każdej liczby całkowitej $n\geqslant3$ istnieje dokładnie jeden przechodni (acykliczny) turniej rzędu $n$.
+\end{block}
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+
+\begin{block}{Definicja}
+\begin{itemize}
+	\item	Jeżeli w digrafie $D$ istnieje cykl niewłaściwy $d$ przechodzący przez każdą krawędź digrafu $D$ dokładnie jeden raz, to $d$ nazywamy {\bf cyklem Eulera}, a~digraf $D$ --- {\bf digrafem eulerowskim}.
+	\item Jeżeli digraf $D$ nie jest digrafem eulerowskim i istnieje ścieżka $d$ przechodząca przez każdą krawędź digrafu $D$ dokładnie jeden raz, to $d$ nazywamy {\bf ścieżką Eulera}, a digraf $D$ --- {\bf digrafem jednobieżnym} ({\bf półeulerowskim}).
+\end{itemize}
+\end{block}
+
+\begin{exampleblock}{Przykład 11}
+Rozważmy turnieje rzędu $3$ (przykład 7). $D_2$ jest eulerowski, natomiast $D_1$ nie jest ani eulerowski ani jednobieżny.%następnym razem  lepszy przykład, na eulerowski i jednobieżny
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{Stwierdzenie}
+\begin{itemize}
+	\item Digraf $D$ jest eulerowski wtedy i tylko wtedy, gdy jest spójny oraz dla każdego wierzchołka $w\in V(D)$ zachodzi
+$$\outdeg w=\indeg w.$$
+	\item Digraf $D$ jest jednobieżny wtedy i tylko wtedy, gdy jest spójny i zawiera dwa wierzchołki $u$ i $v$ takie, że
+$$\outdeg u=\indeg u+1\ \ \ \ \ \mbox{ oraz }\ \ \ \ \ \indeg v =\outdeg v+1$$
+oraz $$\outdeg w =\indeg w $$ dla wszystkich pozostałych łuków $w\in V(D)$.  Co więcej, $u$ jest początkiem, a~$v$ końcem każdej ścieżki Eulera w $D$. 
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{exampleblock}{Przykład 12}
+
+
+
+$D_1$ - digraf eulerowski
+
+$D_2$ - digraf jednobieżny
+
+$D_3$ - digraf nie eulerowski i nie jednobieżny
+
+\end{exampleblock}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Definicja}
+\begin{itemize}
+	\item	Jeżeli w digrafie $D$ istnieje cykl $h$ przechodzący przez każdy wierzchołek digrafu $D$ dokładnie jeden raz, to $h$ nazywamy {\bf cyklem Hamiltona}, a $D$ --- {\bf digrafem hamiltonowskim}.
+	\item Jeżeli digraf $D$ nie jest digrafem hamiltonowskim i istnieje ścieżka $h$ przechodząca przez każdy wierzchołek tego grafu dokładnie jeden raz, to $h$ nazywamy {\bf ścieżką Hamiltona}, a $D$ --- {\bf digrafem trasowalnym} ({\bf półhamiltonowskim}).
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{exampleblock}{Przykład 13}
+
+
+
+$D_1$ - digraf hamiltonowski
+
+$D_2$ - digraf trasowalny
+
+$D_3$ - digraf nie hamiltonowski i nie trasowalny
+
+\end{exampleblock}
+
+\bigskip
+
+\begin{exampleblock}{Przykład 14}
+Które turnieje rzędu $4$ (przykład 9) są hamiltonowskie, a które są trasowalne?
+
+\medskip
+
+$T_{4,1}$ --- turniej hamiltonowski
+
+$T_{4,2},\,T_{4,3},\,T_{4,4}$ --- turnieje trasowalne
+
+\end{exampleblock}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+Zauważmy, że turnieje mogą mieć źródła i ujścia, co sugeruje że na ogół nie są one digrafami hamiltonowskimi. Zachodzi jednak następujące twierdzenie:
+
+\begin{block}{Twierdzenie (R\'{e}dei, Camion)}
+Każdy turniej jest trasowalny lub hamiltonowski.
+\end{block}
+
+\begin{block}{Dowód. (1/2)}
+Aby teza była prawdziwa, wystarczy aby turniej zawierał ścieżkę Hamiltona. Niech $T$ będzie turniejem i niech $$P=(v_1,v_2,\ldots,v_k)$$ będzie najdłuższą ścieżką w $T$. Jeżeli $P$ nie jest ścieżką Hamiltona, to $1\leqslant k<n$ oraz istnieje wierzchołek $v\in V(T)$ taki, że $v\not\in P$.
+
+Z faktu, że $P$ jest najdłuższą ścieżką otrzymujemy, że $$(v,v_1),\,(v_k,v)\not\in E(T).$$ Zatem, na mocy faktu że $T$ jest turniejem, mamy $$(v_1,v),\,(v,v_k)\in E(T).$$ 
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+
+\begin{block}{Dowód. (2/2)}
+
+W takim razie istnieje największa liczba całkowita $i$ ($1\leqslant i<k$) taka, że $(v_i,v)\in E(T)$, co oznacza że $(v,v_{i+1})\in E(T)$. 
+
+
+
+Zauważmy, że teraz w turnieju $T$ istnieje ścieżka
+$$(v_1,\,v_2,\,\ldots,\,v_{i-1},\,v_i,\,v,\,v_{i+1},\,\ldots,\,v_{k-1},\,v_k),$$
+która ma większą długość ($k+1$) niż ścieżka $P$ --- co daje nam sprzeczność z~faktem, że $P$ nie jest ścieżką Hamiltona.
+\end{block}
+
+
+\end{frame}
+
+
+\begin{frame}
+
+
+\begin{block}{Wniosek}
+Każdy turniej przechodni zawiera dokładnie jedną ścieżkę Hamiltona.
+\end{block}
+
+\bigskip
+
+Przykładowe warunki na digrafy hamiltonowskie:
+
+\begin{block}{Twierdzenie}
+Niech $D$ będzie digrafem i niech $|V(D)|=n$.
+\begin{itemize}
+\item Jeżeli dla każdej pary wierzchołków $u,v\in V(G)$ takich, że $(u,v)\not\in E(D)$ zachodzi
+$$\outdeg u+\indeg v \geqslant n,$$
+to $D$ jest hamiltonowski.
+\item Jeżeli dla każdego wierzchołka $v\in V(D)$ zachodzi $$\outdeg v\geqslant \frac{n}2\ \ \ \ \ \mbox{ oraz }\ \ \ \ \ \indeg v\geqslant\frac{n}2,$$
+to $D$ jest hamiltonowski.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,166 @@
+a4paper,10pt beamer T1,plmath polski cp1250 inputenc amssymb indentfirst graphicx onlymath serif ulem % kolorowe podkreślenia xcolor % kolorowe podkreślenia diagbox tasks \, outdeg \, \, indeg \, %\definecolor{green1}{html}{22B14C} 1 orange black #1 % pomarańczowe podkreślenie 1 yellow black #1 % żółte podkreślenie 1 blue black #1 % niebieskie podkreślenie 1 RGB 34,177,76 black #1 % zielone podkreślenie Boadilla crane %\usecolortheme[rgb={1,0.5,0}]{structure}  Teoria grafów --- podstawy %\subtitle{Matematyka, Kierunek: Architektura} B. Pawlik  dr inż. Bartłomiej Pawlik %\institute{} %\setbeamercovered{transparent} % przezroczyste warstwy Podstawowe definicje Przykład 1 
+	Rozpatrzmy parę zbiorów:
+
+Jak można przedstawić graficznie te zbiory? Przykładowa reprezentacja to:
+	 Definicja  Grafem  nazywamy parę zbiorów  G= V(G),E(G) , gdzie  V(G)  to   zbiór wierzchołków , a  E(G) (  zbiór krawędzi ) to zbiór  nieuporządkowanych par  elementów zbioru  V(G) .
+	 
+Parę zbiorów spełniającą powyższą definicję nazywa się niekiedy   grafem nieskierowanym .
+
+ Definicja  Rzędem grafu G  nazywamy liczbę jego wierzchołków  |V(G)| . 
+	  Rozmiarem grafu G  nazywamy liczbę jego krawędzi  |E(G)| .
+	 	Wierzchołki  x  i  y  nazywamy   końcami krawędzi \{ x,y \} . 
+	  Krawędź  \{ x,x \}  nazywamy   pętlą .
+ Przykład 
+	Rząd grafu  G  z przykładu 1 wynosi  6 , a jego rozmiar to  8 .
+ Oznaczenie 
+Rząd grafu oznaczamy przez  n , a jego rozmiar przez  m . Krawędź  \{ u,v \}  będziemy często zapisywać w postaci  uv .
+ Definicja 
+	Dany jest graf  G  i wierzchołki  u,v,w  V(G) .
+	  Jeżeli  uv  E(G) , to  u  nazywamy   wierzchołkiem sąsiednim  do  v  i~do krawędzi  uv . Krawędź  uv  nazywamy   krawędzią sąsiednią  do wierzchołka  u  i~do wierzchołka  v .
+		  Jeżeli  uv,vw  E(G) , to  uv  jest   krawędzią sąsiednią  do krawędzi  vw .
+	 
+Na powyższym rysunku przedstawiono fragment grafu, w którym
+  wierzchołki  u  i  v  są sąsiednie, bo istnieje krawędź  uv ,
+  wierzchołki  v  i  w  są sąsiednie, bo istnieje krawędź  vw ,
+  wierzchołki  u  i  w  nie są sąsiednie, bo nie istnieje krawędź  uw ,
+  krawędzie  uv  i  vw  są sąsiednie, bo mają wspólny wierzchołek  v .
+  Rysunek grafu  to jego reprezentacja graficzna. Zwyczajowo, wierzchołki zaznacza się punktami, a krawędzie - odcinkami między punktami.
+	 Uwaga! 
+W tym wykładzie rozważamy wyłącznie grafy   skończone , czyli grafy mające skończone rzędy i rozmiary.
+ Definicja  Multigrafem (  grafem z krawędziami wielokrotnymi ) nazywamy graf, w którym krawędzie mogą się powtarzać ( E(G)  jest multizbiorem).
+	 Definicja  Grafem prostym  nazywamy graf nie zawierający pętli ani krawędzi wielokrotnych. 
+	 Stwierdzenie 
+		Jeżeli  G  jest grafem prostym, to
+	
+	  Jeżeli  |E(G)|=0 , to  G  nazywamy   grafem pustym .
+  Jeżeli   |E(G)|= |V(G)| 2 , to  G  nazywamy   grafem pełnym (  kliką ).
+	 Definicja  Stopniem   v  wierzchołka  v  w grafie  G  nazywamy liczbę krawędzi sąsiednich z  v (pętle liczą się dwukrotnie).
+	 Przykład 
+	Stopnie wierzchołków grafu  G  z przykładu 1 wynoszą
+	
+	 } Definicja  Minimalnym stopniem  (G)  grafu  G  nazywamy najmniejszy ze stopni wierzchołków w grafie  G :
+		
+	  Maksymalnym stopniem  (G)  grafu  G  nazywamy największy ze stopni wierzchołków w grafie  G :
+		
+	 
+Zauważmy, że jeśli  v  jest wierzchołkiem grafu  G , to
+
+
+	 Przykład 
+	Minimalne i maksymalne stopnie wierzchołków grafu  G  z przykładu 1 wynoszą
+	
+	 } Podstawowe twierdzenie teorii grafów (L. Euler, 1736) 
+	Suma stopni wszystkich wierzchołków skończonego grafu prostego  G  jest dwa razy większa od liczby jego krawędzi:
+	
+ 
+Niech  G  będzie skończonym grafem prostym. Niech  S  oznacza liczbę wszystkich par  (v,e) , gdzie  v  V(G)  oraz  e  E(G)  takich, że wierzchołek  v  przylega do krawędzi  e .
+  Liczba krawędzi do których przylega ustalony wierzchołek  v  wynosi   v , więc   S= _ v  V(G)  v .
+  Z drugiej strony do każdej krawędzi przylegają dokładnie dwa różne wierzchołki, więc  S=2 |E(G)| , co kończy dowód.
+ 
+Powyższy (zaproponowany przez Eulera) dowód stanowi przykład jednej z~podstawowych kombinatorycznych metod dowodzenia równości, tzw.   double counting proof .
+ Twierdzenie 1 
+		Jeżeli graf prosty  G  ma co najmniej dwa wierzchołki, to ma co najmniej jedną parę wierzchołków tego samego stopnia.
+	 
+		Niech  n  będzie liczbą wierzchołków grafu  G . Załóżmy niewprost, że każdy wierzchołek ma inny stopień. Jedyną możliwością jest, aby ciąg stopni wierzchołków wyglądał następująco: 
+		Zatem istnieje wierzchołek, który nie jest połączony krawędzią z żadnym innym wierzchołkiem (stopień  0 ) oraz wierzchołek połączony krawędzią z każdym innym wierzchołkiem (stopień  n-1 ). Te dwa wierzchołki nie są połączone krawędzią ( 0 ) i są połączone krawędzią ( n-1 ) - sprzeczność.
+	 Uwaga!  Podstawowe twierdzenie teorii grafów  jest często nazywane   Lematem o~uściskach dłoni . Pierwsza nazwa służy podkreśleniu fundamentalnego charakteru wyniku, druga --- wskazująca na bardzo naturalną interpretację (poniżej) --- była stosowana przez Leonharda Eulera.
+ 
+Poglądowe ujęcie powyższych twierdzeń: 
+
+  Lemat o uściskach dłoni 
+	Dla dowolnej grupy osób witających się uściskiem dłoni, sumaryczna liczba wymienionych uścisków jest parzysta.
+  Twierdzenie 1 
+	Wśród  n  osób, które ściskały między sobą dłonie, istnieje para osób które wykonały tyle samo uścisków.
+ Definicja  Macierz sąsiedztwa  grafu  G  to macierz  A_G= [ a_ ij ] , w której  a_ ij  określa liczbę krawędzi od  i -tego do  j -tego wierzchołka.  
+	 
+	Oczywiście w przypadku grafu prostego macierz  A_G  jest symetryczna i jej elementami wyłącznie liczby  0  i  1 .
+	
+	 Stwierdzenie 
+		Niech  A_G  będzie macierzą sąsiedztwa grafu  G . Wtedy dla dowolnego  n N  mamy  (A_G)^n= [ t_ ij ] , gdzie  t_ ij  oznacza liczbę różnych dróg długości  n  od  i -tego do  j -tego wierzchołka.
+	 Definicja  Macierz incydencji grafu G  to macierz  B_G= [ b_ ij ] , w której
+		
+	 Wniosek  Suma elementów w  i -tym wierszu macierzy incydencji grafu  G  wynosi   v_i .
+	  Suma elementów w  j -tej kolumnie macierzy incydencji grafu  G  wynosi  2 .
+	 Definicja 
+		Graf  H  nazywamy   podgrafem  grafu  G , jeżeli  V(H)  V(G)  oraz  E(H)  E(G) . Mówimy też, że graf  G  jest   nadgrafem  grafu  H .
+	 Często będziemy stosować następujące oznaczenia: 
+Niech  G  będzie grafem i niech  v  V(G)  oraz  e  E(G) .
+  Przez  G-e  oznaczamy podgraf grafu  G  otrzymany przez usunięcie krawędzi~ e .
+  Przez  G-v  oznaczamy podgraf grafu  G  otrzymany przez usunięcie wierzchołka  v  i wszystkich krawędzi do niego sąsiednich.
+ Definicja 
+		Podgraf  H  grafu  G  nazywamy   podgrafem indukowanym przez zbiór wierzchołków  W  V(G) , jeżeli  W=V(H)  oraz  H  zawiera wszystkie krawędzie grafu  G  łączące wierzchołki ze zbioru  W .
+	 %JAKIŚ PRZYKŁAD W STYLU STR 25 WILSON Definicja 
+		Niech  G= V(G),E(G)  będzie grafem.
+		  Drogą  nazywamy ciąg wierzchołków  (v_1,v_2, ,v_n)  w grafie  G  taki, że  v_iv_ i+1  E(G)  dla każdego  1  i  n-1 .
+			  Ścieżką  nazywamy drogę w której każdy wierzchołek występuje co najwyżej jeden raz.
+			  Cyklem  nazywamy drogę w której  v_1=v_n  oraz wszystkie pozostałe wierzchołki występują co najwyżej jeden raz.
+			  Cyklem niewłaściwym  nazywamy drogę w której  v_1=v_n .
+			  Graf  G  jest   spójny , gdy dla każdej pary jego wierzchołków istnieje ścieżka zawierająca te wierzchołki.
+			  Maksymalny (w sensie zawierania) podgraf spójny danego grafu nazywamy   składową spójności .
+		 Izomorfizm grafów Przykład 
+Czy można uznać poniższe rysunki za dwie różne reprezentacje graficzne tego samego grafu?
+ 
+Tak!
+ 
+Graf w powyższym przykładzie to tzw.   graf Petersena .
+
+ Definicja 
+		Funkcję  f:V(G)  V(H)  nazywamy   izomorfizmem  grafów  G  i  H , jeżeli  f  jest bijekcją zachowującą sąsiedztwo wierzchołków. Grafy  G  i  H  nazywamy   izomorficznymi , gdy istnieje izomorfizm  f  między tymi grafami i oznaczamy to przez  G  H .
+		  Jeżeli  G  i  H  są grafami ważonymi, to  f  zachowuje również wagi krawędzi.
+			  Jeżeli  G  i  H  są multigrafami, to  f  zachowuje również liczbę krawędzi między danymi wierzchołkami.
+		 Niektóre niezmienniki izomorfizmów  rząd
+		  rozmiar
+		  liczba wierzchołków danego stopnia
+		  liczba składowych spójności
+		  liczba pętli i krawędzi wielokrotnych
+		  liczba cykli danej długości
+		  liczba ścieżek
+	 Uwaga! 
+	Powyższe niezmienniki stanowią warunki konieczne, ale niewystarczające dla istnienia izomorfizmu.	
+ Przykład 
+	Wszystkie z dokładnością do izomorfizmu grafy proste rzędu 4.
+ Podstawowe grafy proste Graf pusty  E_n .45 V(E_n)= \{ 1,2, ,n \} ,
+			
+			 E(E_n)= .
+		 .45 Graf pełny (klika)  K_n .52 V(K_n)= \{ 1,2, ,n \} ,
+	
+	 E(K_n)= \{ i,j \} : \, i,j  V(K_n), \, i  j .
+	 .3 Podstawowe grafy proste Ścieżka  P_n .55 V(P_n)= \{ 1,2, ,n \} ,
+		
+		 E(P_n)= \{ i,i+1 \} : \, i \{ 1,2, ,n-1 \} .
+	 .35 Cykl  C_n (dla  n 3 ) .6 V(C_n)= \{ 1,2, ,n \} ,
+			
+			 E(C_n)= \{ i,j \} : \, i,j  V(C_n), \, |i-j| _n1 .
+		 .3 Podstawowe grafy proste Graf pełny dwudzielny  K_ m,n .6 
+			Graf w którym zbiór wierzchołków można podzielić na dwa rozłączne podzbiory  V_1,V_2  takie, że
+			
+		 .3 scale=0.4 k18x18.png b 5cm K_ 18,18  A. Kircher (1669)   Ars Magna Sciendi Sive Combinatoria Podstawowe grafy proste Inne  Graf dwudzielny  - graf w którym zbiór wierzchołków można podzielić na dwa rozłączne podzbiory  V_1,V_2  takie, że
+			
+			  Drzewo  - graf spójny nie zawierający cykli.
+			  Las  - graf nie zawierający cykli.
+			  Graf  r -regularny  - graf w którym stopień każdego wierzchołka wynosi  r .
+		 Definicja 
+Jeżeli   v=1  dla pewnego wierzchoła  v  V(G) , to  v  nazywamy   liściem .
+ Twierdzenie 
+Graf  G  jest dwudzielny wtedy i tylko wtedy, gdy   G  nie zawiera cyklu nieparzystej długości.
+ Dowód.  (1/2) ( )
+Jeżeli  G  jest grafem dwudzielnym, to  V(G)=V_1  V_2 , gdzie  V_1  V_2= . Niech  (v_1,v_2, ,v_l)  będzie cyklem długości  l . 
+
+ .38 
+Załóżmy (bez straty ogólności), że  v_1  V_1 . Wtedy 
+ v_2  V_2 ,
+ v_3  V_1 ,
+ v_4  V_2 ,
+ ,
+ v_l  V_2 .
+ 
+Ogólnie  v_i  V_1  wtedy i tylko wtedy, gdy  i  jest liczbą nieparzystą. Zatem  l  jest liczbą parzystą.
+ .58 Dowód.  (2/2) ( )
+
+Zakładamy, że  G  nie zawiera cyklu nieparzystej długości. 
+
+ 
+Graf  G  jest dwudzielny wtedy i tylko wtedy, gdy każda jego składowa jest grafem dwudzielnym, więc możemy założyć, że  G  jest spójny.
+
+ 
+Niech  x  V(G)  i niech  V_1  będzie zbiorem wierzchołków, których odległość od  x  jest nieparzysta i niech  V_2=V  V_1 . Nie ma krawędzi łączących dwa wierzchołki ze zbioru  V_i , bo gdyby taka krawędź istniała, to  G  zawierałby cykl nieparzystej długości. Zatem  G  jest dwudzielny.
