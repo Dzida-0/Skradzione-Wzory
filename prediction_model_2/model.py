@@ -1,7 +1,9 @@
 from typing import Optional, List, Dict
 import numpy as np
 import pandas as pd
-from tensorflow.keras.models import Sequential
+import pickle
+from tensorflow.keras.models import Sequential,load_model
+from tensorflow.keras.models import Model
 from tensorflow.keras.layers import (
     Embedding,
     Conv1D,
@@ -27,6 +29,7 @@ class Model:
         self,
         output_dim: Optional[int] = 256,
         filters: Optional[int] = 512,
+        global_max_pooling: Optional[bool] = True,
         quiet: Optional[bool] = False,
     ) -> None:
         """
@@ -50,11 +53,15 @@ class Model:
         self._max_len = max(len(seq) for seq in sequences)
         X = pad_sequences(sequences, maxlen=self._max_len)
         y = np.array(labels)
+        if global_max_pooling:
+            e =GlobalMaxPooling1D()
+        else:
+            e = GlobalAveragePooling1D()
         self._model = Sequential(
             [
                 Embedding(input_dim=vocab_size, output_dim=output_dim),
                 Conv1D(filters=filters, kernel_size=2, activation="relu"),
-                GlobalMaxPooling1D(),
+                e,
                 Dense(64, activation="relu"),
                 Dense(1, activation="sigmoid"),
             ]
@@ -66,7 +73,6 @@ class Model:
 
     def predict(self, text: str) -> float:
         """
-
         :param text:
         :return: float value between 0 and 1 where 0 means non-plagiat and 1 plagiat.
         """
@@ -114,11 +120,19 @@ class Model:
                         ignore_index=True
                     )
         return self._test_results
-                # tab = []
-                # print(f"output_dim: {output_dim}, filters: {filters}")
-                # for text, value in test_dict.items():
-                #     answer = self.predict([text])
-                #     print(value, answer, abs(value - answer))
-                #     tab.append(abs(value - answer))
-                # print(np.mean(tab))
-                # print("-----------------------------------")
+
+    def save_predictions(self,file_name:str):
+        self._test_results.to_csv(file_name)
+
+    def save_model(self):
+        self._model.save('aa.keras')
+        with open("tokenizer.pkl", "wb") as f:
+            pickle.dump(self._tokenizer, f)
+
+    def load_model(self):
+        self._model = load_model('aa.keras')
+        with open("tokenizer.pkl", "rb") as f:
+            self._tokenizer = pickle.load(f)
+        self._model.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])
+
+
