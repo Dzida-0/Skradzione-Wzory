@@ -2,6 +2,7 @@ from typing import Optional, List, Dict
 import numpy as np
 import pandas as pd
 import pickle
+import re
 from tensorflow.keras.models import Sequential,load_model
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import (
@@ -134,5 +135,17 @@ class Model:
         with open("tokenizer.pkl", "rb") as f:
             self._tokenizer = pickle.load(f)
         self._model.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])
+
+    def _get_all_train_text(self):
+        with open('md4 rekurencja.tex', 'r', encoding='utf-8') as f:
+            r = f.read()
+        a = latex_to_plain_text_texsoup(r)
+        a = re.sub('\t', '', a)
+        a = a.split('\n')
+        with open('b.txt', 'w', encoding='utf-8') as f:
+            for i in a:
+                i = i.strip()
+                if i != '':
+                    f.write(i + '\n')
 
 

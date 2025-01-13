@@ -1,0 +1,494 @@
+
+\documentclass[a4paper,10pt]{beamer}
+\usepackage[T1,plmath]{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+
+\usefonttheme[onlymath]{serif}
+
+
+\usepackage{ulem} % kolorowe podkreślenia
+\usepackage{xcolor} % kolorowe podkreślenia
+
+\usepackage{diagbox}
+\usepackage{tasks}
+
+
+
+
+\newcommand{\outdeg}{{\,\rm{outdeg}\,}}
+\newcommand{\indeg}{{\,\rm{indeg}\,}}
+
+%\definecolor{green1}{html}{22B14C}
+
+\newcommand{\ouline}[1]{{\color{orange}\uline{{\color{black}#1}}}} % pomarańczowe podkreślenie
+\newcommand{\yuline}[1]{{\color{yellow}\uline{{\color{black}#1}}}} % żółte podkreślenie
+\newcommand{\buline}[1]{{\color{blue}\uline{{\color{black}#1}}}} % niebieskie podkreślenie
+\newcommand{\guline}[1]{{\color[RGB]{34,177,76}\uline{{\color{black}#1}}}} % zielone podkreślenie
+
+
+\usetheme{Boadilla}
+\usecolortheme{crane}
+%\usecolortheme[rgb={1,0.5,0}]{structure}
+
+\title{\bf Grafy eulerowskie i hamiltonowskie}
+%\subtitle{Matematyka, Kierunek: Architektura}
+\author[B. Pawlik]{\bf dr inż. Bartłomiej Pawlik}
+%\institute{}
+
+
+
+%\setbeamercovered{transparent} % przezroczyste warstwy
+
+
+
+
+
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\begin{block}{Drzewa przeszukiwań}
+\begin{itemize}
+\item {\bf Metoda przeszukiwania wszerz} ({\bf breadth-first search}, {\bf BFS})
+
+Odwiedzamy wszystkich sąsiadów aktualnego wierzchołka, zanim przejdziemy do następnego wierzchołka.
+
+\item {\bf Metoda przeszukiwania w głąb} ({\bf deapth-first search}, {\bf DFS})
+
+Po odwiedzeniu sąsiada $v_{k+1}$ wierzchołka $v_k$, przechodzimy do nieodwiedzonego sąsiada $v_{k+2}$ wierzchołka $v_{k+1}$ albo --- w przypadku braku nieodwiedzony sąsiadów ---  cofamy się do wierzchołka $v_k$ i powtarzamy.
+\end{itemize}
+\end{block}
+
+\medskip
+
+W {\it BFS} zanim zagłębimy się bardziej w drzewo, zagładamy do tak wielu wierzchołków jak to możliwe, a w {\it DFS} zagłębiamy się tak daleko, jak tylko jest to możliwe, zanim zajrzymy do innych wierzchołków sąsiednich.
+\end{frame}
+
+
+\begin{frame}
+
+\begin{exampleblock}{Przykład}
+	\begin{center}
+		
+	\end{center}
+Przykładowe wyniki algorytmów przeszukiwania wszerz i w głąb, zaczynając od wierzchołka $a$:
+$$BFS:\ a,\,b,\,g,\,c,\,d,\,e,\,h,\,f,\,i,\,j$$
+$$DFS:\ a,\,b,\,c,\,d,\,f,\,e,\,g,\,h,\,i,\,j$$
+Jakie wyniki może zwrócić algorytm, gdy zaczniemy od wierzchołka $d$?
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+	
+\begin{block}{Definicja}
+	Niech $G=(V(G),E(G))$ będzie grafem i niech $w:\,E(G)\to\mathbb{R}$ będzie funkcją. Parę $(G,w)$ nazywamy {\it grafem ważonym}.
+\end{block}
+
+\medskip
+
+Innymi słowy, grafem ważonym nazywamy graf, w którym każej krawędzi przypisana jest liczba rzeczywista (może ona reprezentować odległość między wierzchołkami, przepustowość sieci, ilość interakcji itd.).
+
+\end{frame}
+
+
+
+
+\begin{frame}{Szukanie najkrótszej drogi - algorytm Dijkstry}
+	
+	Algorytm służy do wyszukiwania najkrótszej drogi od danego wierzchołka do pozostałych w grafie ważonym bez pętli, w którym wagi są liczbami \underline{nieujemnymi}.
+	
+	\begin{block}{}
+		Niech $V(G)=\{0,1,2,\ldots,n-1\}$. Będziemy szukać najkrótszej drogi od wierzchołka $0$ do pozostałych.
+		
+		{\bf Krok 1:} $Q:=\{0,1,\ldots,n\}$, $S:=\emptyset$,
+		
+		$d(0):=0$, $p(0):=0$ oraz $d(v):=\infty$, $p(v):=\infty$ dla $1\leq v\leq n$.
+		
+		{\bf Krok 2:} Dopóki $Q\neq\emptyset$ powtarzaj:
+		\begin{enumerate}
+			\item Wybierz $v\in Q$ o najmniejszej wartości $p(v)$.
+			\item $Q:=Q/\{v\}$, $S:=S\cup\{v\}$.
+			\item Dla każdego wierzchołka $u$ sąsiedniego z $v$ dokonaj {\bf relaksacji}, tzn. jeśli $d(u)>d(v)+w(v,u)$, to $d(u):=d(u)+w(v,u)$ oraz $p(u)=v$.
+		\end{enumerate} 
+		{\bf Krok 3:} Minimalna długość drogi od $0$ do $v$ to $d(v)$. Jeśli $d(v)=\infty$ to nie istnieje droga od $0$ do $d(v)$ (to jest możliwe w digrafie).
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład}
+		W poniższym grafie znaleźć najkrótsze drogi z wierzchołka $B$ do pozostałych wierzchołków korzystając z algorytmu Dijkstry.
+		
+		\begin{minipage}{.45\textwidth}
+			\begin{center}
+				
+			\end{center}
+		\end{minipage}
+		\begin{minipage}{.45\textwidth}
+				$$\begin{array}{|c|c|c|c|c|c|c|}\cline{2-7}			
+					\multicolumn{1}{c|}{}&A&C&D&E&F&G\\\hline
+					B_0&6_B&\infty&\textcolor{red}{1_B}&\infty&\infty&7_B\\\hline
+					BD_1&6_B&\textcolor{red}{4_D}&-&\infty&5_D&7_B\\\hline
+					BDC_4&\textcolor{magenta}{5_C}&-&-&9_C&\textcolor{red}{5_D}&7_B\\\hline
+					BDF_5&\textcolor{red}{5_C}&-&-&8_F&-&6_F\\\hline
+					BDCA_5&-&-&-&8_F&-&\textcolor{red}{6_F}\\\hline
+					BDFG_6&-&-&-&\textcolor{red}{8_F}&-&-\\\hline
+					BDFE_8&-&-&-&-&-&-\\\hline
+				\end{array}$$
+		\end{minipage}\\
+	\vspace{0.3cm}
+	W pierwszej kolumnie zapisane są najkrótsze drogi (w indeksie każdej z nich jest waga).
+	
+	Elementy tabeli to wagi dróg z wierzchołka $B$ do danego wierzchołka (w~indeksach są wierzchołki bezpośrednio poprzedzające dany).
+	
+	Symbol ,,$-$'' oznacza, że do danego wierzchołka już określono najkrótszą drogę.
+	
+	W sytuacji, gdy w wierszu mamy więcej niż jedną drogę o najmniejszej wadze ($\textcolor{magenta}{5_C}$ do $A$ i $\textcolor{red}{5_D}$ do $F$ w wierszu czwartym), wybieramy dowolną z nich.
+		
+	\end{exampleblock}
+	
+\end{frame}
+
+\begin{frame}
+
+Zauważmy, że problem najkrótszej drogi można rozwiązać również algorytmem {\it brute force} --- wystarczy określić wagę wszystkich ścieżek\footnote{Oczywiście najkrótsza droga musi być ścieżką.} między rozważanymi wierzchołkami i wybrać najmniejszą. Jednak już nawet dla grafów o~niewielkiej liczbie wierzchołków ten algorytm jest dużo mniej optymalny.
+
+\medskip
+
+Zauważmy jednak, że znalezienie jakiejkolwiek ścieżki między rozważanymi wierzchołkami daje w oczywisty sposób \underline{ograniczenie górne} na rozwiązanie problemu najkrótszej drogi.
+
+\end{frame}
+
+
+
+\begin{frame}{Grafy eulerowskie}
+
+	\begin{block}{Definicja}
+\begin{itemize}
+	\item	Jeżeli w grafie $G$ istnieje cykl niewłaściwy $d$ przechodzący przez każdą krawędź grafu $G$ dokładnie jeden raz, to $d$ nazywamy {\bf cyklem Eulera}, a graf $G$ --- {\bf grafem eulerowskim}.
+	\item Jeżeli graf $G$ nie jest grafem eulerowskim i istnieje ścieżka $d$ przechodząca przez każdą krawędź grafu $G$ dokładnie jeden raz, to $G$ nazywamy {\bf grafem jednobieżnym} ({\bf półeulerowskim}).
+\end{itemize}
+	\end{block}
+
+\medskip
+
+\begin{exampleblock}{Przykład}
+		\begin{minipage}{.6\textwidth}
+			\begin{center}
+		
+			\end{center}
+		\end{minipage}
+\hfill
+		\begin{minipage}{.35\textwidth}
+$G_1$ --- graf eulerowski
+
+\medskip
+
+$G_2$ --- graf jednobieżny
+
+\medskip
+
+$G_3$ --- graf, który nie jest ani eulerowski, ani jednobieżny
+		\end{minipage}
+\end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Problem mostów królewieckich}
+Czy można przejść dokładnie jeden raz przez każdy z siedmiu mostów przedstawionych na poniższym rysunku i powrócić do punktu wyjścia?
+\end{block}
+\begin{center}
+	
+
+\begin{footnotesize}[Źródło: {\it https://pl.wikipedia.org/wiki/Królewiec\#/media/Plik:Image-Koenigsberg,\_Map\_by\_Merian-Erben\_1652.jpg}, 13.05.2024]\end{footnotesize}
+\end{center}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+	\begin{block}{Lemat 1}
+Jeżeli $\delta(G)\geqslant2$, to graf $G$ zawiera cykl.
+	\end{block}
+\begin{proof}
+Jeżeli $G$ zawiera pętle lub krawędzie wielokrotne, to lemat jest trywialny. Załóżmy zatem, że $G$ jest grafem prostym i że $v\in G$ jest dowolnym wierzchołkiem $G$.
+
+Tworzymy trasę $$v\to v_1\to v_2\to\ldots$$
+tak aby $v_{k+1}$ był sąsiadem $v_k$ różnym od $v_{k-1}$ (zawsze jest to możliwe ze względu na założenie, że stopień każdego wierzchołka wynosi co najmniej $2$). Graf $G$ ma skończenie wiele wierzchołków, więc po skończonej liczbie kroków na trasie musi pojawić się wierzchołek $v_K$, który pojawił się na niej już wcześniej. Fragment trasy $$v_K\to\ldots\to v_K$$ jest szukanym cyklem.
+\end{proof}	
+\end{frame}
+
+
+
+
+
+\begin{frame}
+	\begin{block}{Twierdzenie (Euler, 1741)}
+Niech $G$ będzie grafem spójnym. Graf $G$ jest eulerowski wtedy i tylko wtedy, gdy każdy wierzchołek ma stopień parzysty.
+	\end{block}
+\begin{block}{Dowód. {\it (1/2)}}
+($\Rightarrow$)
+
+Niech $d$ będzie cyklem Eulera w grafie $G$ i niech $v\in V(G)$. Każde przejście cyklu $d$ przez wierzchołek $v$ zwiększa udział krawędzi należących do tego cyklu w stopniu wierzchołka $v$ o $2$. Każda krawędź występuje w grafie $G$ dokładnie raz, więc stopień każdego wierzchołka musi być liczbą parzystą.
+\end{block}	
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Dowód {\it (2/2)}}
+($\Leftarrow$)
+
+Dowód indukcyjny względem liczby krawędzi grafu $G$. $G$ jest grafem spójnym, w~którym stopień każdego wierzchołka jest liczbą parzystą, więc $\delta(G)\geqslant2$. Zatem, na mocy Lematu 1, w $G$ istnieje cykl $c$.
+\begin{itemize}
+\item Jeżeli $c$ zawiera każdą krawędź grafu $G$, to twierdzenie jest udowodnione.
+\item Jeżeli $c$ nie zawiera każdej krawędzi grafu $G$, to usuwamy z grafu $G$ wszystkie krawędzie należące do cyklu $c$, otrzymując graf $G\backslash\{c\}$, który ma mniej krawędzi niż $G$. Z założenia indukcyjnego każda składowa spójności grafu $G\backslash\{c\}$ posiada cykl Eulera. Ze spólności $G$ wynika, że każda składowa spójności grafu $G\backslash\{c\}$ ma co najmniej jeden wierzchołek wspólny z cyklem $c$. Zatem w grafie $G$ można stworzyć cykl Eulera poprzez połączenie cyklu $c$ z~cyklami Eulera wszystkich składowych spójności grafu $G\backslash\{c\}$ poprzez wierzchołki wspólne.
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład}
+		\begin{minipage}{.4\textwidth}
+			\begin{center}
+			
+			\end{center}
+		\end{minipage}
+		\begin{minipage}{.55\textwidth}
+				Na powstawie powyższego twierdzenia Eulera określić czy dany graf jest eulerowski lub jednobieżny.
+
+\medskip
+\begin{itemize}
+\item Jeżeli jest eulerowski, to wskazać przykładowy cykl Eulera.
+\item Jeżeli jest jednobieżny to wskazać przykładową ścieżkę Eulera.
+\end{itemize}
+		\end{minipage}\\
+	\vspace{0.3cm}
+Dany graf jest eulerowski, ponieważ stopień każdego wierzchołka jest liczbą parzystą. Przykładowy cykl Eulera to $$(1\to2\to8\to1)\to(3\to4\to2\to3)\to(5\to6\to4\to5)\to$$ $$\to(7\to8\to6\to7)\to1.$$
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Wniosek}
+Niech $G$ będzie grafem spójnym.
+\begin{itemize}
+\item Graf $G$ jest grafem eulerowskim wtedy i tylko wtedy, gdy jego zbiór krawędzi można podzielić na rozłączne cykle.
+\item Graf $G$ jest grafem jednobieżnym wtedy i tylko wtedy, gdy ma dokładnie dwa wierzchołki nieparzystych stopni.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{Znajdowanie cyklu Eulera}
+	
+	\begin{block}{Definicja}
+	 {\bf Mostem} nazywamy tę krawędź w grafie skończonym $G$, której usunięcie powoduje zwiększenie liczby spójnych składowych grafu $G$. 
+	\end{block}
+
+\begin{exampleblock}{Przykład}
+	\begin{center}
+	
+	\end{center}
+Jedynymi mostami w powyższym grafie są krawędzie $\{c,d\}$ oraz $\{f,g\}$.
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Znajdowanie cyklu Eulera - algorytm Fleury'ego}
+		Zaczynając od dowolnego wierzchołka, tworzymy cykl Eulera dodając do niego kolejne krawędzie w taki sposób, że dodajemy do cyklu most \underline{tylko wtedy}, gdy nie ma innej możliwości.
+	\end{block}
+
+	\begin{exampleblock}{Przykład}
+		Wyznaczyć cykl Eulera w grafie $K_{2,4}$.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+
+
+
+\begin{frame}{Problem chińskiego listonosza}
+	
+	\begin{block}{Sformułowanie}
+		Znalezienie cyklu (niewłaściwego) zawierającego każdą krawędź danego grafu co najmniej raz i mającego jak najmniejszy koszt (czyli liczbę krawędzi lub, w~przypadku grafu ważonego, sumę wag krawędzi).
+	\end{block}
+	
+	\begin{block}{Rozwiązanie problemu chińskiego listonosza}
+		\begin{itemize}
+			\item Jeżeli graf $G$ jest eulerowski to znajdujemy dowolny cykl Eulera.
+			\item Jeżeli graf nie jest eulerowski to dublujemy niektóre krawędzie, aby otrzymać graf eulerowski i wtedy szukamy ścieżki Eulera. Aby otrzymać najoptymalniejsze (najkrótsze) ścieżki
+			\begin{itemize}
+				\item dla grafów nieważonych wystarczy przeszukać graf wszerz,
+				\item dla grafów z nieujemnymi wagami można skorzystać np. z algorytmu Dijkstry,
+				\item dla grafów z dowolnymi wagami można skorzystać np. z algorytmu Bellmana-Forda.
+			\end{itemize}
+		\end{itemize}
+		
+	\end{block}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{exampleblock}{Przykład}
+Rozwiąż problem chińskiego listonosza dla poniższego grafu. Jaki jest koszt cyklu stanowiącego rozwiązanie?
+
+		\begin{minipage}{.4\textwidth}
+			\begin{center}
+			\end{center}
+		\end{minipage}
+		\begin{minipage}{.55\textwidth}
+			Wierzchołki $b$ i $f$ są jedynymi wierzchołkami nieparzystego stopnia, więc dany graf jest jednobieżny. Najkrótsza droga z $b$ do $f$ to $$b\to a\to d\to f,$$ więc w grafie dublujemy krawędzie $$\{a,b\},\,\{a,d\}\mbox{ oraz }\{d,f\},$$ dzięki czemu uzyskaliśmy graf eulerowski.
+		\end{minipage}\\
+	\vspace{0.3cm}
+Przykładowym cyklem Eulera w nowym grafie (i zarazem rozwiązaniem problemu chińskiego listonosza) jest
+$$a\to e\to h\to b\to a\to d\to f\to b\to a\to d\to$$
+$$\to e\to g\to h\to f\to d\to c\to g\to f\to c\to a,$$
+którego koszt wynosi $48$.
+	\end{exampleblock}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{Grafy hamiltonowskie}
+	
+\begin{block}{Definicja}
+\begin{itemize}
+	\item	Jeżeli w grafie $G$ istnieje cykl $h$ przechodzący przez każdy wierzchołek grafu $G$ dokładnie jeden raz, to $h$ nazywamy {\bf cyklem Hamiltona}, a graf $G$ --- {\bf grafem hamiltonowskim}.
+	\item Jeżeli graf $G$ nie jest grafem hamiltonowskim i istnieje ścieżka $h$ przechodząca przez każdy wierzchołek tego grafu dokładnie jeden raz, to $G$ nazywamy {\bf grafem trasowalnym} ({\bf półhamiltonowskim}).
+\end{itemize}
+\end{block}
+
+\medskip
+
+\begin{exampleblock}{Przykład}
+		\begin{minipage}{.55\textwidth}
+			\begin{center}
+				
+			\end{center}
+		\end{minipage}
+\hfill
+		\begin{minipage}{.4\textwidth}
+$G_1$ --- graf hamiltonowski
+
+\medskip
+
+$G_2$ --- graf trasowalny
+
+\medskip
+
+$G_3$ --- graf, który nie jest ani hamiltonowski, ani trasowalny
+		\end{minipage}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{alertblock}{Uwaga!}
+Powszechnie przyjęte nazewnictwo: {\bf graf półeulerowski}, {\bf graf półhamiltonowski} jest trochę niefortunne, bo sugeruje, że każdemu z tych grafów dużo brakuje do bycia ,,pełnymi" grafami eulerowskimi lub hamiltonowskimi, podczas gdy w każdym przypadku wystarczy w tym celu do grafu dodać \underline{tylko jedną krawędź}.
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}	
+	\begin{block}{Twierdzenie (Ore, 1960)}
+		Jeżeli graf prosty $G$ ma $n$ wierzchołków ($n\geqslant3$) oraz $$\deg(u)+\deg(v)\geqslant n$$ dla każdej pary wierzchołków niesąsiednich $u$ i $v$, to graf $G$ jest hamiltonowski.
+	\end{block}
+
+\begin{block}{Dowód. ({\it 1/2})}
+Załóżmy nie wprost, że dla ustalonego $n\geq3$ istnieją grafy niehamiltonowskie spełniające założenia rozpatrywanego twierdzenia. Niech $G$ będzie takim grafem z~jak największą liczbą krawędzi --- jeżeli do $G$ dołączymy jedną krawędź to otrzymamy graf hamiltonowski.
+\end{block}
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Dowód. ({\it 2/2})}
+W $G$ istnieje co najmniej jedna para wierzchołków, które nie są połączone krawędzią --- bez straty ogólności przyjmijmy że są to wierzchołki $v_1$ i $v_n$. Z faktu, że po dodaniu krawędzi otrzymalibyśmy cykl Hamiltona wynika, że w grafie $G$ istnieje droga $$v_1\to v_2\to\ldots\to v_{n-1}\to v_n.$$ Z założenia wiemy, że
+$$\deg v_1+\deg v_n\geqslant n,$$
+co oznacza że istnieje indeks $k$ taki, że $v_{k-1}$ jest sąsiadem $v_n$ i że $v_k$ jest sąsiadem $v_1$. Jednak teraz cykl 
+$$v_1\to \ldots\to v_{k-1}\to v_n\to\ldots\to v_k\to v_1$$ jest cyklem Hamiltona, co daje nam szukaną sprzeczność.
+\end{block}
+	
+	
+\end{frame}
+	
+	
+\begin{frame}
+	\begin{block}{Twierdzenie (Dirac, 1952)}
+		Jeżeli minimalny stopień grafu $G$ jest nie mniejszy niż połowa liczby wierzchołków tego grafu:
+		$$\delta(G)\geqslant\frac{|V(G)|}2,$$
+		 to $G$ jest grafem hamiltonowskim.
+	\end{block}
+	
+	
+	\begin{proof}
+		Niech $u,v\in V(G)$ i niech $|V(G)|=n$. Każdy wierzchołek grafu $G$ ma stopień nie mniejszy niż $\displaystyle \frac{n}2$, więc $$\deg(u)+\deg(v)\geqslant \frac{n}2+\frac{n}2=n.$$
+		Zatem w szczególności sumy stopni wszystkich par \underline{niesąsiednich} wierzchołków są nie mniejsze niż $n$, więc z twierdzenia Orego otrzymujemy, że $G$ jest grafem hamiltonowskim.
+	\end{proof}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\begin{block}{Problem komiwojażera}
+		Podamy dwie wersje problemu:
+		\begin{itemize}
+		\item Mając daną listę miast i odległości między tymi miastami, znaleźć najkrótszą drogę przechodzącą przez wszystkie miasta (przez każde tylko raz) i~powracającą do punktu wyjścia.	
+		\item Znaleźć najoptymalniejszy cykl Hamiltona w ważonym grafie pełnym.
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Przykładowe rozwiązania}
+		\begin{itemize}
+			\item {\it Brute force}: Znajdujemy wszystkie cykle Hamiltona i wybieramy najodpowiedniejszy.
+			\item {\it Algorytm najbliższego sąsiada}: Zaczynamy od dowolnego wierzchołka i poruszamy się zawsze wzdłuż krawędzi o najmniejszych wagach. (jest to rozwizanie przybliżone, średnio o $25\%$ gorsze od optymalnego).
+		\end{itemize}
+	\end{block}
+
+\end{frame}
+
+
+
+
+
+\end{document}
