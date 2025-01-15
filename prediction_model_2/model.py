@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import pickle
 import re
-from tensorflow.keras.models import Sequential,load_model
+from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import (
     Embedding,
@@ -13,6 +13,7 @@ from tensorflow.keras.layers import (
     GlobalMaxPooling1D,
     Dense,
     GlobalAveragePooling1D,
+    Conv2D
 )
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -29,14 +30,17 @@ class Model:
         self._tokenizer = Tokenizer()
 
     def train(
-        self,
-        output_dim: Optional[int] = 256,
-        filters: Optional[int] = 512,
-        global_max_pooling: Optional[bool] = True,
-        quiet: Optional[bool] = False,
+            self,
+            output_dim: Optional[int] = 256,
+            filters: Optional[int | List[int]] = 512,
+            global_max_pooling: Optional[bool] = True,
+            quiet: Optional[bool] = False,
+            epochs: Optional[int] = 10
     ) -> None:
         """
 
+        :param epochs:
+        :param global_max_pooling:
         :param output_dim:
         :param filters:
         :param quiet:
@@ -45,8 +49,9 @@ class Model:
 
         self._get_all_original_texts()
         self._get_random_texts()
-        texts = self._all_original_texts  + self._all_random_texts
-        labels = [1 for _ in range(len(self._all_original_texts))] + [0 for _ in range(len(self._all_random_texts))]
+        texts = self._all_original_texts + self._all_random_texts
+        labels = [1] * len(self._all_original_texts) + [0] * len(self._all_random_texts)
+        print(labels)
         self._tokenizer.fit_on_texts(texts)
         sequences = self._tokenizer.texts_to_sequences(texts)
         vocab_size = len(self._tokenizer.word_index) + 1
@@ -54,13 +59,20 @@ class Model:
         X = pad_sequences(sequences, maxlen=self._max_len)
         y = np.array(labels)
         if global_max_pooling:
-            e = GlobalMaxPooling1D()
-        else:
             e = GlobalAveragePooling1D()
+        else:
+            e = GlobalMaxPooling1D()
+
+        print(filters)
+        if isinstance(filters,int):
+            conv_layers = [Conv1D(filters=filters, kernel_size=2, activation="relu")]
+        else:
+            conv_layers = [Conv1D(filters=f, kernel_size=2, activation="relu") for f in filters]
+
         self._model = Sequential(
             [
                 Embedding(input_dim=vocab_size, output_dim=output_dim),
-                Conv1D(filters=filters, kernel_size=2, activation="relu"),
+                *conv_layers,
                 e,
                 Dense(64, activation="relu"),
                 Dense(1, activation="sigmoid"),
@@ -69,7 +81,7 @@ class Model:
         self._model.compile(
             optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"]
         )
-        self._model.fit(X, y, epochs=10, batch_size=2, verbose=not quiet)
+        self._model.fit(X, y, epochs=epochs, batch_size=2, verbose=not quiet)
 
     def predict(self, text: str) -> float:
         """
@@ -79,14 +91,15 @@ class Model:
         new_sequences = self._tokenizer.texts_to_sequences([text])
         new_X = pad_sequences(new_sequences, maxlen=self._max_len)
         predictions = self._model.predict(new_X)
+        # print(predictions)
         return predictions[0][0]
 
     def find_best(
-        self,
-        test_dict: Dict[str, bool],
-        output_dim_list: Optional[List[int]] = [256],
-        filters_list: Optional[List[int]] = [512],
-        pooling_avg: Optional[bool] = False
+            self,
+            test_dict: Dict[str, bool],
+            output_dim_list: Optional[List[int]] = [256],
+            filters_list: Optional[List[int]] = [512],
+            pooling_avg: Optional[bool] = False
     ) -> pd.DataFrame:
         """
 
@@ -107,14 +120,14 @@ class Model:
         )
         for output_dim in output_dim_list:
             for filters in filters_list:
-                self.train(output_dim, filters,pooling_avg, quiet=True)
+                self.train(output_dim, filters, pooling_avg, quiet=True)
                 for text, value in test_dict.items():
                     answer = self.predict(text)
                     new_row = {
                         "output_dim": output_dim,
                         "filters": filters,
                         "expected_value": value,
-                        "pooling_avg" :pooling_avg,
+                        "pooling_avg": pooling_avg,
                         "real_value": answer,
                         "difference": abs(value - answer),
                     }
@@ -124,7 +137,7 @@ class Model:
                     )
         return self._test_results
 
-    def save_predictions(self,file_name:str):
+    def save_predictions(self, file_name: str):
         self._test_results.to_csv(file_name)
 
     def save_model(self):
@@ -140,12 +153,10 @@ class Model:
 
     def _get_all_original_texts(self):
 
-
         self._all_original_texts = []
-        for file_name in os.listdir("train_original"):
-            with open("train_original/"+file_name, 'r', encoding='utf-8') as f:
+        for file_name in  os.listdir("train_original"):
+            with open("train_original/" + file_name, 'r', encoding='utf-8') as f:
                 raw = f.read()
-            print(raw)
 
             smieci1 = re.findall(r'\$\$\\begin{array}.*?\\end{array}\$\$', raw, re.DOTALL)
             smieci2 = re.findall(r'\\begin{tabular}.*?\\end{tabular}', raw, re.DOTALL)
@@ -161,7 +172,7 @@ class Model:
             # Usuwamy te zdania z tekstu
             text_cleaned = re.sub(pattern, '', raw)
 
-            soup = TexSoup(text_cleaned)
+            soup = TexSoup(text_cleaned, tolerance=1)
             all_in_one = []
             for text in soup.text:
                 all_in_one.append(text)
@@ -171,16 +182,17 @@ class Model:
             for i in all_in_one:
                 i = i.strip()
                 if i != '':
+                    # print(i)
+                    # print()
                     self._all_original_texts.append(i)
 
     def _get_random_texts(self):
         self._all_random_texts = []
         for file_name in os.listdir("train_random"):
-            with open("train_random/"+file_name, 'r', encoding='utf-8') as f:
+            with open("train_random/" + file_name, 'r', encoding='utf-8') as f:
                 raw = f.read()
 
-
-
-
-
-
+            for i in raw.split('\n'):
+                # print(i)
+                # print()
+                self._all_random_texts.append(i)
