@@ -1,5 +1,5 @@
 # Określenie ścieżki pliku
-file_path = r'C:\Users\NowyLOMBARD\Desktop\Kasia\Studia\Inżynieria\dane\md12 algebry boolea.tex'  # Upewnij się, że plik znajduje się w tym samym katalogu lub podaj pełną ścieżkę
+file_path = r'C:\Users\NowyLOMBARD\Desktop\Kasia\Studia\Inżynieria\dane\md12 algebry boolea.lect'  # Upewnij się, że plik znajduje się w tym samym katalogu lub podaj pełną ścieżkę
 name='\\md12.txt'
 from TexSoup import TexSoup
 

@@ -51,7 +51,7 @@ class Model:
         self._get_random_texts()
         texts = self._all_original_texts + self._all_random_texts
         labels = [1] * len(self._all_original_texts) + [0] * len(self._all_random_texts)
-        print(labels)
+        #print(labels)
         self._tokenizer.fit_on_texts(texts)
         sequences = self._tokenizer.texts_to_sequences(texts)
         vocab_size = len(self._tokenizer.word_index) + 1
@@ -63,7 +63,7 @@ class Model:
         else:
             e = GlobalMaxPooling1D()
 
-        print(filters)
+        #print(filters)
         if isinstance(filters,int):
             conv_layers = [Conv1D(filters=filters, kernel_size=2, activation="relu")]
         else:
@@ -90,7 +90,7 @@ class Model:
         """
         new_sequences = self._tokenizer.texts_to_sequences([text])
         new_X = pad_sequences(new_sequences, maxlen=self._max_len)
-        predictions = self._model.predict(new_X)
+        predictions = self._model.predict(new_X,verbose = False)
         # print(predictions)
         return predictions[0][0]
 
@@ -140,21 +140,62 @@ class Model:
     def save_predictions(self, file_name: str):
         self._test_results.to_csv(file_name)
 
-    def save_model(self):
-        self._model.save('aa.keras')
-        with open("tokenizer.pkl", "wb") as f:
-            pickle.dump(self._tokenizer, f)
+    def save_model(self,name):
+        model_file = os.path.join("saved_models",name)
+        self._model.save(model_file+'.h5')
+        data_to_save = {
+            "tokenizer": self._tokenizer,
+            "max_len": self._max_len
+        }
+        with open(model_file+'.pkl', "wb") as file:
+            pickle.dump(data_to_save, file)
 
-    def load_model(self):
-        self._model = load_model('aa.keras')
-        with open("tokenizer.pkl", "rb") as f:
-            self._tokenizer = pickle.load(f)
-        self._model.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])
+    def load_model(self,name):
+        model_file = os.path.join("saved_models", name)
+        with open(model_file+'.pkl', "rb") as file:
+            loaded_data = pickle.load(file)
+        self._tokenizer = loaded_data["tokenizer"]
+        self._max_len = loaded_data["max_len"]
+        self._model = load_model(model_file+'.h5', compile=False)
+
+    def predict_from_latex(self,file_name):
+        dict = {}
+        with open("predict_latex/" + file_name, 'r', encoding='utf-8') as f:
+            raw = f.read()
+
+        smieci1 = re.findall(r'\$\$\\begin{array}.*?\\end{array}\$\$', raw, re.DOTALL)
+        smieci2 = re.findall(r'\\begin{tabular}.*?\\end{tabular}', raw, re.DOTALL)
+        smieci3 = re.findall(r'\$\$\s*\\begin{array}.*?\\end{array}\s*\$\$', raw, re.DOTALL)
+        my1_math = re.findall(r'\\begin{align\*}.*?\\end{align\*}', raw, re.DOTALL)
+        my2_math = re.findall(r'\$\$.*?\$\$', raw)
+
+        # Łączenie wyników
+        smieci = smieci1 + smieci2 + smieci3 + my1_math + my2_math
+
+        pattern = '|'.join([re.escape(sentence) for sentence in smieci])
+
+        # Usuwamy te zdania z tekstu
+        text_cleaned = re.sub(pattern, '', raw)
+
+        soup = TexSoup(text_cleaned, tolerance=1)
+        all_in_one = []
+        for text in soup.text:
+            all_in_one.append(text)
+        all_in_one = ' '.join(all_in_one)
+        all_in_one = re.sub('\t', '', all_in_one)
+        all_in_one = all_in_one.split('\n')
+        for i in all_in_one:
+            i = i.strip()
+            if i != '':
+                # print(i)
+                # print()
+                dict[i] = self.predict(i,)
+        return dict
 
     def _get_all_original_texts(self):
 
         self._all_original_texts = []
-        for file_name in  os.listdir("train_original"):
+        for file_name in os.listdir("train_original"):
             with open("train_original/" + file_name, 'r', encoding='utf-8') as f:
                 raw = f.read()
 
