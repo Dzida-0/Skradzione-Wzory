@@ -160,7 +160,7 @@ class Model:
 
     def predict_from_latex(self,file_name):
         dict = {}
-        with open("predict_latex/" + file_name, 'r', encoding='utf-8') as f:
+        with open( file_name, 'r', encoding='utf-8') as f:
             raw = f.read()
 
         smieci1 = re.findall(r'\$\$\\begin{array}.*?\\end{array}\$\$', raw, re.DOTALL)
