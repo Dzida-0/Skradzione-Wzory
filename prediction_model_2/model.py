@@ -141,7 +141,7 @@ class Model:
         self._test_results.to_csv(file_name)
 
     def save_model(self,name):
-        model_file = os.path.join("saved_models",name)
+        model_file = os.path.join("",name)
         self._model.save(model_file+'.h5')
         data_to_save = {
             "tokenizer": self._tokenizer,
@@ -151,7 +151,7 @@ class Model:
             pickle.dump(data_to_save, file)
 
     def load_model(self,name):
-        model_file = os.path.join("saved_models", name)
+        model_file = os.path.join("", name)
         with open(model_file+'.pkl', "rb") as file:
             loaded_data = pickle.load(file)
         self._tokenizer = loaded_data["tokenizer"]
