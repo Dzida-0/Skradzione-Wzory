@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+
+\title{Raport Plagiat}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+    \textbf{Data:} Input-nr-1 \\
+    \textbf{Czas:} Input-nr-2 \\
+    \textbf{Nazwa testowanego pliku:} Input-nr-3
+\end{center}
+
+\section{Inforacje ogólne dotyczące testu}
+
+\textbf{Wynik procentowy:} \textcolor{Input-nr-4}{ Input-nr-5 }
+
+\textbf{Czas trwania testu:} Input-nr-6
+
+\textbf{Liczna elementów w teście:} Input-nr-7
+
+
+\section{Images}
+
+Below is an image that is placed here using the \texttt{[H]} option to force the image placement.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{example-image} % Replace with your image file
+\caption{An example image}
+\end{figure}
+
+\section{Highlighted Text}
+
+Here is some \textcolor{yellow}{highlighted text} to demonstrate how to use colors in LaTeX.
+
+\section{Text}
+
+This is some regular text to demonstrate basic formatting in LaTeX. You can add paragraphs, sections, and subsections easily.
+
+\section{Table}
+
+Below is an example of a table with colored cells:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\rowcolor{gray!30} \textbf{Header 1} & \textbf{Header 2} & \textbf{Header 3} \\ \hline
+\textcolor{red}{Cell 1}              & Cell 2            & Cell 3            \\ \hline
+Cell 4                               & \textcolor{blue}{Cell 5} & Cell 6            \\ \hline
+Cell 7                               & Cell 8            & \textcolor{green}{Cell 9}  \\ \hline
+\end{tabular}
+\caption{Example Table with Colored Cells}
+\end{table}
+
+
+\end{document}
