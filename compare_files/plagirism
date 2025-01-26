@@ -1,0 +1,47 @@
+def calculate_similarity(text1, text2):
+    vectorizer = TfidfVectorizer()
+    vectors = vectorizer.fit_transform([text1, text2])
+    similarity = cosine_similarity(vectors[0], vectors[1])[0][0]
+    return similarity
+
+def divide_text(text, parts):
+    part_length = len(text) // parts
+    return [text[i * part_length:(i + 1) * part_length] for i in range(parts)] + [text[parts * part_length:]] if parts > 1 else [text]
+
+if __name__ == "__main__":
+    # File paths
+    f1 = "/content/md10.txt"
+    f2 = "/content/md9.txt"
+
+    with open(f1, 'r', encoding='utf-8') as file1:
+        text1 = file1.read()
+    with open(f2, 'r', encoding='utf-8') as file2:
+        text2 = file2.read()
+
+    # Get number of parts from the user
+    parts = int(input("Enter the number of parts to divide text 1 into (1-10): "))
+    if not (1 <= parts <= 10):
+        print("Invalid number of parts. Please choose between 1 and 10.")
+    else:
+        divided_texts = divide_text(text1, parts)
+
+        # Measure execution time
+        start_time = time.time()
+        similarity_scores = [calculate_similarity(part, text2) for part in divided_texts]
+        exec_time = time.time() - start_time
+
+        # Display similarity scores
+        for i, score in enumerate(similarity_scores, 1):
+            print(f"Part {i} Similarity: {score * 100:.2f}%")
+
+        # Prepare data for the report
+        report_data = {
+            'date': int(time.time()),
+            'file': f"{f1} vs {f2}",
+            'exec_time': f"{exec_time:.2f} seconds",
+            'numbers': similarity_scores,
+        }
+
+        # Generate the LaTeX report
+        generator = ReportGenerator()
+        generator.generate_latex_report(report_data)
