@@ -1,3 +1,4 @@
+import time
 import zipfile
 import subprocess
 import os
@@ -8,6 +9,8 @@ from nbconvert import HTMLExporter
 from nbconvert.preprocessors import ExecutePreprocessor
 import webbrowser
 import shutil
+import numpy as np
+
 
 class ReportGenerator:
     def __init__(self):
@@ -32,16 +35,23 @@ class ReportGenerator:
         plt.title('c', fontsize=14)
         plt.savefig(os.path.join(self.tex_output_folder,self.tex_png_output_folder,"plot1.png"))
 
-    def generate_latex_report(self,data,results):
+    def generate_latex_report(self,data):
+        to_put = {
+            "date": time.strftime("%d.%m.%Y", time.localtime(data['date'])),
+            "hour": time.strftime("%H:%M", time.localtime(data['date'])),
+            "file_name": data['file'].replace('_','\_'),
+            "exec_time": data['exec_time'],
+            "proc_plagiat": sum((data['numbers']))/len(data['numbers'])
+        }
         self.report_latex_exists = False
         with open(self.tex_pattern, 'r') as f:
             tex = f.read()
-        for input,text in enumerate(data):
-            tex = tex.replace(f"Input-nr-{input}",text)
+        for input,text in to_put.items():
+            tex = tex.replace(f"Input-{input}",str(text))
         for i in range(2):
             tex = tex.replace(f"Plot-nr-{i}",self.tex_png_output_folder+f"/plot{i}.png")
         os.makedirs(os.path.join(self.tex_output_folder,self.tex_png_output_folder), exist_ok=True)
-        self.generate_plots_for_latex(results)
+        self.generate_plots_for_latex(data['numbers'])
         with open(os.path.join(self.tex_output_folder,self.tex_out_file_name), 'w') as f:
             f.write(tex)
         # To PDF
@@ -58,12 +68,20 @@ class ReportGenerator:
             print(f"Error occurred during LaTeX compilation: {e}")
         self.report_latex_exists = True
 
-    def generate_html_report(self):
+    def generate_html_report(self,data):
 
+        #["24.01.2025","13:34","test.tex","green", "40.0", "123", "54" ],
         with open(self.html_pattern, 'r', encoding='utf-8') as f:
             notebook_content = nbformat.read(f, as_version=4)
 
-        data_to_pass = {"data": ["24.01.2025","13:34","test.tex","green", "40.0", "123", "54" ], "numbers": [42,12,34]}
+        data_to_pass = {"data": {
+            "date": time.strftime("%d.%m.%Y", time.localtime(data['date'])),
+            "hour": time.strftime("%H:%M", time.localtime(data['date'])),
+            "file_name": data['file'],
+            "exec_time": data['exec_time'],
+            "proc_plagiat" :sum((data['numbers']))/len(data['numbers'])
+        },
+         "numbers": data['numbers']}
         notebook_content.cells[1].source = f"data = {data_to_pass}"
 
         execute_preprocessor = ExecutePreprocessor(timeout=600, kernel_name='python3')
