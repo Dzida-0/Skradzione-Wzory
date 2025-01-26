@@ -1,0 +1,41 @@
+import time
+import os
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+class ReportGenerator:
+    def __init__(self, tex_pattern='report_pattern.tex', output_folder="reports"):
+        self.tex_pattern = tex_pattern
+        self.output_folder = output_folder
+        self.output_file_name = "report.tex"
+        os.makedirs(self.output_folder, exist_ok=True)
+
+    def generate_latex_report(self, data):
+      to_put = {
+          "date": time.strftime("%d.%m.%Y", time.localtime(data['date'])),
+          "hour": time.strftime("%H:%M", time.localtime(data['date'])),
+          "file_name": data['file'].replace('_', '\\_'),
+          "exec_time": data['exec_time'],
+          "proc_plagiat": sum(data['numbers']) / len(data['numbers'])
+      }
+
+    # Generate dynamic content for similarity scores
+      score_lines = ""
+      for i, score in enumerate(data['numbers'], start=1):
+            score_lines += f"\\item Part {i}: {score * 100:.2f}%\n"
+
+    # Replace placeholders in the LaTeX template
+      with open(self.tex_pattern, 'r') as f:
+            tex = f.read()
+
+      for key, value in to_put.items():
+          tex = tex.replace(f"Input-{key}", str(value))
+
+    # Replace detailed similarity scores dynamically
+      tex = tex.replace("Input-detailed-scores", score_lines.strip())
+
+      output_path = os.path.join(self.output_folder, self.output_file_name)
+      with open(output_path, 'w') as f:
+         f.write(tex)
+
+      print(f"LaTeX report saved to {output_path}")
