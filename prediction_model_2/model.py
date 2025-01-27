@@ -199,7 +199,8 @@ class Model:
             if i != '':
                 dict[i] = self.predict(i)
         t_stop = time.time()
-        self.report_data = {'date':t_start, "file": file_name,"exec_time":t_stop-t_start ,"numbers": [float(value) for value in dict.values()]}
+        self.report_data = {'date':t_start, "file": file_name,"exec_time":t_stop-t_start ,
+                            "numbers": [float(value) for value in dict.values()],"row": row_numb}
 
         return dict
 
