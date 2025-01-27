@@ -28,11 +28,8 @@ class ReportGenerator:
         plt.savefig(os.path.join(self.tex_output_folder, self.tex_png_output_folder, "plot0.png"))
         ###
         plt.figure(figsize=(8, 6))
-        sns.histplot(data, bins=8, kde=True, color='blue')
+        sns.histplot(data, bins=10, kde=True, color='blue')
         plt.xlim(min(data), max(data))
-        plt.xlabel('a', fontsize=12)
-        plt.ylabel('b', fontsize=12)
-        plt.title('c', fontsize=14)
         plt.savefig(os.path.join(self.tex_output_folder, self.tex_png_output_folder, "plot1.png"))
 
     def generate_latex_report(self, data):
@@ -40,9 +37,11 @@ class ReportGenerator:
             "date": time.strftime("%d.%m.%Y", time.localtime(data['date'])),
             "hour": time.strftime("%H:%M", time.localtime(data['date'])),
             "file_name": data['file'].replace('_', '\\_'),
-            "exec_time": data['exec_time'],
-            "proc_plagiat": sum((data['numbers'])) / len(data['numbers'])
-        }
+            "exec_time": round(data['exec_time'],2),
+            "proc_plagiat": round(sum((data['numbers'])) / len(data['numbers']),2),
+            "elements_count": len(data['numbers']),
+            "row" : data['row']
+            }
         self.report_latex_exists = False
         with open(self.tex_pattern, 'r') as f:
             tex = f.read()

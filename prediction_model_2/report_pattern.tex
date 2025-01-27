@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{colortbl}
@@ -12,24 +12,29 @@
 
 \maketitle
 
-\begin{center}
-    \textbf{Data:} Input-date \\
-    \textbf{Czas:} Input-hour \\
-    \textbf{Nazwa testowanego pliku:} Input-file_name
-\end{center}
+
 
 \section{Inforacje ogólne dotyczące testu}
 
-\textbf{Wynik procentowy:} Input-proc_plagiat
+\begin{itemize}
+\item \large \textbf{Data:} Input-date
 
-\textbf{Czas trwania testu:} Input-exec_time
+\item \textbf{Czas:} Input-hour
 
-\textbf{Liczna elementów w teście:} Input-nr-6
+\item \textbf{Nazwa testowanego pliku:} Input-file_name
+
+\item \textbf{Wynik procentowy:} Input-proc_plagiat \%
+
+\item \textbf{Czas trwania testu:} Input-exec_time
+
+\item \textbf{Liczna elementów w teście:} Input-elements_count
+
+\item \textbf{Liczna rzędów w elemencie:} Input-row
+\end{itemize}
+
+\section{Wykres Rezultatów}
 
 
-\section{Images}
-
-Below is an image that is placed here using the \texttt{[H]} option to force the image placement.
 
 \begin{figure}[H]
 \centering
@@ -37,12 +42,12 @@ Below is an image that is placed here using the \texttt{[H]} option to force the
 \caption{An example image}
 \end{figure}
 
-\section{Highlighted Text}
+\section{Histogram}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{ Plot-nr-1 }
-\caption{An example image}
+\caption{Histogram wyników}
 \end{figure}
 
 
