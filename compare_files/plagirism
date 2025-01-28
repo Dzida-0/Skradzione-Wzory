@@ -10,7 +10,7 @@ def divide_text(text, parts):
 
 if __name__ == "__main__":
     # File paths
-    f1 = "/content/md10.txt"
+    f1 = "/content/md9.txt"
     f2 = "/content/md9.txt"
 
     with open(f1, 'r', encoding='utf-8') as file1:
