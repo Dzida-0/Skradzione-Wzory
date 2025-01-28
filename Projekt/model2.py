@@ -1,4 +1,5 @@
 import os
+import time
 from typing import Optional, List, Dict
 from TexSoup import TexSoup
 import numpy as np
@@ -24,6 +25,7 @@ class Model:
 
     def __init__(self):
         """ """
+        self.report_data = None
         self._test_results: pd.DataFrame = pd.DataFrame()
         self._model = None
         self._max_len = None
@@ -91,7 +93,6 @@ class Model:
         new_sequences = self._tokenizer.texts_to_sequences([text])
         new_X = pad_sequences(new_sequences, maxlen=self._max_len)
         predictions = self._model.predict(new_X,verbose = False)
-        # print(predictions)
         return predictions[0][0]
 
     def find_best(
@@ -158,7 +159,16 @@ class Model:
         self._max_len = loaded_data["max_len"]
         self._model = load_model(model_file+'.h5', compile=False)
 
-    def predict_from_latex(self,file_name):
+    def predict_from_latex(self,file_name,real_name:Optional[str]="",row_numb : Optional[int] = 1):
+        zamienniki = {
+        'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n',
+        'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z',
+        'Ą': 'A', 'Ć': 'C', 'Ę': 'E', 'Ł': 'L', 'Ń': 'N',
+        'Ó': 'O', 'Ś': 'S', 'Ź': 'Z', 'Ż': 'Z'
+        }
+        real_name=''.join(zamienniki.get(znak, znak) for znak in real_name)
+        
+        t_start = time.time()
         dict = {}
         with open( file_name, 'r', encoding='utf-8') as f:
             raw = f.read()
@@ -184,13 +194,26 @@ class Model:
         all_in_one = ' '.join(all_in_one)
         all_in_one = re.sub('\t', '', all_in_one)
         all_in_one = all_in_one.split('\n')
+        t = []
+        if len(all_in_one)% row_numb > 0 :
+            for _ in range(row_numb-(len(all_in_one)% row_numb) ):
+                all_in_one.append("")
+
+        for i in range(0,len(all_in_one),row_numb):
+            t.append( "".join([all_in_one[i+j] for j in range(row_numb)]))
+        all_in_one = t
         for i in all_in_one:
             i = i.strip()
             if i != '':
-                # print(i)
-                # print()
-                dict[i] = self.predict(i,)
+                dict[i] = self.predict(i)
+        t_stop = time.time()
+        self.report_data = {'date':t_start, "file": real_name,"exec_time":t_stop-t_start ,
+                            "numbers": [float(value) for value in dict.values()],"row": row_numb}
+
         return dict
+
+    def get_report_data(self,):
+        return self.report_data
 
     def _get_all_original_texts(self):
 

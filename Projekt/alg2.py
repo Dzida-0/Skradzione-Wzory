@@ -11,8 +11,11 @@ model_path = os.path.join(current_dir, "saved_models", "test_generate_21_f_256_1
 mod.load_model(model_path)
 
 f1 = sys.argv[1]
+n=int(sys.argv[2])
+name=sys.argv[3]
 
-d = mod.predict_from_latex(f1)
-print(f'{((sum(d.values())/len(d))*100):.2f}')
+d = mod.predict_from_latex(f1,name,n)
 
-cos=r"C:\Users\NowyLOMBARD\Desktop\Kasia\Studia\Inżynieria\Projekt\saved_models\test_generate_21_f_256_1024_o256_e20.h5"
+print(f'Procent plagiatu: {((sum(d.values())/len(d))*100):.2f} %')
+
+
